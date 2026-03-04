@@ -1105,7 +1105,7 @@ function Footer() {
         </div>
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
           <p>&copy; 2026 Adhery. All rights reserved.</p>
-          <p>Built with Claude Code</p>
+          <p>HIPAA Compliant</p>
         </div>
       </div>
     </footer>
