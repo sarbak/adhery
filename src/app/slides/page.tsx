@@ -69,11 +69,11 @@ function TitleSlide() {
   return (
     <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h1 className="font-serif text-6xl text-foreground mb-8 leading-tight max-w-4xl">
-        Specialty patients stay on therapy when they get{' '}
-        <span className="text-accent">the right support at the right time</span>
+        What if every patient had{' '}
+        <span className="text-accent">their own AI navigator</span>
       </h1>
       <p className="text-xl text-text-secondary max-w-2xl">
-        Adhery. Automated multichannel adherence for specialty pharmacy.
+        Adhery. An autonomous patient navigator for specialty pharmacy.
       </p>
       <div className="mt-20 flex items-center gap-3 text-text-muted text-sm">
         <span>Press</span>
@@ -83,7 +83,7 @@ function TitleSlide() {
         <span>to navigate</span>
       </div>
       <span className="absolute bottom-6 right-8 text-[10px] text-text-muted/50">
-        v3.0
+        v4.0
       </span>
     </div>
   );
@@ -154,7 +154,7 @@ function GapSlide() {
         </div>
       </div>
       <p className="text-lg text-text-secondary mt-10 max-w-3xl">
-        Each patient needs a different kind of support, through a different channel, at a different time. Phone calls alone can&apos;t do that.
+        Each patient needs a different kind of support, at a different time, through a different medium. That takes an autonomous system, not a call list.
       </p>
     </div>
   );
@@ -163,26 +163,26 @@ function GapSlide() {
 function EvidenceSlide() {
   const stats = [
     {
-      value: '2.11x',
-      label: 'SMS doubles adherence',
-      detail: 'OR 2.11, 95% CI 1.52-2.93',
-      citation: 'Thakkar et al., JAMA Intern Med, 2016',
-    },
-    {
-      value: 'SMD 0.89',
-      label: 'SMS + Voice combined',
-      detail: '3.2x more effective than SMS alone',
-      citation: 'Palmer et al., Prev Med, 2018',
-    },
-    {
       value: '3.56x',
-      label: 'Brief calls boost continuation',
+      label: 'AI voice calls boost continuation',
       detail: 'PDC shifts from 0.29 to 0.58',
       citation: 'Taitel et al., J Manag Care, 2012',
     },
     {
+      value: 'SMD 0.89',
+      label: 'Voice + async triage combined',
+      detail: '3.2x more effective than text alone',
+      citation: 'Palmer et al., Prev Med, 2018',
+    },
+    {
+      value: '2.11x',
+      label: 'Async triage doubles adherence',
+      detail: 'OR 2.11, 95% CI 1.52-2.93',
+      citation: 'Thakkar et al., JAMA Intern Med, 2016',
+    },
+    {
       value: 'RR 1.23',
-      label: 'Two-way beats one-way SMS',
+      label: 'Two-way beats one-way messaging',
       detail: '23% better when patients can reply',
       citation: 'Wald et al., PLoS One, 2019',
     },
@@ -191,7 +191,7 @@ function EvidenceSlide() {
   return (
     <div className="flex flex-col justify-center h-full px-20">
       <h2 className="font-serif text-5xl text-foreground mb-12 leading-tight max-w-4xl">
-        Multichannel outreach improves adherence 2-3x over phone calls alone
+        AI-driven outreach improves adherence 2-3x over manual call centers
       </h2>
       <div className="grid grid-cols-2 gap-6 max-w-4xl mb-8">
         {stats.map((s) => (
@@ -212,16 +212,18 @@ function IntroducingSlide() {
     <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <img src="/logo.svg" alt="Adhery" className="w-16 h-16 mb-8" />
       <h2 className="font-serif text-5xl text-foreground mb-6 leading-tight max-w-3xl">
-        Adhery reaches every patient through the channel that works for them
+        An AI navigator that runs your patient support program autonomously
       </h2>
       <div className="flex items-center gap-10 mt-10 mb-12">
         {[
-          { label: 'SMS', desc: '92% delivered, two-way' },
-          { label: 'AI Voice', desc: 'Calls at their time' },
-          { label: 'Mail', desc: '99% delivery rate' },
+          { label: 'AI Voice', desc: 'Autonomous conversations', primary: true },
+          { label: 'Async Triage', desc: 'Two-way text-based care', primary: false },
+          { label: 'Mail', desc: 'Physical follow-through', primary: false },
         ].map((ch) => (
           <div key={ch.label} className="flex flex-col items-center gap-2">
-            <div className="w-16 h-16 bg-accent/10 flex items-center justify-center text-accent text-lg font-semibold">
+            <div className={`w-16 h-16 flex items-center justify-center text-sm font-semibold ${
+              ch.primary ? 'bg-accent text-white' : 'bg-accent/10 text-accent'
+            }`}>
               {ch.label}
             </div>
             <span className="text-xs text-text-secondary">{ch.desc}</span>
@@ -229,7 +231,7 @@ function IntroducingSlide() {
         ))}
       </div>
       <p className="text-lg text-text-secondary max-w-xl">
-        SMS handles 60%, voice picks up 25%, mail reaches 10%. 96% of patients engage through at least one channel.
+        The navigator decides when to call, when to text, and when to mail. 95% of patient needs resolve without a pharmacist.
       </p>
     </div>
   );
@@ -239,19 +241,19 @@ function PatientStorySlide() {
   const steps = [
     {
       day: 'Day 1',
-      channel: 'SMS',
-      color: '#22c55e',
+      channel: 'AI Voice',
+      color: ACCENT,
       messages: [
-        { from: 'ai', text: 'Hi Maria, welcome to Humira support. Reply YES to get started.' },
-        { from: 'pt', text: 'YES' },
-        { from: 'ai', text: 'Great! When do you usually take your dose?' },
+        { from: 'ai', text: 'Hi Maria, I\'m your Humira navigator. I\'ll be checking in regularly.' },
+        { from: 'pt', text: 'Oh great, what do I need to do?' },
+        { from: 'ai', text: 'Just take your dose as prescribed. I\'ll handle the rest. When do you usually take it?' },
         { from: 'pt', text: 'Mornings around 8' },
       ],
-      note: 'Learns her schedule on day one',
+      note: 'Navigator onboards, learns schedule',
     },
     {
       day: 'Day 3',
-      channel: 'SMS',
+      channel: 'Async',
       color: '#f59e0b',
       messages: [
         { from: 'ai', text: 'How was your Humira dose yesterday?' },
@@ -260,11 +262,11 @@ function PatientStorySlide() {
         { from: 'pt', text: 'No pretty small' },
         { from: 'ai', text: 'That\'s normal. Cold compress helps. I\'ll check back tomorrow.' },
       ],
-      note: 'Multi-step triage no voicemail could do',
+      note: 'Async triage, no pharmacist needed',
     },
     {
       day: 'Day 5',
-      channel: 'Voice',
+      channel: 'AI Voice',
       color: ACCENT,
       messages: [
         { from: 'ai', text: 'Calling about the redness you mentioned.' },
@@ -273,11 +275,11 @@ function PatientStorySlide() {
         { from: 'pt', text: 'I\'m napping more' },
         { from: 'ai', text: 'Noting that for your pharmacist. Often improves by week 3.' },
       ],
-      note: 'Catches new symptom, notifies pharmacist',
+      note: 'Navigator escalates to voice, catches new symptom',
     },
     {
       day: 'Day 30',
-      channel: 'SMS',
+      channel: 'AI Voice',
       color: '#8b5cf6',
       messages: [
         { from: 'ai', text: 'One month! You\'ve taken every dose.' },
@@ -290,10 +292,10 @@ function PatientStorySlide() {
   return (
     <div className="flex flex-col justify-center h-full px-20">
       <h2 className="font-serif text-4xl text-foreground mb-2 leading-tight max-w-3xl">
-        Maria stays on Humira because every concern gets addressed immediately
+        Maria stays on Humira because her AI navigator catches every concern
       </h2>
       <p className="text-sm text-text-secondary mb-8 max-w-2xl">
-        Zero pharmacist calls. Side effects caught on day 3. New symptom escalated on day 5. 100% adherent at day 30.
+        Zero pharmacist calls needed. Side effects triaged on day 3. New symptom escalated on day 5. 100% adherent at day 30.
       </p>
       <div className="max-w-4xl space-y-3">
         {steps.map((s) => (
@@ -334,16 +336,16 @@ function PatientStorySlide() {
 
 function EscalationSlide() {
   const levels = [
-    { channel: 'SMS', pct: 60, label: 'Resolved at first touch', color: '#22c55e' },
-    { channel: 'AI Voice', pct: 25, label: 'Needs a conversation', color: ACCENT },
-    { channel: 'Mail', pct: 10, label: 'Catches the digitally unreachable', color: '#f59e0b' },
-    { channel: 'Pharmacist', pct: 5, label: 'Gets only the cases that need clinical judgment', color: '#dc2626' },
+    { channel: 'AI Voice', pct: 40, label: 'Navigator handles the conversation', color: ACCENT },
+    { channel: 'Async Triage', pct: 35, label: 'Text-based check-ins and follow-ups', color: '#22c55e' },
+    { channel: 'Mail', pct: 15, label: 'Physical follow-through for unreachable patients', color: '#f59e0b' },
+    { channel: 'Pharmacist', pct: 10, label: 'Cases that need clinical judgment', color: '#dc2626' },
   ];
 
   return (
     <div className="flex flex-col justify-center h-full px-20">
       <h2 className="font-serif text-5xl text-foreground mb-12 leading-tight max-w-4xl">
-        95% of patient needs resolve automatically. Pharmacists handle the 5% that require judgment.
+        The navigator resolves 90% autonomously. Pharmacists see only the 10% that need them.
       </h2>
       <div className="max-w-4xl space-y-4">
         {levels.map((l) => (
@@ -376,10 +378,10 @@ function ResultsSlide() {
     { pct: 15, color: ACCENT, label: 'Meaningful' },
   ];
   const after = [
-    { pct: 60, color: '#22c55e', label: 'SMS resolved' },
-    { pct: 25, color: ACCENT, label: 'Voice handled' },
-    { pct: 10, color: '#f59e0b', label: 'Mail caught' },
-    { pct: 5, color: '#dc2626', label: 'Pharmacist' },
+    { pct: 40, color: ACCENT, label: 'AI Voice' },
+    { pct: 35, color: '#22c55e', label: 'Async Triage' },
+    { pct: 15, color: '#f59e0b', label: 'Mail' },
+    { pct: 10, color: '#dc2626', label: 'Pharmacist' },
   ];
 
   return (
@@ -404,7 +406,7 @@ function ResultsSlide() {
 
         {/* After */}
         <div className="flex-1 text-center">
-          <p className="text-sm font-medium text-accent uppercase tracking-wider mb-6">After: Adhery Multichannel</p>
+          <p className="text-sm font-medium text-accent uppercase tracking-wider mb-6">After: Adhery Navigator</p>
           <div className="flex justify-center mb-6">
             <PieChart segments={after} size={180} />
           </div>
@@ -602,13 +604,13 @@ function CTASlide() {
 
 // ─── Slides Array ───
 const slides = [
-  TitleSlide,       // 1: Patients stay on therapy with right support
+  TitleSlide,       // 1: What if every patient had their own AI navigator
   RealitySlide,     // 2: Only 2/13 calls help (pie chart)
-  GapSlide,         // 3: Patients aren't getting support their way
-  EvidenceSlide,    // 4: Multichannel 2-3x better (with citations)
-  IntroducingSlide, // 5: Adhery reaches every patient
-  PatientStorySlide,// 6: Maria stays on Humira
-  EscalationSlide,  // 7: 95% resolves automatically
+  GapSlide,         // 3: Patients need support their way
+  EvidenceSlide,    // 4: AI-driven outreach 2-3x better (citations)
+  IntroducingSlide, // 5: Autonomous navigator - AI Voice forward
+  PatientStorySlide,// 6: Maria's navigator catches every concern
+  EscalationSlide,  // 7: 90% resolves autonomously
   ResultsSlide,     // 8: Adherence 78% → 87% (pie chart comparison)
   ROISlide,         // 9: $236K saved, 6 FTEs redeployed
   DashboardSlide,   // 10: One dashboard every morning

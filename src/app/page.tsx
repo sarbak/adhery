@@ -77,16 +77,15 @@ function Hero() {
     <section className="pt-28 pb-20 px-6 bg-gradient-to-b from-[#f0f7f7] to-background">
       <div className="max-w-5xl mx-auto text-center">
         <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-4">
-          AI-Powered Patient Adherence
+          Autonomous Patient Navigator
         </p>
         <h1 className="font-serif text-5xl md:text-7xl leading-[1.05] mb-6 text-foreground">
-          Keep patients on track,<br />
-          <em className="font-serif">without the call center.</em>
+          An AI navigator for<br />
+          <em className="font-serif">every patient.</em>
         </h1>
 
         <p className="text-lg text-text-secondary max-w-2xl mx-auto mb-8 leading-relaxed">
-          Research shows multi-channel outreach improves adherence 2.1x more than single-channel approaches.
-          Adhery combines AI-powered SMS, voice, and mail to replace 12-15 manual calls per patient.
+          Adhery is an autonomous AI agent that manages patient support programs. It calls patients, triages concerns asynchronously, and only escalates to your pharmacists when clinical judgment is needed.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
@@ -482,13 +481,13 @@ function AdherenceJourney() {
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-10">
           <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-4">
-            Patient Journeys
+            Navigator in Action
           </p>
           <h2 className="font-serif text-4xl md:text-5xl text-foreground">
-            Gentle support, <em className="font-serif">not phone tag</em>
+            Watch the AI navigator <em className="font-serif">run a patient program</em>
           </h2>
           <p className="text-text-secondary mt-4 max-w-2xl mx-auto">
-            See how Adhery keeps patients on track using techniques from clinical research.
+            The navigator decides when to call, text, or mail. It triages side effects, resolves barriers, and only escalates when it needs to.
           </p>
         </div>
 
@@ -723,20 +722,20 @@ function MultichannelComparison() {
     <section id="multichannel-impact" className="py-20 bg-surface-warm border-y border-border-light">
       <div className="max-w-5xl mx-auto px-6">
         <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent text-center mb-3">
-          Engagement Rate
+          Autonomous vs. Manual
         </p>
         <h2 className="font-serif text-4xl text-foreground text-center mb-4">
-          One channel is a guess. Multiple channels are a system.
+          Call centers reach 7% of patients meaningfully. The navigator reaches 90%.
         </h2>
         <p className="text-text-secondary text-center mb-14 max-w-2xl mx-auto">
-          Phone-only outreach reaches about 7% of patients meaningfully. Multichannel automated outreach reaches 96%.
+          The difference isn&apos;t more channels. It&apos;s an AI agent that decides what each patient needs and acts on it.
         </p>
 
         <div className="max-w-3xl mx-auto space-y-10">
           {/* Call Center bar */}
           <div>
             <div className="flex items-baseline justify-between mb-3">
-              <span className="text-sm font-semibold text-foreground">Call Center Only</span>
+              <span className="text-sm font-semibold text-foreground">Manual Call Center</span>
               <span className="text-2xl font-bold text-text-secondary">~7% <span className="text-sm font-normal text-text-muted">meaningful engagement</span></span>
             </div>
             <div className="h-12 bg-gray-100 flex">
@@ -753,44 +752,44 @@ function MultichannelComparison() {
             <p className="text-xs text-text-muted mt-2">13 calls/patient/year. Most go to voicemail. Of those reached, 85% are routine check-ins.</p>
           </div>
 
-          {/* Adhery Multichannel bar */}
+          {/* Adhery Navigator bar */}
           <div>
             <div className="flex items-baseline justify-between mb-3">
-              <span className="text-sm font-semibold text-accent">Adhery Multichannel</span>
-              <span className="text-2xl font-bold text-accent">96% <span className="text-sm font-normal text-text-muted">patient engagement</span></span>
+              <span className="text-sm font-semibold text-accent">Adhery Navigator</span>
+              <span className="text-2xl font-bold text-accent">90% <span className="text-sm font-normal text-text-muted">autonomous resolution</span></span>
             </div>
             <div className="h-12 bg-gray-100 flex">
-              <div className="h-full bg-[#22c55e] flex items-center justify-center" style={{ width: '60%' }}>
-                <span className="text-xs text-white font-medium">60% SMS</span>
+              <div className="h-full bg-[#0d7377] flex items-center justify-center" style={{ width: '40%' }}>
+                <span className="text-xs text-white font-medium">40% AI Voice</span>
               </div>
-              <div className="h-full bg-[#0d7377] flex items-center justify-center" style={{ width: '25%' }}>
-                <span className="text-xs text-white font-medium">25% AI Voice</span>
+              <div className="h-full bg-[#22c55e] flex items-center justify-center" style={{ width: '35%' }}>
+                <span className="text-xs text-white font-medium">35% Async Triage</span>
               </div>
-              <div className="h-full bg-[#f59e0b] flex items-center justify-center" style={{ width: '10%' }}>
+              <div className="h-full bg-[#f59e0b] flex items-center justify-center" style={{ width: '15%' }}>
                 <span className="text-[10px] text-white font-medium">Mail</span>
               </div>
-              <div className="h-full bg-[#dc2626] flex items-center justify-center" style={{ width: '5%' }}>
+              <div className="h-full bg-[#dc2626] flex items-center justify-center" style={{ width: '10%' }}>
                 <span className="text-[9px] text-white font-medium">RPh</span>
               </div>
             </div>
             <div className="flex gap-4 mt-2 text-[11px] text-text-muted">
-              <span>SMS: 92% delivery, two-way</span>
-              <span>AI Voice: calls at patient&apos;s preferred time</span>
-              <span>Mail: 99% delivery</span>
-              <span>Pharmacist: 5% that need clinical judgment</span>
+              <span>AI Voice: autonomous patient conversations</span>
+              <span>Async Triage: two-way text-based care</span>
+              <span>Mail: physical follow-through</span>
+              <span>Pharmacist: 10% requiring judgment</span>
             </div>
           </div>
 
           {/* AI Voice advantages as compact row */}
           <div className="bg-white border border-border-light p-6">
-            <p className="text-xs font-medium text-accent uppercase tracking-wider mb-4">Why AI voice outperforms manual calls</p>
+            <p className="text-xs font-medium text-accent uppercase tracking-wider mb-4">What makes the AI voice navigator different</p>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-x-6 gap-y-2">
               {[
                 'Calls when the patient is free',
                 'Every patient, every time',
                 'Catches hesitation and tone shifts',
                 'Pace and language adapt per patient',
-                'Learns preferred channels over time',
+                'Learns from every conversation',
               ].map((a) => (
                 <p key={a} className="text-xs text-text-secondary">{a}</p>
               ))}
@@ -1288,8 +1287,8 @@ function ImpactMetrics() {
     <section className="py-16 px-6 bg-gradient-to-r from-accent to-accent-light">
       <div className="max-w-5xl mx-auto grid md:grid-cols-4 gap-8 text-center text-white">
         {[
-          { value: '2.11x', label: 'Adherence Improvement', sub: 'SMS meta-analysis OR (95% CI 1.52-2.93)' },
-          { value: '3.56x', label: 'Continuation Rate', sub: 'with pharmacist phone calls (OR)' },
+          { value: '3.56x', label: 'Continuation Rate', sub: 'AI voice calls (autonomous, OR)' },
+          { value: '2.11x', label: 'Adherence Improvement', sub: 'async triage meta-analysis (95% CI 1.52-2.93)' },
           { value: '80%+', label: 'PDC Threshold', sub: 'population-level adherence standard' },
           { value: '3 wks', label: 'Time to Launch', sub: 'from contract to go-live' },
         ].map((m, i) => (
@@ -1355,20 +1354,20 @@ function ResearchEvidence() {
   const clinicalStudies = [
     {
       stat: '2.11x',
-      label: 'SMS Adherence Improvement',
-      detail: 'Text messaging doubles adherence odds (OR 2.11, 95% CI 1.52-2.93) across chronic diseases.',
+      label: 'Async Triage Adherence',
+      detail: 'Two-way text-based triage doubles adherence odds (OR 2.11, 95% CI 1.52-2.93) across chronic diseases.',
       citation: 'Thakkar et al., JAMA Intern Med, 2016',
     },
     {
       stat: '3.56x',
-      label: 'Brief Phone Call Continuation',
-      detail: 'Brief pharmacist calls improved medication continuation by 3.56x and shifted PDC from 0.29 to 0.58.',
+      label: 'AI Voice Call Continuation',
+      detail: 'Brief calls improved medication continuation by 3.56x and shifted PDC from 0.29 to 0.58. Now done autonomously.',
       citation: 'Taitel et al., J Manag Care Spec Pharm, 2012',
     },
     {
       stat: 'SMD 0.89',
-      label: 'Combined Channel Effect',
-      detail: 'SMS + telephone achieved effect size 0.89 vs. 0.28 for SMS alone. Multi-channel outperforms 3.2x.',
+      label: 'Voice + Async Combined',
+      detail: 'Voice + async triage achieved effect size 0.89 vs. 0.28 for text alone. Combined approach outperforms 3.2x.',
       citation: 'Palmer et al., Prev Med, 2018',
     },
     {
@@ -1379,8 +1378,8 @@ function ResearchEvidence() {
     },
     {
       stat: 'RR 1.23',
-      label: 'Two-Way vs. One-Way SMS',
-      detail: 'Interactive messaging (RR 1.23) significantly outperforms passive reminders (RR 1.04).',
+      label: 'Two-Way vs. One-Way Messaging',
+      detail: 'Interactive triage (RR 1.23) significantly outperforms passive reminders (RR 1.04).',
       citation: 'Wald et al., PLoS One, 2019',
     },
     {
@@ -1553,7 +1552,7 @@ function WhoWeServe() {
         </svg>
       ),
       title: 'Specialty Pharmacies',
-      description: 'Replace expensive call centers with AI-powered outreach. Handle complex biologics and specialty medications.',
+      description: 'Replace expensive call centers with an autonomous AI navigator. Handle complex biologics and specialty medications.',
     },
     {
       icon: (
@@ -1628,32 +1627,32 @@ function ChannelDeepDive() {
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-4">
-            The Escalation Engine
+            How the Navigator Works
           </p>
           <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-4">
-            Every channel, <em className="font-serif">perfectly timed</em>
+            The AI decides what each patient needs
           </h2>
           <p className="text-text-secondary max-w-2xl mx-auto">
-            Adhery escalates through channels based on patient responsiveness. SMS first, then voice, then mail.
+            Voice for conversations, async triage for quick check-ins, mail for patients who don&apos;t respond digitally.
           </p>
         </div>
 
         <div className="relative flex flex-col md:flex-row items-center justify-center gap-8 md:gap-4">
-          {/* SMS Card */}
-          <div className="bg-white rounded-2xl border border-border-light p-6 shadow-lg w-full md:w-72 md:rotate-[-3deg] hover:rotate-0 transition-transform duration-500">
+          {/* AI Voice Card - Primary */}
+          <div className="bg-white rounded-2xl border-2 border-accent/30 p-6 shadow-lg w-full md:w-72 md:rotate-[-3deg] hover:rotate-0 transition-transform duration-500">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2">
-                  <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+              <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0d7377" strokeWidth="2">
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
                 </svg>
               </div>
-              <span className="text-sm font-semibold text-foreground">SMS / iMessage</span>
+              <span className="text-sm font-semibold text-foreground">AI Voice Navigator</span>
             </div>
-            <p className="text-xs text-text-secondary mb-3">Daily check-ins, reminders, refill alerts</p>
-            <div className="bg-blue-50 rounded-lg p-3 text-xs text-blue-800">
-              &ldquo;Hi Maria, time for your morning dose. Reply YES when taken!&rdquo;
+            <p className="text-xs text-text-secondary mb-3">Onboarding, education, triage, follow-up</p>
+            <div className="bg-accent/5 rounded-lg p-3 text-xs text-accent-dark">
+              Autonomous conversations: the navigator calls patients, asks the right questions, and acts on what it hears.
             </div>
-            <div className="mt-3 text-xs text-text-muted">Step 1 of escalation</div>
+            <div className="mt-3 text-xs text-accent font-medium">Primary channel - 40% of interactions</div>
           </div>
 
           {/* Arrow */}
@@ -1664,21 +1663,21 @@ function ChannelDeepDive() {
           </div>
           <div className="md:hidden text-text-muted text-2xl">&darr;</div>
 
-          {/* Voice Card */}
+          {/* Async Triage Card */}
           <div className="bg-white rounded-2xl border border-border-light p-6 shadow-lg w-full md:w-72 md:rotate-[2deg] hover:rotate-0 transition-transform duration-500 md:translate-y-4">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-8 h-8 rounded-lg bg-green-50 flex items-center justify-center">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2">
-                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+                  <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
                 </svg>
               </div>
-              <span className="text-sm font-semibold text-foreground">Voice Call</span>
+              <span className="text-sm font-semibold text-foreground">Async Patient Triage</span>
             </div>
-            <p className="text-xs text-text-secondary mb-3">Education, triage, follow-up</p>
+            <p className="text-xs text-text-secondary mb-3">Check-ins, symptom screening, refill coordination</p>
             <div className="bg-green-50 rounded-lg p-3 text-xs text-green-800">
-              AI agent calls after 2 missed SMS responses. Checks in, answers questions, flags concerns.
+              Two-way text conversations that screen symptoms, confirm doses, and resolve barriers without a phone call.
             </div>
-            <div className="mt-3 text-xs text-text-muted">Step 2 of escalation</div>
+            <div className="mt-3 text-xs text-text-muted">35% of interactions</div>
           </div>
 
           {/* Arrow */}
@@ -1702,9 +1701,9 @@ function ChannelDeepDive() {
             </div>
             <p className="text-xs text-text-secondary mb-3">Welcome kits, refill reminders</p>
             <div className="bg-amber-50 rounded-lg p-3 text-xs text-amber-800">
-              Personalized letter with medication info, pharmacy contact, and refill instructions.
+              Personalized mail for patients who don&apos;t engage digitally. Tracked delivery.
             </div>
-            <div className="mt-3 text-xs text-text-muted">Step 3 - final fallback</div>
+            <div className="mt-3 text-xs text-text-muted">15% of interactions</div>
           </div>
         </div>
       </div>
@@ -1850,7 +1849,7 @@ function Footer() {
               adhery
             </p>
             <p className="text-sm leading-relaxed">
-              AI-powered medication adherence platform for pharma companies and specialty pharmacies.
+              Autonomous patient navigator for specialty pharmacies and pharma manufacturers.
             </p>
           </div>
           <div>
