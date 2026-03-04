@@ -577,9 +577,12 @@ function GettingStartedSlide() {
       <p className="text-xs font-medium text-accent uppercase tracking-[0.2em] mb-4">
         Getting Started Is Simple
       </p>
-      <h2 className="font-serif text-5xl text-foreground mb-12 leading-tight max-w-3xl">
-        Start with 100 patients. See results in 30 days.
+      <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-3xl">
+        Start with 100 patients who churned or are about to
       </h2>
+      <p className="text-lg text-text-secondary mb-12 max-w-2xl">
+        The hardest cohort. If it works there, it works everywhere. Results in 30 days.
+      </p>
       <div className="flex items-start gap-6 max-w-4xl">
         {steps.map((step, i) => (
           <div key={step.week} className="flex items-start gap-6 flex-1">
@@ -656,10 +659,10 @@ function CTASlide() {
     <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <img src="/logo.svg" alt="Adhery" className="w-16 h-16 mb-10" />
       <h2 className="font-serif text-5xl text-foreground mb-6 leading-tight max-w-3xl">
-        Which 100 patients would you start with?
+        Which 100 churned patients should we start with?
       </h2>
       <p className="text-xl text-text-secondary max-w-xl mb-16">
-        Let&apos;s pick a cohort, run a 30-day pilot, and see the numbers together.
+        Give us your hardest cohort. Patients who already dropped off or are about to. 30 days, measurable results.
       </p>
       <div className="space-y-3 text-lg text-foreground">
         <p>
