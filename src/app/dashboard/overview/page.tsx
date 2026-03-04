@@ -136,10 +136,14 @@ export default function OverviewPage() {
 
       {/* ━━━ HERO 2: Adherence Improvement ━━━ */}
       {(() => {
-        const adherentBefore = Math.round(currentPatients * 0.54); // 54% baseline (US commercial claims benchmark)
+        const baselinePDC = dashboardStats.baselineAdherence;
+        const currentPDC = dashboardStats.avgAdherence;
+        const improvement = Math.round((currentPDC - baselinePDC) * 10) / 10;
+        // At baseline 78%, ~54% of patients would have been above 80% PDC (industry benchmark)
+        const pctAdherentBefore = 54;
+        const adherentBefore = Math.round(currentPatients * pctAdherentBefore / 100);
         const adherentNow = patients.filter((p) => p.adherenceRate >= 80).length;
         const newlyAdherent = adherentNow - adherentBefore;
-        const pctAdherentBefore = 54;
         const pctAdherentNow = Math.round((adherentNow / currentPatients) * 100);
         // Patient distribution buckets
         const buckets = [
@@ -166,10 +170,10 @@ export default function OverviewPage() {
                   <div className="relative w-32 h-32 lg:w-40 lg:h-40">
                     <svg viewBox="0 0 36 36" className="w-full h-full -rotate-90">
                       <circle cx="18" cy="18" r="15.9" fill="none" stroke="#fee2e2" strokeWidth="2.5" />
-                      <circle cx="18" cy="18" r="15.9" fill="none" stroke="#ef4444" strokeWidth="2.5" strokeDasharray="78.2 21.8" strokeLinecap="round" />
+                      <circle cx="18" cy="18" r="15.9" fill="none" stroke="#ef4444" strokeWidth="2.5" strokeDasharray={`${baselinePDC} ${100 - baselinePDC}`} strokeLinecap="round" />
                     </svg>
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <span className="text-4xl lg:text-5xl font-bold text-red-500">78%</span>
+                      <span className="text-4xl lg:text-5xl font-bold text-red-500">{baselinePDC}%</span>
                       <span className="text-[10px] text-text-muted">avg PDC</span>
                     </div>
                   </div>
@@ -181,11 +185,11 @@ export default function OverviewPage() {
                   <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-green-500 mb-3">
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
-                  <p className="text-5xl lg:text-6xl font-bold text-green-600">+13.1<span className="text-3xl">pp</span></p>
+                  <p className="text-5xl lg:text-6xl font-bold text-green-600">+{improvement}<span className="text-3xl">pp</span></p>
                   <p className="text-xs text-text-secondary mt-1">percentage point improvement</p>
                   <div className="mt-3 bg-green-50 border border-green-200 rounded-lg px-4 py-2">
                     <p className="text-[10px] text-green-700 text-center">
-                      {newlyAdherent > 0 ? `${newlyAdherent} patients crossed the 80% PDC threshold` : 'Patients moving above 80% PDC threshold'}
+                      {newlyAdherent > 0 ? `${newlyAdherent} more patients above 80% PDC threshold` : 'Patients moving above 80% PDC threshold'}
                     </p>
                   </div>
                 </div>
@@ -195,14 +199,16 @@ export default function OverviewPage() {
                   <div className="relative w-32 h-32 lg:w-40 lg:h-40">
                     <svg viewBox="0 0 36 36" className="w-full h-full -rotate-90">
                       <circle cx="18" cy="18" r="15.9" fill="none" stroke="#d1fae5" strokeWidth="2.5" />
-                      <circle cx="18" cy="18" r="15.9" fill="none" stroke="#0d7377" strokeWidth="2.5" strokeDasharray={`${dashboardStats.avgAdherence} ${100 - dashboardStats.avgAdherence}`} strokeLinecap="round" />
+                      <circle cx="18" cy="18" r="15.9" fill="none" stroke="#0d7377" strokeWidth="2.5" strokeDasharray={`${currentPDC} ${100 - currentPDC}`} strokeLinecap="round" />
                     </svg>
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <span className="text-4xl lg:text-5xl font-bold text-accent">{dashboardStats.avgAdherence}%</span>
+                      <span className="text-4xl lg:text-5xl font-bold text-accent">{currentPDC}%</span>
                       <span className="text-[10px] text-text-muted">avg PDC</span>
                     </div>
                   </div>
-                  <p className="text-xs text-green-600 mt-2 font-medium">Above 80% threshold</p>
+                  <p className={`text-xs mt-2 font-medium ${currentPDC >= 80 ? 'text-green-600' : 'text-amber-600'}`}>
+                    {currentPDC >= 80 ? 'Above' : 'Approaching'} 80% threshold
+                  </p>
                   <p className="text-[10px] text-text-muted">{pctAdherentNow}% of patients adherent</p>
                 </div>
               </div>
@@ -242,7 +248,7 @@ export default function OverviewPage() {
               <div className="bg-white/80 backdrop-blur rounded-xl p-5 border border-border-light">
                 <div className="flex items-center justify-between mb-3">
                   <p className="text-sm font-medium text-foreground">Monthly Adherence Trend</p>
-                  <span className="text-[10px] text-green-600 font-medium bg-green-50 px-2 py-0.5 rounded-full">+13.1pp over 6 months</span>
+                  <span className="text-[10px] text-green-600 font-medium bg-green-50 px-2 py-0.5 rounded-full">+{improvement}pp over 6 months</span>
                 </div>
                 <div className="relative">
                   <div className="absolute left-0 right-0 border-t-2 border-dashed border-red-300" style={{ bottom: `${((80 - 70) / 30) * 100}%` }}>
