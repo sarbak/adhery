@@ -732,51 +732,57 @@ function MultichannelComparison() {
         </p>
 
         <div className="max-w-3xl mx-auto space-y-10">
-          {/* Call Center bar */}
+          {/* Call Center bar - 7% reached, 93% not reached */}
           <div>
             <div className="flex items-baseline justify-between mb-3">
               <span className="text-sm font-semibold text-foreground">Manual Call Center</span>
-              <span className="text-2xl font-bold text-text-secondary">~7% <span className="text-sm font-normal text-text-muted">meaningful engagement</span></span>
+              <span className="text-sm text-text-muted">13 calls/patient/year</span>
             </div>
-            <div className="h-12 bg-gray-100 flex">
-              <div className="h-full bg-[#cbd5e1] flex items-center justify-center" style={{ width: '55%' }}>
-                <span className="text-xs text-text-muted font-medium">55% voicemail</span>
+            <div className="h-14 bg-gray-100 flex">
+              <div className="h-full bg-[#64748b] flex items-center justify-center" style={{ width: '7%' }}>
               </div>
-              <div className="h-full bg-[#94a3b8] flex items-center justify-center" style={{ width: '30%' }}>
-                <span className="text-xs text-white font-medium">30% routine</span>
-              </div>
-              <div className="h-full bg-[#64748b] flex items-center justify-center" style={{ width: '15%' }}>
-                <span className="text-[10px] text-white font-medium">15%</span>
+              <div className="h-full bg-[#e2e8f0] flex items-center justify-center flex-1">
+                <span className="text-sm text-text-muted font-medium">93% not meaningfully reached</span>
               </div>
             </div>
-            <p className="text-xs text-text-muted mt-2">13 calls/patient/year. Most go to voicemail. Of those reached, 85% are routine check-ins.</p>
+            <div className="flex items-center gap-4 mt-3">
+              <div className="flex items-center gap-1.5">
+                <div className="w-3 h-3 bg-[#64748b]" />
+                <span className="text-xs text-text-secondary">7% meaningful engagement</span>
+              </div>
+              <span className="text-xs text-text-muted">55% voicemail, 30% routine check-ins, 15% meaningful</span>
+            </div>
           </div>
 
-          {/* Adhery Navigator bar */}
+          {/* Adhery Navigator bar - 90% reached, 10% pharmacist */}
           <div>
             <div className="flex items-baseline justify-between mb-3">
               <span className="text-sm font-semibold text-accent">Adhery Navigator</span>
-              <span className="text-2xl font-bold text-accent">90% <span className="text-sm font-normal text-text-muted">autonomous resolution</span></span>
+              <span className="text-sm text-text-muted">autonomous, always-on</span>
             </div>
-            <div className="h-12 bg-gray-100 flex">
+            <div className="h-14 bg-gray-100 flex">
               <div className="h-full bg-[#0d7377] flex items-center justify-center" style={{ width: '40%' }}>
-                <span className="text-xs text-white font-medium">40% AI Voice</span>
+                <span className="text-xs text-white font-medium">AI Voice</span>
               </div>
               <div className="h-full bg-[#22c55e] flex items-center justify-center" style={{ width: '35%' }}>
-                <span className="text-xs text-white font-medium">35% Async Triage</span>
+                <span className="text-xs text-white font-medium">Async Triage</span>
               </div>
               <div className="h-full bg-[#f59e0b] flex items-center justify-center" style={{ width: '15%' }}>
                 <span className="text-[10px] text-white font-medium">Mail</span>
               </div>
-              <div className="h-full bg-[#dc2626] flex items-center justify-center" style={{ width: '10%' }}>
-                <span className="text-[9px] text-white font-medium">RPh</span>
+              <div className="h-full bg-[#e2e8f0] flex items-center justify-center" style={{ width: '10%' }}>
+                <span className="text-[10px] text-text-muted font-medium">10%</span>
               </div>
             </div>
-            <div className="flex gap-4 mt-2 text-[11px] text-text-muted">
-              <span>AI Voice: autonomous patient conversations</span>
-              <span>Async Triage: two-way text-based care</span>
-              <span>Mail: physical follow-through</span>
-              <span>Pharmacist: 10% requiring judgment</span>
+            <div className="flex items-center gap-4 mt-3">
+              <div className="flex items-center gap-1.5">
+                <div className="w-3 h-3 bg-[#0d7377]" />
+                <span className="text-xs text-text-secondary">90% resolved autonomously</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="w-3 h-3 bg-[#e2e8f0]" />
+                <span className="text-xs text-text-secondary">10% escalated to pharmacist</span>
+              </div>
             </div>
           </div>
 
