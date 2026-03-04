@@ -98,7 +98,7 @@ export const drugProgram: DrugProgram = {
     voice: 'Monthly check-in, post-side-effect report, 2 missed SMS',
     mail: 'Welcome kit, quarterly newsletter, 2 missed refills',
   },
-  activePatients: 48,
+  activePatients: 2000,
   adherenceRate: 91.3,
 };
 
