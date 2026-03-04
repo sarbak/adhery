@@ -239,6 +239,89 @@ function EvidenceSlide() {
   );
 }
 
+function MultimodalImpactSlide() {
+  const callCenter = [
+    { label: 'Phone call', pct: 45, color: '#94a3b8', result: '~45% reached' },
+    { label: 'Voicemail', pct: 55, color: '#cbd5e1', result: '~55% missed' },
+  ];
+  const multichannel = [
+    { label: 'SMS', pct: 92, color: '#22c55e', result: '92% delivered' },
+    { label: 'AI Voice', pct: 78, color: ACCENT, result: '78% reached' },
+    { label: 'Mail', pct: 99, color: '#f59e0b', result: '99% delivered' },
+    { label: 'Combined', pct: 96, color: '#8b5cf6', result: '96% engaged' },
+  ];
+
+  return (
+    <div className="flex flex-col justify-center h-full px-20">
+      <p className="text-xs font-medium text-accent uppercase tracking-[0.2em] mb-4">
+        Why Multichannel Wins
+      </p>
+      <h2 className="font-serif text-5xl text-foreground mb-12 leading-tight max-w-4xl">
+        One channel is a guess. Multiple channels are a{' '}
+        <span className="text-accent">system</span>.
+      </h2>
+      <div className="grid grid-cols-2 gap-12 max-w-5xl">
+        {/* Call Center Only */}
+        <div>
+          <p className="text-sm font-medium text-text-muted uppercase tracking-wider mb-6">
+            Call Center Only
+          </p>
+          <div className="space-y-4">
+            {callCenter.map((c) => (
+              <div key={c.label}>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-sm text-foreground">{c.label}</span>
+                  <span className="text-sm text-text-secondary">{c.result}</span>
+                </div>
+                <div className="h-6 bg-border-light">
+                  <div
+                    className="h-full"
+                    style={{ width: `${c.pct}%`, backgroundColor: c.color }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 border-t border-border-light pt-4">
+            <p className="text-2xl font-bold text-text-secondary">~45%</p>
+            <p className="text-sm text-text-muted">effective reach</p>
+          </div>
+        </div>
+
+        {/* Multichannel Automated */}
+        <div>
+          <p className="text-sm font-medium text-accent uppercase tracking-wider mb-6">
+            Multichannel Automated
+          </p>
+          <div className="space-y-4">
+            {multichannel.map((c) => (
+              <div key={c.label}>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-sm text-foreground">{c.label}</span>
+                  <span className="text-sm text-text-secondary">{c.result}</span>
+                </div>
+                <div className="h-6 bg-border-light">
+                  <div
+                    className="h-full"
+                    style={{ width: `${c.pct}%`, backgroundColor: c.color }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 border-t border-border-light pt-4">
+            <p className="text-2xl font-bold text-accent">96%</p>
+            <p className="text-sm text-text-muted">effective reach</p>
+          </div>
+        </div>
+      </div>
+      <p className="text-sm text-text-muted mt-8 max-w-3xl">
+        When one channel misses, another catches. The patient is always reached through their preferred medium.
+      </p>
+    </div>
+  );
+}
+
 function IntroducingSlide() {
   return (
     <div className="flex flex-col items-center justify-center h-full text-center px-16">
@@ -681,6 +764,7 @@ const slides = [
   RealCostSlide,
   PatientNeedsSlide,
   EvidenceSlide,
+  MultimodalImpactSlide,
   IntroducingSlide,
   PatientStorySlide,
   EscalationSlide,
