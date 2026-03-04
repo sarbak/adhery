@@ -240,17 +240,6 @@ function EvidenceSlide() {
 }
 
 function MultimodalImpactSlide() {
-  const callCenter = [
-    { label: 'Phone call', pct: 45, color: '#94a3b8', result: '~45% reached' },
-    { label: 'Voicemail', pct: 55, color: '#cbd5e1', result: '~55% missed' },
-  ];
-  const multichannel = [
-    { label: 'SMS', pct: 92, color: '#22c55e', result: '92% delivered' },
-    { label: 'AI Voice', pct: 78, color: ACCENT, result: '78% reached' },
-    { label: 'Mail', pct: 99, color: '#f59e0b', result: '99% delivered' },
-    { label: 'Combined', pct: 96, color: '#8b5cf6', result: '96% engaged' },
-  ];
-
   return (
     <div className="flex flex-col justify-center h-full px-20">
       <p className="text-xs font-medium text-accent uppercase tracking-[0.2em] mb-4">
@@ -267,24 +256,37 @@ function MultimodalImpactSlide() {
             Call Center Only
           </p>
           <div className="space-y-4">
-            {callCenter.map((c) => (
-              <div key={c.label}>
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-sm text-foreground">{c.label}</span>
-                  <span className="text-sm text-text-secondary">{c.result}</span>
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-sm text-foreground">Phone calls</span>
+                <span className="text-sm text-text-secondary">13/patient/year</span>
+              </div>
+              <div className="h-6 bg-border-light flex">
+                <div className="h-full bg-[#94a3b8] flex items-center justify-center" style={{ width: '45%' }}>
+                  <span className="text-[9px] text-white font-medium">45% reached</span>
                 </div>
-                <div className="h-6 bg-border-light">
-                  <div
-                    className="h-full"
-                    style={{ width: `${c.pct}%`, backgroundColor: c.color }}
-                  />
+                <div className="h-full bg-[#e2e8f0] flex items-center justify-center" style={{ width: '55%' }}>
+                  <span className="text-[9px] text-text-muted font-medium">55% voicemail</span>
                 </div>
               </div>
-            ))}
+            </div>
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-sm text-foreground">Of those reached</span>
+              </div>
+              <div className="h-6 bg-border-light flex">
+                <div className="h-full bg-[#cbd5e1] flex items-center justify-center" style={{ width: '85%' }}>
+                  <span className="text-[9px] text-text-muted font-medium">85% routine</span>
+                </div>
+                <div className="h-full bg-[#94a3b8] flex items-center justify-center" style={{ width: '15%' }}>
+                  <span className="text-[9px] text-white font-medium">15%</span>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="mt-6 border-t border-border-light pt-4">
-            <p className="text-2xl font-bold text-text-secondary">~45%</p>
-            <p className="text-sm text-text-muted">effective reach</p>
+            <p className="text-2xl font-bold text-text-secondary">~7%</p>
+            <p className="text-sm text-text-muted">meaningful conversations</p>
           </div>
         </div>
 
@@ -294,24 +296,38 @@ function MultimodalImpactSlide() {
             Multichannel Automated
           </p>
           <div className="space-y-4">
-            {multichannel.map((c) => (
-              <div key={c.label}>
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-sm text-foreground">{c.label}</span>
-                  <span className="text-sm text-text-secondary">{c.result}</span>
-                </div>
-                <div className="h-6 bg-border-light">
-                  <div
-                    className="h-full"
-                    style={{ width: `${c.pct}%`, backgroundColor: c.color }}
-                  />
-                </div>
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-sm text-foreground">SMS</span>
+                <span className="text-sm text-text-secondary">92% delivered</span>
               </div>
-            ))}
+              <div className="h-6 bg-border-light">
+                <div className="h-full bg-[#22c55e]" style={{ width: '92%' }} />
+              </div>
+            </div>
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-sm text-foreground">AI Voice</span>
+                <span className="text-sm text-text-secondary">78% answer rate</span>
+              </div>
+              <div className="h-6 bg-border-light">
+                <div className="h-full" style={{ width: '78%', backgroundColor: ACCENT }} />
+              </div>
+              <p className="text-[9px] text-text-muted mt-0.5">Patients pick up more because calls come at their preferred time</p>
+            </div>
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-sm text-foreground">Mail</span>
+                <span className="text-sm text-text-secondary">99% delivered</span>
+              </div>
+              <div className="h-6 bg-border-light">
+                <div className="h-full bg-[#f59e0b]" style={{ width: '99%' }} />
+              </div>
+            </div>
           </div>
           <div className="mt-6 border-t border-border-light pt-4">
             <p className="text-2xl font-bold text-accent">96%</p>
-            <p className="text-sm text-text-muted">effective reach</p>
+            <p className="text-sm text-text-muted">engaged via at least one channel</p>
           </div>
         </div>
       </div>

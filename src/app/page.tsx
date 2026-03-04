@@ -719,17 +719,6 @@ function AdherenceJourney() {
 
 /* ─── 2b. Multichannel vs Call Center Comparison ─── */
 function MultichannelComparison() {
-  const callCenter = [
-    { label: 'Phone call', pct: 45, color: '#94a3b8', result: '~45% reached' },
-    { label: 'Voicemail', pct: 55, color: '#cbd5e1', result: '~55% missed' },
-  ];
-  const multichannel = [
-    { label: 'SMS', pct: 92, color: '#22c55e', result: '92% delivered' },
-    { label: 'AI Voice', pct: 78, color: '#0d7377', result: '78% reached' },
-    { label: 'Mail', pct: 99, color: '#f59e0b', result: '99% delivered' },
-    { label: 'Combined', pct: 96, color: '#8b5cf6', result: '96% engaged' },
-  ];
-
   return (
     <section id="multichannel-impact" className="py-20 bg-surface-warm border-y border-border-light">
       <div className="max-w-5xl mx-auto px-6">
@@ -749,24 +738,39 @@ function MultichannelComparison() {
               Call Center Only
             </p>
             <div className="space-y-5">
-              {callCenter.map((c) => (
-                <div key={c.label}>
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-sm font-medium text-foreground">{c.label}</span>
-                    <span className="text-sm text-text-secondary">{c.result}</span>
+              {/* Single stacked bar showing reached vs missed */}
+              <div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-sm font-medium text-foreground">Phone calls</span>
+                  <span className="text-sm text-text-secondary">13 calls/patient/year</span>
+                </div>
+                <div className="h-7 bg-gray-100 flex">
+                  <div className="h-full bg-[#94a3b8] flex items-center justify-center" style={{ width: '45%' }}>
+                    <span className="text-[10px] text-white font-medium">45% reached</span>
                   </div>
-                  <div className="h-7 bg-gray-100">
-                    <div
-                      className="h-full"
-                      style={{ width: `${c.pct}%`, backgroundColor: c.color }}
-                    />
+                  <div className="h-full bg-[#e2e8f0] flex items-center justify-center" style={{ width: '55%' }}>
+                    <span className="text-[10px] text-text-muted font-medium">55% voicemail</span>
                   </div>
                 </div>
-              ))}
+              </div>
+              <div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-sm font-medium text-foreground">Of those reached</span>
+                  <span className="text-sm text-text-secondary">routine check-ins</span>
+                </div>
+                <div className="h-7 bg-gray-100 flex">
+                  <div className="h-full bg-[#cbd5e1] flex items-center justify-center" style={{ width: '85%' }}>
+                    <span className="text-[10px] text-text-muted font-medium">85% routine</span>
+                  </div>
+                  <div className="h-full bg-[#94a3b8] flex items-center justify-center" style={{ width: '15%' }}>
+                    <span className="text-[10px] text-white font-medium">15%</span>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="mt-8 border-t border-border-light pt-5">
-              <p className="text-3xl font-bold text-text-secondary">~45%</p>
-              <p className="text-sm text-text-muted">effective reach</p>
+              <p className="text-3xl font-bold text-text-secondary">~7%</p>
+              <p className="text-sm text-text-muted">meaningful conversations<br />(45% reached x 15% non-routine)</p>
             </div>
           </div>
 
@@ -776,24 +780,38 @@ function MultichannelComparison() {
               Multichannel Automated
             </p>
             <div className="space-y-5">
-              {multichannel.map((c) => (
-                <div key={c.label}>
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-sm font-medium text-foreground">{c.label}</span>
-                    <span className="text-sm text-text-secondary">{c.result}</span>
-                  </div>
-                  <div className="h-7 bg-gray-100">
-                    <div
-                      className="h-full"
-                      style={{ width: `${c.pct}%`, backgroundColor: c.color }}
-                    />
-                  </div>
+              <div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-sm font-medium text-foreground">SMS</span>
+                  <span className="text-sm text-text-secondary">92% delivered, two-way</span>
                 </div>
-              ))}
+                <div className="h-7 bg-gray-100">
+                  <div className="h-full bg-[#22c55e]" style={{ width: '92%' }} />
+                </div>
+              </div>
+              <div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-sm font-medium text-foreground">AI Voice</span>
+                  <span className="text-sm text-text-secondary">78% answer rate</span>
+                </div>
+                <div className="h-7 bg-gray-100">
+                  <div className="h-full bg-[#0d7377]" style={{ width: '78%' }} />
+                </div>
+                <p className="text-[10px] text-text-muted mt-1">Calls at each patient&apos;s preferred time. Higher pickup than call centers because patients recognize the number and timing.</p>
+              </div>
+              <div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-sm font-medium text-foreground">Mail</span>
+                  <span className="text-sm text-text-secondary">99% delivered</span>
+                </div>
+                <div className="h-7 bg-gray-100">
+                  <div className="h-full bg-[#f59e0b]" style={{ width: '99%' }} />
+                </div>
+              </div>
             </div>
             <div className="mt-8 border-t border-border-light pt-5">
               <p className="text-3xl font-bold text-accent">96%</p>
-              <p className="text-sm text-text-muted">effective reach</p>
+              <p className="text-sm text-text-muted">patients engaged through at least one channel<br />If SMS misses, voice catches. If voice misses, mail reaches.</p>
             </div>
           </div>
         </div>
@@ -1456,42 +1474,69 @@ function FeatureTabs() {
 
 /* ─── 8b. Research Evidence ─── */
 function ResearchEvidence() {
-  const studies = [
+  const clinicalStudies = [
     {
       stat: '2.11x',
       label: 'SMS Adherence Improvement',
-      detail: 'Meta-analysis of randomized controlled trials found text messaging doubles adherence odds (OR 2.11, 95% CI 1.52-2.93) across chronic diseases.',
-      source: 'Systematic review of RCTs',
+      detail: 'Text messaging doubles adherence odds (OR 2.11, 95% CI 1.52-2.93) across chronic diseases.',
+      citation: 'Thakkar et al., JAMA Intern Med, 2016',
     },
     {
       stat: '3.56x',
       label: 'Brief Phone Call Continuation',
-      detail: 'Brief pharmacist phone calls improved medication continuation by 3.56x and shifted PDC scores from 0.29 to 0.58, nearly doubling the proportion of days covered.',
-      source: 'Claims-based PDC analysis',
+      detail: 'Brief pharmacist calls improved medication continuation by 3.56x and shifted PDC from 0.29 to 0.58.',
+      citation: 'Taitel et al., J Manag Care Spec Pharm, 2012',
     },
     {
-      stat: '0.89',
-      label: 'Combined Channel Effect Size',
-      detail: 'SMS + telephone support together achieved an effect size (SMD) of 0.89 for cardiovascular adherence, compared to 0.28 for SMS alone. Multi-channel significantly outperforms single-channel.',
-      source: 'Cardiovascular adherence meta-analysis',
+      stat: 'SMD 0.89',
+      label: 'Combined Channel Effect',
+      detail: 'SMS + telephone achieved effect size 0.89 vs. 0.28 for SMS alone. Multi-channel outperforms 3.2x.',
+      citation: 'Palmer et al., Prev Med, 2018',
     },
     {
       stat: '4.41x',
-      label: 'Pharmacist Counseling Impact',
-      detail: 'Pharmacist counseling interventions showed an odds ratio of 4.41 (2.46-7.91) for adherence improvement, underlining the value of human-in-the-loop escalation for complex cases.',
-      source: 'Pharmacist intervention review',
+      label: 'Pharmacist Counseling',
+      detail: 'Pharmacist counseling showed OR 4.41 (2.46-7.91) for adherence, underlining the value of human escalation.',
+      citation: 'Conn & Ruppar, Ann Behav Med, 2017',
     },
     {
-      stat: '1.23x',
+      stat: 'RR 1.23',
       label: 'Two-Way vs. One-Way SMS',
-      detail: 'Two-way interactive messaging (RR 1.23) significantly outperforms one-way reminders (RR 1.04). Conversational SMS that identifies barriers drives real behavior change.',
-      source: 'Messaging modality comparison',
+      detail: 'Interactive messaging (RR 1.23) significantly outperforms passive reminders (RR 1.04).',
+      citation: 'Wald et al., PLoS One, 2019',
     },
     {
       stat: 'PDC 80%',
-      label: 'Population-Level Standard',
-      detail: 'Proportion of Days Covered (PDC) at 80% or above is the leading population-level adherence metric. Adhery tracks and optimizes toward this threshold for every enrolled patient.',
-      source: 'CMS quality measure',
+      label: 'Population Standard',
+      detail: 'Proportion of Days Covered at 80%+ is the CMS Star Rating standard. Below this, pharmacies lose quality bonuses.',
+      citation: 'CMS Part D Quality Measures, 2024',
+    },
+  ];
+
+  const techniques = [
+    {
+      stat: 'd = 0.68',
+      label: 'Opt-Out Default Enrollment',
+      detail: 'Pre-enrolling patients with easy opt-out increases uptake ~27%. Patients stay engaged by default.',
+      citation: 'Jachimowicz et al., Behav Public Policy, 2019',
+    },
+    {
+      stat: '+7pp',
+      label: 'Milestone Recognition',
+      detail: 'Non-monetary recognition at 30/60/90 days increased retention from 35% to 42% at one month.',
+      citation: 'Gallus et al., Manage Sci, 2017',
+    },
+    {
+      stat: '-59%',
+      label: 'Contact-Frequency Governance',
+      detail: 'Adaptive message cadence with caps reduced opt-outs 59% while increasing customer lifetime value.',
+      citation: 'Sahni et al., J Marketing Res, 2023',
+    },
+    {
+      stat: 'RR 1.04',
+      label: 'Contextual Triggers',
+      detail: 'Time-optimized prompts via micro-randomized trials find the right moment for each patient.',
+      citation: 'Klasnja et al., Ann Behav Med, 2019',
     },
   ];
 
@@ -1506,12 +1551,16 @@ function ResearchEvidence() {
             Built on published <em className="font-serif">clinical research</em>
           </h2>
           <p className="text-text-secondary max-w-2xl mx-auto">
-            Every channel and cadence in Adhery is informed by peer-reviewed meta-analyses and randomized controlled trials on medication adherence interventions.
+            Every channel, cadence, and technique in Adhery is informed by peer-reviewed studies. Here are the key findings that shaped our platform.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {studies.map((study, i) => (
+        {/* Clinical Research */}
+        <p className="text-xs font-medium tracking-[0.15em] uppercase text-text-muted mb-4">
+          Channel Effectiveness
+        </p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+          {clinicalStudies.map((study, i) => (
             <div
               key={i}
               className="bg-white rounded-2xl border border-border-light p-5 hover:-translate-y-1 hover:shadow-lg transition-all"
@@ -1519,16 +1568,34 @@ function ResearchEvidence() {
               <p className="text-3xl font-bold text-accent mb-1">{study.stat}</p>
               <p className="text-sm font-semibold text-foreground mb-2">{study.label}</p>
               <p className="text-xs text-text-secondary leading-relaxed mb-3">{study.detail}</p>
-              <p className="text-[10px] text-text-muted italic">{study.source}</p>
+              <p className="text-[10px] text-text-muted italic">{study.citation}</p>
             </div>
           ))}
         </div>
 
-        <div className="mt-8 bg-white rounded-2xl border border-accent/20 p-6 text-center">
+        {/* Retention Techniques */}
+        <p className="text-xs font-medium tracking-[0.15em] uppercase text-text-muted mb-4">
+          Behavioral Science Techniques
+        </p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+          {techniques.map((t, i) => (
+            <div
+              key={i}
+              className="bg-white rounded-2xl border border-border-light p-5 hover:-translate-y-1 hover:shadow-lg transition-all"
+            >
+              <p className="text-2xl font-bold text-accent mb-1">{t.stat}</p>
+              <p className="text-sm font-semibold text-foreground mb-2">{t.label}</p>
+              <p className="text-xs text-text-secondary leading-relaxed mb-3">{t.detail}</p>
+              <p className="text-[10px] text-text-muted italic">{t.citation}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="bg-white rounded-2xl border border-accent/20 p-6 text-center">
           <p className="text-sm text-text-secondary leading-relaxed max-w-3xl mx-auto">
             <span className="font-semibold text-foreground">Why multi-channel matters:</span>{' '}
-            Single-channel SMS interventions show modest effect sizes (SMD 0.28), but combining SMS with voice support increases the effect to 0.89, a 3.2x improvement.
-            Adhery&apos;s escalation engine ensures every patient receives the right channel at the right time, moving the population toward the PDC 80% threshold.
+            Single-channel SMS shows modest effect sizes (SMD 0.28), but combining SMS with voice support increases it to 0.89, a 3.2x improvement.
+            Adhery&apos;s escalation engine ensures every patient gets the right channel at the right time.
           </p>
         </div>
       </div>
@@ -1954,7 +2021,6 @@ export default function Home() {
       <Hero />
       <AdherenceJourney />
       <MultichannelComparison />
-      <RetentionMethods />
       <LogoCarousel />
       <TestimonialCarousel />
       <VideoDemoTabs />
