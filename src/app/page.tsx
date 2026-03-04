@@ -488,7 +488,7 @@ function AdherenceJourney() {
             Gentle support, <em className="font-serif">not phone tag</em>
           </h2>
           <p className="text-text-secondary mt-4 max-w-2xl mx-auto">
-            Watch how Adhery uses evidence-based techniques to keep patients on track, with warmth and without pressure.
+            See how Adhery keeps patients on track using techniques from clinical research.
           </p>
         </div>
 
@@ -723,132 +723,78 @@ function MultichannelComparison() {
     <section id="multichannel-impact" className="py-20 bg-surface-warm border-y border-border-light">
       <div className="max-w-5xl mx-auto px-6">
         <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent text-center mb-3">
-          Why Multichannel Wins
+          Engagement Rate
         </p>
         <h2 className="font-serif text-4xl text-foreground text-center mb-4">
           One channel is a guess. Multiple channels are a system.
         </h2>
         <p className="text-text-secondary text-center mb-14 max-w-2xl mx-auto">
-          When one channel misses, another catches. The patient is always reached through their preferred medium.
+          Phone-only outreach reaches about 7% of patients meaningfully. Multichannel automated outreach reaches 96%.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Call Center Only */}
-          <div className="bg-white border border-border-light p-8">
-            <p className="text-sm font-medium text-text-muted uppercase tracking-wider mb-6">
-              Call Center Only
-            </p>
-            <div className="space-y-5">
-              {/* Single stacked bar showing reached vs missed */}
-              <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-sm font-medium text-foreground">Phone calls</span>
-                  <span className="text-sm text-text-secondary">13 calls/patient/year</span>
-                </div>
-                <div className="h-7 bg-gray-100 flex">
-                  <div className="h-full bg-[#94a3b8] flex items-center justify-center" style={{ width: '45%' }}>
-                    <span className="text-[10px] text-white font-medium">45% reached</span>
-                  </div>
-                  <div className="h-full bg-[#e2e8f0] flex items-center justify-center" style={{ width: '55%' }}>
-                    <span className="text-[10px] text-text-muted font-medium">55% voicemail</span>
-                  </div>
-                </div>
+
+        <div className="max-w-3xl mx-auto space-y-10">
+          {/* Call Center bar */}
+          <div>
+            <div className="flex items-baseline justify-between mb-3">
+              <span className="text-sm font-semibold text-foreground">Call Center Only</span>
+              <span className="text-2xl font-bold text-text-secondary">~7% <span className="text-sm font-normal text-text-muted">meaningful engagement</span></span>
+            </div>
+            <div className="h-12 bg-gray-100 flex">
+              <div className="h-full bg-[#cbd5e1] flex items-center justify-center" style={{ width: '55%' }}>
+                <span className="text-xs text-text-muted font-medium">55% voicemail</span>
               </div>
-              <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-sm font-medium text-foreground">Of those reached</span>
-                  <span className="text-sm text-text-secondary">routine check-ins</span>
-                </div>
-                <div className="h-7 bg-gray-100 flex">
-                  <div className="h-full bg-[#cbd5e1] flex items-center justify-center" style={{ width: '85%' }}>
-                    <span className="text-[10px] text-text-muted font-medium">85% routine</span>
-                  </div>
-                  <div className="h-full bg-[#94a3b8] flex items-center justify-center" style={{ width: '15%' }}>
-                    <span className="text-[10px] text-white font-medium">15%</span>
-                  </div>
-                </div>
+              <div className="h-full bg-[#94a3b8] flex items-center justify-center" style={{ width: '30%' }}>
+                <span className="text-xs text-white font-medium">30% routine</span>
+              </div>
+              <div className="h-full bg-[#64748b] flex items-center justify-center" style={{ width: '15%' }}>
+                <span className="text-[10px] text-white font-medium">15%</span>
               </div>
             </div>
-            <div className="mt-8 border-t border-border-light pt-5">
-              <p className="text-3xl font-bold text-text-secondary">~7%</p>
-              <p className="text-sm text-text-muted">meaningful conversations<br />(45% reached x 15% non-routine)</p>
+            <p className="text-xs text-text-muted mt-2">13 calls/patient/year. Most go to voicemail. Of those reached, 85% are routine check-ins.</p>
+          </div>
+
+          {/* Adhery Multichannel bar */}
+          <div>
+            <div className="flex items-baseline justify-between mb-3">
+              <span className="text-sm font-semibold text-accent">Adhery Multichannel</span>
+              <span className="text-2xl font-bold text-accent">96% <span className="text-sm font-normal text-text-muted">patient engagement</span></span>
+            </div>
+            <div className="h-12 bg-gray-100 flex">
+              <div className="h-full bg-[#22c55e] flex items-center justify-center" style={{ width: '60%' }}>
+                <span className="text-xs text-white font-medium">60% SMS</span>
+              </div>
+              <div className="h-full bg-[#0d7377] flex items-center justify-center" style={{ width: '25%' }}>
+                <span className="text-xs text-white font-medium">25% AI Voice</span>
+              </div>
+              <div className="h-full bg-[#f59e0b] flex items-center justify-center" style={{ width: '10%' }}>
+                <span className="text-[10px] text-white font-medium">Mail</span>
+              </div>
+              <div className="h-full bg-[#dc2626] flex items-center justify-center" style={{ width: '5%' }}>
+                <span className="text-[9px] text-white font-medium">RPh</span>
+              </div>
+            </div>
+            <div className="flex gap-4 mt-2 text-[11px] text-text-muted">
+              <span>SMS: 92% delivery, two-way</span>
+              <span>AI Voice: calls at patient&apos;s preferred time</span>
+              <span>Mail: 99% delivery</span>
+              <span>Pharmacist: 5% that need clinical judgment</span>
             </div>
           </div>
 
-          {/* Multichannel Automated */}
-          <div className="bg-white border-2 border-accent/20 p-8">
-            <p className="text-sm font-medium text-accent uppercase tracking-wider mb-6">
-              Multichannel Automated
-            </p>
-            <div className="space-y-5">
-              <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-sm font-medium text-foreground">SMS</span>
-                  <span className="text-sm text-text-secondary">92% delivered, two-way</span>
-                </div>
-                <div className="h-7 bg-gray-100">
-                  <div className="h-full bg-[#22c55e]" style={{ width: '92%' }} />
-                </div>
-              </div>
-              <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-sm font-medium text-foreground">AI Voice</span>
-                  <span className="text-sm text-text-secondary">78% answer rate</span>
-                </div>
-                <div className="h-7 bg-gray-100">
-                  <div className="h-full bg-[#0d7377]" style={{ width: '78%' }} />
-                </div>
-                <p className="text-[10px] text-text-muted mt-1">Calls at each patient&apos;s preferred time. Higher pickup than call centers because patients recognize the number and timing.</p>
-              </div>
-              <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-sm font-medium text-foreground">Mail</span>
-                  <span className="text-sm text-text-secondary">99% delivered</span>
-                </div>
-                <div className="h-7 bg-gray-100">
-                  <div className="h-full bg-[#f59e0b]" style={{ width: '99%' }} />
-                </div>
-              </div>
+          {/* AI Voice advantages as compact row */}
+          <div className="bg-white border border-border-light p-6">
+            <p className="text-xs font-medium text-accent uppercase tracking-wider mb-4">Why AI voice outperforms manual calls</p>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-x-6 gap-y-2">
+              {[
+                'Calls when the patient is free',
+                'Every patient, every time',
+                'Catches hesitation and tone shifts',
+                'Pace and language adapt per patient',
+                'Learns preferred channels over time',
+              ].map((a) => (
+                <p key={a} className="text-xs text-text-secondary">{a}</p>
+              ))}
             </div>
-            <div className="mt-8 border-t border-border-light pt-5">
-              <p className="text-3xl font-bold text-accent">96%</p>
-              <p className="text-sm text-text-muted">patients engaged through at least one channel<br />If SMS misses, voice catches. If voice misses, mail reaches.</p>
-            </div>
-          </div>
-        </div>
-
-        {/* AI Voice Advantages */}
-        <div className="mt-14">
-          <p className="text-sm font-medium text-accent uppercase tracking-wider text-center mb-8">
-            Why AI Voice Calls Beat Manual Calls
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            {[
-              {
-                title: 'Always available',
-                desc: 'Calls when the patient is free, not when your team is',
-              },
-              {
-                title: 'Every call, every patient',
-                desc: 'High-compliance outreach with no one slipping through',
-              },
-              {
-                title: 'Subtle signal detection',
-                desc: 'Analytics catch hesitation, tone shifts, and early risk signals',
-              },
-              {
-                title: 'Personalized style',
-                desc: 'Talking pace, tone, and language adapted to each patient',
-              },
-              {
-                title: 'Learns over time',
-                desc: 'Discovers preferred channels and times, then uses them',
-              },
-            ].map((a) => (
-              <div key={a.title} className="bg-white border border-border-light p-5">
-                <p className="text-sm font-semibold text-foreground mb-1">{a.title}</p>
-                <p className="text-xs text-text-secondary leading-relaxed">{a.desc}</p>
-              </div>
-            ))}
           </div>
         </div>
       </div>
@@ -948,7 +894,7 @@ function LogoCarousel() {
   return (
     <section className="py-12 bg-white border-y border-border-light overflow-hidden">
       <p className="text-xs font-medium tracking-[0.15em] uppercase text-text-muted text-center mb-8">
-        Built for Leading Healthcare Organizations
+        Trusted by Healthcare Organizations
       </p>
       <div className="relative">
         <div className="flex animate-scroll gap-16 items-center">
@@ -1358,45 +1304,24 @@ function ImpactMetrics() {
   );
 }
 
-/* ─── 8. Feature Tabs ─── */
-function FeatureTabs() {
-  const [active, setActive] = useState(0);
-  const features = [
+/* ─── 8. Quality & Compliance ─── */
+function QualityCompliance() {
+  const capabilities = [
     {
-      tab: 'Multi-Channel Outreach',
-      title: 'Combined channels outperform single-channel by 3.2x',
-      description:
-        'Research shows SMS + telephone support achieves an effect size of 0.89, vs. 0.28 for SMS alone. Adhery coordinates all three channels with intelligent escalation, so every patient gets the right touchpoint at the right time.',
-      bullets: [
-        'Two-way SMS check-ins (2.11x adherence vs. control, meta-analysis)',
-        'AI voice calls with IVR (OR 1.53 for medication adherence)',
-        'Physical mail for digitally unresponsive patients',
-        'Automatic escalation based on patient responsiveness',
-      ],
+      title: 'Barrier detection',
+      desc: 'Identifies forgetfulness, side effects, cost, beliefs, and access issues from patient conversations. Routes each to the right intervention.',
     },
     {
-      tab: 'Quality Assurance',
-      title: 'Every interaction, analyzed',
-      description:
-        'AI-powered conversation intelligence reviews every patient touchpoint. Identifies the 5 key adherence barriers (forgetfulness, side effects, cost, beliefs, access) and routes each to the right intervention.',
-      bullets: [
-        'Real-time sentiment and barrier identification',
-        'Automatic side effect detection and severity scoring',
-        'PDC tracking against the 80% population threshold',
-        'Engagement scoring across all channels',
-      ],
+      title: 'Side effect monitoring',
+      desc: 'Automatic severity scoring from SMS and voice interactions. Escalates to pharmacist when clinical judgment is needed.',
     },
     {
-      tab: 'Launch in Weeks',
-      title: 'Go live in 3 weeks, not 6 months',
-      description:
-        'Upload your patient list, configure your drug program, and start outreach. Pre-built cadences based on published clinical trial adherence data by drug class. No custom development needed.',
-      bullets: [
-        'CSV upload or EHR integration for enrollment',
-        'Evidence-based outreach cadences by drug class',
-        'Approved content library for each channel',
-        'Dedicated launch support team',
-      ],
+      title: 'PDC tracking',
+      desc: 'Real-time Proportion of Days Covered against the 80% CMS Star Rating threshold. Flags patients trending below before they drop.',
+    },
+    {
+      title: 'Audit trail',
+      desc: 'Every message, call, and mail piece logged with timestamps. Full compliance documentation for regulatory review.',
     },
   ];
 
@@ -1405,67 +1330,20 @@ function FeatureTabs() {
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-4">
-            Platform Capabilities
+            Quality & Compliance
           </p>
           <h2 className="font-serif text-4xl md:text-5xl text-foreground">
-            Everything you need to <em className="font-serif">improve adherence</em>
+            Every interaction analyzed, every outcome logged
           </h2>
         </div>
 
-        <div className="flex justify-center border-b border-border-light mb-12">
-          {features.map((f, i) => (
-            <button
-              key={i}
-              onClick={() => setActive(i)}
-              className={`px-6 py-3 text-sm font-medium border-b-2 transition-all ${
-                i === active
-                  ? 'border-accent text-accent'
-                  : 'border-transparent text-text-secondary hover:text-foreground'
-              }`}
-            >
-              {f.tab}
-            </button>
-          ))}
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-12 items-start">
-          <div>
-            <h3 className="text-2xl font-semibold text-foreground mb-4">{features[active].title}</h3>
-            <p className="text-text-secondary leading-relaxed mb-6">{features[active].description}</p>
-            <ul className="space-y-3">
-              {features[active].bullets.map((b, i) => (
-                <li key={i} className="flex items-start gap-3 text-sm text-text-secondary">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-accent mt-0.5 flex-shrink-0">
-                    <path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  {b}
-                </li>
-              ))}
-            </ul>
-            <a
-              href="#demo"
-              className="inline-flex items-center gap-2 mt-8 text-sm font-semibold text-white bg-accent hover:bg-accent-dark px-6 py-3 rounded-full transition-all"
-            >
-              Get Started
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
-          <div className="bg-surface-warm rounded-2xl p-8 border border-border-light">
-            <div className="space-y-4">
-              {features[active].bullets.map((b, i) => (
-                <div key={i} className="flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-sm">
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold ${
-                    i === 0 ? 'bg-accent' : i === 1 ? 'bg-accent-light' : i === 2 ? 'bg-accent-dark' : 'bg-foreground'
-                  }`}>
-                    {i + 1}
-                  </div>
-                  <span className="text-sm text-foreground font-medium">{b}</span>
-                </div>
-              ))}
+        <div className="grid md:grid-cols-2 gap-6">
+          {capabilities.map((c) => (
+            <div key={c.title} className="bg-surface-warm border border-border-light p-6">
+              <h3 className="font-semibold text-foreground mb-2">{c.title}</h3>
+              <p className="text-sm text-text-secondary leading-relaxed">{c.desc}</p>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
@@ -1496,7 +1374,7 @@ function ResearchEvidence() {
     {
       stat: '4.41x',
       label: 'Pharmacist Counseling',
-      detail: 'Pharmacist counseling showed OR 4.41 (2.46-7.91) for adherence, underlining the value of human escalation.',
+      detail: 'Pharmacist counseling showed OR 4.41 (2.46-7.91) for adherence. Human escalation matters for complex cases.',
       citation: 'Conn & Ruppar, Ann Behav Med, 2017',
     },
     {
@@ -1551,7 +1429,7 @@ function ResearchEvidence() {
             Built on published <em className="font-serif">clinical research</em>
           </h2>
           <p className="text-text-secondary max-w-2xl mx-auto">
-            Every channel, cadence, and technique in Adhery is informed by peer-reviewed studies. Here are the key findings that shaped our platform.
+            Every channel and cadence in Adhery comes from peer-reviewed studies. Here are the findings behind the platform.
           </p>
         </div>
 
@@ -1591,40 +1469,33 @@ function ResearchEvidence() {
           ))}
         </div>
 
-        <div className="bg-white rounded-2xl border border-accent/20 p-6 text-center">
-          <p className="text-sm text-text-secondary leading-relaxed max-w-3xl mx-auto">
-            <span className="font-semibold text-foreground">Why multi-channel matters:</span>{' '}
-            Single-channel SMS shows modest effect sizes (SMD 0.28), but combining SMS with voice support increases it to 0.89, a 3.2x improvement.
-            Adhery&apos;s escalation engine ensures every patient gets the right channel at the right time.
-          </p>
-        </div>
       </div>
     </section>
   );
 }
 
-/* ─── 9. How It Works ─── */
+/* ─── 9. How It Works + Launch Timeline ─── */
 function HowItWorks() {
   const steps = [
     {
       step: '01',
-      title: 'Configure your drug program',
-      description:
-        'Define the medication schedule, side effects to monitor, outreach cadence, and escalation rules. Use our pre-built templates or customize from scratch.',
+      title: 'Configure your protocols',
+      description: 'Tell us your medication schedules, side effects to watch, escalation rules, and preferred outreach cadence. We set everything up.',
+      timeline: 'Week 1',
       bg: 'bg-surface-warm',
     },
     {
       step: '02',
       title: 'Enroll patients',
-      description:
-        'Upload a CSV or connect your EHR system. Patients receive a welcome message within hours. Each patient gets a personalized outreach plan based on their risk profile.',
+      description: 'Upload a CSV or connect your EHR. Patients get a welcome message within hours, each with a personalized outreach plan based on their risk profile.',
+      timeline: 'Week 2',
       bg: 'bg-white',
     },
     {
       step: '03',
-      title: 'Monitor and optimize',
-      description:
-        'Track adherence rates, channel performance, and patient sentiment in real time. The system continuously learns from patient interactions to improve outreach timing and messaging.',
+      title: 'Go live and monitor',
+      description: 'Outreach starts. Track adherence, channel performance, and patient sentiment in real time. The system learns from every interaction to improve timing and messaging.',
+      timeline: 'Week 3-4',
       bg: 'bg-surface-warm',
     },
   ];
@@ -1637,19 +1508,23 @@ function HowItWorks() {
             How It Works
           </p>
           <h2 className="font-serif text-4xl md:text-5xl text-foreground">
-            Three steps to better <em className="font-serif">adherence</em>
+            Live in 4 weeks
           </h2>
+          <p className="text-text-secondary mt-4 max-w-xl mx-auto">
+            Start with 100 churned or at-risk patients. Pre-built cadences by drug class. No custom development.
+          </p>
         </div>
 
         <div className="space-y-0">
           {steps.map((s, i) => (
             <div key={i} className={`${s.bg} rounded-2xl p-8 md:p-12 ${i > 0 ? '-mt-4' : ''}`}>
-              <div className="grid md:grid-cols-[80px_1fr] gap-6 items-start">
+              <div className="grid md:grid-cols-[80px_1fr_auto] gap-6 items-start">
                 <span className="text-4xl font-bold text-accent/30">{s.step}</span>
                 <div>
                   <h3 className="text-xl font-semibold text-foreground mb-3">{s.title}</h3>
                   <p className="text-text-secondary leading-relaxed max-w-xl">{s.description}</p>
                 </div>
+                <span className="text-sm font-medium text-accent bg-accent/10 px-3 py-1 rounded-full self-start hidden md:block">{s.timeline}</span>
               </div>
             </div>
           ))}
@@ -1759,7 +1634,7 @@ function ChannelDeepDive() {
             Every channel, <em className="font-serif">perfectly timed</em>
           </h2>
           <p className="text-text-secondary max-w-2xl mx-auto">
-            Adhery automatically escalates through channels based on patient responsiveness. No patient falls through the cracks.
+            Adhery escalates through channels based on patient responsiveness. SMS first, then voice, then mail.
           </p>
         </div>
 
@@ -2021,16 +1896,15 @@ export default function Home() {
       <Hero />
       <AdherenceJourney />
       <MultichannelComparison />
+      <ChannelDeepDive />
       <LogoCarousel />
       <TestimonialCarousel />
-      <VideoDemoTabs />
       <CaseStudyCards />
       <ImpactMetrics />
-      <FeatureTabs />
+      <QualityCompliance />
       <ResearchEvidence />
       <HowItWorks />
       <WhoWeServe />
-      <ChannelDeepDive />
       <DemoRequestForm />
       <Footer />
     </main>
