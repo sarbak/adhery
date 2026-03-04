@@ -17,7 +17,7 @@ export default function AlertsPage() {
     critical: 'text-red-400 bg-red-400/10 border-red-400/30',
     high: 'text-orange-400 bg-orange-400/10 border-orange-400/30',
     medium: 'text-yellow-400 bg-yellow-400/10 border-yellow-400/30',
-    low: 'text-dash-text-muted bg-dash-bg-tertiary border-dash-border',
+    low: 'text-text-muted bg-surface-warm border-border-light',
   };
 
   const statusBadge: Record<string, string> = {
@@ -47,8 +47,8 @@ export default function AlertsPage() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-lg font-semibold text-dash-text">Alerts</h1>
-          <p className="text-xs text-dash-text-muted">
+          <h1 className="text-lg font-semibold text-foreground">Alerts</h1>
+          <p className="text-xs text-text-muted">
             {openCount} open alerts{criticalCount > 0 && ` - ${criticalCount} critical`}
           </p>
         </div>
@@ -62,8 +62,8 @@ export default function AlertsPage() {
           { label: 'Resolved', count: alerts.filter((a) => a.status === 'resolved').length, color: 'text-green-400' },
           { label: 'Critical', count: criticalCount, color: 'text-red-400' },
         ].map((s) => (
-          <div key={s.label} className="bg-dash-bg-secondary border border-dash-border p-3">
-            <p className="text-[10px] text-dash-text-muted uppercase tracking-wider">{s.label}</p>
+          <div key={s.label} className="bg-white border border-border-light p-3">
+            <p className="text-[10px] text-text-muted uppercase tracking-wider">{s.label}</p>
             <p className={`text-xl font-bold ${s.color}`}>{s.count}</p>
           </div>
         ))}
@@ -74,7 +74,7 @@ export default function AlertsPage() {
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="bg-dash-bg-secondary border border-dash-border px-3 py-2 text-xs text-dash-text outline-none"
+          className="bg-white border border-border-light px-3 py-2 text-xs text-foreground outline-none"
         >
           <option value="all">All Statuses</option>
           <option value="open">Open</option>
@@ -84,7 +84,7 @@ export default function AlertsPage() {
         <select
           value={severityFilter}
           onChange={(e) => setSeverityFilter(e.target.value)}
-          className="bg-dash-bg-secondary border border-dash-border px-3 py-2 text-xs text-dash-text outline-none"
+          className="bg-white border border-border-light px-3 py-2 text-xs text-foreground outline-none"
         >
           <option value="all">All Severities</option>
           <option value="critical">Critical</option>
@@ -101,7 +101,7 @@ export default function AlertsPage() {
           return (
             <div
               key={alert.id}
-              className={`bg-dash-bg-secondary border p-4 ${severityColor[alert.severity]}`}
+              className={`bg-white border p-4 ${severityColor[alert.severity]}`}
             >
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-3">
@@ -110,19 +110,19 @@ export default function AlertsPage() {
                   </svg>
                   <div>
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="text-xs font-medium text-dash-text">
+                      <span className="text-xs font-medium text-foreground">
                         {patient?.firstName} {patient?.lastName}
                       </span>
-                      <span className="text-[10px] font-medium px-2 py-0.5 bg-dash-bg-tertiary">
+                      <span className="text-[10px] font-medium px-2 py-0.5 bg-surface-warm">
                         {typeLabel[alert.type]}
                       </span>
                       <span className={`text-[10px] font-medium uppercase ${severityColor[alert.severity].split(' ')[0]}`}>
                         {alert.severity}
                       </span>
                     </div>
-                    <p className="text-xs text-dash-text-secondary leading-relaxed">{alert.notes}</p>
+                    <p className="text-xs text-text-secondary leading-relaxed">{alert.notes}</p>
                     <div className="flex items-center gap-4 mt-2">
-                      <span className="text-[10px] text-dash-text-muted">Created: {alert.createdAt}</span>
+                      <span className="text-[10px] text-text-muted">Created: {alert.createdAt}</span>
                       {alert.resolvedAt && (
                         <span className="text-[10px] text-green-400">Resolved: {alert.resolvedAt}</span>
                       )}
@@ -138,13 +138,13 @@ export default function AlertsPage() {
               </div>
               {alert.status === 'open' && (
                 <div className="flex gap-2 mt-3 ml-7">
-                  <button className="text-[10px] font-medium text-dash-text bg-dash-bg-tertiary hover:bg-dash-border px-3 py-1 transition-colors">
+                  <button className="text-[10px] font-medium text-foreground bg-surface-warm hover:bg-border-light px-3 py-1 transition-colors">
                     Acknowledge
                   </button>
-                  <button className="text-[10px] font-medium text-dash-bg bg-dash-accent hover:bg-dash-accent-dim px-3 py-1 transition-colors">
+                  <button className="text-[10px] font-medium text-white bg-accent hover:bg-accent-dark px-3 py-1 transition-colors">
                     Resolve
                   </button>
-                  <button className="text-[10px] font-medium text-dash-text-muted hover:text-dash-text px-3 py-1 transition-colors">
+                  <button className="text-[10px] font-medium text-text-muted hover:text-foreground px-3 py-1 transition-colors">
                     View Patient
                   </button>
                 </div>

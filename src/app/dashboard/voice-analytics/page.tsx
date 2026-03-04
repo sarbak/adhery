@@ -16,8 +16,8 @@ export default function VoiceAnalyticsPage() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-lg font-semibold text-dash-text">Voice Analytics</h1>
-          <p className="text-xs text-dash-text-muted">Post-call analysis and conversation intelligence</p>
+          <h1 className="text-lg font-semibold text-foreground">Voice Analytics</h1>
+          <p className="text-xs text-text-muted">Post-call analysis and conversation intelligence</p>
         </div>
       </div>
 
@@ -29,56 +29,56 @@ export default function VoiceAnalyticsPage() {
           { label: 'Side Effects Detected', value: sideEffectCalls, color: 'text-orange-400' },
           { label: 'Escalations', value: escalatedCalls, color: 'text-red-400' },
         ].map((s) => (
-          <div key={s.label} className="bg-dash-bg-secondary border border-dash-border p-3">
-            <p className="text-[10px] text-dash-text-muted uppercase tracking-wider">{s.label}</p>
-            <p className={`text-xl font-bold ${s.color || 'text-dash-text'}`}>{s.value}</p>
+          <div key={s.label} className="bg-white border border-border-light p-3">
+            <p className="text-[10px] text-text-muted uppercase tracking-wider">{s.label}</p>
+            <p className={`text-xl font-bold ${s.color || 'text-foreground'}`}>{s.value}</p>
           </div>
         ))}
       </div>
 
       {/* Sentiment distribution */}
-      <div className="bg-dash-bg-secondary border border-dash-border p-4 mb-6">
-        <p className="text-sm font-medium text-dash-text mb-4">Sentiment Distribution</p>
+      <div className="bg-white border border-border-light p-4 mb-6">
+        <p className="text-sm font-medium text-foreground mb-4">Sentiment Distribution</p>
         <div className="flex gap-3">
           {[
             { label: 'Positive (>70%)', count: voiceCalls.filter((c) => (c.metadata?.sentiment || 0) > 0.7).length, color: 'bg-green-500' },
             { label: 'Neutral (40-70%)', count: voiceCalls.filter((c) => { const s = c.metadata?.sentiment || 0; return s >= 0.4 && s <= 0.7; }).length, color: 'bg-yellow-500' },
             { label: 'Negative (<40%)', count: voiceCalls.filter((c) => (c.metadata?.sentiment || 0) < 0.4).length, color: 'bg-red-500' },
           ].map((bucket) => (
-            <div key={bucket.label} className="flex-1 bg-dash-bg-tertiary p-3">
+            <div key={bucket.label} className="flex-1 bg-surface-warm p-3">
               <div className="flex items-center gap-2 mb-2">
                 <div className={`w-2 h-2 ${bucket.color}`} />
-                <span className="text-xs text-dash-text-secondary">{bucket.label}</span>
+                <span className="text-xs text-text-secondary">{bucket.label}</span>
               </div>
-              <p className="text-lg font-bold text-dash-text">{bucket.count}</p>
-              <p className="text-[10px] text-dash-text-muted">{Math.round((bucket.count / totalCalls) * 100)}% of calls</p>
+              <p className="text-lg font-bold text-foreground">{bucket.count}</p>
+              <p className="text-[10px] text-text-muted">{Math.round((bucket.count / totalCalls) * 100)}% of calls</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Recent calls */}
-      <div className="bg-dash-bg-secondary border border-dash-border">
-        <div className="p-4 border-b border-dash-border">
-          <p className="text-sm font-medium text-dash-text">Recent Voice Calls</p>
+      <div className="bg-white border border-border-light">
+        <div className="p-4 border-b border-border-light">
+          <p className="text-sm font-medium text-foreground">Recent Voice Calls</p>
         </div>
-        <div className="divide-y divide-dash-border">
+        <div className="divide-y divide-border-light">
           {voiceCalls.slice(0, 15).map((call) => {
             const patient = patients.find((p) => p.id === call.patientId);
             const sentiment = call.metadata?.sentiment || 0;
 
             return (
-              <div key={call.id} className="p-4 hover:bg-dash-bg-tertiary transition-colors">
+              <div key={call.id} className="p-4 hover:bg-surface-warm transition-colors">
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-3">
-                    <div className="w-7 h-7 bg-dash-accent/10 text-dash-accent flex items-center justify-center text-[10px] font-bold flex-shrink-0">
+                    <div className="w-7 h-7 bg-accent/10 text-accent flex items-center justify-center text-[10px] font-bold flex-shrink-0">
                       {patient?.firstName[0]}{patient?.lastName[0]}
                     </div>
                     <div>
-                      <p className="text-xs font-medium text-dash-text">
+                      <p className="text-xs font-medium text-foreground">
                         {patient?.firstName} {patient?.lastName}
                       </p>
-                      <p className="text-[10px] text-dash-text-muted">
+                      <p className="text-[10px] text-text-muted">
                         {call.createdAt} - Duration: {call.metadata?.duration || 'N/A'}
                       </p>
                     </div>
@@ -93,15 +93,15 @@ export default function VoiceAnalyticsPage() {
                   </div>
                 </div>
 
-                <p className="text-xs text-dash-text-secondary leading-relaxed mb-2 ml-10">
+                <p className="text-xs text-text-secondary leading-relaxed mb-2 ml-10">
                   {call.content}
                 </p>
 
                 {/* Analysis bar */}
                 <div className="flex items-center gap-4 ml-10">
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] text-dash-text-muted">Sentiment:</span>
-                    <div className="w-20 h-1.5 bg-dash-bg-tertiary">
+                    <span className="text-[10px] text-text-muted">Sentiment:</span>
+                    <div className="w-20 h-1.5 bg-surface-warm">
                       <div
                         className={`h-full ${sentiment > 0.7 ? 'bg-green-500' : sentiment > 0.4 ? 'bg-yellow-500' : 'bg-red-500'}`}
                         style={{ width: `${sentiment * 100}%` }}
@@ -112,8 +112,8 @@ export default function VoiceAnalyticsPage() {
                     </span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <span className="text-[10px] text-dash-text-muted">Adherence:</span>
-                    <span className="text-[10px] text-dash-text-secondary">
+                    <span className="text-[10px] text-text-muted">Adherence:</span>
+                    <span className="text-[10px] text-text-secondary">
                       {sentiment > 0.6 ? 'Confirmed' : 'Concern flagged'}
                     </span>
                   </div>
