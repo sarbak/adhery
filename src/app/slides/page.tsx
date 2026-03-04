@@ -396,36 +396,61 @@ function PatientStorySlide() {
       day: 'Day 1',
       channel: 'SMS',
       color: '#22c55e',
-      message: '"Hi Maria, welcome to Humira support. Reply YES to get started."',
-      note: 'Opt-out default enrollment (d=0.68). Fast activation within 7 days.',
+      messages: [
+        { from: 'ai', text: 'Hi Maria, welcome to Humira support. Reply YES to get started.' },
+        { from: 'pt', text: 'YES' },
+        { from: 'ai', text: 'Great! I\'ll check in around your dose times. When do you usually take it?' },
+        { from: 'pt', text: 'Mornings around 8' },
+      ],
+      note: 'Opt-out default. Fast activation. Learns her schedule.',
     },
     {
       day: 'Day 3',
       channel: 'SMS',
       color: '#f59e0b',
-      message: '"I had some redness at the injection site."',
-      note: 'Two-way SMS (RR 1.23). Contextual trigger timed to her schedule.',
+      messages: [
+        { from: 'ai', text: 'Good morning Maria! How was your Humira dose yesterday?' },
+        { from: 'pt', text: 'I noticed redness at the injection site' },
+        { from: 'ai', text: 'Is it bigger than a quarter, or any swelling?' },
+        { from: 'pt', text: 'No pretty small' },
+        { from: 'ai', text: 'That\'s normal. Cold compress 10 min before next dose helps. I\'ll check back tomorrow.' },
+      ],
+      note: 'Multi-step triage. Asks follow-ups a voicemail never could.',
     },
     {
       day: 'Day 5',
       channel: 'Voice',
       color: ACCENT,
-      message: 'AI call checks in on side effects, walks through injection technique',
-      note: 'Escalation engine. Talking style adapted to Maria. Subtle signal analytics.',
+      messages: [
+        { from: 'ai', text: 'Hi Maria, calling to check on the injection site redness you mentioned.' },
+        { from: 'pt', text: 'Oh it went away, but I\'ve been really tired.' },
+        { from: 'ai', text: 'Fatigue can happen in the first weeks. Is it affecting your daily activities?' },
+        { from: 'pt', text: 'A little, I\'m napping more' },
+        { from: 'ai', text: 'I\'m noting that for your pharmacist. It often improves by week 3. Want me to schedule a call with them?' },
+      ],
+      note: 'Catches new symptom. Adapted tone. Pharmacist notified.',
     },
     {
       day: 'Day 14',
       channel: 'SMS',
       color: '#22c55e',
-      message: '"Your refill is on the way. Expected delivery: Thursday."',
-      note: 'Habit-formation loop: consistent timing, confirmation, progress feedback.',
+      messages: [
+        { from: 'ai', text: 'Refill on the way! Expected Thursday. How\'s the fatigue?' },
+        { from: 'pt', text: 'Actually much better this week!' },
+        { from: 'ai', text: 'That\'s great progress. You\'re 2 weeks in, right on track.' },
+      ],
+      note: 'Follows up on prior symptom. Habit-formation loop.',
     },
     {
       day: 'Day 30',
       channel: 'SMS',
       color: '#8b5cf6',
-      message: '"One month on Humira! You\'re doing great. Any questions for your pharmacist?"',
-      note: 'Milestone recognition (+7pp retention). Competence-focused, never shame.',
+      messages: [
+        { from: 'ai', text: 'One month on Humira! You\'ve taken every dose. That\'s a real milestone.' },
+        { from: 'pt', text: 'Thank you! Feeling so much better' },
+        { from: 'ai', text: 'Your pharmacist will love hearing that. Any questions before your next refill?' },
+      ],
+      note: 'Milestone recognition (+7pp retention). Competence-focused.',
     },
   ];
 
@@ -455,9 +480,22 @@ function PatientStorySlide() {
                 >
                   {s.channel}
                 </span>
+                <span className="text-[10px] text-text-muted">{s.note}</span>
               </div>
-              <p className="text-foreground text-sm">{s.message}</p>
-              <p className="text-xs text-text-muted mt-1">{s.note}</p>
+              <div className="flex gap-1.5 flex-wrap">
+                {s.messages.map((m, i) => (
+                  <span
+                    key={i}
+                    className={`text-xs px-2 py-0.5 ${
+                      m.from === 'ai'
+                        ? 'bg-accent/10 text-accent'
+                        : 'bg-border-light text-text-secondary'
+                    }`}
+                  >
+                    {m.from === 'ai' ? 'AI: ' : 'PT: '}&quot;{m.text}&quot;
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         ))}

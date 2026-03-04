@@ -1040,20 +1040,36 @@ function VideoDemoTabs() {
         'Two-way SMS improves adherence 2.11x over control (meta-analysis of RCTs). Our AI-powered check-ins identify barriers in real time, so patients get help before they drop off.',
       mockup: (
         <div className="bg-[#1a1a2e] rounded-2xl p-6 max-w-sm mx-auto shadow-2xl">
-          <div className="text-xs text-white/40 text-center mb-4">Today, 9:15 AM</div>
-          <div className="space-y-3">
-            <div className="bg-accent/90 text-white text-sm px-4 py-2.5 rounded-2xl rounded-br-md max-w-[80%] ml-auto">
+          <div className="text-xs text-white/40 text-center mb-3">Today, 9:15 AM</div>
+          <div className="space-y-2.5">
+            <div className="bg-accent/90 text-white text-sm px-4 py-2 rounded-2xl rounded-br-md max-w-[80%] ml-auto">
               Hi Maria! Quick check-in on your Humira. Did you take your dose this morning?
             </div>
-            <div className="bg-white/10 text-white text-sm px-4 py-2.5 rounded-2xl rounded-bl-md max-w-[80%]">
-              Yes I did! But I noticed some redness at the injection site
+            <div className="bg-white/10 text-white text-sm px-4 py-2 rounded-2xl rounded-bl-md max-w-[80%]">
+              Yes but I noticed redness at the injection site
             </div>
-            <div className="bg-accent/90 text-white text-sm px-4 py-2.5 rounded-2xl rounded-br-md max-w-[80%] ml-auto">
-              Thanks for letting me know. Some redness is common and usually goes away in 1-2 days. If it spreads or you notice swelling, please call your pharmacist. How are you feeling otherwise?
+            <div className="bg-accent/90 text-white text-sm px-4 py-2 rounded-2xl rounded-br-md max-w-[80%] ml-auto">
+              Some redness is common and usually fades in 1-2 days. Is it bigger than a quarter, or is there swelling?
             </div>
-            <div className="bg-white/10 text-white text-sm px-4 py-2.5 rounded-2xl rounded-bl-md max-w-[80%]">
-              Much better actually, thank you!
+            <div className="bg-white/10 text-white text-sm px-4 py-2 rounded-2xl rounded-bl-md max-w-[80%]">
+              No its pretty small
             </div>
+            <div className="bg-accent/90 text-white text-sm px-4 py-2 rounded-2xl rounded-br-md max-w-[80%] ml-auto">
+              That sounds normal. Try a cold compress for 10 min before your next dose. I&apos;ll check back in 2 days. How&apos;s your energy been?
+            </div>
+            <div className="bg-white/10 text-white text-sm px-4 py-2 rounded-2xl rounded-bl-md max-w-[80%]">
+              Actually pretty tired lately
+            </div>
+            <div className="bg-accent/90 text-white text-sm px-4 py-2 rounded-2xl rounded-br-md max-w-[80%] ml-auto">
+              Fatigue can happen in the first few weeks. It often improves. I&apos;m noting this for your pharmacist. Would a quick call from them help?
+            </div>
+            <div className="bg-white/10 text-white text-sm px-4 py-2 rounded-2xl rounded-bl-md max-w-[80%]">
+              Not yet, let me see how it goes
+            </div>
+          </div>
+          <div className="mt-3 flex gap-2">
+            <span className="text-[10px] bg-yellow-500/20 text-yellow-400 px-2 py-0.5 rounded-full">Fatigue flagged</span>
+            <span className="text-[10px] bg-accent/20 text-accent px-2 py-0.5 rounded-full">Follow-up in 2 days</span>
           </div>
         </div>
       ),
@@ -1070,31 +1086,60 @@ function VideoDemoTabs() {
         'Interactive voice response improves adherence 1.53x (OR 1.527). Our AI agents handle onboarding, refill reminders, and side effect triage. Brief pharmacist calls shift PDC from 0.29 to 0.58.',
       mockup: (
         <div className="bg-[#1a1a2e] rounded-2xl p-6 max-w-sm mx-auto shadow-2xl">
-          <div className="text-center mb-6">
-            <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-3">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent">
+          <div className="text-center mb-4">
+            <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-2">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent">
                 <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
                 <path d="M19 10v2a7 7 0 01-14 0v-2" />
                 <line x1="12" y1="19" x2="12" y2="23" />
                 <line x1="8" y1="23" x2="16" y2="23" />
               </svg>
             </div>
-            <p className="text-white font-medium">AI Agent Speaking</p>
-            <p className="text-white/40 text-xs">Call duration: 2:34</p>
+            <p className="text-white font-medium text-sm">AI Agent Speaking</p>
+            <p className="text-white/40 text-xs">Call duration: 4:12</p>
           </div>
           <div className="space-y-2 text-sm">
             <div className="flex items-start gap-2">
-              <span className="text-accent text-xs font-medium mt-0.5">AI</span>
-              <p className="text-white/80">Hi James, this is your medication support team. How have you been feeling since starting Eliquis?</p>
+              <span className="text-accent text-xs font-medium mt-0.5 w-4 flex-shrink-0">AI</span>
+              <p className="text-white/80">Hi James, this is your medication support team. How have you been feeling on Eliquis?</p>
             </div>
             <div className="flex items-start gap-2">
-              <span className="text-white/40 text-xs font-medium mt-0.5">PT</span>
-              <p className="text-white/60">Pretty good, but I&apos;ve been getting some nosebleeds...</p>
+              <span className="text-white/40 text-xs font-medium mt-0.5 w-4 flex-shrink-0">PT</span>
+              <p className="text-white/60">Okay I guess, but I&apos;ve been getting nosebleeds...</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-accent text-xs font-medium mt-0.5 w-4 flex-shrink-0">AI</span>
+              <p className="text-white/80">I understand that can be concerning. How often are they happening, and how long do they last?</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-white/40 text-xs font-medium mt-0.5 w-4 flex-shrink-0">PT</span>
+              <p className="text-white/60">Maybe twice a week, they stop after a few minutes</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-accent text-xs font-medium mt-0.5 w-4 flex-shrink-0">AI</span>
+              <p className="text-white/80">Brief nosebleeds can occur with blood thinners. Since they&apos;re stopping on their own, that&apos;s a good sign. Are you also noticing unusual bruising or bleeding gums?</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-white/40 text-xs font-medium mt-0.5 w-4 flex-shrink-0">PT</span>
+              <p className="text-white/60">No, nothing like that</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-accent text-xs font-medium mt-0.5 w-4 flex-shrink-0">AI</span>
+              <p className="text-white/80">Good. I&apos;m flagging this for your pharmacist so they can review at your next check-in. Have you been taking it with your evening meal? That can help with absorption.</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-white/40 text-xs font-medium mt-0.5 w-4 flex-shrink-0">PT</span>
+              <p className="text-white/60">I usually take it in the morning actually</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-accent text-xs font-medium mt-0.5 w-4 flex-shrink-0">AI</span>
+              <p className="text-white/80">Morning works too. The key is consistency. I&apos;ll send you a text reminder at 8 AM daily. Would that help?</p>
             </div>
           </div>
-          <div className="mt-4 flex gap-2">
-            <span className="text-[10px] bg-yellow-500/20 text-yellow-400 px-2 py-0.5 rounded-full">Side effect detected</span>
-            <span className="text-[10px] bg-red-500/20 text-red-400 px-2 py-0.5 rounded-full">Escalation triggered</span>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <span className="text-[10px] bg-yellow-500/20 text-yellow-400 px-2 py-0.5 rounded-full">Side effect logged</span>
+            <span className="text-[10px] bg-accent/20 text-accent px-2 py-0.5 rounded-full">Timing optimized</span>
+            <span className="text-[10px] bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded-full">Pharmacist notified</span>
           </div>
         </div>
       ),
