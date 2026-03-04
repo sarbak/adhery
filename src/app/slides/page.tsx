@@ -26,7 +26,7 @@ function TitleSlide() {
         <span>to navigate</span>
       </div>
       <span className="absolute bottom-6 right-8 text-[10px] text-text-muted/50">
-        v5.1
+        v5.2
       </span>
     </div>
   );
@@ -514,6 +514,53 @@ function BusinessModelSlide() {
   );
 }
 
+function PharmaValueSlide() {
+  return (
+    <div className="flex flex-col justify-center h-full px-20">
+      <h2 className="font-serif text-5xl text-foreground mb-10 leading-tight max-w-4xl">
+        Every dropped patient costs pharma $50K-$500K in lost drug revenue
+      </h2>
+      <div className="max-w-4xl space-y-8">
+        <div className="grid grid-cols-3 gap-6">
+          <div className="bg-surface border border-border-light p-6">
+            <p className="text-sm text-text-muted mb-2">Specialty call center spend</p>
+            <p className="text-3xl font-bold text-foreground">$9-11B/yr</p>
+            <p className="text-xs text-text-secondary mt-2">12-15 calls per patient across 8-12M patients</p>
+          </div>
+          <div className="bg-surface border border-border-light p-6">
+            <p className="text-sm text-text-muted mb-2">Pharma patient support spend</p>
+            <p className="text-3xl font-bold text-foreground">$2-3B/yr</p>
+            <p className="text-xs text-text-secondary mt-2">Hub and patient support programs for 1-3M patients</p>
+          </div>
+          <div className="bg-accent/5 border-2 border-accent/30 p-6">
+            <p className="text-sm text-text-muted mb-2">Cost savings with <span className="font-semibold text-accent">Adhery</span></p>
+            <p className="text-3xl font-bold text-accent">$112/patient</p>
+            <p className="text-xs text-text-secondary mt-2">From $130 manual cost to $18 automated</p>
+          </div>
+        </div>
+        <div className="border-l-4 border-accent/30 pl-6 space-y-4">
+          <p className="text-lg text-foreground font-medium">
+            What this means for a pharma manufacturer with 50K patients in support programs:
+          </p>
+          <div className="grid grid-cols-2 gap-6">
+            <div>
+              <p className="text-2xl font-bold text-accent">$5.6M/yr</p>
+              <p className="text-sm text-text-secondary">saved in call center costs alone</p>
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-accent">$250M-$2.5B</p>
+              <p className="text-sm text-text-secondary">in retained drug revenue from patients who stay on therapy</p>
+            </div>
+          </div>
+          <p className="text-text-secondary text-sm">
+            At ~50% adherence, half of those 50K patients eventually stop their medication. Even retaining 10% more patients generates hundreds of millions in drug spend that would otherwise be lost.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function MarketSizeSlide() {
   return (
     <div className="flex flex-col justify-center h-full px-20">
@@ -619,8 +666,9 @@ const slides = [
   // ─── Appendix ───
   AppendixDividerSlide, // 13: Appendix divider
   BusinessModelSlide,   // 14: Revenue model and unit economics
-  MarketSizeSlide,      // 15: TAM/SAM/SOM
-  RevenueProjectionSlide, // 16: Path to $120M ARR
+  PharmaValueSlide,     // 15: Value to pharma companies
+  MarketSizeSlide,      // 16: TAM/SAM/SOM
+  RevenueProjectionSlide, // 17: Path to $120M ARR
 ];
 
 // ─── Main Page ───
