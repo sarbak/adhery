@@ -812,6 +812,42 @@ function MultichannelComparison() {
             </div>
           </div>
         </div>
+
+        {/* AI Voice Advantages */}
+        <div className="mt-14">
+          <p className="text-sm font-medium text-accent uppercase tracking-wider text-center mb-8">
+            Why AI Voice Calls Beat Manual Calls
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            {[
+              {
+                title: 'Always available',
+                desc: 'Calls when the patient is free, not when your team is',
+              },
+              {
+                title: 'Every call, every patient',
+                desc: 'High-compliance outreach with no one slipping through',
+              },
+              {
+                title: 'Subtle signal detection',
+                desc: 'Analytics catch hesitation, tone shifts, and early risk signals',
+              },
+              {
+                title: 'Personalized style',
+                desc: 'Talking pace, tone, and language adapted to each patient',
+              },
+              {
+                title: 'Learns over time',
+                desc: 'Discovers preferred channels and times, then uses them',
+              },
+            ].map((a) => (
+              <div key={a.title} className="bg-white border border-border-light p-5">
+                <p className="text-sm font-semibold text-foreground mb-1">{a.title}</p>
+                <p className="text-xs text-text-secondary leading-relaxed">{a.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

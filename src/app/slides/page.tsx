@@ -315,9 +315,25 @@ function MultimodalImpactSlide() {
           </div>
         </div>
       </div>
-      <p className="text-sm text-text-muted mt-8 max-w-3xl">
-        When one channel misses, another catches. The patient is always reached through their preferred medium.
-      </p>
+      {/* AI Voice Advantages */}
+      <div className="mt-8 max-w-5xl">
+        <p className="text-xs font-medium text-accent uppercase tracking-wider mb-4">
+          Why AI Voice Beats Manual Calls
+        </p>
+        <div className="flex gap-3">
+          {[
+            'Calls when the patient is available',
+            'Every call, every patient',
+            'Detects subtle signals in conversation',
+            'Style adapted per patient',
+            'Learns preferred engagement over time',
+          ].map((adv) => (
+            <div key={adv} className="flex-1 bg-surface border border-border-light px-3 py-2">
+              <p className="text-xs text-foreground">{adv}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
