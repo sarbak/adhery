@@ -732,6 +732,91 @@ function AdherenceJourney() {
   );
 }
 
+/* ─── 2b. Multichannel vs Call Center Comparison ─── */
+function MultichannelComparison() {
+  const callCenter = [
+    { label: 'Phone call', pct: 45, color: '#94a3b8', result: '~45% reached' },
+    { label: 'Voicemail', pct: 55, color: '#cbd5e1', result: '~55% missed' },
+  ];
+  const multichannel = [
+    { label: 'SMS', pct: 92, color: '#22c55e', result: '92% delivered' },
+    { label: 'AI Voice', pct: 78, color: '#0d7377', result: '78% reached' },
+    { label: 'Mail', pct: 99, color: '#f59e0b', result: '99% delivered' },
+    { label: 'Combined', pct: 96, color: '#8b5cf6', result: '96% engaged' },
+  ];
+
+  return (
+    <section id="multichannel-impact" className="py-20 bg-surface-warm border-y border-border-light">
+      <div className="max-w-5xl mx-auto px-6">
+        <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent text-center mb-3">
+          Why Multichannel Wins
+        </p>
+        <h2 className="font-serif text-4xl text-foreground text-center mb-4">
+          One channel is a guess. Multiple channels are a system.
+        </h2>
+        <p className="text-text-secondary text-center mb-14 max-w-2xl mx-auto">
+          When one channel misses, another catches. The patient is always reached through their preferred medium.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {/* Call Center Only */}
+          <div className="bg-white border border-border-light p-8">
+            <p className="text-sm font-medium text-text-muted uppercase tracking-wider mb-6">
+              Call Center Only
+            </p>
+            <div className="space-y-5">
+              {callCenter.map((c) => (
+                <div key={c.label}>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-sm font-medium text-foreground">{c.label}</span>
+                    <span className="text-sm text-text-secondary">{c.result}</span>
+                  </div>
+                  <div className="h-7 bg-gray-100">
+                    <div
+                      className="h-full"
+                      style={{ width: `${c.pct}%`, backgroundColor: c.color }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 border-t border-border-light pt-5">
+              <p className="text-3xl font-bold text-text-secondary">~45%</p>
+              <p className="text-sm text-text-muted">effective reach</p>
+            </div>
+          </div>
+
+          {/* Multichannel Automated */}
+          <div className="bg-white border-2 border-accent/20 p-8">
+            <p className="text-sm font-medium text-accent uppercase tracking-wider mb-6">
+              Multichannel Automated
+            </p>
+            <div className="space-y-5">
+              {multichannel.map((c) => (
+                <div key={c.label}>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-sm font-medium text-foreground">{c.label}</span>
+                    <span className="text-sm text-text-secondary">{c.result}</span>
+                  </div>
+                  <div className="h-7 bg-gray-100">
+                    <div
+                      className="h-full"
+                      style={{ width: `${c.pct}%`, backgroundColor: c.color }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 border-t border-border-light pt-5">
+              <p className="text-3xl font-bold text-accent">96%</p>
+              <p className="text-sm text-text-muted">effective reach</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ─── 3. Logo Carousel ─── */
 function LogoCarousel() {
   const logos = [
@@ -1720,6 +1805,7 @@ export default function Home() {
       <Nav />
       <Hero />
       <AdherenceJourney />
+      <MultichannelComparison />
       <LogoCarousel />
       <TestimonialCarousel />
       <VideoDemoTabs />
