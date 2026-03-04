@@ -724,29 +724,44 @@ function PricingSlide() {
       <h2 className="font-serif text-5xl text-foreground mb-12 leading-tight">
         Simple, transparent, per-member pricing
       </h2>
-      <div className="grid grid-cols-3 gap-6 max-w-3xl mb-8">
-        {tiers.map((t) => (
-          <div
-            key={t.range}
-            className={`p-8 text-center ${
-              t.highlight
-                ? 'bg-accent/5 border-2 border-accent/30'
-                : 'bg-surface border border-border-light'
-            }`}
-          >
-            <p className="text-sm text-text-secondary mb-2">Patients</p>
-            <p className="text-lg font-semibold text-foreground mb-6">{t.range}</p>
-            <p className="text-5xl font-bold text-accent mb-1">{t.pmpm}</p>
-            <p className="text-sm text-text-muted">PMPM</p>
+      <div className="flex gap-8 max-w-4xl items-start">
+        {/* Setup fee */}
+        <div className="bg-surface-warm border-2 border-accent/20 p-8 w-56 flex-shrink-0">
+          <p className="text-sm text-text-secondary mb-2">One-time setup</p>
+          <p className="text-4xl font-bold text-foreground mb-2">$10K</p>
+          <p className="text-xs text-text-secondary leading-relaxed">
+            Protocol configuration, EHR integration, patient onboarding, team training
+          </p>
+        </div>
+
+        {/* PMPM tiers */}
+        <div className="flex-1">
+          <p className="text-sm text-text-muted mb-4">+ monthly per member</p>
+          <div className="grid grid-cols-3 gap-4">
+            {tiers.map((t) => (
+              <div
+                key={t.range}
+                className={`p-6 text-center ${
+                  t.highlight
+                    ? 'bg-accent/5 border-2 border-accent/30'
+                    : 'bg-surface border border-border-light'
+                }`}
+              >
+                <p className="text-sm text-text-secondary mb-1">Patients</p>
+                <p className="text-base font-semibold text-foreground mb-4">{t.range}</p>
+                <p className="text-4xl font-bold text-accent mb-1">{t.pmpm}</p>
+                <p className="text-sm text-text-muted">PMPM</p>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
-      <div className="max-w-3xl space-y-2">
+      <div className="max-w-4xl mt-8 space-y-2">
         <p className="text-foreground font-medium">
-          No setup fees. No long-term contracts. Cancel anytime.
+          No long-term contracts. Cancel anytime after pilot.
         </p>
         <p className="text-sm text-text-secondary">
-          ROI payback: typically within the first month.
+          Setup fee covers full implementation. ROI payback typically within the first quarter.
         </p>
       </div>
     </div>
