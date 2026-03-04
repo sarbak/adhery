@@ -84,21 +84,6 @@ function Hero() {
           <em className="font-serif">without the call center.</em>
         </h1>
 
-        {/* Flow pills */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
-          <span className="text-sm font-medium text-accent-dark bg-accent/10 px-4 py-1.5 rounded-full">
-            Configure Program
-          </span>
-          <span className="text-text-muted">&rarr;</span>
-          <span className="text-sm font-medium text-accent-dark bg-accent/10 px-4 py-1.5 rounded-full">
-            Enroll Patients
-          </span>
-          <span className="text-text-muted">&rarr;</span>
-          <span className="text-sm font-medium text-accent-dark bg-accent/10 px-4 py-1.5 rounded-full">
-            Monitor &amp; Optimize
-          </span>
-        </div>
-
         <p className="text-lg text-text-secondary max-w-2xl mx-auto mb-8 leading-relaxed">
           Research shows multi-channel outreach improves adherence 2.1x more than single-channel approaches.
           Adhery combines AI-powered SMS, voice, and mail to replace 12-15 manual calls per patient.
@@ -847,6 +832,88 @@ function MultichannelComparison() {
               </div>
             ))}
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── 2c. Retention Science Methods ─── */
+function RetentionMethods() {
+  const methods = [
+    {
+      title: 'Opt-out defaults',
+      stat: 'd = 0.68',
+      desc: 'Patients are pre-enrolled in refill reminders and check-ins. Easy opt-out, but the default keeps them on track.',
+      source: 'Meta-analysis, ~27% uptake increase',
+    },
+    {
+      title: 'Milestone recognition',
+      stat: '+7pp retention',
+      desc: 'Non-monetary recognition at 30, 60, 90-day marks. Progress visualization and encouragement, never shame.',
+      source: 'Field experiment, 35% to 42% at 1 month',
+    },
+    {
+      title: 'Contact-frequency governance',
+      stat: '-59% opt-outs',
+      desc: 'Adaptive message cadence with hard caps per channel. Back off after non-response. Fewer touches, higher impact.',
+      source: 'Email frequency study, increased CLV',
+    },
+    {
+      title: 'Habit-formation loops',
+      stat: 'Cue-routine-reward',
+      desc: 'Consistent timing, confirmation tap, immediate progress feedback. Builds the medication-taking habit, not just compliance.',
+      source: 'Behavioral science framework',
+    },
+    {
+      title: 'Fast activation',
+      stat: '< 7 days',
+      desc: 'First value moment within a week: refill confirmed, barrier resolved, savings applied. Early engagement predicts retention.',
+      source: 'Commercial mHealth evidence',
+    },
+    {
+      title: 'Win-back playbooks',
+      stat: '14-day trigger',
+      desc: 'Non-judgmental re-engagement after gaps. Offers options: refill help, side-effect support, frequency reduction, or pause.',
+      source: 'Churn prevention best practice',
+    },
+    {
+      title: 'Uplift modeling',
+      stat: 'Causal targeting',
+      desc: 'Identifies which patients will actually respond to intervention. Allocates pharmacist time to persuadable patients only.',
+      source: 'Qini curves & AUUC metrics',
+    },
+    {
+      title: 'Contextual triggers',
+      stat: 'RR 1.04',
+      desc: 'Time-of-day optimized prompts. Micro-randomized trials find the right moment for each patient.',
+      source: 'MRT, n=1,255 users',
+    },
+  ];
+
+  return (
+    <section className="py-20 bg-white">
+      <div className="max-w-5xl mx-auto px-6">
+        <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent text-center mb-3">
+          Evidence-Based Retention Science
+        </p>
+        <h2 className="font-serif text-4xl text-foreground text-center mb-4">
+          Every technique backed by research
+        </h2>
+        <p className="text-text-secondary text-center mb-14 max-w-2xl mx-auto">
+          Adhery doesn&apos;t just send messages. It applies proven retention methods from behavioral science and clinical research.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {methods.map((m) => (
+            <div key={m.title} className="border border-border-light p-5 bg-surface-warm">
+              <div className="flex items-baseline justify-between mb-2">
+                <p className="text-sm font-semibold text-foreground">{m.title}</p>
+                <span className="text-xs font-medium text-accent ml-2 whitespace-nowrap">{m.stat}</span>
+              </div>
+              <p className="text-xs text-text-secondary leading-relaxed mb-3">{m.desc}</p>
+              <p className="text-[10px] text-text-muted">{m.source}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -1842,6 +1909,7 @@ export default function Home() {
       <Hero />
       <AdherenceJourney />
       <MultichannelComparison />
+      <RetentionMethods />
       <LogoCarousel />
       <TestimonialCarousel />
       <VideoDemoTabs />
