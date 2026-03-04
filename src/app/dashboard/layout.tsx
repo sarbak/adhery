@@ -97,7 +97,10 @@ function MockLogin({ onLogin }: { onLogin: (role: Role) => void }) {
     <div className="min-h-screen bg-background flex items-center justify-center px-6">
       <div className="max-w-xl w-full">
         <div className="text-center mb-10">
-          <Link href="/" className="text-2xl font-semibold text-foreground tracking-tight">adhery</Link>
+          <Link href="/" className="flex items-center gap-2 text-2xl font-semibold text-foreground tracking-tight">
+            <img src="/logo.svg" alt="" className="w-8 h-8" />
+            adhery
+          </Link>
           <p className="text-sm text-text-secondary mt-2">Select a role to explore the dashboard</p>
         </div>
         <div className="space-y-3">
@@ -148,7 +151,8 @@ function Sidebar() {
   return (
     <aside className="w-56 bg-white border-r border-border-light flex flex-col h-screen fixed left-0 top-0">
       <div className="p-4 border-b border-border-light">
-        <Link href="/dashboard/overview" className="text-lg font-semibold text-foreground tracking-tight">
+        <Link href="/dashboard/overview" className="flex items-center gap-2 text-lg font-semibold text-foreground tracking-tight">
+          <img src="/logo.svg" alt="" className="w-6 h-6" />
           adhery
         </Link>
         <p className="text-[10px] text-accent mt-0.5 font-medium uppercase tracking-wider">

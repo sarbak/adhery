@@ -21,7 +21,8 @@ function Nav() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="text-xl font-semibold tracking-tight text-foreground">
+        <a href="#" className="flex items-center gap-2 text-xl font-semibold tracking-tight text-foreground">
+          <img src="/logo.svg" alt="" className="w-7 h-7" />
           adhery
         </a>
         <div className="hidden md:flex items-center gap-8">
@@ -1068,7 +1069,10 @@ function Footer() {
       <div className="max-w-5xl mx-auto">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
-            <p className="text-white font-semibold text-lg mb-3">adhery</p>
+            <p className="text-white font-semibold text-lg mb-3 flex items-center gap-2">
+              <img src="/logo.svg" alt="" className="w-6 h-6 brightness-0 invert" />
+              adhery
+            </p>
             <p className="text-sm leading-relaxed">
               AI-powered medication adherence platform for pharma companies and specialty pharmacies.
             </p>
