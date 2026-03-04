@@ -739,7 +739,7 @@ export default function SlidesPage() {
       </div>
 
       {/* Slide content */}
-      <div className="h-full w-full">
+      <div key={current} className="h-full w-full animate-slide-in">
         <SlideComponent />
       </div>
 
