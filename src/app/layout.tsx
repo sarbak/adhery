@@ -30,6 +30,14 @@ export const metadata: Metadata = {
   title: 'Adhery - AI-Powered Drug Adherence Platform',
   description:
     'Multi-channel patient outreach platform combining AI-powered SMS, voice calls, and mail to improve medication adherence for pharma companies and specialty pharmacies.',
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
+  },
 };
 
 export default function RootLayout({

@@ -262,62 +262,17 @@ function PatientStorySlide() {
   );
 }
 
-function EscalationSlide() {
-  return (
-    <div className="flex flex-col justify-center h-full px-20">
-      <h2 className="font-serif text-5xl text-foreground mb-12 leading-tight max-w-4xl">
-        The navigator resolves 90% autonomously. Pharmacists see only the 10% that need them.
-      </h2>
-      <div className="max-w-4xl space-y-10">
-        {/* Call Center bar */}
-        <div>
-          <p className="text-sm font-medium text-text-muted mb-3">Manual Call Center</p>
-          <div className="h-14 bg-surface border border-border-light flex">
-            <div className="h-full bg-[#94a3b8] flex items-center justify-center" style={{ width: '45%' }}>
-              <span className="text-sm text-white font-medium">45% reached</span>
-            </div>
-            <div className="h-full flex items-center justify-center flex-1">
-              <span className="text-sm text-text-muted">55% unreached</span>
-            </div>
-          </div>
-          <p className="text-xs text-text-muted mt-2">Most of the 45% reached are routine check-ins. Real barriers go undetected.</p>
-        </div>
-
-        {/* Navigator bar */}
-        <div>
-          <p className="text-sm font-medium text-accent mb-3">Adhery Navigator</p>
-          <div className="h-14 bg-surface border border-border-light flex">
-            <div className="h-full bg-[#0d7377] flex items-center justify-center" style={{ width: '40%' }}>
-              <span className="text-xs text-white font-medium">AI Voice 40%</span>
-            </div>
-            <div className="h-full bg-[#22c55e] flex items-center justify-center" style={{ width: '35%' }}>
-              <span className="text-xs text-white font-medium">Async 35%</span>
-            </div>
-            <div className="h-full bg-[#f59e0b] flex items-center justify-center" style={{ width: '15%' }}>
-              <span className="text-[10px] text-white font-medium">Mail</span>
-            </div>
-            <div className="h-full flex items-center justify-center" style={{ width: '10%' }}>
-              <span className="text-[10px] text-text-muted">10%</span>
-            </div>
-          </div>
-          <p className="text-xs text-text-muted mt-2">90% resolved autonomously. 10% escalated to pharmacist.</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function ResultsSlide() {
   return (
     <div className="flex flex-col justify-center h-full px-20">
       <h2 className="font-serif text-5xl text-foreground mb-12 leading-tight max-w-4xl">
         Adherence jumps from 78% to 87% PDC
       </h2>
-      <div className="max-w-4xl space-y-10">
+      <div className="max-w-4xl space-y-8">
         {/* Before bar */}
         <div>
           <div className="flex items-baseline justify-between mb-3">
-            <span className="text-sm font-medium text-text-muted">Before: Manual Call Center</span>
+            <span className="text-sm font-medium text-text-muted">Manual Call Center</span>
             <span className="text-2xl font-bold text-text-secondary">78% <span className="text-sm font-normal text-text-muted">PDC</span></span>
           </div>
           <div className="h-12 bg-surface border border-border-light flex">
@@ -328,13 +283,12 @@ function ResultsSlide() {
               <span className="text-sm text-text-muted">55% unreached</span>
             </div>
           </div>
-          <p className="text-xs text-text-muted mt-2">Most calls are routine. Real barriers go undetected.</p>
         </div>
 
         {/* After bar */}
         <div>
           <div className="flex items-baseline justify-between mb-3">
-            <span className="text-sm font-medium text-accent">After: Adhery Navigator</span>
+            <span className="text-sm font-medium text-accent">Adhery Navigator</span>
             <span className="text-2xl font-bold text-accent">87% <span className="text-sm font-normal text-text-muted">PDC</span></span>
           </div>
           <div className="h-12 bg-surface border border-border-light flex">
@@ -351,12 +305,11 @@ function ResultsSlide() {
               <span className="text-[10px] text-text-muted">RPh</span>
             </div>
           </div>
-          <p className="text-xs text-text-muted mt-2">90% resolved autonomously. 10% escalated to pharmacist.</p>
         </div>
       </div>
-      <p className="text-sm text-text-secondary mt-10 max-w-3xl">
+      <p className="text-sm text-text-secondary mt-8 max-w-3xl">
         83% of patients above the 80% PDC threshold for CMS Star Ratings.
-        Cost per patient drops from $130 to $12.
+        Cost per patient drops from $130 to $18.
       </p>
     </div>
   );
@@ -364,9 +317,9 @@ function ResultsSlide() {
 
 function ROISlide() {
   const tiers = [
-    { patients: '500', saved: '$59K', ftes: '~1.5', monthly: '$2,500' },
-    { patients: '2,000', saved: '$236K', ftes: '~6', monthly: '$8,000', highlight: true },
-    { patients: '5,000', saved: '$590K', ftes: '~15', monthly: '$15,000' },
+    { patients: '500', saved: '$59K', ftes: '~1.5', monthly: '$6,000' },
+    { patients: '2,000', saved: '$236K', ftes: '~6', monthly: '$20,000', highlight: true },
+    { patients: '5,000', saved: '$590K', ftes: '~15', monthly: '$40,000' },
   ];
 
   return (
@@ -375,7 +328,7 @@ function ROISlide() {
         A 2,000-patient pharmacy saves $236K per year and redeploys 6 FTEs to clinical work
       </h2>
       <p className="text-lg text-text-secondary mb-10 max-w-3xl">
-        Cost per patient drops from $130 to $12. The savings fund better patient care, not layoffs.
+        Cost per patient drops from $130 to $18. The savings fund better patient care, not layoffs.
       </p>
       <div className="grid grid-cols-3 gap-6 max-w-5xl">
         {tiers.map((t) => (
@@ -481,20 +434,20 @@ function GettingStartedSlide() {
 
 function PricingSlide() {
   const tiers = [
-    { range: 'Up to 500', pmpm: '$5' },
-    { range: '500 - 5,000', pmpm: '$4', highlight: true },
-    { range: '5,000+', pmpm: '$3' },
+    { range: 'Up to 500', pmpm: '$12' },
+    { range: '500 - 5,000', pmpm: '$10', highlight: true },
+    { range: '5,000+', pmpm: '$8' },
   ];
 
   return (
     <div className="flex flex-col justify-center h-full px-20">
       <h2 className="font-serif text-5xl text-foreground mb-12 leading-tight max-w-4xl">
-        $10K setup, $3-5 per patient per month, ROI in the first quarter
+        $15K setup, $8-12 per patient per month, ROI in the first quarter
       </h2>
       <div className="flex gap-8 max-w-4xl items-start">
         <div className="bg-surface-warm border-2 border-accent/20 p-8 w-56 flex-shrink-0">
           <p className="text-sm text-text-secondary mb-2">One-time setup</p>
-          <p className="text-4xl font-bold text-foreground mb-2">$10K</p>
+          <p className="text-4xl font-bold text-foreground mb-2">$15K</p>
           <p className="text-xs text-text-secondary leading-relaxed">
             Protocol configuration, EHR integration, patient onboarding, team training
           </p>
@@ -543,21 +496,172 @@ function CTASlide() {
   );
 }
 
+// ─── Appendix Slides ───
+
+function AppendixDividerSlide() {
+  return (
+    <div className="flex flex-col items-center justify-center h-full text-center px-16">
+      <p className="text-sm text-text-muted uppercase tracking-widest mb-4">Appendix</p>
+      <h2 className="font-serif text-5xl text-foreground leading-tight max-w-3xl">
+        Business model and market opportunity
+      </h2>
+    </div>
+  );
+}
+
+function BusinessModelSlide() {
+  return (
+    <div className="flex flex-col justify-center h-full px-20">
+      <h2 className="font-serif text-5xl text-foreground mb-10 leading-tight max-w-4xl">
+        Recurring revenue per patient, compounding with retention
+      </h2>
+      <div className="max-w-4xl space-y-8">
+        <div className="grid grid-cols-3 gap-6">
+          <div className="bg-surface border border-border-light p-6">
+            <p className="text-sm text-text-muted mb-2">Revenue per patient</p>
+            <p className="text-3xl font-bold text-accent">$120/yr</p>
+            <p className="text-xs text-text-secondary mt-2">$10 PMPM avg blended rate</p>
+          </div>
+          <div className="bg-surface border border-border-light p-6">
+            <p className="text-sm text-text-muted mb-2">Gross margin</p>
+            <p className="text-3xl font-bold text-foreground">85%+</p>
+            <p className="text-xs text-text-secondary mt-2">AI Voice + SMS costs ~$1.50/patient/mo</p>
+          </div>
+          <div className="bg-surface border border-border-light p-6">
+            <p className="text-sm text-text-muted mb-2">Setup fee</p>
+            <p className="text-3xl font-bold text-foreground">$15K</p>
+            <p className="text-xs text-text-secondary mt-2">One-time per pharmacy, covers integration</p>
+          </div>
+        </div>
+        <div className="border-l-4 border-accent/30 pl-6">
+          <p className="text-lg text-foreground mb-2">
+            Net revenue retention compounds as pharmacies expand patient counts. A single pharmacy can grow from 500 to 5,000+ patients over 2-3 years without additional sales cost.
+          </p>
+        </div>
+        <div className="grid grid-cols-2 gap-6">
+          <div className="bg-accent/5 border border-accent/20 p-6">
+            <p className="text-sm text-text-muted mb-2">LTV per pharmacy (2,000 pts)</p>
+            <p className="text-2xl font-bold text-accent">$735K</p>
+            <p className="text-xs text-text-secondary mt-1">$15K setup + $240K ARR x 3yr avg tenure</p>
+          </div>
+          <div className="bg-accent/5 border border-accent/20 p-6">
+            <p className="text-sm text-text-muted mb-2">CAC payback</p>
+            <p className="text-2xl font-bold text-accent">&lt;3 months</p>
+            <p className="text-xs text-text-secondary mt-1">Setup fee alone covers acquisition cost</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MarketSizeSlide() {
+  return (
+    <div className="flex flex-col justify-center h-full px-20">
+      <h2 className="font-serif text-5xl text-foreground mb-10 leading-tight max-w-4xl">
+        50M specialty patients in the US, growing 8% per year
+      </h2>
+      <div className="max-w-4xl space-y-8">
+        <div className="grid grid-cols-3 gap-6">
+          <div className="bg-surface border border-border-light p-6">
+            <p className="text-sm text-text-muted mb-2">TAM</p>
+            <p className="text-3xl font-bold text-foreground">$6B</p>
+            <p className="text-xs text-text-secondary mt-2">50M specialty patients x $120/yr</p>
+          </div>
+          <div className="bg-surface border border-border-light p-6">
+            <p className="text-sm text-text-muted mb-2">SAM</p>
+            <p className="text-3xl font-bold text-foreground">$1.2B</p>
+            <p className="text-xs text-text-secondary mt-2">Top 10 therapeutic areas, US only</p>
+          </div>
+          <div className="bg-accent/5 border-2 border-accent/30 p-6">
+            <p className="text-sm text-text-muted mb-2">SOM (Year 3)</p>
+            <p className="text-3xl font-bold text-accent">$24M</p>
+            <p className="text-xs text-text-secondary mt-2">200K patients across 40 pharmacies</p>
+          </div>
+        </div>
+        <div className="border-l-4 border-accent/30 pl-6 space-y-3">
+          <p className="text-lg text-foreground">
+            Specialty pharmacy is the fastest-growing segment in US healthcare. Drugs cost $50K-$500K/year per patient. Adherence directly determines whether the drug works and whether the pharmacy keeps the patient.
+          </p>
+          <p className="text-text-secondary">
+            Non-adherence costs specialty pharmacies $30B+ in lost revenue per year. Every patient who drops off is $50K-$500K in lost drug spend.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function RevenueProjectionSlide() {
+  const years = [
+    { year: 'Year 1', pharmacies: '5', patients: '5K', arr: '$600K', note: 'Pilot phase' },
+    { year: 'Year 2', pharmacies: '20', patients: '40K', arr: '$4.8M', note: 'Expansion', highlight: false },
+    { year: 'Year 3', pharmacies: '40', patients: '200K', arr: '$24M', note: 'Scale', highlight: true },
+    { year: 'Year 5', pharmacies: '150', patients: '1M', arr: '$120M', note: 'Market leader', highlight: false },
+  ];
+
+  return (
+    <div className="flex flex-col justify-center h-full px-20">
+      <h2 className="font-serif text-5xl text-foreground mb-10 leading-tight max-w-4xl">
+        Path to $120M ARR with 85%+ margins
+      </h2>
+      <div className="max-w-4xl">
+        <div className="grid grid-cols-4 gap-4 mb-8">
+          {years.map((y) => (
+            <div
+              key={y.year}
+              className={`p-6 ${
+                y.highlight ? 'bg-accent/5 border-2 border-accent/30' : 'bg-surface border border-border-light'
+              }`}
+            >
+              <p className="text-xs text-text-muted uppercase tracking-wider mb-1">{y.year}</p>
+              <p className="text-3xl font-bold text-accent mb-3">{y.arr}</p>
+              <div className="space-y-1">
+                <p className="text-sm text-foreground">{y.pharmacies} pharmacies</p>
+                <p className="text-sm text-foreground">{y.patients} patients</p>
+              </div>
+              <p className="text-xs text-text-muted mt-3">{y.note}</p>
+            </div>
+          ))}
+        </div>
+        <div className="grid grid-cols-2 gap-6">
+          <div className="border-l-4 border-accent/30 pl-6">
+            <p className="text-sm text-text-muted mb-1">Why this scales</p>
+            <p className="text-foreground">
+              Each pharmacy runs autonomously once configured. Adding a pharmacy costs one integration sprint, not a new team. Marginal cost per patient approaches zero.
+            </p>
+          </div>
+          <div className="border-l-4 border-accent/30 pl-6">
+            <p className="text-sm text-text-muted mb-1">Valuation benchmark</p>
+            <p className="text-foreground">
+              Healthcare SaaS companies trade at 15-25x ARR. At $24M ARR (Year 3), that puts Adhery at a $360M-$600M valuation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Slides Array ───
 const slides = [
   TitleSlide,       // 1: What if every patient had their own AI navigator
-  RealitySlide,     // 2: Only 2/13 calls help (pie chart)
+  RealitySlide,     // 2: Call centers reach less than half
   GapSlide,         // 3: Patients need support their way
-  EvidenceSlide,    // 4: AI-driven outreach 2-3x better (citations)
+  EvidenceSlide,    // 4: AI-driven outreach 2-3x better
   IntroducingSlide, // 5: Autonomous navigator - AI Voice forward
   PatientStorySlide,// 6: Maria's navigator catches every concern
-  EscalationSlide,  // 7: 90% resolves autonomously
-  ResultsSlide,     // 8: Adherence 78% → 87% (pie chart comparison)
-  ROISlide,         // 9: $236K saved, 6 FTEs redeployed
-  DashboardSlide,   // 10: One dashboard every morning
-  GettingStartedSlide, // 11: Live in 4 weeks
-  PricingSlide,     // 12: $10K + $3-5 PMPM
-  CTASlide,         // 13: Which 100 patients?
+  ResultsSlide,     // 7: Adherence 78% → 87%
+  ROISlide,         // 8: $236K saved, 6 FTEs redeployed
+  DashboardSlide,   // 9: One dashboard every morning
+  GettingStartedSlide, // 10: Live in 4 weeks
+  PricingSlide,     // 11: $15K + $8-12 PMPM
+  CTASlide,         // 12: Which 100 patients?
+  // ─── Appendix ───
+  AppendixDividerSlide, // 13: Appendix divider
+  BusinessModelSlide,   // 14: Revenue model and unit economics
+  MarketSizeSlide,      // 15: TAM/SAM/SOM
+  RevenueProjectionSlide, // 16: Path to $120M ARR
 ];
 
 // ─── Main Page ───
