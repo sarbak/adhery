@@ -132,51 +132,263 @@ function Hero() {
 }
 
 /* ─── 2b. Adherence Journey Flow ─── */
-const JOURNEY_STEPS = [
+
+interface JourneyStep {
+  day: string;
+  channel: string;
+  label: string;
+  technique: string;
+  message: string;
+  reply: string;
+  result: string;
+  resultColor: string;
+  resultNote?: string;
+}
+
+interface PatientScenario {
+  name: string;
+  initial: string;
+  drug: string;
+  title: string;
+  steps: JourneyStep[];
+}
+
+const SCENARIOS: PatientScenario[] = [
   {
-    day: 'Day 1',
-    channel: 'sms',
-    label: 'Welcome SMS',
-    message: 'Hi Maria! Welcome to your Humira support program. We\'re here to help you stay on track. Reply YES to confirm.',
-    reply: 'YES! Thank you 😊',
-    result: 'Enrolled',
-    resultColor: 'text-green-500',
+    name: 'Maria',
+    initial: 'M',
+    drug: 'Humira',
+    title: 'Side Effect Triage',
+    steps: [
+      {
+        day: 'Day 1',
+        channel: 'sms',
+        label: 'Welcome + consent',
+        technique: 'Opt-in enrollment',
+        message: 'Hi Maria! Welcome to your Humira support program. We\'ll send check-ins to help you stay on track. Reply YES to opt in.',
+        reply: 'YES! Thank you 😊',
+        result: 'Enrolled',
+        resultColor: 'text-green-500',
+      },
+      {
+        day: 'Day 3',
+        channel: 'sms',
+        label: 'Injection check-in',
+        technique: 'Two-way SMS (RR 1.23)',
+        message: 'Hey Maria, just checking in. Did your injection go smoothly this morning?',
+        reply: 'Yes but the injection site is a bit red',
+        result: 'Barrier detected',
+        resultColor: 'text-amber-500',
+      },
+      {
+        day: 'Day 3',
+        channel: 'voice',
+        label: 'AI voice follow-up',
+        technique: 'Non-judgmental feedback',
+        message: '"That redness is normal and usually fades in 1-2 days. I\'m sending you a text with some icing tips. If it spreads or feels warm, your pharmacist Dr. Patel is available. How are you feeling otherwise?"',
+        reply: '"Much better knowing that, thank you"',
+        result: 'Reassured',
+        resultColor: 'text-green-500',
+      },
+      {
+        day: 'Day 14',
+        channel: 'sms',
+        label: 'Refill + delivery',
+        technique: 'Home delivery channel',
+        message: 'Maria, your Humira refill is ready. Want it delivered to your door? Reply DELIVER or PICKUP.',
+        reply: 'DELIVER',
+        result: 'Refill confirmed',
+        resultColor: 'text-green-500',
+        resultNote: 'Access friction removed',
+      },
+      {
+        day: 'Day 30',
+        channel: 'milestone',
+        label: 'Adherence milestone',
+        technique: 'Behavioral reinforcement',
+        message: 'Maria, you\'ve hit 100% adherence in your first month! Your care team is proud. You\'re in the top 15% of patients. Keep going!',
+        reply: 'That means a lot. Feeling great 💪',
+        result: '100% PDC',
+        resultColor: 'text-accent',
+      },
+    ],
   },
   {
-    day: 'Day 3',
-    channel: 'sms',
-    label: 'Gentle check-in',
-    message: 'Hey Maria, just checking in. Did your injection go smoothly this morning?',
-    reply: 'Yes but the injection site is a bit red',
-    result: 'Barrier detected',
-    resultColor: 'text-amber-500',
+    name: 'James',
+    initial: 'J',
+    drug: 'Eliquis',
+    title: 'Cost Barrier Navigation',
+    steps: [
+      {
+        day: 'Day 1',
+        channel: 'sms',
+        label: 'Welcome + med sync',
+        technique: 'Medication synchronization',
+        message: 'Hi James! We\'ve aligned your Eliquis refill with your other medications so everything arrives together on the 1st of each month. Sound good?',
+        reply: 'That\'s so much easier, yes please',
+        result: 'Meds synced',
+        resultColor: 'text-green-500',
+      },
+      {
+        day: 'Day 8',
+        channel: 'sms',
+        label: 'Adherence check-in',
+        technique: 'Missed-dose detection',
+        message: 'Hi James, we noticed your pill count may be off. No judgment. Did you miss a dose recently? We\'re here to help.',
+        reply: 'Yeah I skipped 2 days. The copay went up and I\'m trying to stretch it',
+        result: 'Cost barrier found',
+        resultColor: 'text-red-500',
+      },
+      {
+        day: 'Day 8',
+        channel: 'voice',
+        label: 'Copay assistance call',
+        technique: 'Affordability triage',
+        message: '"I understand, James. I found a manufacturer copay card that can bring your cost down to $10/month. I\'m texting you the enrollment link right now. Can I also check if you qualify for the patient assistance program?"',
+        reply: '"Wow, I had no idea that existed. Yes please"',
+        result: 'Copay card enrolled',
+        resultColor: 'text-green-500',
+        resultNote: '$10/mo vs $85/mo',
+      },
+      {
+        day: 'Day 15',
+        channel: 'sms',
+        label: 'Re-engagement nudge',
+        technique: 'Nonjudgmental outreach',
+        message: 'James, your copay card is active. Your next refill is covered at $10. Ready to get back on track?',
+        reply: 'Picked it up today. Thank you so much',
+        result: 'Re-engaged',
+        resultColor: 'text-green-500',
+      },
+      {
+        day: 'Day 30',
+        channel: 'milestone',
+        label: 'Progress dashboard',
+        technique: 'Feedback loop',
+        message: 'James, here\'s your monthly snapshot: 26/30 days on track, trending up. Your blood thinner is working best when taken consistently. You\'re doing great.',
+        reply: 'Really motivating to see the numbers',
+        result: '87% PDC',
+        resultColor: 'text-accent',
+      },
+    ],
   },
   {
-    day: 'Day 3',
-    channel: 'voice',
-    label: 'AI voice follow-up',
-    message: '"That redness is common and usually fades in 1-2 days. If it spreads or you feel warmth, call your pharmacist. Would you like me to text you some tips for reducing injection site reactions?"',
-    reply: '"Yes please, that would be really helpful"',
-    result: 'Reassured',
-    resultColor: 'text-green-500',
+    name: 'Linda',
+    initial: 'L',
+    drug: 'Ozempic',
+    title: 'Multi-Channel Re-engagement',
+    steps: [
+      {
+        day: 'Day 5',
+        channel: 'sms',
+        label: 'Dose reminder',
+        technique: 'Personalized timing',
+        message: 'Good morning Linda! Your weekly Ozempic dose is today (Sunday). Remember: rotate injection sites each week. Your last one was left thigh.',
+        reply: 'Done! Used right thigh this time',
+        result: 'Dose confirmed',
+        resultColor: 'text-green-500',
+      },
+      {
+        day: 'Day 19',
+        channel: 'sms',
+        label: 'Missed dose detected',
+        technique: 'Smart escalation',
+        message: 'Hi Linda, it looks like you might have missed your Sunday dose. Everything okay? Reply TAKEN if you already did it.',
+        reply: '',
+        result: 'No response',
+        resultColor: 'text-red-500',
+      },
+      {
+        day: 'Day 20',
+        channel: 'voice',
+        label: 'AI care call',
+        technique: 'Empathetic voice outreach',
+        message: '"Hi Linda, just checking in. We missed you on Sunday and wanted to make sure everything\'s alright. Some patients find it helpful to pair their dose with a weekly routine, like Sunday breakfast. Would that work for you?"',
+        reply: '"I keep forgetting on weekends. Breakfast is a great idea actually"',
+        result: 'Routine set',
+        resultColor: 'text-green-500',
+        resultNote: 'Behavioral anchor created',
+      },
+      {
+        day: 'Day 22',
+        channel: 'mail',
+        label: 'Welcome kit mailed',
+        technique: 'Physical reinforcement',
+        message: 'Mailed: dose calendar with Sunday stickers, injection site rotation guide, and a fridge magnet with her schedule. Tracked delivery.',
+        reply: 'Got the kit! The fridge magnet is perfect',
+        result: 'Kit delivered',
+        resultColor: 'text-green-500',
+      },
+      {
+        day: 'Day 45',
+        channel: 'milestone',
+        label: 'Streak celebration',
+        technique: 'Positive reinforcement',
+        message: 'Linda, you\'ve hit a 4-week streak with zero missed doses since we set up your Sunday routine. That\'s real commitment!',
+        reply: 'The breakfast trick works like a charm',
+        result: '4-week streak',
+        resultColor: 'text-accent',
+      },
+    ],
   },
   {
-    day: 'Day 14',
-    channel: 'sms',
-    label: 'Refill reminder',
-    message: 'Maria, your Humira refill is ready for pickup at CVS. Need it delivered instead? Reply DELIVER.',
-    reply: 'DELIVER',
-    result: 'Refill confirmed',
-    resultColor: 'text-green-500',
-  },
-  {
-    day: 'Day 30',
-    channel: 'milestone',
-    label: 'Adherence milestone',
-    message: 'Congratulations Maria! You\'ve reached 100% adherence in your first month. Your care team is proud of you. Keep it up!',
-    reply: 'Thank you! Feeling great 💪',
-    result: '100% PDC',
-    resultColor: 'text-accent',
+    name: 'Robert',
+    initial: 'R',
+    drug: 'Methotrexate',
+    title: 'Side Effect Monitoring',
+    steps: [
+      {
+        day: 'Day 2',
+        channel: 'sms',
+        label: 'Education link',
+        technique: 'QR-code educational content',
+        message: 'Hi Robert! Here\'s a quick 2-min video about what to expect with Methotrexate in your first week. Most side effects are manageable. Tap to watch:',
+        reply: 'Watched it. Good to know about the nausea thing',
+        result: 'Educated',
+        resultColor: 'text-green-500',
+      },
+      {
+        day: 'Day 7',
+        channel: 'sms',
+        label: 'Weekly wellness check',
+        technique: 'Symptom monitoring',
+        message: 'Robert, quick weekly check: any nausea, fatigue, or mouth sores this week? Scale 1-5, 1 = none.',
+        reply: 'Nausea 3, fatigue 2, no sores',
+        result: 'Symptoms logged',
+        resultColor: 'text-amber-500',
+      },
+      {
+        day: 'Day 7',
+        channel: 'voice',
+        label: 'Nausea management call',
+        technique: 'Proactive intervention',
+        message: '"A nausea score of 3 is common in week one and usually improves. Try taking your dose at bedtime with a light snack. I\'m also flagging this for Dr. Patel in case you\'d benefit from an anti-nausea med. Can I schedule a follow-up check on Thursday?"',
+        reply: '"The bedtime tip is smart, I\'ll try that. Thursday works"',
+        result: 'Plan set',
+        resultColor: 'text-green-500',
+        resultNote: 'Pharmacist notified',
+      },
+      {
+        day: 'Day 10',
+        channel: 'sms',
+        label: 'Follow-up check',
+        technique: 'Closed-loop tracking',
+        message: 'Hi Robert, how did the bedtime switch go? Nausea better, same, or worse?',
+        reply: 'Way better! Down to a 1. Barely noticed it',
+        result: 'Nausea resolved',
+        resultColor: 'text-green-500',
+      },
+      {
+        day: 'Day 30',
+        channel: 'milestone',
+        label: 'Lab reminder + milestone',
+        technique: 'Care coordination',
+        message: 'Robert, your monthly bloodwork is due this week (liver function + CBC). Also: 100% adherence this month. Your rheumatologist will love that. Lab locations near you:',
+        reply: 'Booked for Friday. Thanks for the reminder',
+        result: '100% PDC + labs',
+        resultColor: 'text-accent',
+      },
+    ],
   },
 ];
 
@@ -196,6 +408,14 @@ function ChannelIcon({ channel, active }: { channel: string; active: boolean }) 
       </svg>
     );
   }
+  if (channel === 'mail') {
+    return (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
+        <rect x="2" y="4" width="20" height="16" rx="2" />
+        <path d="M22 6L12 13 2 6" />
+      </svg>
+    );
+  }
   // milestone - star
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill={active ? color : 'none'} stroke={color} strokeWidth="1.5">
@@ -205,15 +425,32 @@ function ChannelIcon({ channel, active }: { channel: string; active: boolean }) 
 }
 
 function AdherenceJourney() {
+  const [scenarioIdx, setScenarioIdx] = useState(0);
   const [activeStep, setActiveStep] = useState(-1);
   const [phase, setPhase] = useState<'idle' | 'sending' | 'reply' | 'result'>('idle');
   const [hasStarted, setHasStarted] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const scenario = SCENARIOS[scenarioIdx];
+  const steps = scenario.steps;
+
+  const startScenario = useCallback((idx: number) => {
+    setScenarioIdx(idx);
+    setActiveStep(-1);
+    setPhase('idle');
+    setIsPlaying(false);
+    // Small delay then start playing
+    setTimeout(() => {
+      setIsPlaying(true);
+    }, 300);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasStarted) {
           setHasStarted(true);
+          setIsPlaying(true);
         }
       },
       { threshold: 0.4 },
@@ -224,54 +461,80 @@ function AdherenceJourney() {
   }, [hasStarted]);
 
   useEffect(() => {
-    if (!hasStarted) return;
+    if (!isPlaying) return;
 
     let timeout: ReturnType<typeof setTimeout>;
-    const total = JOURNEY_STEPS.length;
+    const total = steps.length;
 
     function tick(step: number, ph: 'sending' | 'reply' | 'result') {
       if (ph === 'sending') {
         setActiveStep(step);
         setPhase('sending');
-        timeout = setTimeout(() => tick(step, 'reply'), 1800);
+        timeout = setTimeout(() => tick(step, 'reply'), 1600);
       } else if (ph === 'reply') {
         setPhase('reply');
-        timeout = setTimeout(() => tick(step, 'result'), 1400);
+        timeout = setTimeout(() => tick(step, 'result'), 1200);
       } else {
         setPhase('result');
         if (step < total - 1) {
-          timeout = setTimeout(() => tick(step + 1, 'sending'), 1200);
+          timeout = setTimeout(() => tick(step + 1, 'sending'), 1000);
         } else {
-          // Loop after pause
+          // Auto-advance to next scenario
           timeout = setTimeout(() => {
-            setActiveStep(-1);
-            setPhase('idle');
-            setTimeout(() => {
-              setHasStarted(false);
-              setTimeout(() => setHasStarted(true), 800);
-            }, 2500);
+            const next = (scenarioIdx + 1) % SCENARIOS.length;
+            startScenario(next);
           }, 3000);
         }
       }
     }
 
-    timeout = setTimeout(() => tick(0, 'sending'), 600);
+    timeout = setTimeout(() => tick(0, 'sending'), 500);
     return () => clearTimeout(timeout);
-  }, [hasStarted]);
+  }, [isPlaying, steps.length, scenarioIdx, startScenario]);
 
   return (
     <section className="py-20 px-6 bg-white">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-14">
+        <div className="text-center mb-10">
           <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-4">
-            Patient Journey
+            Patient Journeys
           </p>
           <h2 className="font-serif text-4xl md:text-5xl text-foreground">
             Gentle support, <em className="font-serif">not phone tag</em>
           </h2>
-          <p className="text-text-secondary mt-4 max-w-xl mx-auto">
-            Watch how Adhery guides a patient through their first month - with warmth, not pressure.
+          <p className="text-text-secondary mt-4 max-w-2xl mx-auto">
+            Watch how Adhery uses evidence-based techniques to keep patients on track, with warmth and without pressure.
           </p>
+        </div>
+
+        {/* Scenario tabs */}
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
+          {SCENARIOS.map((s, i) => (
+            <button
+              key={i}
+              onClick={() => startScenario(i)}
+              className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm transition-all ${
+                i === scenarioIdx
+                  ? 'bg-accent text-white shadow-lg shadow-accent/20'
+                  : 'bg-surface-warm text-text-secondary hover:text-foreground'
+              }`}
+            >
+              <span className="font-medium">{s.name}</span>
+              <span className={`text-xs ${i === scenarioIdx ? 'text-white/70' : 'text-text-muted'}`}>
+                {s.drug}
+              </span>
+            </button>
+          ))}
+        </div>
+
+        {/* Technique label */}
+        <div className="text-center mb-8">
+          <span className="inline-flex items-center gap-2 text-xs bg-accent/5 text-accent-dark border border-accent/15 px-4 py-1.5 rounded-full">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent">
+              <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+            {scenario.title}
+          </span>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 items-start">
@@ -290,24 +553,24 @@ function AdherenceJourney() {
               <div className="flex-1 mx-4 border-t border-dashed border-border-light" />
               <div className="flex items-center gap-3">
                 <span className="text-xs font-medium tracking-[0.1em] uppercase text-text-muted">
-                  Maria
+                  {scenario.name}
                 </span>
                 <div className="w-8 h-8 rounded-full bg-accent/10 border border-accent/30 flex items-center justify-center text-accent font-semibold text-xs">
-                  M
+                  {scenario.initial}
                 </div>
               </div>
             </div>
 
             {/* Steps */}
             <div className="space-y-0">
-              {JOURNEY_STEPS.map((step, i) => {
+              {steps.map((step, i) => {
                 const isActive = activeStep === i;
                 const isPast = activeStep > i;
                 const isFuture = activeStep < i;
 
                 return (
                   <div
-                    key={i}
+                    key={`${scenarioIdx}-${i}`}
                     className="flex items-center gap-4 py-3 transition-opacity duration-500"
                     style={{
                       opacity: isFuture && activeStep >= 0 ? 0.15 : isPast ? 0.3 : 1,
@@ -334,7 +597,7 @@ function AdherenceJourney() {
                       </div>
                     </div>
 
-                    {/* Label + day */}
+                    {/* Label + day + technique */}
                     <div className="flex-1 min-w-0">
                       <span
                         className="text-sm font-medium transition-colors duration-300 block"
@@ -351,16 +614,17 @@ function AdherenceJourney() {
                         }}
                       >
                         {step.day}
+                        {isActive && (
+                          <span className="ml-2 text-accent/70">{step.technique}</span>
+                        )}
                       </span>
                     </div>
 
                     {/* Result */}
-                    <div className="flex-shrink-0">
+                    <div className="flex-shrink-0 text-right">
                       {(isActive && phase === 'result') || isPast ? (
-                        <span
-                          className={`text-xs font-medium ${step.resultColor}`}
-                        >
-                          {step.result} {step.channel === 'milestone' && isActive && phase === 'result' ? '✓' : ''}
+                        <span className={`text-xs font-medium ${step.resultColor}`}>
+                          {step.result}
                         </span>
                       ) : isActive && (phase === 'sending' || phase === 'reply') ? (
                         <span className="inline-flex gap-[3px]">
@@ -377,15 +641,18 @@ function AdherenceJourney() {
           </div>
 
           {/* Right: Live message preview */}
-          <div className="bg-[#1a1a2e] rounded-2xl p-6 shadow-2xl min-h-[340px] flex flex-col">
+          <div className="bg-[#1a1a2e] rounded-2xl p-6 shadow-2xl min-h-[380px] flex flex-col">
             {activeStep >= 0 ? (
               <>
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="text-[10px] uppercase tracking-wider text-white/30 font-medium">
-                    {JOURNEY_STEPS[activeStep].channel === 'voice' ? 'AI Voice Call' : JOURNEY_STEPS[activeStep].channel === 'milestone' ? 'Milestone' : 'SMS Conversation'}
-                  </span>
-                  <span className="text-[10px] text-white/20">
-                    {JOURNEY_STEPS[activeStep].day}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] uppercase tracking-wider text-white/30 font-medium">
+                      {steps[activeStep].channel === 'voice' ? 'AI Voice Call' : steps[activeStep].channel === 'milestone' ? 'Milestone' : steps[activeStep].channel === 'mail' ? 'Physical Mail' : 'SMS Conversation'}
+                    </span>
+                    <span className="text-[10px] text-white/20">{steps[activeStep].day}</span>
+                  </div>
+                  <span className="text-[9px] text-accent/50 font-medium px-2 py-0.5 border border-accent/20 rounded-full">
+                    {steps[activeStep].technique}
                   </span>
                 </div>
                 <div className="flex-1 flex flex-col justify-center space-y-3">
@@ -393,53 +660,58 @@ function AdherenceJourney() {
                   <div
                     className="transition-all duration-500"
                     style={{
-                      opacity: phase === 'sending' || phase === 'reply' || phase === 'result' ? 1 : 0,
-                      transform: phase === 'sending' || phase === 'reply' || phase === 'result' ? 'translateY(0)' : 'translateY(8px)',
+                      opacity: phase !== 'idle' ? 1 : 0,
+                      transform: phase !== 'idle' ? 'translateY(0)' : 'translateY(8px)',
                     }}
                   >
                     <div className="flex items-start gap-2 mb-1">
                       <span className="text-[10px] font-medium text-accent mt-0.5">ADHERY</span>
                     </div>
-                    <div className="bg-accent/20 text-white/90 text-sm px-4 py-3 rounded-2xl rounded-bl-md max-w-[90%]">
-                      {JOURNEY_STEPS[activeStep].message}
+                    <div className="bg-accent/20 text-white/90 text-sm px-4 py-3 rounded-2xl rounded-bl-md max-w-[92%]">
+                      {steps[activeStep].message}
                     </div>
                   </div>
 
                   {/* Reply */}
-                  <div
-                    className="transition-all duration-500"
-                    style={{
-                      opacity: phase === 'reply' || phase === 'result' ? 1 : 0,
-                      transform: phase === 'reply' || phase === 'result' ? 'translateY(0)' : 'translateY(8px)',
-                    }}
-                  >
-                    <div className="flex items-start gap-2 mb-1 justify-end">
-                      <span className="text-[10px] font-medium text-white/40 mt-0.5">MARIA</span>
+                  {steps[activeStep].reply && (
+                    <div
+                      className="transition-all duration-500"
+                      style={{
+                        opacity: phase === 'reply' || phase === 'result' ? 1 : 0,
+                        transform: phase === 'reply' || phase === 'result' ? 'translateY(0)' : 'translateY(8px)',
+                      }}
+                    >
+                      <div className="flex items-start gap-2 mb-1 justify-end">
+                        <span className="text-[10px] font-medium text-white/40 mt-0.5">{scenario.name.toUpperCase()}</span>
+                      </div>
+                      <div className="bg-white/10 text-white/80 text-sm px-4 py-3 rounded-2xl rounded-br-md max-w-[85%] ml-auto">
+                        {steps[activeStep].reply}
+                      </div>
                     </div>
-                    <div className="bg-white/10 text-white/80 text-sm px-4 py-3 rounded-2xl rounded-br-md max-w-[85%] ml-auto">
-                      {JOURNEY_STEPS[activeStep].reply}
-                    </div>
-                  </div>
+                  )}
                 </div>
 
                 {/* Result badge */}
                 <div
                   className="mt-4 transition-all duration-500"
-                  style={{
-                    opacity: phase === 'result' ? 1 : 0,
-                  }}
+                  style={{ opacity: phase === 'result' ? 1 : 0 }}
                 >
                   <div className="flex items-center gap-2">
                     <span className={`text-xs font-medium px-3 py-1 rounded-full ${
-                      JOURNEY_STEPS[activeStep].channel === 'milestone'
+                      steps[activeStep].channel === 'milestone'
                         ? 'bg-accent/20 text-accent'
-                        : JOURNEY_STEPS[activeStep].resultColor.includes('amber')
-                          ? 'bg-amber-500/20 text-amber-400'
-                          : 'bg-green-500/20 text-green-400'
+                        : steps[activeStep].resultColor.includes('red')
+                          ? 'bg-red-500/20 text-red-400'
+                          : steps[activeStep].resultColor.includes('amber')
+                            ? 'bg-amber-500/20 text-amber-400'
+                            : 'bg-green-500/20 text-green-400'
                     }`}>
-                      {JOURNEY_STEPS[activeStep].result}
+                      {steps[activeStep].result}
                     </span>
-                    {JOURNEY_STEPS[activeStep].channel !== 'milestone' && (
+                    {steps[activeStep].resultNote && (
+                      <span className="text-[10px] text-white/30">{steps[activeStep].resultNote}</span>
+                    )}
+                    {!steps[activeStep].resultNote && steps[activeStep].channel !== 'milestone' && steps[activeStep].resultColor.includes('green') && (
                       <span className="text-[10px] text-white/30">No pharmacist needed</span>
                     )}
                   </div>
@@ -450,7 +722,7 @@ function AdherenceJourney() {
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
                   <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
                 </svg>
-                <p className="text-xs mt-3">Scroll to see the journey</p>
+                <p className="text-xs mt-3">Loading {scenario.name}&apos;s journey...</p>
               </div>
             )}
           </div>
