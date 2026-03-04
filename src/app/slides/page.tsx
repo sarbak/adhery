@@ -13,7 +13,7 @@ function TitleSlide() {
     <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h1 className="font-serif text-6xl text-foreground mb-8 leading-tight max-w-4xl">
         What if every patient had{' '}
-        <span className="text-accent">their own AI navigator</span>
+        <span className="text-accent whitespace-nowrap">their own AI&nbsp;navigator</span>
       </h1>
       <p className="text-xl text-text-secondary max-w-2xl">
         <span className="font-semibold text-foreground">Adhery</span> is an autonomous patient navigator for specialty pharmacy.
@@ -82,7 +82,7 @@ function GapSlide() {
         </div>
       </div>
       <p className="text-lg text-text-secondary mt-10 max-w-3xl">
-        Each patient needs a different kind of support, at a different time, through a different medium. That takes an autonomous system, not a call list.
+        The right support depends on the patient. An autonomous system handles that. A call list does not.
       </p>
     </div>
   );
@@ -159,7 +159,7 @@ function IntroducingSlide() {
         ))}
       </div>
       <p className="text-lg text-text-secondary max-w-xl">
-        <span className="text-accent font-medium">Adhery</span> decides when to call, when to text, and when to mail. 95% of patient needs resolve without a pharmacist.
+        <span className="text-accent font-medium">Adhery</span> picks the right channel for each patient. 95% of needs resolve without a pharmacist.
       </p>
     </div>
   );
@@ -168,8 +168,8 @@ function IntroducingSlide() {
 function PatientStorySlide() {
   const steps = [
     { day: 'Day 1', channel: 'AI Voice', color: ACCENT, what: 'Onboards Maria, learns her schedule and concerns' },
-    { day: 'Day 3', channel: 'Async Triage', color: '#f59e0b', what: 'Maria texts about injection-site redness. Navigator triages it as normal, no pharmacist needed.' },
-    { day: 'Day 5', channel: 'AI Voice', color: ACCENT, what: 'Follow-up call catches new symptom (fatigue). Logs it for pharmacist review.' },
+    { day: 'Day 3', channel: 'Async Triage', color: '#f59e0b', what: 'Maria texts about injection-site redness. Navigator collects details and routes to pharmacist for review.' },
+    { day: 'Day 5', channel: 'AI Voice', color: ACCENT, what: 'Follow-up call. Maria mentions fatigue. Navigator logs it and flags for pharmacist.' },
     { day: 'Day 14', channel: 'Async Triage', color: '#f59e0b', what: 'Refill reminder sent. Maria confirms order.' },
     { day: 'Day 30', channel: 'AI Voice', color: '#8b5cf6', what: 'Milestone: 100% adherent. No pharmacist calls needed all month.' },
   ];
@@ -261,7 +261,7 @@ function ResultsSlide() {
           <div className="w-px h-12 bg-accent/20" />
           <div>
             <p className="text-foreground">
-              Patients go from missing every other dose to staying above the 80% threshold that determines CMS Star Ratings, rebates, and drug efficacy.
+              Patients go from missing every other dose to staying above the 80% threshold that CMS Star Ratings require.
             </p>
           </div>
         </div>
@@ -326,10 +326,10 @@ function DashboardSlide() {
   return (
     <div className="flex flex-col justify-center h-full px-20">
       <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-4xl">
-        Your team sees adherence, alerts, and savings in one dashboard every morning
+        Every morning, your lead pharmacist opens this
       </h2>
       <p className="text-lg text-text-secondary mb-10 max-w-2xl">
-        All interactions logged, all outcomes measured. Your team knows exactly where each patient stands.
+        Adherence rates, open alerts, cost savings. One screen, real-time.
       </p>
       <div className="bg-surface border border-border-light p-10 max-w-4xl">
         <div className="grid grid-cols-4 gap-6 mb-8">
@@ -347,7 +347,7 @@ function DashboardSlide() {
         </div>
         <div className="border-t border-border-light pt-4">
           <p className="text-sm text-text-muted">
-            Patient timelines, escalation history, channel performance, and side-effect trends.
+            Patient timelines, escalation logs, and side-effect trends.
           </p>
         </div>
       </div>

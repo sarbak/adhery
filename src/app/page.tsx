@@ -85,7 +85,7 @@ function Hero() {
         </h1>
 
         <p className="text-lg text-text-secondary max-w-2xl mx-auto mb-8 leading-relaxed">
-          Adhery is an autonomous AI agent that manages patient support programs. It calls patients, triages concerns asynchronously, and only escalates to your pharmacists when clinical judgment is needed.
+          Adhery is an autonomous AI agent that manages patient support programs. It calls patients, triages concerns by text, and escalates to your pharmacists only when clinical judgment is needed.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
@@ -169,9 +169,9 @@ const SCENARIOS: PatientScenario[] = [
         channel: 'voice',
         label: 'AI voice follow-up',
         technique: 'Non-judgmental feedback',
-        message: '"That redness is normal and usually fades in 1-2 days. I\'m sending you a text with some icing tips. If it spreads or feels warm, your pharmacist Dr. Patel is available. How are you feeling otherwise?"',
-        reply: '"Much better knowing that, thank you"',
-        result: 'Reassured',
+        message: '"I\'m noting that redness and collecting a few details for your pharmacist Dr. Patel. Is it bigger than a quarter? Any swelling or warmth? How are you feeling otherwise?"',
+        reply: '"It\'s small, no swelling. Feeling fine otherwise"',
+        result: 'Details collected',
         resultColor: 'text-green-500',
       },
       {
@@ -267,7 +267,7 @@ const SCENARIOS: PatientScenario[] = [
         channel: 'sms',
         label: 'Dose reminder',
         technique: 'Personalized timing',
-        message: 'Good morning Linda! Your weekly Ozempic dose is today (Sunday). Remember: rotate injection sites each week. Your last one was left thigh.',
+        message: 'Good morning Linda! Your weekly Ozempic dose is today (Sunday). Your last injection was left thigh. Ready to confirm when done?',
         reply: 'Done! Used right thigh this time',
         result: 'Dose confirmed',
         resultColor: 'text-green-500',
@@ -287,8 +287,8 @@ const SCENARIOS: PatientScenario[] = [
         channel: 'voice',
         label: 'AI care call',
         technique: 'Empathetic voice outreach',
-        message: '"Hi Linda, just checking in. We missed you on Sunday and wanted to make sure everything\'s alright. Some patients find it helpful to pair their dose with a weekly routine, like Sunday breakfast. Would that work for you?"',
-        reply: '"I keep forgetting on weekends. Breakfast is a great idea actually"',
+        message: '"Hi Linda, just checking in. We missed you on Sunday and wanted to make sure everything\'s alright. Is there a time of day that works better for you?"',
+        reply: '"I keep forgetting on weekends. Maybe Sunday morning with breakfast?"',
         result: 'Routine set',
         resultColor: 'text-green-500',
         resultNote: 'Behavioral anchor created',
@@ -346,20 +346,20 @@ const SCENARIOS: PatientScenario[] = [
         channel: 'voice',
         label: 'Nausea management call',
         technique: 'Proactive intervention',
-        message: '"A nausea score of 3 is common in week one and usually improves. Try taking your dose at bedtime with a light snack. I\'m also flagging this for Dr. Patel in case you\'d benefit from an anti-nausea med. Can I schedule a follow-up check on Thursday?"',
-        reply: '"The bedtime tip is smart, I\'ll try that. Thursday works"',
-        result: 'Plan set',
+        message: '"I\'m flagging that nausea for Dr. Patel so they can review your options. In the meantime, can I schedule a follow-up check on Thursday to see how you\'re doing?"',
+        reply: '"Yes, Thursday works. Thanks for flagging it"',
+        result: 'Pharmacist notified',
         resultColor: 'text-green-500',
-        resultNote: 'Pharmacist notified',
+        resultNote: 'Follow-up scheduled',
       },
       {
         day: 'Day 10',
         channel: 'sms',
         label: 'Follow-up check',
         technique: 'Closed-loop tracking',
-        message: 'Hi Robert, how did the bedtime switch go? Nausea better, same, or worse?',
-        reply: 'Way better! Down to a 1. Barely noticed it',
-        result: 'Nausea resolved',
+        message: 'Hi Robert, how has the nausea been since Thursday? Better, same, or worse?',
+        reply: 'Way better! Down to a 1. Dr. Patel\'s suggestion worked',
+        result: 'Symptom improving',
         resultColor: 'text-green-500',
       },
       {
@@ -487,7 +487,7 @@ function AdherenceJourney() {
             Watch the AI navigator <em className="font-serif">run a patient program</em>
           </h2>
           <p className="text-text-secondary mt-4 max-w-2xl mx-auto">
-            The navigator decides when to call, text, or mail. It triages side effects, resolves barriers, and only escalates when it needs to.
+            The navigator picks the right channel for each patient. When it can't resolve something, it escalates to your pharmacist.
           </p>
         </div>
 
@@ -728,7 +728,7 @@ function MultichannelComparison() {
           Call centers reach 45% of patients. The navigator reaches 90%.
         </h2>
         <p className="text-text-secondary text-center mb-14 max-w-2xl mx-auto">
-          The difference isn&apos;t more channels. It&apos;s an AI agent that decides what each patient needs and acts on it.
+          Same patients, different approach. An AI agent figures out what each one needs and acts on it.
         </p>
 
         <div className="max-w-3xl mx-auto space-y-10">
@@ -856,7 +856,7 @@ function RetentionMethods() {
           Every technique backed by research
         </h2>
         <p className="text-text-secondary text-center mb-14 max-w-2xl mx-auto">
-          Adhery doesn&apos;t just send messages. It applies proven retention methods from behavioral science and clinical research.
+          Adhery applies retention methods from behavioral science and clinical research to every patient interaction.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {methods.map((m) => (
@@ -885,7 +885,7 @@ function LogoCarousel() {
   return (
     <section className="py-12 bg-white border-y border-border-light overflow-hidden">
       <p className="text-xs font-medium tracking-[0.15em] uppercase text-text-muted text-center mb-8">
-        Trusted by Healthcare Organizations
+        Built for Healthcare
       </p>
       <div className="relative">
         <div className="flex animate-scroll gap-16 items-center">
@@ -1004,19 +1004,19 @@ function VideoDemoTabs() {
               Yes but I noticed redness at the injection site
             </div>
             <div className="bg-accent/90 text-white text-sm px-4 py-2 rounded-2xl rounded-br-md max-w-[80%] ml-auto">
-              Some redness is common and usually fades in 1-2 days. Is it bigger than a quarter, or is there swelling?
+              I&apos;ll note that for your pharmacist. Is it bigger than a quarter, or is there swelling?
             </div>
             <div className="bg-white/10 text-white text-sm px-4 py-2 rounded-2xl rounded-bl-md max-w-[80%]">
               No its pretty small
             </div>
             <div className="bg-accent/90 text-white text-sm px-4 py-2 rounded-2xl rounded-br-md max-w-[80%] ml-auto">
-              That sounds normal. Try a cold compress for 10 min before your next dose. I&apos;ll check back in 2 days. How&apos;s your energy been?
+              Got it, I&apos;ll send those details to your pharmacist. I&apos;ll check back in 2 days. How&apos;s your energy been?
             </div>
             <div className="bg-white/10 text-white text-sm px-4 py-2 rounded-2xl rounded-bl-md max-w-[80%]">
               Actually pretty tired lately
             </div>
             <div className="bg-accent/90 text-white text-sm px-4 py-2 rounded-2xl rounded-br-md max-w-[80%] ml-auto">
-              Fatigue can happen in the first few weeks. It often improves. I&apos;m noting this for your pharmacist. Would a quick call from them help?
+              I&apos;m noting the fatigue for your pharmacist so they can review it. Would a quick call from them help?
             </div>
             <div className="bg-white/10 text-white text-sm px-4 py-2 rounded-2xl rounded-bl-md max-w-[80%]">
               Not yet, let me see how it goes
@@ -1036,7 +1036,7 @@ function VideoDemoTabs() {
           <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
         </svg>
       ),
-      title: 'AI Voice Calls That Care',
+      title: 'AI Voice Calls',
       description:
         'Interactive voice response improves adherence 1.53x (OR 1.527). Our AI agents handle onboarding, refill reminders, and side effect triage. Brief pharmacist calls shift PDC from 0.29 to 0.58.',
       mockup: (
@@ -1072,7 +1072,7 @@ function VideoDemoTabs() {
             </div>
             <div className="flex items-start gap-2">
               <span className="text-accent text-xs font-medium mt-0.5 w-4 flex-shrink-0">AI</span>
-              <p className="text-white/80">Brief nosebleeds can occur with blood thinners. Since they&apos;re stopping on their own, that&apos;s a good sign. Are you also noticing unusual bruising or bleeding gums?</p>
+              <p className="text-white/80">I want to make sure your pharmacist knows about those. How often are they happening? Are you also noticing unusual bruising or bleeding gums?</p>
             </div>
             <div className="flex items-start gap-2">
               <span className="text-white/40 text-xs font-medium mt-0.5 w-4 flex-shrink-0">PT</span>
@@ -1485,7 +1485,7 @@ function HowItWorks() {
     {
       step: '03',
       title: 'Go live and monitor',
-      description: 'Outreach starts. Track adherence, channel performance, and patient sentiment in real time. The system learns from every interaction to improve timing and messaging.',
+      description: 'Outreach starts. Track adherence and patient sentiment in real time from the dashboard.',
       timeline: 'Week 3-4',
       bg: 'bg-surface-warm',
     },
@@ -1583,7 +1583,7 @@ function WhoWeServe() {
             Who We Serve
           </p>
           <h2 className="font-serif text-4xl md:text-5xl text-foreground">
-            Built for the teams that <em className="font-serif">care most</em>
+            Who uses <em className="font-serif">Adhery</em>
           </h2>
         </div>
 
@@ -1625,7 +1625,7 @@ function ChannelDeepDive() {
             The AI decides what each patient needs
           </h2>
           <p className="text-text-secondary max-w-2xl mx-auto">
-            Voice for conversations, async triage for quick check-ins, mail for patients who don&apos;t respond digitally.
+            Voice handles the conversations. Text handles the quick check-ins. Mail catches patients who don&apos;t respond digitally.
           </p>
         </div>
 
@@ -1642,7 +1642,7 @@ function ChannelDeepDive() {
             </div>
             <p className="text-xs text-text-secondary mb-3">Onboarding, education, triage, follow-up</p>
             <div className="bg-accent/5 rounded-lg p-3 text-xs text-accent-dark">
-              Autonomous conversations: the navigator calls patients, asks the right questions, and acts on what it hears.
+              The navigator calls patients, asks follow-up questions, and logs what it hears for your team.
             </div>
             <div className="mt-3 text-xs text-accent font-medium">Primary channel - 40% of interactions</div>
           </div>
