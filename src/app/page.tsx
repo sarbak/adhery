@@ -131,6 +131,335 @@ function Hero() {
   );
 }
 
+/* ─── 2b. Adherence Journey Flow ─── */
+const JOURNEY_STEPS = [
+  {
+    day: 'Day 1',
+    channel: 'sms',
+    label: 'Welcome SMS',
+    message: 'Hi Maria! Welcome to your Humira support program. We\'re here to help you stay on track. Reply YES to confirm.',
+    reply: 'YES! Thank you 😊',
+    result: 'Enrolled',
+    resultColor: 'text-green-500',
+  },
+  {
+    day: 'Day 3',
+    channel: 'sms',
+    label: 'Gentle check-in',
+    message: 'Hey Maria, just checking in. Did your injection go smoothly this morning?',
+    reply: 'Yes but the injection site is a bit red',
+    result: 'Barrier detected',
+    resultColor: 'text-amber-500',
+  },
+  {
+    day: 'Day 3',
+    channel: 'voice',
+    label: 'AI voice follow-up',
+    message: '"That redness is common and usually fades in 1-2 days. If it spreads or you feel warmth, call your pharmacist. Would you like me to text you some tips for reducing injection site reactions?"',
+    reply: '"Yes please, that would be really helpful"',
+    result: 'Reassured',
+    resultColor: 'text-green-500',
+  },
+  {
+    day: 'Day 14',
+    channel: 'sms',
+    label: 'Refill reminder',
+    message: 'Maria, your Humira refill is ready for pickup at CVS. Need it delivered instead? Reply DELIVER.',
+    reply: 'DELIVER',
+    result: 'Refill confirmed',
+    resultColor: 'text-green-500',
+  },
+  {
+    day: 'Day 30',
+    channel: 'milestone',
+    label: 'Adherence milestone',
+    message: 'Congratulations Maria! You\'ve reached 100% adherence in your first month. Your care team is proud of you. Keep it up!',
+    reply: 'Thank you! Feeling great 💪',
+    result: '100% PDC',
+    resultColor: 'text-accent',
+  },
+];
+
+function ChannelIcon({ channel, active }: { channel: string; active: boolean }) {
+  const color = active ? '#fff' : '#94a3b8';
+  if (channel === 'sms') {
+    return (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
+        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+      </svg>
+    );
+  }
+  if (channel === 'voice') {
+    return (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
+        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+      </svg>
+    );
+  }
+  // milestone - star
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill={active ? color : 'none'} stroke={color} strokeWidth="1.5">
+      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+    </svg>
+  );
+}
+
+function AdherenceJourney() {
+  const [activeStep, setActiveStep] = useState(-1);
+  const [phase, setPhase] = useState<'idle' | 'sending' | 'reply' | 'result'>('idle');
+  const [hasStarted, setHasStarted] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasStarted) {
+          setHasStarted(true);
+        }
+      },
+      { threshold: 0.4 },
+    );
+    const el = document.getElementById('adherence-journey');
+    if (el) observer.observe(el);
+    return () => observer.disconnect();
+  }, [hasStarted]);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+
+    let timeout: ReturnType<typeof setTimeout>;
+    const total = JOURNEY_STEPS.length;
+
+    function tick(step: number, ph: 'sending' | 'reply' | 'result') {
+      if (ph === 'sending') {
+        setActiveStep(step);
+        setPhase('sending');
+        timeout = setTimeout(() => tick(step, 'reply'), 1800);
+      } else if (ph === 'reply') {
+        setPhase('reply');
+        timeout = setTimeout(() => tick(step, 'result'), 1400);
+      } else {
+        setPhase('result');
+        if (step < total - 1) {
+          timeout = setTimeout(() => tick(step + 1, 'sending'), 1200);
+        } else {
+          // Loop after pause
+          timeout = setTimeout(() => {
+            setActiveStep(-1);
+            setPhase('idle');
+            setTimeout(() => {
+              setHasStarted(false);
+              setTimeout(() => setHasStarted(true), 800);
+            }, 2500);
+          }, 3000);
+        }
+      }
+    }
+
+    timeout = setTimeout(() => tick(0, 'sending'), 600);
+    return () => clearTimeout(timeout);
+  }, [hasStarted]);
+
+  return (
+    <section className="py-20 px-6 bg-white">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-14">
+          <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-4">
+            Patient Journey
+          </p>
+          <h2 className="font-serif text-4xl md:text-5xl text-foreground">
+            Gentle support, <em className="font-serif">not phone tag</em>
+          </h2>
+          <p className="text-text-secondary mt-4 max-w-xl mx-auto">
+            Watch how Adhery guides a patient through their first month - with warmth, not pressure.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-12 items-start">
+          {/* Left: Flow steps */}
+          <div id="adherence-journey" className="py-2">
+            {/* Header row */}
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-accent/10 border border-accent/30 flex items-center justify-center">
+                  <img src="/logo.svg" alt="" className="w-4 h-4" />
+                </div>
+                <span className="text-xs font-medium tracking-[0.1em] uppercase text-text-muted">
+                  Adhery
+                </span>
+              </div>
+              <div className="flex-1 mx-4 border-t border-dashed border-border-light" />
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-medium tracking-[0.1em] uppercase text-text-muted">
+                  Maria
+                </span>
+                <div className="w-8 h-8 rounded-full bg-accent/10 border border-accent/30 flex items-center justify-center text-accent font-semibold text-xs">
+                  M
+                </div>
+              </div>
+            </div>
+
+            {/* Steps */}
+            <div className="space-y-0">
+              {JOURNEY_STEPS.map((step, i) => {
+                const isActive = activeStep === i;
+                const isPast = activeStep > i;
+                const isFuture = activeStep < i;
+
+                return (
+                  <div
+                    key={i}
+                    className="flex items-center gap-4 py-3 transition-opacity duration-500"
+                    style={{
+                      opacity: isFuture && activeStep >= 0 ? 0.15 : isPast ? 0.3 : 1,
+                    }}
+                  >
+                    {/* Connector + icon */}
+                    <div className="relative flex flex-col items-center" style={{ width: 36 }}>
+                      {i > 0 && (
+                        <div
+                          className="absolute -top-3 w-px h-3 transition-colors duration-300"
+                          style={{
+                            backgroundColor: isPast || isActive ? 'var(--accent)' : 'var(--border-light)',
+                          }}
+                        />
+                      )}
+                      <div
+                        className="w-9 h-9 flex items-center justify-center rounded-full border transition-all duration-300"
+                        style={{
+                          borderColor: isActive ? 'var(--accent)' : isPast ? 'var(--text-muted)' : 'var(--border-light)',
+                          backgroundColor: isActive && phase === 'sending' ? 'var(--accent)' : 'transparent',
+                        }}
+                      >
+                        <ChannelIcon channel={step.channel} active={isActive && phase === 'sending'} />
+                      </div>
+                    </div>
+
+                    {/* Label + day */}
+                    <div className="flex-1 min-w-0">
+                      <span
+                        className="text-sm font-medium transition-colors duration-300 block"
+                        style={{
+                          color: isActive ? 'var(--foreground)' : isPast ? 'var(--text-muted)' : 'var(--border-light)',
+                        }}
+                      >
+                        {isActive && phase === 'sending' ? step.label + '...' : step.label}
+                      </span>
+                      <span
+                        className="text-[11px] transition-colors duration-300"
+                        style={{
+                          color: isActive ? 'var(--text-secondary)' : isPast ? 'var(--text-muted)' : 'var(--border-light)',
+                        }}
+                      >
+                        {step.day}
+                      </span>
+                    </div>
+
+                    {/* Result */}
+                    <div className="flex-shrink-0">
+                      {(isActive && phase === 'result') || isPast ? (
+                        <span
+                          className={`text-xs font-medium ${step.resultColor}`}
+                        >
+                          {step.result} {step.channel === 'milestone' && isActive && phase === 'result' ? '✓' : ''}
+                        </span>
+                      ) : isActive && (phase === 'sending' || phase === 'reply') ? (
+                        <span className="inline-flex gap-[3px]">
+                          <span className="w-[3px] h-[3px] rounded-full animate-pulse" style={{ backgroundColor: 'var(--accent)', animationDelay: '0ms' }} />
+                          <span className="w-[3px] h-[3px] rounded-full animate-pulse" style={{ backgroundColor: 'var(--accent)', animationDelay: '150ms' }} />
+                          <span className="w-[3px] h-[3px] rounded-full animate-pulse" style={{ backgroundColor: 'var(--accent)', animationDelay: '300ms' }} />
+                        </span>
+                      ) : null}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Right: Live message preview */}
+          <div className="bg-[#1a1a2e] rounded-2xl p-6 shadow-2xl min-h-[340px] flex flex-col">
+            {activeStep >= 0 ? (
+              <>
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="text-[10px] uppercase tracking-wider text-white/30 font-medium">
+                    {JOURNEY_STEPS[activeStep].channel === 'voice' ? 'AI Voice Call' : JOURNEY_STEPS[activeStep].channel === 'milestone' ? 'Milestone' : 'SMS Conversation'}
+                  </span>
+                  <span className="text-[10px] text-white/20">
+                    {JOURNEY_STEPS[activeStep].day}
+                  </span>
+                </div>
+                <div className="flex-1 flex flex-col justify-center space-y-3">
+                  {/* Outgoing message */}
+                  <div
+                    className="transition-all duration-500"
+                    style={{
+                      opacity: phase === 'sending' || phase === 'reply' || phase === 'result' ? 1 : 0,
+                      transform: phase === 'sending' || phase === 'reply' || phase === 'result' ? 'translateY(0)' : 'translateY(8px)',
+                    }}
+                  >
+                    <div className="flex items-start gap-2 mb-1">
+                      <span className="text-[10px] font-medium text-accent mt-0.5">ADHERY</span>
+                    </div>
+                    <div className="bg-accent/20 text-white/90 text-sm px-4 py-3 rounded-2xl rounded-bl-md max-w-[90%]">
+                      {JOURNEY_STEPS[activeStep].message}
+                    </div>
+                  </div>
+
+                  {/* Reply */}
+                  <div
+                    className="transition-all duration-500"
+                    style={{
+                      opacity: phase === 'reply' || phase === 'result' ? 1 : 0,
+                      transform: phase === 'reply' || phase === 'result' ? 'translateY(0)' : 'translateY(8px)',
+                    }}
+                  >
+                    <div className="flex items-start gap-2 mb-1 justify-end">
+                      <span className="text-[10px] font-medium text-white/40 mt-0.5">MARIA</span>
+                    </div>
+                    <div className="bg-white/10 text-white/80 text-sm px-4 py-3 rounded-2xl rounded-br-md max-w-[85%] ml-auto">
+                      {JOURNEY_STEPS[activeStep].reply}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Result badge */}
+                <div
+                  className="mt-4 transition-all duration-500"
+                  style={{
+                    opacity: phase === 'result' ? 1 : 0,
+                  }}
+                >
+                  <div className="flex items-center gap-2">
+                    <span className={`text-xs font-medium px-3 py-1 rounded-full ${
+                      JOURNEY_STEPS[activeStep].channel === 'milestone'
+                        ? 'bg-accent/20 text-accent'
+                        : JOURNEY_STEPS[activeStep].resultColor.includes('amber')
+                          ? 'bg-amber-500/20 text-amber-400'
+                          : 'bg-green-500/20 text-green-400'
+                    }`}>
+                      {JOURNEY_STEPS[activeStep].result}
+                    </span>
+                    {JOURNEY_STEPS[activeStep].channel !== 'milestone' && (
+                      <span className="text-[10px] text-white/30">No pharmacist needed</span>
+                    )}
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="flex-1 flex flex-col items-center justify-center text-white/20">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+                  <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+                </svg>
+                <p className="text-xs mt-3">Scroll to see the journey</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ─── 3. Logo Carousel ─── */
 function LogoCarousel() {
   const logos = [
@@ -1118,6 +1447,7 @@ export default function Home() {
     <main>
       <Nav />
       <Hero />
+      <AdherenceJourney />
       <LogoCarousel />
       <TestimonialCarousel />
       <VideoDemoTabs />
