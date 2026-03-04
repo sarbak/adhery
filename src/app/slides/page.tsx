@@ -36,28 +36,23 @@ function RealitySlide() {
   return (
     <div className="flex flex-col justify-center h-full px-20">
       <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-4xl">
-        Only 7% of call center outreach meaningfully reaches a patient
+        Call centers reach less than half of specialty patients
       </h2>
       <p className="text-lg text-text-secondary mb-10 max-w-2xl">
         The average specialty pharmacy makes 13 calls per patient per year. Most never connect.
       </p>
       <div className="max-w-4xl">
         <div className="h-16 bg-surface border border-border-light flex mb-6">
-          <div className="h-full bg-[#64748b] flex items-center justify-center" style={{ width: '7%' }} />
+          <div className="h-full bg-[#94a3b8] flex items-center justify-center" style={{ width: '45%' }}>
+            <span className="text-white font-medium">45% reached</span>
+          </div>
           <div className="h-full flex items-center justify-center flex-1">
-            <span className="text-lg text-text-muted">93% not meaningfully reached</span>
+            <span className="text-lg text-text-muted">55% unreached</span>
           </div>
         </div>
-        <div className="flex gap-8">
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 bg-[#64748b]" />
-            <span className="text-foreground font-medium">7% meaningful</span>
-          </div>
-          <div className="text-sm text-text-secondary space-y-1">
-            <p>55% go to voicemail. Of the 45% reached, 85% are routine check-ins.</p>
-            <p>Only 15% of reached patients get help with side effects or barriers.</p>
-          </div>
-        </div>
+        <p className="text-sm text-text-secondary">
+          55% go to voicemail. Of the 45% who pick up, most calls are routine check-ins that don&apos;t address real barriers.
+        </p>
       </div>
     </div>
   );
@@ -278,12 +273,14 @@ function EscalationSlide() {
         <div>
           <p className="text-sm font-medium text-text-muted mb-3">Manual Call Center</p>
           <div className="h-14 bg-surface border border-border-light flex">
-            <div className="h-full bg-[#64748b] flex items-center justify-center" style={{ width: '7%' }} />
+            <div className="h-full bg-[#94a3b8] flex items-center justify-center" style={{ width: '45%' }}>
+              <span className="text-sm text-white font-medium">45% reached</span>
+            </div>
             <div className="h-full flex items-center justify-center flex-1">
-              <span className="text-sm text-text-muted">93% not meaningfully reached</span>
+              <span className="text-sm text-text-muted">55% unreached</span>
             </div>
           </div>
-          <p className="text-xs text-text-muted mt-2">7% meaningful engagement (45% reached x 15% non-routine)</p>
+          <p className="text-xs text-text-muted mt-2">Most of the 45% reached are routine check-ins. Real barriers go undetected.</p>
         </div>
 
         {/* Navigator bar */}
@@ -324,12 +321,14 @@ function ResultsSlide() {
             <span className="text-2xl font-bold text-text-secondary">78% <span className="text-sm font-normal text-text-muted">PDC</span></span>
           </div>
           <div className="h-12 bg-surface border border-border-light flex">
-            <div className="h-full bg-[#64748b] flex items-center justify-center" style={{ width: '7%' }} />
+            <div className="h-full bg-[#94a3b8] flex items-center justify-center" style={{ width: '45%' }}>
+              <span className="text-sm text-white font-medium">45% reached</span>
+            </div>
             <div className="h-full flex items-center justify-center flex-1">
-              <span className="text-sm text-text-muted">93% not meaningfully reached</span>
+              <span className="text-sm text-text-muted">55% unreached</span>
             </div>
           </div>
-          <p className="text-xs text-text-muted mt-2">7% meaningful engagement. 55% voicemail. 30% routine.</p>
+          <p className="text-xs text-text-muted mt-2">Most calls are routine. Real barriers go undetected.</p>
         </div>
 
         {/* After bar */}

@@ -725,36 +725,31 @@ function MultichannelComparison() {
           Autonomous vs. Manual
         </p>
         <h2 className="font-serif text-4xl text-foreground text-center mb-4">
-          Call centers reach 7% of patients meaningfully. The navigator reaches 90%.
+          Call centers reach 45% of patients. The navigator reaches 90%.
         </h2>
         <p className="text-text-secondary text-center mb-14 max-w-2xl mx-auto">
           The difference isn&apos;t more channels. It&apos;s an AI agent that decides what each patient needs and acts on it.
         </p>
 
         <div className="max-w-3xl mx-auto space-y-10">
-          {/* Call Center bar - 7% reached, 93% not reached */}
+          {/* Call Center bar - 45% reached, 55% unreached */}
           <div>
             <div className="flex items-baseline justify-between mb-3">
               <span className="text-sm font-semibold text-foreground">Manual Call Center</span>
               <span className="text-sm text-text-muted">13 calls/patient/year</span>
             </div>
             <div className="h-14 bg-gray-100 flex">
-              <div className="h-full bg-[#64748b] flex items-center justify-center" style={{ width: '7%' }}>
+              <div className="h-full bg-[#94a3b8] flex items-center justify-center" style={{ width: '45%' }}>
+                <span className="text-sm text-white font-medium">45% reached</span>
               </div>
               <div className="h-full bg-[#e2e8f0] flex items-center justify-center flex-1">
-                <span className="text-sm text-text-muted font-medium">93% not meaningfully reached</span>
+                <span className="text-sm text-text-muted font-medium">55% unreached</span>
               </div>
             </div>
-            <div className="flex items-center gap-4 mt-3">
-              <div className="flex items-center gap-1.5">
-                <div className="w-3 h-3 bg-[#64748b]" />
-                <span className="text-xs text-text-secondary">7% meaningful engagement</span>
-              </div>
-              <span className="text-xs text-text-muted">55% voicemail, 30% routine check-ins, 15% meaningful</span>
-            </div>
+            <p className="text-xs text-text-muted mt-3">55% go to voicemail. Of the 45% reached, most are routine check-ins a system could handle.</p>
           </div>
 
-          {/* Adhery Navigator bar - 90% reached, 10% pharmacist */}
+          {/* Adhery Navigator bar - 90% reached, 10% need pharmacist */}
           <div>
             <div className="flex items-baseline justify-between mb-3">
               <span className="text-sm font-semibold text-accent">Adhery Navigator</span>
@@ -774,16 +769,7 @@ function MultichannelComparison() {
                 <span className="text-[10px] text-text-muted font-medium">10%</span>
               </div>
             </div>
-            <div className="flex items-center gap-4 mt-3">
-              <div className="flex items-center gap-1.5">
-                <div className="w-3 h-3 bg-[#0d7377]" />
-                <span className="text-xs text-text-secondary">90% resolved autonomously</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <div className="w-3 h-3 bg-[#e2e8f0]" />
-                <span className="text-xs text-text-secondary">10% escalated to pharmacist</span>
-              </div>
-            </div>
+            <p className="text-xs text-text-muted mt-3">90% resolved autonomously. 10% escalated to pharmacist for clinical judgment.</p>
           </div>
 
           {/* AI Voice advantages as compact row */}
