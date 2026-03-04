@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import { Instrument_Serif } from 'next/font/google';
 import './globals.css';
 
 const funktional = localFont({
@@ -16,9 +15,11 @@ const funktional = localFont({
   display: 'swap',
 });
 
-const instrumentSerif = Instrument_Serif({
-  weight: '400',
-  subsets: ['latin'],
+const instrumentSerif = localFont({
+  src: [
+    { path: '../../public/fonts/InstrumentSerif-Regular.ttf', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/InstrumentSerif-Italic.ttf', weight: '400', style: 'italic' },
+  ],
   variable: '--font-instrument-serif',
   display: 'swap',
 });
