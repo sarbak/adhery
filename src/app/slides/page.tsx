@@ -16,7 +16,7 @@ function TitleSlide() {
         <span className="text-accent">their own AI navigator</span>
       </h1>
       <p className="text-xl text-text-secondary max-w-2xl">
-        Adhery. An autonomous patient navigator for specialty pharmacy.
+        <span className="font-semibold text-foreground">Adhery</span> is an autonomous patient navigator for specialty pharmacy.
       </p>
       <div className="mt-20 flex items-center gap-3 text-text-muted text-sm">
         <span>Press</span>
@@ -26,7 +26,7 @@ function TitleSlide() {
         <span>to navigate</span>
       </div>
       <span className="absolute bottom-6 right-8 text-[10px] text-text-muted/50">
-        v5.0
+        v5.1
       </span>
     </div>
   );
@@ -36,22 +36,22 @@ function RealitySlide() {
   return (
     <div className="flex flex-col justify-center h-full px-20">
       <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-4xl">
-        Call centers reach less than half of specialty patients
+        Half of specialty patients stop taking their medication
       </h2>
       <p className="text-lg text-text-secondary mb-10 max-w-2xl">
-        The average specialty pharmacy makes 13 calls per patient per year. Most never connect.
+        Call centers make 12-15 calls per patient per year. Most go to voicemail. Adherence stays around 50%.
       </p>
       <div className="max-w-4xl">
         <div className="h-16 bg-surface border border-border-light flex mb-6">
-          <div className="h-full bg-[#94a3b8] flex items-center justify-center" style={{ width: '45%' }}>
-            <span className="text-white font-medium">45% reached</span>
+          <div className="h-full bg-[#94a3b8] flex items-center justify-center" style={{ width: '50%' }}>
+            <span className="text-white font-medium">~50% adherent</span>
           </div>
           <div className="h-full flex items-center justify-center flex-1">
-            <span className="text-lg text-text-muted">55% unreached</span>
+            <span className="text-lg text-text-muted">~50% drop off</span>
           </div>
         </div>
         <p className="text-sm text-text-secondary">
-          55% go to voicemail. Of the 45% who pick up, most calls are routine check-ins that don&apos;t address real barriers.
+          Of those reached, most calls are routine check-ins. Real barriers go undetected until the patient stops refilling.
         </p>
       </div>
     </div>
@@ -61,8 +61,8 @@ function RealitySlide() {
 function GapSlide() {
   return (
     <div className="flex flex-col justify-center h-full px-20">
-      <h2 className="font-serif text-5xl text-foreground mb-10 leading-tight max-w-4xl">
-        Patients aren&apos;t getting support the way they need it
+      <h2 className="font-serif text-5xl text-foreground mb-10 leading-tight max-w-3xl">
+        Patients need support on their terms, not yours
       </h2>
       <div className="max-w-4xl space-y-6">
         <div className="border-l-4 border-accent/30 pl-8">
@@ -119,7 +119,7 @@ function EvidenceSlide() {
   return (
     <div className="flex flex-col justify-center h-full px-20">
       <h2 className="font-serif text-5xl text-foreground mb-12 leading-tight max-w-4xl">
-        AI-driven outreach improves adherence 2-3x over manual call centers
+        Research shows AI-driven outreach can double adherence rates
       </h2>
       <div className="grid grid-cols-2 gap-6 max-w-4xl mb-8">
         {stats.map((s) => (
@@ -140,7 +140,7 @@ function IntroducingSlide() {
     <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <img src="/logo.svg" alt="Adhery" className="w-16 h-16 mb-8" />
       <h2 className="font-serif text-5xl text-foreground mb-6 leading-tight max-w-3xl">
-        An AI navigator that runs your patient support program autonomously
+        <span className="text-accent">Adhery</span> runs your patient support program autonomously
       </h2>
       <div className="flex items-center gap-10 mt-10 mb-12">
         {[
@@ -159,7 +159,7 @@ function IntroducingSlide() {
         ))}
       </div>
       <p className="text-lg text-text-secondary max-w-xl">
-        The navigator decides when to call, when to text, and when to mail. 95% of patient needs resolve without a pharmacist.
+        <span className="text-accent font-medium">Adhery</span> decides when to call, when to text, and when to mail. 95% of patient needs resolve without a pharmacist.
       </p>
     </div>
   );
@@ -167,93 +167,35 @@ function IntroducingSlide() {
 
 function PatientStorySlide() {
   const steps = [
-    {
-      day: 'Day 1',
-      channel: 'AI Voice',
-      color: ACCENT,
-      messages: [
-        { from: 'ai', text: 'Hi Maria, I\'m your Humira navigator. I\'ll be checking in regularly.' },
-        { from: 'pt', text: 'Oh great, what do I need to do?' },
-        { from: 'ai', text: 'Just take your dose as prescribed. I\'ll handle the rest. When do you usually take it?' },
-        { from: 'pt', text: 'Mornings around 8' },
-      ],
-      note: 'Navigator onboards, learns schedule',
-    },
-    {
-      day: 'Day 3',
-      channel: 'Async',
-      color: '#f59e0b',
-      messages: [
-        { from: 'ai', text: 'How was your Humira dose yesterday?' },
-        { from: 'pt', text: 'I noticed redness at the injection site' },
-        { from: 'ai', text: 'Is it bigger than a quarter, or any swelling?' },
-        { from: 'pt', text: 'No pretty small' },
-        { from: 'ai', text: 'That\'s normal. Cold compress helps. I\'ll check back tomorrow.' },
-      ],
-      note: 'Async triage, no pharmacist needed',
-    },
-    {
-      day: 'Day 5',
-      channel: 'AI Voice',
-      color: ACCENT,
-      messages: [
-        { from: 'ai', text: 'Calling about the redness you mentioned.' },
-        { from: 'pt', text: 'It went away, but I\'ve been tired.' },
-        { from: 'ai', text: 'Is it affecting daily activities?' },
-        { from: 'pt', text: 'I\'m napping more' },
-        { from: 'ai', text: 'Noting that for your pharmacist. Often improves by week 3.' },
-      ],
-      note: 'Navigator escalates to voice, catches new symptom',
-    },
-    {
-      day: 'Day 30',
-      channel: 'AI Voice',
-      color: '#8b5cf6',
-      messages: [
-        { from: 'ai', text: 'One month! You\'ve taken every dose.' },
-        { from: 'pt', text: 'Feeling so much better!' },
-      ],
-      note: 'Milestone recognition',
-    },
+    { day: 'Day 1', channel: 'AI Voice', color: ACCENT, what: 'Onboards Maria, learns her schedule and concerns' },
+    { day: 'Day 3', channel: 'Async Triage', color: '#f59e0b', what: 'Maria texts about injection-site redness. Navigator triages it as normal, no pharmacist needed.' },
+    { day: 'Day 5', channel: 'AI Voice', color: ACCENT, what: 'Follow-up call catches new symptom (fatigue). Logs it for pharmacist review.' },
+    { day: 'Day 14', channel: 'Async Triage', color: '#f59e0b', what: 'Refill reminder sent. Maria confirms order.' },
+    { day: 'Day 30', channel: 'AI Voice', color: '#8b5cf6', what: 'Milestone: 100% adherent. No pharmacist calls needed all month.' },
   ];
 
   return (
     <div className="flex flex-col justify-center h-full px-20">
-      <h2 className="font-serif text-4xl text-foreground mb-2 leading-tight max-w-3xl">
-        Maria stays on Humira because her AI navigator catches every concern
+      <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-4xl">
+        One patient, 30 days, zero pharmacist calls
       </h2>
-      <p className="text-sm text-text-secondary mb-8 max-w-2xl">
-        Zero pharmacist calls needed. Side effects triaged on day 3. New symptom escalated on day 5. 100% adherent at day 30.
+      <p className="text-lg text-text-secondary mb-10 max-w-2xl">
+        Maria on Humira. The <span className="text-accent font-medium">Adhery</span> navigator handles everything autonomously.
       </p>
-      <div className="max-w-4xl space-y-3">
+      <div className="max-w-4xl space-y-4">
         {steps.map((s) => (
-          <div key={s.day} className="flex items-start gap-4">
-            <div className="w-14 flex-shrink-0 text-right">
+          <div key={s.day} className="flex items-start gap-5">
+            <div className="w-14 flex-shrink-0 text-right pt-0.5">
               <span className="text-sm font-semibold text-foreground">{s.day}</span>
             </div>
-            <div className="w-1 flex-shrink-0 relative">
-              <div className="w-3 h-3 rounded-full -ml-1" style={{ backgroundColor: s.color }} />
-              <div className="w-px h-full bg-border-light absolute left-0 top-3" />
+            <div className="w-3 flex-shrink-0 pt-1.5">
+              <div className="w-3 h-3 rounded-full" style={{ backgroundColor: s.color }} />
             </div>
-            <div className="flex-1 pb-1">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-xs font-medium px-2 py-0.5 text-white" style={{ backgroundColor: s.color }}>
-                  {s.channel}
-                </span>
-                <span className="text-[10px] text-text-muted">{s.note}</span>
-              </div>
-              <div className="flex gap-1.5 flex-wrap">
-                {s.messages.map((m, i) => (
-                  <span
-                    key={i}
-                    className={`text-xs px-2 py-0.5 ${
-                      m.from === 'ai' ? 'bg-accent/10 text-accent' : 'bg-border-light text-text-secondary'
-                    }`}
-                  >
-                    {m.from === 'ai' ? 'AI: ' : 'PT: '}&quot;{m.text}&quot;
-                  </span>
-                ))}
-              </div>
+            <div className="flex-1">
+              <span className="text-xs font-medium px-2 py-0.5 text-white inline-block mb-1" style={{ backgroundColor: s.color }}>
+                {s.channel}
+              </span>
+              <p className="text-foreground">{s.what}</p>
             </div>
           </div>
         ))}
@@ -265,22 +207,25 @@ function PatientStorySlide() {
 function ResultsSlide() {
   return (
     <div className="flex flex-col justify-center h-full px-20">
-      <h2 className="font-serif text-5xl text-foreground mb-12 leading-tight max-w-4xl">
-        Adherence jumps from 78% to 87% PDC
+      <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-4xl">
+        Adherence jumps from ~50% to 80%+ PDC
       </h2>
+      <p className="text-lg text-text-secondary mb-10 max-w-3xl">
+        Above the CMS Star Rating threshold. Cost per patient drops from $130 to $18.
+      </p>
       <div className="max-w-4xl space-y-8">
         {/* Before bar */}
         <div>
           <div className="flex items-baseline justify-between mb-3">
-            <span className="text-sm font-medium text-text-muted">Manual Call Center</span>
-            <span className="text-2xl font-bold text-text-secondary">78% <span className="text-sm font-normal text-text-muted">PDC</span></span>
+            <span className="text-sm font-medium text-text-muted">Manual call center</span>
+            <span className="text-2xl font-bold text-text-secondary">~50% <span className="text-sm font-normal text-text-muted">PDC</span></span>
           </div>
           <div className="h-12 bg-surface border border-border-light flex">
-            <div className="h-full bg-[#94a3b8] flex items-center justify-center" style={{ width: '45%' }}>
-              <span className="text-sm text-white font-medium">45% reached</span>
+            <div className="h-full bg-[#94a3b8] flex items-center justify-center" style={{ width: '50%' }}>
+              <span className="text-sm text-white font-medium">50% adherent</span>
             </div>
             <div className="h-full flex items-center justify-center flex-1">
-              <span className="text-sm text-text-muted">55% unreached</span>
+              <span className="text-sm text-text-muted">50% drop off</span>
             </div>
           </div>
         </div>
@@ -289,7 +234,7 @@ function ResultsSlide() {
         <div>
           <div className="flex items-baseline justify-between mb-3">
             <span className="text-sm font-medium text-accent">Adhery Navigator</span>
-            <span className="text-2xl font-bold text-accent">87% <span className="text-sm font-normal text-text-muted">PDC</span></span>
+            <span className="text-2xl font-bold text-accent">80%+ <span className="text-sm font-normal text-text-muted">PDC</span></span>
           </div>
           <div className="h-12 bg-surface border border-border-light flex">
             <div className="h-full bg-[#0d7377] flex items-center justify-center" style={{ width: '40%' }}>
@@ -306,29 +251,39 @@ function ResultsSlide() {
             </div>
           </div>
         </div>
+
+        {/* Adherence improvement callout */}
+        <div className="bg-accent/5 border-2 border-accent/20 p-6 flex items-center gap-8">
+          <div className="text-center">
+            <p className="text-4xl font-bold text-accent">+30pp</p>
+            <p className="text-sm text-text-secondary">adherence gain</p>
+          </div>
+          <div className="w-px h-12 bg-accent/20" />
+          <div>
+            <p className="text-foreground">
+              Patients go from missing every other dose to staying above the 80% threshold that determines CMS Star Ratings, rebates, and drug efficacy.
+            </p>
+          </div>
+        </div>
       </div>
-      <p className="text-sm text-text-secondary mt-8 max-w-3xl">
-        83% of patients above the 80% PDC threshold for CMS Star Ratings.
-        Cost per patient drops from $130 to $18.
-      </p>
     </div>
   );
 }
 
 function ROISlide() {
   const tiers = [
-    { patients: '500', saved: '$59K', ftes: '~1.5', monthly: '$6,000' },
-    { patients: '2,000', saved: '$236K', ftes: '~6', monthly: '$20,000', highlight: true },
-    { patients: '5,000', saved: '$590K', ftes: '~15', monthly: '$40,000' },
+    { patients: '500', saved: '$59K', ftes: '~1.5', monthly: '$6,000', pdc: '80%+' },
+    { patients: '2,000', saved: '$236K', ftes: '~6', monthly: '$20,000', pdc: '80%+', highlight: true },
+    { patients: '5,000', saved: '$590K', ftes: '~15', monthly: '$40,000', pdc: '80%+' },
   ];
 
   return (
     <div className="flex flex-col justify-center h-full px-20">
       <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-4xl">
-        A 2,000-patient pharmacy saves $236K per year and redeploys 6 FTEs to clinical work
+        A 2,000-patient pharmacy saves $236K and gains 30 points of adherence
       </h2>
       <p className="text-lg text-text-secondary mb-10 max-w-3xl">
-        Cost per patient drops from $130 to $18. The savings fund better patient care, not layoffs.
+        Cost drops from $130 to $18 per patient. PDC goes from ~50% to 80%+. The savings fund redeployment to clinical work.
       </p>
       <div className="grid grid-cols-3 gap-6 max-w-5xl">
         {tiers.map((t) => (
@@ -346,6 +301,10 @@ function ROISlide() {
               <div>
                 <p className="text-sm text-text-secondary">Annual savings</p>
                 <p className="text-3xl font-bold text-accent">{t.saved}</p>
+              </div>
+              <div>
+                <p className="text-sm text-text-secondary">PDC (from ~50%)</p>
+                <p className="text-xl font-semibold text-accent">{t.pdc}</p>
               </div>
               <div>
                 <p className="text-sm text-text-secondary">FTEs redeployed</p>
@@ -375,7 +334,7 @@ function DashboardSlide() {
       <div className="bg-surface border border-border-light p-10 max-w-4xl">
         <div className="grid grid-cols-4 gap-6 mb-8">
           {[
-            { label: 'Avg Adherence', value: '87%', color: 'text-accent' },
+            { label: 'Avg Adherence', value: '82%', color: 'text-accent' },
             { label: 'Active Patients', value: '2,000', color: 'text-foreground' },
             { label: 'Open Alerts', value: '23', color: 'text-amber-500' },
             { label: 'Monthly Savings', value: '$19.7K', color: 'text-green-600' },
@@ -535,7 +494,7 @@ function BusinessModelSlide() {
         </div>
         <div className="border-l-4 border-accent/30 pl-6">
           <p className="text-lg text-foreground mb-2">
-            Net revenue retention compounds as pharmacies expand patient counts. A single pharmacy can grow from 500 to 5,000+ patients over 2-3 years without additional sales cost.
+            Each pharmacy expands from 500 to 5,000+ patients over 2-3 years without additional sales cost. Adherence gains (~50% to 80%+) mean fewer churned patients and more retained drug spend.
           </p>
         </div>
         <div className="grid grid-cols-2 gap-6">
