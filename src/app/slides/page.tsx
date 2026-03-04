@@ -6,63 +6,6 @@ import { useState, useEffect, useCallback } from 'react';
 const ACCENT = '#0d7377';
 const ACCENT_LIGHT = '#14919b';
 
-// ─── Pie Chart Component ───
-function PieChart({
-  segments,
-  size = 220,
-}: {
-  segments: { pct: number; color: string; label: string }[];
-  size?: number;
-}) {
-  const r = size / 2 - 10;
-  const cx = size / 2;
-  const cy = size / 2;
-  let cumulative = 0;
-
-  return (
-    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
-      {segments.map((seg, i) => {
-        const startAngle = (cumulative / 100) * 360 - 90;
-        cumulative += seg.pct;
-        const endAngle = (cumulative / 100) * 360 - 90;
-        const largeArc = seg.pct > 50 ? 1 : 0;
-        const x1 = cx + r * Math.cos((startAngle * Math.PI) / 180);
-        const y1 = cy + r * Math.sin((startAngle * Math.PI) / 180);
-        const x2 = cx + r * Math.cos((endAngle * Math.PI) / 180);
-        const y2 = cy + r * Math.sin((endAngle * Math.PI) / 180);
-        const midAngle = ((startAngle + endAngle) / 2) * (Math.PI / 180);
-        const labelR = r * 0.65;
-        const lx = cx + labelR * Math.cos(midAngle);
-        const ly = cy + labelR * Math.sin(midAngle);
-
-        return (
-          <g key={i}>
-            <path
-              d={`M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2} Z`}
-              fill={seg.color}
-              stroke="white"
-              strokeWidth="2"
-            />
-            {seg.pct >= 10 && (
-              <text
-                x={lx}
-                y={ly}
-                textAnchor="middle"
-                dominantBaseline="middle"
-                fill="white"
-                fontSize="11"
-                fontWeight="600"
-              >
-                {seg.pct}%
-              </text>
-            )}
-          </g>
-        );
-      })}
-    </svg>
-  );
-}
-
 // ─── Slide Components ───
 
 function TitleSlide() {
@@ -90,40 +33,30 @@ function TitleSlide() {
 }
 
 function RealitySlide() {
-  const segments = [
-    { pct: 55, color: '#94a3b8', label: 'Voicemail' },
-    { pct: 30, color: '#cbd5e1', label: 'Routine' },
-    { pct: 15, color: ACCENT, label: 'Meaningful' },
-  ];
-
   return (
     <div className="flex flex-col justify-center h-full px-20">
       <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-4xl">
-        Only 2 out of 13 outreach calls actually help a patient
+        Only 7% of call center outreach meaningfully reaches a patient
       </h2>
       <p className="text-lg text-text-secondary mb-10 max-w-2xl">
         The average specialty pharmacy makes 13 calls per patient per year. Most never connect.
       </p>
-      <div className="flex items-center gap-16 max-w-4xl">
-        <PieChart segments={segments} />
-        <div className="space-y-4">
-          {segments.map((s) => (
-            <div key={s.label} className="flex items-center gap-3">
-              <div className="w-4 h-4 flex-shrink-0" style={{ backgroundColor: s.color }} />
-              <div>
-                <span className="text-foreground font-medium">{s.pct}% {s.label}</span>
-                {s.label === 'Voicemail' && (
-                  <p className="text-sm text-text-secondary">Patient never hears the message</p>
-                )}
-                {s.label === 'Routine' && (
-                  <p className="text-sm text-text-secondary">Check-ins that could be automated</p>
-                )}
-                {s.label === 'Meaningful' && (
-                  <p className="text-sm text-text-secondary">Side effects caught, barriers resolved</p>
-                )}
-              </div>
-            </div>
-          ))}
+      <div className="max-w-4xl">
+        <div className="h-16 bg-surface border border-border-light flex mb-6">
+          <div className="h-full bg-[#64748b] flex items-center justify-center" style={{ width: '7%' }} />
+          <div className="h-full flex items-center justify-center flex-1">
+            <span className="text-lg text-text-muted">93% not meaningfully reached</span>
+          </div>
+        </div>
+        <div className="flex gap-8">
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-[#64748b]" />
+            <span className="text-foreground font-medium">7% meaningful</span>
+          </div>
+          <div className="text-sm text-text-secondary space-y-1">
+            <p>55% go to voicemail. Of the 45% reached, 85% are routine check-ins.</p>
+            <p>Only 15% of reached patients get help with side effects or barriers.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -335,87 +268,96 @@ function PatientStorySlide() {
 }
 
 function EscalationSlide() {
-  const levels = [
-    { channel: 'AI Voice', pct: 40, label: 'Navigator handles the conversation', color: ACCENT },
-    { channel: 'Async Triage', pct: 35, label: 'Text-based check-ins and follow-ups', color: '#22c55e' },
-    { channel: 'Mail', pct: 15, label: 'Physical follow-through for unreachable patients', color: '#f59e0b' },
-    { channel: 'Pharmacist', pct: 10, label: 'Cases that need clinical judgment', color: '#dc2626' },
-  ];
-
   return (
     <div className="flex flex-col justify-center h-full px-20">
       <h2 className="font-serif text-5xl text-foreground mb-12 leading-tight max-w-4xl">
         The navigator resolves 90% autonomously. Pharmacists see only the 10% that need them.
       </h2>
-      <div className="max-w-4xl space-y-4">
-        {levels.map((l) => (
-          <div key={l.channel} className="flex items-center gap-4">
-            <div className="w-24 text-right">
-              <span className="text-sm font-medium text-foreground">{l.channel}</span>
-            </div>
-            <div className="flex-1 h-10 bg-surface border border-border-light relative">
-              <div
-                className="h-full flex items-center px-3"
-                style={{ width: `${l.pct}%`, backgroundColor: l.color, opacity: 0.85 }}
-              >
-                <span className="text-white text-sm font-bold">{l.pct}%</span>
-              </div>
-            </div>
-            <div className="w-64">
-              <span className="text-sm text-text-secondary">{l.label}</span>
+      <div className="max-w-4xl space-y-10">
+        {/* Call Center bar */}
+        <div>
+          <p className="text-sm font-medium text-text-muted mb-3">Manual Call Center</p>
+          <div className="h-14 bg-surface border border-border-light flex">
+            <div className="h-full bg-[#64748b] flex items-center justify-center" style={{ width: '7%' }} />
+            <div className="h-full flex items-center justify-center flex-1">
+              <span className="text-sm text-text-muted">93% not meaningfully reached</span>
             </div>
           </div>
-        ))}
+          <p className="text-xs text-text-muted mt-2">7% meaningful engagement (45% reached x 15% non-routine)</p>
+        </div>
+
+        {/* Navigator bar */}
+        <div>
+          <p className="text-sm font-medium text-accent mb-3">Adhery Navigator</p>
+          <div className="h-14 bg-surface border border-border-light flex">
+            <div className="h-full bg-[#0d7377] flex items-center justify-center" style={{ width: '40%' }}>
+              <span className="text-xs text-white font-medium">AI Voice 40%</span>
+            </div>
+            <div className="h-full bg-[#22c55e] flex items-center justify-center" style={{ width: '35%' }}>
+              <span className="text-xs text-white font-medium">Async 35%</span>
+            </div>
+            <div className="h-full bg-[#f59e0b] flex items-center justify-center" style={{ width: '15%' }}>
+              <span className="text-[10px] text-white font-medium">Mail</span>
+            </div>
+            <div className="h-full flex items-center justify-center" style={{ width: '10%' }}>
+              <span className="text-[10px] text-text-muted">10%</span>
+            </div>
+          </div>
+          <p className="text-xs text-text-muted mt-2">90% resolved autonomously. 10% escalated to pharmacist.</p>
+        </div>
       </div>
     </div>
   );
 }
 
 function ResultsSlide() {
-  const before = [
-    { pct: 55, color: '#94a3b8', label: 'Voicemail' },
-    { pct: 30, color: '#cbd5e1', label: 'Routine' },
-    { pct: 15, color: ACCENT, label: 'Meaningful' },
-  ];
-  const after = [
-    { pct: 40, color: ACCENT, label: 'AI Voice' },
-    { pct: 35, color: '#22c55e', label: 'Async Triage' },
-    { pct: 15, color: '#f59e0b', label: 'Mail' },
-    { pct: 10, color: '#dc2626', label: 'Pharmacist' },
-  ];
-
   return (
     <div className="flex flex-col justify-center h-full px-20">
       <h2 className="font-serif text-5xl text-foreground mb-12 leading-tight max-w-4xl">
-        Adherence jumps from 78% to 87% when every interaction is meaningful
+        Adherence jumps from 78% to 87% PDC
       </h2>
-      <div className="flex items-start gap-16 max-w-4xl">
-        {/* Before */}
-        <div className="flex-1 text-center">
-          <p className="text-sm font-medium text-text-muted uppercase tracking-wider mb-6">Before: Phone Calls Only</p>
-          <div className="flex justify-center mb-6">
-            <PieChart segments={before} size={180} />
+      <div className="max-w-4xl space-y-10">
+        {/* Before bar */}
+        <div>
+          <div className="flex items-baseline justify-between mb-3">
+            <span className="text-sm font-medium text-text-muted">Before: Manual Call Center</span>
+            <span className="text-2xl font-bold text-text-secondary">78% <span className="text-sm font-normal text-text-muted">PDC</span></span>
           </div>
-          <p className="text-3xl font-bold text-text-secondary mb-1">78% PDC</p>
-          <p className="text-sm text-text-muted">15% of outreach is meaningful</p>
+          <div className="h-12 bg-surface border border-border-light flex">
+            <div className="h-full bg-[#64748b] flex items-center justify-center" style={{ width: '7%' }} />
+            <div className="h-full flex items-center justify-center flex-1">
+              <span className="text-sm text-text-muted">93% not meaningfully reached</span>
+            </div>
+          </div>
+          <p className="text-xs text-text-muted mt-2">7% meaningful engagement. 55% voicemail. 30% routine.</p>
         </div>
 
-        <div className="flex items-center pt-20">
-          <span className="text-3xl text-text-muted">&rarr;</span>
-        </div>
-
-        {/* After */}
-        <div className="flex-1 text-center">
-          <p className="text-sm font-medium text-accent uppercase tracking-wider mb-6">After: Adhery Navigator</p>
-          <div className="flex justify-center mb-6">
-            <PieChart segments={after} size={180} />
+        {/* After bar */}
+        <div>
+          <div className="flex items-baseline justify-between mb-3">
+            <span className="text-sm font-medium text-accent">After: Adhery Navigator</span>
+            <span className="text-2xl font-bold text-accent">87% <span className="text-sm font-normal text-text-muted">PDC</span></span>
           </div>
-          <p className="text-3xl font-bold text-accent mb-1">87% PDC</p>
-          <p className="text-sm text-text-muted">Every touchpoint addresses a real need</p>
+          <div className="h-12 bg-surface border border-border-light flex">
+            <div className="h-full bg-[#0d7377] flex items-center justify-center" style={{ width: '40%' }}>
+              <span className="text-xs text-white font-medium">AI Voice</span>
+            </div>
+            <div className="h-full bg-[#22c55e] flex items-center justify-center" style={{ width: '35%' }}>
+              <span className="text-xs text-white font-medium">Async</span>
+            </div>
+            <div className="h-full bg-[#f59e0b] flex items-center justify-center" style={{ width: '15%' }}>
+              <span className="text-[10px] text-white font-medium">Mail</span>
+            </div>
+            <div className="h-full flex items-center justify-center" style={{ width: '10%' }}>
+              <span className="text-[10px] text-text-muted">RPh</span>
+            </div>
+          </div>
+          <p className="text-xs text-text-muted mt-2">90% resolved autonomously. 10% escalated to pharmacist.</p>
         </div>
       </div>
-      <p className="text-sm text-text-secondary mt-8 max-w-3xl text-center mx-auto">
-        83% of patients above the 80% PDC threshold for CMS Star Ratings
+      <p className="text-sm text-text-secondary mt-10 max-w-3xl">
+        83% of patients above the 80% PDC threshold for CMS Star Ratings.
+        Cost per patient drops from $130 to $12.
       </p>
     </div>
   );
