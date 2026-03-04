@@ -134,6 +134,146 @@ export default function OverviewPage() {
         <div className="absolute -left-8 -bottom-8 w-48 h-48 bg-green-100/50 rounded-full blur-3xl" />
       </div>
 
+      {/* ━━━ HERO 2: Adherence Improvement ━━━ */}
+      {(() => {
+        const adherentBefore = Math.round(currentPatients * 0.54); // 54% baseline (US commercial claims benchmark)
+        const adherentNow = patients.filter((p) => p.adherenceRate >= 80).length;
+        const newlyAdherent = adherentNow - adherentBefore;
+        const pctAdherentBefore = 54;
+        const pctAdherentNow = Math.round((adherentNow / currentPatients) * 100);
+        // Patient distribution buckets
+        const buckets = [
+          { label: '<60%', range: [0, 60] as [number, number], color: 'bg-red-500', textColor: 'text-red-600' },
+          { label: '60-79%', range: [60, 80] as [number, number], color: 'bg-amber-400', textColor: 'text-amber-600' },
+          { label: '80-89%', range: [80, 90] as [number, number], color: 'bg-green-400', textColor: 'text-green-600' },
+          { label: '90%+', range: [90, 101] as [number, number], color: 'bg-accent', textColor: 'text-accent' },
+        ];
+        const bucketCounts = buckets.map((b) => ({
+          ...b,
+          count: patients.filter((p) => p.adherenceRate >= b.range[0] && p.adherenceRate < b.range[1]).length,
+        }));
+        const maxBucket = Math.max(...bucketCounts.map((b) => b.count));
+
+        return (
+          <div className="relative overflow-hidden bg-gradient-to-br from-green-50 via-white to-accent/5 border border-green-200/50 rounded-2xl p-8 mb-8">
+            <div className="relative z-10">
+              <p className="text-xs font-medium text-green-700 uppercase tracking-widest mb-3">Adherence Improvement</p>
+
+              {/* Big before → after */}
+              <div className="flex items-center gap-6 lg:gap-10 mb-8">
+                <div className="text-center">
+                  <p className="text-[10px] text-text-muted uppercase tracking-wider mb-2">Before Adhery</p>
+                  <div className="relative w-32 h-32 lg:w-40 lg:h-40">
+                    <svg viewBox="0 0 36 36" className="w-full h-full -rotate-90">
+                      <circle cx="18" cy="18" r="15.9" fill="none" stroke="#fee2e2" strokeWidth="2.5" />
+                      <circle cx="18" cy="18" r="15.9" fill="none" stroke="#ef4444" strokeWidth="2.5" strokeDasharray="78.2 21.8" strokeLinecap="round" />
+                    </svg>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      <span className="text-4xl lg:text-5xl font-bold text-red-500">78%</span>
+                      <span className="text-[10px] text-text-muted">avg PDC</span>
+                    </div>
+                  </div>
+                  <p className="text-xs text-red-500 mt-2 font-medium">Below 80% threshold</p>
+                  <p className="text-[10px] text-text-muted">{pctAdherentBefore}% of patients adherent</p>
+                </div>
+
+                <div className="flex-1 flex flex-col items-center py-4">
+                  <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-green-500 mb-3">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                  <p className="text-5xl lg:text-6xl font-bold text-green-600">+13.1<span className="text-3xl">pp</span></p>
+                  <p className="text-xs text-text-secondary mt-1">percentage point improvement</p>
+                  <div className="mt-3 bg-green-50 border border-green-200 rounded-lg px-4 py-2">
+                    <p className="text-[10px] text-green-700 text-center">
+                      {newlyAdherent > 0 ? `${newlyAdherent} patients crossed the 80% PDC threshold` : 'Patients moving above 80% PDC threshold'}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="text-center">
+                  <p className="text-[10px] text-text-muted uppercase tracking-wider mb-2">With Adhery</p>
+                  <div className="relative w-32 h-32 lg:w-40 lg:h-40">
+                    <svg viewBox="0 0 36 36" className="w-full h-full -rotate-90">
+                      <circle cx="18" cy="18" r="15.9" fill="none" stroke="#d1fae5" strokeWidth="2.5" />
+                      <circle cx="18" cy="18" r="15.9" fill="none" stroke="#0d7377" strokeWidth="2.5" strokeDasharray={`${dashboardStats.avgAdherence} ${100 - dashboardStats.avgAdherence}`} strokeLinecap="round" />
+                    </svg>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      <span className="text-4xl lg:text-5xl font-bold text-accent">{dashboardStats.avgAdherence}%</span>
+                      <span className="text-[10px] text-text-muted">avg PDC</span>
+                    </div>
+                  </div>
+                  <p className="text-xs text-green-600 mt-2 font-medium">Above 80% threshold</p>
+                  <p className="text-[10px] text-text-muted">{pctAdherentNow}% of patients adherent</p>
+                </div>
+              </div>
+
+              {/* Patient adherence distribution */}
+              <div className="bg-white/80 backdrop-blur rounded-xl p-5 border border-border-light mb-6">
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-sm font-medium text-foreground">Patient Adherence Distribution</p>
+                  <p className="text-[10px] text-text-muted">PDC {'\u2265'} 80% is the clinical adherence threshold</p>
+                </div>
+                <div className="flex items-end gap-2 h-28">
+                  {bucketCounts.map((b) => {
+                    const height = maxBucket > 0 ? (b.count / maxBucket) * 100 : 0;
+                    const isAdherent = b.range[0] >= 80;
+                    return (
+                      <div key={b.label} className="flex-1 flex flex-col items-center gap-1">
+                        <span className={`text-xs font-bold ${b.textColor}`}>{b.count}</span>
+                        <div className="w-full relative" style={{ height: `${height}%`, minHeight: b.count > 0 ? '8px' : 0 }}>
+                          <div className={`w-full h-full ${b.color} rounded-t-md ${isAdherent ? 'opacity-100' : 'opacity-60'}`} />
+                        </div>
+                        <span className="text-[10px] text-text-muted">{b.label}</span>
+                        {isAdherent && <span className="text-[8px] text-green-600">adherent</span>}
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="flex items-center justify-center gap-1 mt-3">
+                  <div className="flex-1 h-px bg-red-200" />
+                  <span className="text-[9px] text-red-400 px-2">non-adherent</span>
+                  <div className="w-px h-3 bg-gray-300" />
+                  <span className="text-[9px] text-green-600 px-2">adherent (PDC {'\u2265'} 80%)</span>
+                  <div className="flex-1 h-px bg-green-200" />
+                </div>
+              </div>
+
+              {/* Monthly trend */}
+              <div className="bg-white/80 backdrop-blur rounded-xl p-5 border border-border-light">
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-sm font-medium text-foreground">Monthly Adherence Trend</p>
+                  <span className="text-[10px] text-green-600 font-medium bg-green-50 px-2 py-0.5 rounded-full">+13.1pp over 6 months</span>
+                </div>
+                <div className="relative">
+                  <div className="absolute left-0 right-0 border-t-2 border-dashed border-red-300" style={{ bottom: `${((80 - 70) / 30) * 100}%` }}>
+                    <span className="absolute -top-3.5 right-0 text-[9px] text-red-400 bg-white/80 px-1 rounded">80% PDC threshold</span>
+                  </div>
+                  <div className="flex items-end gap-3 h-36">
+                    {dashboardStats.monthlyAdherence.map((d, i) => {
+                      const height = ((d.rate - 70) / 30) * 100;
+                      const isAboveThreshold = d.rate >= 80;
+                      return (
+                        <div key={i} className="flex-1 flex flex-col items-center gap-1">
+                          <span className={`text-xs font-bold ${isAboveThreshold ? 'text-accent' : 'text-red-500'}`}>{d.rate}%</span>
+                          <div
+                            className={`w-full rounded-t-md transition-all ${isAboveThreshold ? 'bg-accent' : 'bg-red-400'}`}
+                            style={{ height: `${height}%` }}
+                          />
+                          <span className="text-[10px] text-text-muted font-medium">{d.month}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* Background decoration */}
+            <div className="absolute -right-16 -top-16 w-72 h-72 bg-green-100/40 rounded-full blur-3xl" />
+            <div className="absolute -left-10 -bottom-10 w-56 h-56 bg-accent/5 rounded-full blur-3xl" />
+          </div>
+        );
+      })()}
+
       {/* ━━━ Scale projections ━━━ */}
       <div className="bg-white border border-border-light rounded-xl p-6 mb-8">
         <p className="text-sm font-medium text-foreground mb-1">Savings at Scale</p>
@@ -188,71 +328,6 @@ export default function OverviewPage() {
           <div>
             <p className="text-[10px] text-text-muted">Humira annual cost/patient</p>
             <p className="text-lg font-bold text-foreground">${(DRUG_ANNUAL_COST).toLocaleString()}</p>
-          </div>
-        </div>
-      </div>
-
-      {/* ━━━ Adherence improvement hero ━━━ */}
-      <div className="bg-white border border-border-light rounded-xl p-6 mb-8">
-        <p className="text-sm font-medium text-foreground mb-1">Adherence Impact</p>
-        <p className="text-[10px] text-text-muted mb-5">PDC improvement since program launch</p>
-
-        <div className="flex items-center gap-8 mb-6">
-          <div className="text-center">
-            <p className="text-[10px] text-text-muted mb-1">Before Adhery</p>
-            <div className="relative w-28 h-28">
-              <svg viewBox="0 0 36 36" className="w-28 h-28 -rotate-90">
-                <circle cx="18" cy="18" r="15.9" fill="none" stroke="#fee2e2" strokeWidth="3" />
-                <circle cx="18" cy="18" r="15.9" fill="none" stroke="#ef4444" strokeWidth="3" strokeDasharray={`${78.2} ${100 - 78.2}`} strokeLinecap="round" />
-              </svg>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-2xl font-bold text-red-500">78%</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex-1 flex flex-col items-center">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent mb-2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-            <p className="text-3xl font-bold text-green-600">+13.1%</p>
-            <p className="text-[10px] text-text-muted mt-0.5">improvement</p>
-          </div>
-
-          <div className="text-center">
-            <p className="text-[10px] text-text-muted mb-1">With Adhery</p>
-            <div className="relative w-28 h-28">
-              <svg viewBox="0 0 36 36" className="w-28 h-28 -rotate-90">
-                <circle cx="18" cy="18" r="15.9" fill="none" stroke="#d1fae5" strokeWidth="3" />
-                <circle cx="18" cy="18" r="15.9" fill="none" stroke="#0d7377" strokeWidth="3" strokeDasharray={`${dashboardStats.avgAdherence} ${100 - dashboardStats.avgAdherence}`} strokeLinecap="round" />
-              </svg>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-2xl font-bold text-accent">{dashboardStats.avgAdherence}%</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Monthly trend */}
-        <div className="relative">
-          <div className="absolute left-0 right-0 border-t border-dashed border-red-300" style={{ bottom: `${((80 - 70) / 30) * 100}%` }}>
-            <span className="absolute -top-3 right-0 text-[9px] text-red-400">80% PDC threshold</span>
-          </div>
-          <div className="flex items-end gap-3 h-32">
-            {dashboardStats.monthlyAdherence.map((d, i) => {
-              const height = ((d.rate - 70) / 30) * 100;
-              const isAboveThreshold = d.rate >= 80;
-              return (
-                <div key={i} className="flex-1 flex flex-col items-center gap-1">
-                  <span className="text-[10px] font-medium text-foreground">{d.rate}%</span>
-                  <div
-                    className={`w-full rounded-t-md transition-all ${isAboveThreshold ? 'bg-accent' : 'bg-red-400'}`}
-                    style={{ height: `${height}%` }}
-                  />
-                  <span className="text-[10px] text-text-muted">{d.month}</span>
-                </div>
-              );
-            })}
           </div>
         </div>
       </div>
