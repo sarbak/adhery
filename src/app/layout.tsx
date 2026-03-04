@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import { Analytics } from '@vercel/analytics/next';
+import { PostHogProvider } from './posthog-provider';
 import './globals.css';
 
 const funktional = localFont({
@@ -37,7 +39,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${funktional.variable} ${instrumentSerif.variable}`}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <PostHogProvider>
+          {children}
+        </PostHogProvider>
+        <Analytics />
+      </body>
     </html>
   );
 }

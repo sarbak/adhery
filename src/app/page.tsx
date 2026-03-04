@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import posthog from 'posthog-js';
 
 /* ─── 1. Sticky Nav ─── */
 function Nav() {
@@ -857,6 +858,7 @@ function DemoRequestForm() {
     async (e: React.FormEvent) => {
       e.preventDefault();
       setStatus('submitting');
+      posthog.capture('demo_submitted', { form_location: 'footer' });
 
       try {
         const res = await fetch('/api/demo-request', {
@@ -866,8 +868,11 @@ function DemoRequestForm() {
         });
 
         if (!res.ok) throw new Error('Failed to submit');
+        posthog.capture('demo_success', { form_location: 'footer' });
+        posthog.identify(form.email);
         setStatus('success');
       } catch {
+        posthog.capture('demo_error', { form_location: 'footer' });
         setStatus('error');
       }
     },
@@ -912,6 +917,7 @@ function DemoRequestForm() {
               required
               value={form.name}
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+              onFocus={() => posthog.capture('demo_input_focused', { form_location: 'footer' })}
               className="bg-white/10 text-white px-4 py-3 rounded-xl border border-white/10 focus:border-accent outline-none text-sm placeholder:text-white/30"
             />
             <input
