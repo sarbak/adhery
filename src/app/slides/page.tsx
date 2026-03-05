@@ -521,56 +521,30 @@ function PharmaValueSlide() {
         For every $1 a pharma company spends on <span className="text-accent">Adhery</span>, they get $56 back
       </h2>
       <div className="max-w-4xl space-y-6">
-        {/* Step-by-step math */}
-        <div className="space-y-4">
-          {/* Step 1: What they currently spend */}
-          <div className="bg-surface border border-border-light p-5 flex items-center justify-between">
-            <div>
-              <p className="text-xs text-text-muted uppercase tracking-wider mb-1">What they currently spend on call centers</p>
-              <p className="text-text-secondary">50,000 patients x $130/patient/year</p>
-            </div>
-            <p className="text-2xl font-bold text-foreground shrink-0 pl-6">$6.5M/yr</p>
+        <p className="text-lg text-text-secondary max-w-3xl">
+          Example: pharma manufacturer with 50,000 patients in support programs.
+        </p>
+        <div className="grid grid-cols-3 gap-6">
+          <div className="bg-surface border border-border-light p-6">
+            <p className="text-sm text-text-muted mb-2">Call center today</p>
+            <p className="text-3xl font-bold text-foreground">$6.5M/yr</p>
+            <p className="text-xs text-text-secondary mt-2">50K patients x $130/patient</p>
           </div>
-
-          {/* Step 2: What they pay with Adhery */}
-          <div className="bg-surface border border-border-light p-5 flex items-center justify-between">
-            <div>
-              <p className="text-xs text-text-muted uppercase tracking-wider mb-1">What they pay with Adhery instead</p>
-              <p className="text-text-secondary">50,000 patients x $7.50/mo x 12 months (30% less)</p>
-            </div>
-            <p className="text-2xl font-bold text-accent shrink-0 pl-6">$4.5M/yr</p>
+          <div className="bg-surface border border-border-light p-6">
+            <p className="text-sm text-text-muted mb-2">Adhery instead</p>
+            <p className="text-3xl font-bold text-accent">$4.5M/yr</p>
+            <p className="text-xs text-text-secondary mt-2">50K patients x $7.50/mo (30% less)</p>
           </div>
-
-          {/* Step 3: Operational savings */}
-          <div className="bg-surface border border-border-light p-5 flex items-center justify-between">
-            <div>
-              <p className="text-xs text-text-muted uppercase tracking-wider mb-1">Operational savings</p>
-              <p className="text-text-secondary">$6.5M - $4.5M</p>
-            </div>
-            <p className="text-2xl font-bold text-accent shrink-0 pl-6">$2M/yr</p>
-          </div>
-
-          {/* Step 4: Retained drug revenue */}
-          <div className="bg-accent/5 border-2 border-accent/30 p-5 flex items-center justify-between">
-            <div>
-              <p className="text-xs text-text-muted uppercase tracking-wider mb-1">Drug revenue they keep</p>
-              <p className="text-text-secondary">~50% of patients drop off today. Adhery retains 5,000 more on therapy.</p>
-              <p className="text-text-secondary">5,000 patients x $50K avg annual drug cost</p>
-            </div>
-            <p className="text-2xl font-bold text-accent shrink-0 pl-6">$250M/yr</p>
+          <div className="bg-accent/5 border-2 border-accent/30 p-6">
+            <p className="text-sm text-text-muted mb-2">Retained drug revenue</p>
+            <p className="text-3xl font-bold text-accent">$250M/yr</p>
+            <p className="text-xs text-text-secondary mt-2">5,000 more patients stay on therapy x $50K avg drug cost</p>
           </div>
         </div>
-
-        {/* Bottom line */}
         <div className="bg-accent/10 border border-accent/30 p-5 flex items-center justify-between">
-          <div>
-            <p className="text-foreground">
-              <span className="font-bold">They pay $4.5M instead of $6.5M.</span> They save $2M in operations and retain $250M in drug revenue.
-            </p>
-            <p className="text-sm text-text-secondary mt-1">
-              Better outcomes, lower cost, and the retained revenue pays for Adhery 56 times over.
-            </p>
-          </div>
+          <p className="text-foreground">
+            <span className="font-bold">$2M/yr saved</span> in operations. <span className="font-bold">$250M/yr retained</span> in drug revenue.
+          </p>
           <div className="text-right pl-8 shrink-0">
             <p className="text-5xl font-bold text-accent">56x</p>
             <p className="text-xs text-text-muted">return</p>
