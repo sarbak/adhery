@@ -26,7 +26,7 @@ function TitleSlide() {
         <span>to navigate</span>
       </div>
       <span className="absolute bottom-6 right-8 text-[10px] text-text-muted/50">
-        v5.3
+        v5.4
       </span>
     </div>
   );
@@ -272,18 +272,18 @@ function ResultsSlide() {
 
 function ROISlide() {
   const tiers = [
-    { patients: '500', saved: '$59K', ftes: '~1.5', monthly: '$6,000', pdc: '80%+' },
-    { patients: '2,000', saved: '$236K', ftes: '~6', monthly: '$20,000', pdc: '80%+', highlight: true },
-    { patients: '5,000', saved: '$590K', ftes: '~15', monthly: '$40,000', pdc: '80%+' },
+    { patients: '500', saved: '$20K', ftes: '~1.5', monthly: '$4,500', pdc: '80%+' },
+    { patients: '2,000', saved: '$80K', ftes: '~6', monthly: '$15,000', pdc: '80%+', highlight: true },
+    { patients: '5,000', saved: '$200K', ftes: '~15', monthly: '$30,000', pdc: '80%+' },
   ];
 
   return (
     <div className="flex flex-col justify-center h-full px-20">
       <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-4xl">
-        A 2,000-patient pharmacy saves $236K and gains 30 points of adherence
+        A 2,000-patient pharmacy saves $80K and gains 30 points of adherence
       </h2>
       <p className="text-lg text-text-secondary mb-10 max-w-3xl">
-        Cost drops from $130 to $18 per patient. PDC goes from ~50% to 80%+. The savings fund redeployment to clinical work.
+        Cost drops from $130 to $90 per patient. PDC goes from ~50% to 80%+. The savings fund redeployment to clinical work.
       </p>
       <div className="grid grid-cols-3 gap-6 max-w-5xl">
         {tiers.map((t) => (
@@ -393,15 +393,15 @@ function GettingStartedSlide() {
 
 function PricingSlide() {
   const tiers = [
-    { range: 'Up to 500', pmpm: '$12' },
-    { range: '500 - 5,000', pmpm: '$10', highlight: true },
-    { range: '5,000+', pmpm: '$8' },
+    { range: 'Up to 500', pmpm: '$9' },
+    { range: '500 - 5,000', pmpm: '$7.50', highlight: true },
+    { range: '5,000+', pmpm: '$6' },
   ];
 
   return (
     <div className="flex flex-col justify-center h-full px-20">
       <h2 className="font-serif text-5xl text-foreground mb-12 leading-tight max-w-4xl">
-        $15K setup, $8-12 per patient per month, ROI in the first quarter
+        30% less than your call center, ROI from day one
       </h2>
       <div className="flex gap-8 max-w-4xl items-start">
         <div className="bg-surface-warm border-2 border-accent/20 p-8 w-56 flex-shrink-0">
@@ -478,12 +478,12 @@ function BusinessModelSlide() {
         <div className="grid grid-cols-3 gap-6">
           <div className="bg-surface border border-border-light p-6">
             <p className="text-sm text-text-muted mb-2">Revenue per patient</p>
-            <p className="text-3xl font-bold text-accent">$120/yr</p>
-            <p className="text-xs text-text-secondary mt-2">$10 PMPM avg blended rate</p>
+            <p className="text-3xl font-bold text-accent">$90/yr</p>
+            <p className="text-xs text-text-secondary mt-2">$7.50 PMPM avg blended rate</p>
           </div>
           <div className="bg-surface border border-border-light p-6">
             <p className="text-sm text-text-muted mb-2">Gross margin</p>
-            <p className="text-3xl font-bold text-foreground">85%+</p>
+            <p className="text-3xl font-bold text-foreground">80%</p>
             <p className="text-xs text-text-secondary mt-2">AI Voice + SMS costs ~$1.50/patient/mo</p>
           </div>
           <div className="bg-surface border border-border-light p-6">
@@ -500,8 +500,8 @@ function BusinessModelSlide() {
         <div className="grid grid-cols-2 gap-6">
           <div className="bg-accent/5 border border-accent/20 p-6">
             <p className="text-sm text-text-muted mb-2">LTV per pharmacy (2,000 pts)</p>
-            <p className="text-2xl font-bold text-accent">$735K</p>
-            <p className="text-xs text-text-secondary mt-1">$15K setup + $240K ARR x 3yr avg tenure</p>
+            <p className="text-2xl font-bold text-accent">$555K</p>
+            <p className="text-xs text-text-secondary mt-1">$15K setup + $180K ARR x 3yr avg tenure</p>
           </div>
           <div className="bg-accent/5 border border-accent/20 p-6">
             <p className="text-sm text-text-muted mb-2">CAC payback</p>
@@ -518,34 +518,43 @@ function PharmaValueSlide() {
   return (
     <div className="flex flex-col justify-center h-full px-20">
       <h2 className="font-serif text-5xl text-foreground mb-10 leading-tight max-w-4xl">
-        For every $1 a pharma company spends on <span className="text-accent">Adhery</span>, they get $42 back
+        For every $1 a pharma company spends on <span className="text-accent">Adhery</span>, they get $56 back
       </h2>
       <div className="max-w-4xl space-y-6">
         {/* Step-by-step math */}
         <div className="space-y-4">
-          {/* Step 1: What they pay */}
+          {/* Step 1: What they currently spend */}
           <div className="bg-surface border border-border-light p-5 flex items-center justify-between">
             <div>
-              <p className="text-xs text-text-muted uppercase tracking-wider mb-1">What they pay Adhery</p>
-              <p className="text-text-secondary">50,000 patients x $10/mo x 12 months</p>
+              <p className="text-xs text-text-muted uppercase tracking-wider mb-1">What they currently spend on call centers</p>
+              <p className="text-text-secondary">50,000 patients x $130/patient/year</p>
             </div>
-            <p className="text-2xl font-bold text-foreground shrink-0 pl-6">$6M/yr</p>
+            <p className="text-2xl font-bold text-foreground shrink-0 pl-6">$6.5M/yr</p>
           </div>
 
-          {/* Step 2: Call center savings */}
+          {/* Step 2: What they pay with Adhery */}
           <div className="bg-surface border border-border-light p-5 flex items-center justify-between">
             <div>
-              <p className="text-xs text-text-muted uppercase tracking-wider mb-1">What they save on call centers</p>
-              <p className="text-text-secondary">50,000 patients x $112 saved per patient ($130 manual, $18 with Adhery)</p>
+              <p className="text-xs text-text-muted uppercase tracking-wider mb-1">What they pay with Adhery instead</p>
+              <p className="text-text-secondary">50,000 patients x $7.50/mo x 12 months (30% less)</p>
             </div>
-            <p className="text-2xl font-bold text-accent shrink-0 pl-6">$5.6M/yr</p>
+            <p className="text-2xl font-bold text-accent shrink-0 pl-6">$4.5M/yr</p>
           </div>
 
-          {/* Step 3: Retained drug revenue */}
+          {/* Step 3: Operational savings */}
+          <div className="bg-surface border border-border-light p-5 flex items-center justify-between">
+            <div>
+              <p className="text-xs text-text-muted uppercase tracking-wider mb-1">Operational savings</p>
+              <p className="text-text-secondary">$6.5M - $4.5M</p>
+            </div>
+            <p className="text-2xl font-bold text-accent shrink-0 pl-6">$2M/yr</p>
+          </div>
+
+          {/* Step 4: Retained drug revenue */}
           <div className="bg-accent/5 border-2 border-accent/30 p-5 flex items-center justify-between">
             <div>
               <p className="text-xs text-text-muted uppercase tracking-wider mb-1">Drug revenue they keep</p>
-              <p className="text-text-secondary">Today ~50% of patients drop off. Adhery retains 5,000 more patients on therapy.</p>
+              <p className="text-text-secondary">~50% of patients drop off today. Adhery retains 5,000 more on therapy.</p>
               <p className="text-text-secondary">5,000 patients x $50K avg annual drug cost</p>
             </div>
             <p className="text-2xl font-bold text-accent shrink-0 pl-6">$250M/yr</p>
@@ -556,14 +565,14 @@ function PharmaValueSlide() {
         <div className="bg-accent/10 border border-accent/30 p-5 flex items-center justify-between">
           <div>
             <p className="text-foreground">
-              <span className="font-bold">They spend $6M.</span> They save $5.6M in operations. They retain $250M in drug revenue.
+              <span className="font-bold">They pay $4.5M instead of $6.5M.</span> They save $2M in operations and retain $250M in drug revenue.
             </p>
             <p className="text-sm text-text-secondary mt-1">
-              Call center savings alone cover 93% of the cost. The retained revenue is pure upside.
+              Better outcomes, lower cost, and the retained revenue pays for Adhery 56 times over.
             </p>
           </div>
           <div className="text-right pl-8 shrink-0">
-            <p className="text-5xl font-bold text-accent">42x</p>
+            <p className="text-5xl font-bold text-accent">56x</p>
             <p className="text-xs text-text-muted">return</p>
           </div>
         </div>
@@ -582,17 +591,17 @@ function MarketSizeSlide() {
         <div className="grid grid-cols-3 gap-6">
           <div className="bg-surface border border-border-light p-6">
             <p className="text-sm text-text-muted mb-2">TAM</p>
-            <p className="text-3xl font-bold text-foreground">$6B</p>
-            <p className="text-xs text-text-secondary mt-2">50M specialty patients x $120/yr</p>
+            <p className="text-3xl font-bold text-foreground">$4.5B</p>
+            <p className="text-xs text-text-secondary mt-2">50M specialty patients x $90/yr</p>
           </div>
           <div className="bg-surface border border-border-light p-6">
             <p className="text-sm text-text-muted mb-2">SAM</p>
-            <p className="text-3xl font-bold text-foreground">$1.2B</p>
+            <p className="text-3xl font-bold text-foreground">$900M</p>
             <p className="text-xs text-text-secondary mt-2">Top 10 therapeutic areas, US only</p>
           </div>
           <div className="bg-accent/5 border-2 border-accent/30 p-6">
             <p className="text-sm text-text-muted mb-2">SOM (Year 3)</p>
-            <p className="text-3xl font-bold text-accent">$24M</p>
+            <p className="text-3xl font-bold text-accent">$18M</p>
             <p className="text-xs text-text-secondary mt-2">200K patients across 40 pharmacies</p>
           </div>
         </div>
@@ -611,16 +620,16 @@ function MarketSizeSlide() {
 
 function RevenueProjectionSlide() {
   const years = [
-    { year: 'Year 1', pharmacies: '5', patients: '5K', arr: '$600K', note: 'Pilot phase' },
-    { year: 'Year 2', pharmacies: '20', patients: '40K', arr: '$4.8M', note: 'Expansion', highlight: false },
-    { year: 'Year 3', pharmacies: '40', patients: '200K', arr: '$24M', note: 'Scale', highlight: true },
-    { year: 'Year 5', pharmacies: '150', patients: '1M', arr: '$120M', note: 'Market leader', highlight: false },
+    { year: 'Year 1', pharmacies: '5', patients: '5K', arr: '$450K', note: 'Pilot phase' },
+    { year: 'Year 2', pharmacies: '20', patients: '40K', arr: '$3.6M', note: 'Expansion', highlight: false },
+    { year: 'Year 3', pharmacies: '40', patients: '200K', arr: '$18M', note: 'Scale', highlight: true },
+    { year: 'Year 5', pharmacies: '150', patients: '1M', arr: '$90M', note: 'Market leader', highlight: false },
   ];
 
   return (
     <div className="flex flex-col justify-center h-full px-20">
       <h2 className="font-serif text-5xl text-foreground mb-10 leading-tight max-w-4xl">
-        Path to $120M ARR with 85%+ margins
+        Path to $90M ARR with 80% margins
       </h2>
       <div className="max-w-4xl">
         <div className="grid grid-cols-4 gap-4 mb-8">
@@ -651,7 +660,7 @@ function RevenueProjectionSlide() {
           <div className="border-l-4 border-accent/30 pl-6">
             <p className="text-sm text-text-muted mb-1">Valuation benchmark</p>
             <p className="text-foreground">
-              Healthcare SaaS companies trade at 15-25x ARR. At $24M ARR (Year 3), that puts Adhery at a $360M-$600M valuation.
+              Healthcare SaaS companies trade at 15-25x ARR. At $18M ARR (Year 3), that puts Adhery at a $270M-$450M valuation.
             </p>
           </div>
         </div>
@@ -672,7 +681,7 @@ const slides = [
   ROISlide,         // 8: $236K saved, 6 FTEs redeployed
   DashboardSlide,   // 9: One dashboard every morning
   GettingStartedSlide, // 10: Live in 4 weeks
-  PricingSlide,     // 11: $15K + $8-12 PMPM
+  PricingSlide,     // 11: 30% less than call center, $6-9 PMPM
   CTASlide,         // 12: Which 100 patients?
   // ─── Appendix ───
   AppendixDividerSlide, // 13: Appendix divider
