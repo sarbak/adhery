@@ -200,7 +200,7 @@ function Sidebar() {
             </div>
             <div>
               <p className="text-xs text-foreground font-medium">Maria Garcia</p>
-              <p className="text-[10px] text-text-muted">Humira Program</p>
+              <p className="text-[10px] text-text-muted">GLP-1 Program</p>
             </div>
           </div>
         )}

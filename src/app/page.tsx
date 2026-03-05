@@ -26,6 +26,9 @@ function Nav() {
           adhery
         </a>
         <div className="hidden md:flex items-center gap-8">
+          <a href="#why-adhery" className="text-sm font-medium text-text-secondary hover:text-foreground transition-colors">
+            Why Adhery
+          </a>
           <a href="#how-it-works" className="text-sm font-medium text-text-secondary hover:text-foreground transition-colors">
             How It Works
           </a>
@@ -35,14 +38,11 @@ function Nav() {
           <a href="#use-cases" className="text-sm font-medium text-text-secondary hover:text-foreground transition-colors">
             Use Cases
           </a>
-          <a href="#evidence" className="text-sm font-medium text-text-secondary hover:text-foreground transition-colors">
-            Evidence
-          </a>
           <a
             href="#demo"
-            className="text-sm font-semibold text-white bg-accent hover:bg-accent-dark px-5 py-2.5 rounded-full transition-all hover:-translate-y-0.5"
+            className="text-sm font-semibold text-white bg-accent hover:bg-accent-dark px-5 py-2.5 rounded-sm transition-all"
           >
-            Request Demo
+            See Adhery in Action
           </a>
         </div>
         <button
@@ -61,10 +61,11 @@ function Nav() {
       </div>
       {mobileOpen && (
         <div className="md:hidden bg-white border-t border-border-light px-6 py-4 space-y-3">
+          <a href="#why-adhery" className="block text-sm font-medium text-text-secondary" onClick={() => setMobileOpen(false)}>Why Adhery</a>
           <a href="#how-it-works" className="block text-sm font-medium text-text-secondary" onClick={() => setMobileOpen(false)}>How It Works</a>
           <a href="#who-we-serve" className="block text-sm font-medium text-text-secondary" onClick={() => setMobileOpen(false)}>Who We Serve</a>
           <a href="#use-cases" className="block text-sm font-medium text-text-secondary" onClick={() => setMobileOpen(false)}>Use Cases</a>
-          <a href="#demo" className="block text-sm font-semibold text-white bg-accent px-5 py-2.5 rounded-full text-center" onClick={() => setMobileOpen(false)}>Request Demo</a>
+          <a href="#demo" className="block text-sm font-semibold text-white bg-accent px-5 py-2.5 rounded-sm text-center" onClick={() => setMobileOpen(false)}>See Adhery in Action</a>
         </div>
       )}
     </nav>
@@ -74,48 +75,196 @@ function Nav() {
 /* ─── 2. Hero ─── */
 function Hero() {
   return (
-    <section className="pt-28 pb-20 px-6 bg-gradient-to-b from-[#f0f7f7] to-background">
+    <section className="pt-28 pb-20 px-6 bg-gradient-to-b from-[#e8eef5] to-background">
       <div className="max-w-5xl mx-auto text-center">
         <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-4">
-          Autonomous Patient Navigator
+          Autonomous GLP-1 Adherence
         </p>
         <h1 className="font-serif text-5xl md:text-7xl leading-[1.05] mb-6 text-foreground">
-          An AI navigator for<br />
-          <em className="font-serif">every patient.</em>
+          An Autonomous Voice Agent<br />
+          <em className="font-serif">for Every Patient.</em>
         </h1>
 
         <p className="text-lg text-text-secondary max-w-2xl mx-auto mb-8 leading-relaxed">
-          Adhery is an autonomous AI agent that manages patient support programs. It calls patients, triages concerns by text, and escalates to your pharmacists only when clinical judgment is needed.
+          Bridge the gap between script and long-term therapy persistence with empathetic, clinically-aware Voice AI. We automate the routine 80% of specialty coordination, so your clinical teams can focus on the complex 20%.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
           <a
             href="#demo"
-            className="text-sm font-semibold text-white bg-accent hover:bg-accent-dark px-8 py-3.5 rounded-full transition-all hover:-translate-y-0.5 shadow-lg shadow-accent/20"
+            className="text-sm font-semibold text-white bg-accent hover:bg-accent-dark px-8 py-3.5 rounded-sm transition-all shadow-lg shadow-accent/20"
           >
-            Request Demo
+            See Adhery in Action
           </a>
           <a
             href="#how-it-works"
-            className="text-sm font-medium text-text-secondary hover:text-foreground px-6 py-3.5 rounded-full border border-border-light hover:border-foreground/20 transition-all"
+            className="text-sm font-medium text-text-secondary hover:text-foreground px-6 py-3.5 rounded-sm border border-border-light hover:border-foreground/20 transition-all"
           >
-            See How It Works
+            How It Works
           </a>
         </div>
 
-        {/* Live phone CTA */}
-        <div className="flex items-center justify-center gap-2 text-sm text-text-muted">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent">
-            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
-          </svg>
-          Call to hear our AI agent: <span className="font-medium text-foreground">+1 (415) 555-0199</span>
+        {/* HIPAA + SOC-2 badges */}
+        <div className="flex items-center justify-center gap-6 text-text-muted">
+          <div className="flex items-center gap-2 text-xs">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            HIPAA Compliant
+          </div>
+          <div className="flex items-center gap-2 text-xs">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            SOC-2 Ready
+          </div>
+          <div className="flex items-center gap-2 text-xs">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent">
+              <path d="M9 12l2 2 4-4" />
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            MLR-Approved Scripts
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-/* ─── 2b. Adherence Journey Flow ─── */
+/* ─── 3. The Adhery Standard (Three Pillars) ─── */
+function AdheryStandard() {
+  const pillars = [
+    {
+      number: '01',
+      title: 'Clinical Intelligence that Listens',
+      items: [
+        'Vocal Biomarker Analysis',
+        'Precision Messaging for "Patient of One"',
+        'Support on patient\'s terms, not intrusive robocalls',
+        'Outcome-Based Logic optimized by drop-off risk',
+      ],
+    },
+    {
+      number: '02',
+      title: 'Zero-Hallucination Safety & Compliance',
+      items: [
+        'Knowledge-Grounded Guardrails (MLR-approved scripts)',
+        'Autonomous Pharmacovigilance (real-time AE detection)',
+        'Clinical Safety Net (warm handoff to live pharmacist)',
+      ],
+    },
+    {
+      number: '03',
+      title: 'Enterprise-Ready Continuity',
+      items: [
+        'Native Ecosystem Sync (Veeva Vault, Salesforce Health Cloud)',
+        'Context Persistence (same brain across channels)',
+        'Milestone Optimization (90-day drop-off cliff)',
+      ],
+    },
+  ];
+
+  return (
+    <section id="why-adhery" className="py-20 px-6 bg-white border-y border-border-light">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-14">
+          <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-3">
+            The Adhery Standard
+          </p>
+          <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-4">
+            The clinical intelligence of a specialist.<br />
+            <em className="font-serif">The scale of an autonomous platform.</em>
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {pillars.map((p) => (
+            <div key={p.number} className="bg-surface-warm border border-border-light p-6">
+              <span className="text-3xl font-bold text-accent/20 mb-4 block">{p.number}</span>
+              <h3 className="font-semibold text-foreground text-lg mb-4">{p.title}</h3>
+              <ul className="space-y-3">
+                {p.items.map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-sm text-text-secondary leading-relaxed">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent flex-shrink-0 mt-0.5">
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── 4. How Adhery Works ─── */
+function HowItWorks() {
+  const steps = [
+    {
+      step: '01',
+      title: 'Integrate & Ground',
+      description: 'Connect your data, define guardrails. We ingest your MLR-approved scripts, sync with Veeva Vault and Salesforce Health Cloud, and configure adverse event detection rules.',
+      result: 'Audit-ready infrastructure that passes MLR review in weeks.',
+      timeline: 'Week 1',
+      bg: 'bg-surface-warm',
+    },
+    {
+      step: '02',
+      title: 'Engage & Triage',
+      description: 'Monitor patient milestones and predict the 90-day cliff. Voice AI handles barrier conversations, SMS manages routine check-ins. Warm handoff routes high-risk patients to your pharmacists.',
+      result: '3.5x increase in patient engagement.',
+      timeline: 'Week 2-3',
+      bg: 'bg-white',
+    },
+    {
+      step: '03',
+      title: 'Measure & Optimize',
+      description: 'Track first fill, 30-day, 90-day, and PDC scores in real time. Auto-coded pharmacovigilance events. Sentiment analysis across every interaction.',
+      result: 'Data-driven insights that prove ROI.',
+      timeline: 'Week 4+',
+      bg: 'bg-surface-warm',
+    },
+  ];
+
+  return (
+    <section className="py-20 px-6" id="how-it-works">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-16">
+          <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-4">
+            How It Works
+          </p>
+          <h2 className="font-serif text-4xl md:text-5xl text-foreground">
+            Live in 3 weeks
+          </h2>
+          <p className="text-text-secondary mt-4 max-w-xl mx-auto">
+            Start with your hardest-to-retain GLP-1 patients. Pre-built cadences by drug class. No custom development.
+          </p>
+        </div>
+
+        <div className="space-y-0">
+          {steps.map((s, i) => (
+            <div key={i} className={`${s.bg} border border-border-light p-8 md:p-12 ${i > 0 ? '-mt-px' : ''}`}>
+              <div className="grid md:grid-cols-[80px_1fr_auto] gap-6 items-start">
+                <span className="text-4xl font-bold text-accent/30">{s.step}</span>
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-3">{s.title}</h3>
+                  <p className="text-text-secondary leading-relaxed max-w-xl mb-2">{s.description}</p>
+                  <p className="text-sm text-accent font-medium italic">{s.result}</p>
+                </div>
+                <span className="text-sm font-medium text-accent bg-accent/10 px-3 py-1 rounded-sm self-start hidden md:block">{s.timeline}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── 5. Adherence Journey Flow (GLP-1) ─── */
 
 interface JourneyStep {
   day: string;
@@ -139,238 +288,239 @@ interface PatientScenario {
 
 const SCENARIOS: PatientScenario[] = [
   {
-    name: 'Maria',
-    initial: 'M',
-    drug: 'Humira',
-    title: 'Side Effect Triage',
+    name: 'Sarah',
+    initial: 'S',
+    drug: 'Ozempic',
+    title: 'Positive Check-in',
     steps: [
       {
         day: 'Day 1',
-        channel: 'sms',
-        label: 'Welcome + consent',
-        technique: 'Opt-in enrollment',
-        message: 'Hi Maria! Welcome to your Humira support program. We\'ll send check-ins to help you stay on track. Reply YES to opt in.',
-        reply: 'YES! Thank you 😊',
-        result: 'Enrolled',
+        channel: 'voice',
+        label: 'AI Voice onboarding',
+        technique: 'Empathetic onboarding',
+        message: '"Hi Sarah, I\'m your Ozempic support navigator. I\'d like to learn about your schedule and walk you through what to expect in the first few weeks, especially around nausea. When do you usually take your dose?"',
+        reply: '"Sunday mornings, before breakfast. I\'m a little nervous about the nausea."',
+        result: 'Onboarded',
         resultColor: 'text-green-500',
       },
       {
+        day: 'Day 5',
+        channel: 'sms',
+        label: 'Nausea triage',
+        technique: 'Adverse event screening',
+        message: 'Hi Sarah, how are you feeling after your first dose? Any nausea or stomach discomfort?',
+        reply: 'Yes, pretty nauseous since Tuesday. Is that normal?',
+        result: 'AE detected',
+        resultColor: 'text-amber-500',
+      },
+      {
+        day: 'Day 5',
+        channel: 'voice',
+        label: 'Pharmacist warm handoff',
+        technique: 'Clinical safety net',
+        message: '"I\'m collecting some details about your nausea for your pharmacist. On a scale of 1-5, how severe? Are you able to eat and stay hydrated? I\'m routing this to Dr. Patel for a dosage review."',
+        reply: '"About a 3. I can eat small meals. Thank you for checking."',
+        result: 'Routed to RPh',
+        resultColor: 'text-green-500',
+        resultNote: 'Dosage review initiated',
+      },
+      {
+        day: 'Day 14',
+        channel: 'voice',
+        label: 'Two-week check-in',
+        technique: 'Behavioral reinforcement',
+        message: '"Sarah, just checking in. How has the nausea been since the dosage adjustment? And how are you feeling overall?"',
+        reply: '"Much better! Down to a 1. And I\'ve already lost 8 lbs. Feeling motivated."',
+        result: 'Improving',
+        resultColor: 'text-green-500',
+      },
+      {
+        day: 'Day 30',
+        channel: 'milestone',
+        label: 'First refill milestone',
+        technique: 'Refill confirmation',
+        message: 'Sarah, your Ozempic refill is due this week. Your first month is complete, and you\'re on track. Ready to confirm your refill?',
+        reply: 'Yes, confirmed! Feeling great about this.',
+        result: '30-day milestone',
+        resultColor: 'text-accent',
+      },
+    ],
+  },
+  {
+    name: 'Michael',
+    initial: 'M',
+    drug: 'Wegovy',
+    title: 'Adverse Event Calming',
+    steps: [
+      {
         day: 'Day 3',
         channel: 'sms',
-        label: 'Injection check-in',
-        technique: 'Two-way SMS (RR 1.23)',
-        message: 'Hey Maria, just checking in. Did your injection go smoothly this morning?',
-        reply: 'Yes but the injection site is a bit red',
-        result: 'Barrier detected',
+        label: 'Post-dose check-in',
+        technique: 'Proactive monitoring',
+        message: 'Hi Michael, how did your first Wegovy injection go? Any reactions at the injection site or stomach issues?',
+        reply: 'The injection was fine but I have really bad stomach cramps',
+        result: 'Side effect flagged',
         resultColor: 'text-amber-500',
       },
       {
         day: 'Day 3',
         channel: 'voice',
         label: 'AI voice follow-up',
-        technique: 'Non-judgmental feedback',
-        message: '"I\'m noting that redness and collecting a few details for your pharmacist Dr. Patel. Is it bigger than a quarter? Any swelling or warmth? How are you feeling otherwise?"',
-        reply: '"It\'s small, no swelling. Feeling fine otherwise"',
+        technique: 'AE severity assessment',
+        message: '"I want to make sure you\'re okay, Michael. Can you tell me more about the cramps? When did they start, and are you experiencing any other symptoms like vomiting or diarrhea? I\'m going to collect some details for your care team."',
+        reply: '"Started yesterday. Some diarrhea too. It\'s pretty uncomfortable."',
         result: 'Details collected',
+        resultColor: 'text-green-500',
+        resultNote: 'AE auto-coded',
+      },
+      {
+        day: 'Day 4',
+        channel: 'voice',
+        label: 'Pharmacist escalation',
+        technique: 'Warm handoff',
+        message: '"Michael, Dr. Patel reviewed your symptoms and wants to talk you through some strategies. I\'m connecting you now. These GI effects are common in the first few weeks and usually improve."',
+        reply: '"Good to know it\'s normal. I was worried I needed to stop."',
+        result: 'RPh connected',
         resultColor: 'text-green-500',
       },
       {
         day: 'Day 14',
         channel: 'sms',
-        label: 'Refill + delivery',
-        technique: 'Home delivery channel',
-        message: 'Maria, your Humira refill is ready. Want it delivered to your door? Reply DELIVER or PICKUP.',
-        reply: 'DELIVER',
-        result: 'Refill confirmed',
+        label: 'Symptom follow-up',
+        technique: 'Closed-loop tracking',
+        message: 'Michael, how are the stomach cramps now compared to last week? Better, same, or worse?',
+        reply: 'Way better! Almost gone now. Glad I stuck with it',
+        result: 'Symptoms resolved',
         resultColor: 'text-green-500',
-        resultNote: 'Access friction removed',
       },
       {
         day: 'Day 30',
         channel: 'milestone',
         label: 'Adherence milestone',
-        technique: 'Behavioral reinforcement',
-        message: 'Maria, you\'ve hit 100% adherence in your first month! Your care team is proud. You\'re in the top 15% of patients. Keep going!',
-        reply: 'That means a lot. Feeling great 💪',
+        technique: 'Positive reinforcement',
+        message: 'Michael, one month on Wegovy and 100% adherent. Your side effects have resolved and you\'re past the toughest part. Your care team is impressed.',
+        reply: 'Feeling great. Lost 12 lbs already!',
         result: '100% PDC',
         resultColor: 'text-accent',
       },
     ],
   },
   {
-    name: 'James',
-    initial: 'J',
-    drug: 'Eliquis',
-    title: 'Cost Barrier Navigation',
-    steps: [
-      {
-        day: 'Day 1',
-        channel: 'sms',
-        label: 'Welcome + med sync',
-        technique: 'Medication synchronization',
-        message: 'Hi James! We\'ve aligned your Eliquis refill with your other medications so everything arrives together on the 1st of each month. Sound good?',
-        reply: 'That\'s so much easier, yes please',
-        result: 'Meds synced',
-        resultColor: 'text-green-500',
-      },
-      {
-        day: 'Day 8',
-        channel: 'sms',
-        label: 'Adherence check-in',
-        technique: 'Missed-dose detection',
-        message: 'Hi James, we noticed your pill count may be off. No judgment. Did you miss a dose recently? We\'re here to help.',
-        reply: 'Yeah I skipped 2 days. The copay went up and I\'m trying to stretch it',
-        result: 'Cost barrier found',
-        resultColor: 'text-red-500',
-      },
-      {
-        day: 'Day 8',
-        channel: 'voice',
-        label: 'Copay assistance call',
-        technique: 'Affordability triage',
-        message: '"I understand, James. I found a manufacturer copay card that can bring your cost down to $10/month. I\'m texting you the enrollment link right now. Can I also check if you qualify for the patient assistance program?"',
-        reply: '"Wow, I had no idea that existed. Yes please"',
-        result: 'Copay card enrolled',
-        resultColor: 'text-green-500',
-        resultNote: '$10/mo vs $85/mo',
-      },
-      {
-        day: 'Day 15',
-        channel: 'sms',
-        label: 'Re-engagement nudge',
-        technique: 'Nonjudgmental outreach',
-        message: 'James, your copay card is active. Your next refill is covered at $10. Ready to get back on track?',
-        reply: 'Picked it up today. Thank you so much',
-        result: 'Re-engaged',
-        resultColor: 'text-green-500',
-      },
-      {
-        day: 'Day 30',
-        channel: 'milestone',
-        label: 'Progress dashboard',
-        technique: 'Feedback loop',
-        message: 'James, here\'s your monthly snapshot: 26/30 days on track, trending up. Your blood thinner is working best when taken consistently. You\'re doing great.',
-        reply: 'Really motivating to see the numbers',
-        result: '87% PDC',
-        resultColor: 'text-accent',
-      },
-    ],
-  },
-  {
-    name: 'Linda',
+    name: 'Lisa',
     initial: 'L',
-    drug: 'Ozempic',
-    title: 'Multi-Channel Re-engagement',
+    drug: 'Mounjaro',
+    title: 'Re-engaging a Dropped Patient',
     steps: [
       {
-        day: 'Day 5',
+        day: 'Day 60',
         channel: 'sms',
-        label: 'Dose reminder',
-        technique: 'Personalized timing',
-        message: 'Good morning Linda! Your weekly Ozempic dose is today (Sunday). Your last injection was left thigh. Ready to confirm when done?',
-        reply: 'Done! Used right thigh this time',
-        result: 'Dose confirmed',
-        resultColor: 'text-green-500',
-      },
-      {
-        day: 'Day 19',
-        channel: 'sms',
-        label: 'Missed dose detected',
-        technique: 'Smart escalation',
-        message: 'Hi Linda, it looks like you might have missed your Sunday dose. Everything okay? Reply TAKEN if you already did it.',
+        label: 'Missed refill detected',
+        technique: 'Gap detection',
+        message: 'Hi Lisa, we noticed your Mounjaro refill is overdue. Everything okay? We\'re here if you need anything.',
         reply: '',
         result: 'No response',
         resultColor: 'text-red-500',
       },
       {
-        day: 'Day 20',
+        day: 'Day 63',
         channel: 'voice',
-        label: 'AI care call',
-        technique: 'Empathetic voice outreach',
-        message: '"Hi Linda, just checking in. We missed you on Sunday and wanted to make sure everything\'s alright. Is there a time of day that works better for you?"',
-        reply: '"I keep forgetting on weekends. Maybe Sunday morning with breakfast?"',
-        result: 'Routine set',
-        resultColor: 'text-green-500',
-        resultNote: 'Behavioral anchor created',
+        label: 'AI re-engagement call',
+        technique: 'Non-judgmental outreach',
+        message: '"Hi Lisa, just checking in. We noticed you haven\'t refilled your Mounjaro recently and wanted to make sure everything is alright. Is there something we can help with?"',
+        reply: '"Honestly, I\'ve lost 20 lbs and I feel great. I was thinking maybe I don\'t need it anymore."',
+        result: 'Drop-off reason found',
+        resultColor: 'text-amber-500',
       },
       {
-        day: 'Day 22',
-        channel: 'mail',
-        label: 'Welcome kit mailed',
-        technique: 'Physical reinforcement',
-        message: 'Mailed: dose calendar with Sunday stickers, injection site rotation guide, and a fridge magnet with her schedule. Tracked delivery.',
-        reply: 'Got the kit! The fridge magnet is perfect',
-        result: 'Kit delivered',
+        day: 'Day 63',
+        channel: 'voice',
+        label: 'Rebound education',
+        technique: 'Evidence-based counseling',
+        message: '"That\'s fantastic progress, Lisa. I want to share something important though. Studies show that patients who stop GLP-1 therapy regain 60-70% of lost weight within a year due to hormone rebound. Would it help to talk this through with your doctor?"',
+        reply: '"I had no idea about the rebound. Yes, I\'d like to talk to my doctor."',
+        result: 'Telehealth scheduled',
+        resultColor: 'text-green-500',
+        resultNote: 'Re-engaged',
+      },
+      {
+        day: 'Day 65',
+        channel: 'sms',
+        label: 'Refill coordination',
+        technique: 'Barrier removal',
+        message: 'Lisa, your doctor confirmed continuing Mounjaro. Your refill is ready. Want to confirm pickup or delivery?',
+        reply: 'Delivery please. Thank you for reaching out.',
+        result: 'Refill confirmed',
         resultColor: 'text-green-500',
       },
       {
-        day: 'Day 45',
+        day: 'Day 90',
         channel: 'milestone',
-        label: 'Streak celebration',
-        technique: 'Positive reinforcement',
-        message: 'Linda, you\'ve hit a 4-week streak with zero missed doses since we set up your Sunday routine. That\'s real commitment!',
-        reply: 'The breakfast trick works like a charm',
-        result: '4-week streak',
+        label: '90-day cliff crossed',
+        technique: 'Milestone celebration',
+        message: 'Lisa, you\'ve crossed the 90-day mark, the point where most GLP-1 patients drop off. You\'re in the top 20% who maintain therapy long-term. That takes real commitment.',
+        reply: 'So glad I didn\'t quit. Down 28 lbs total!',
+        result: '90-day milestone',
         resultColor: 'text-accent',
       },
     ],
   },
   {
-    name: 'Robert',
-    initial: 'R',
-    drug: 'Methotrexate',
-    title: 'Side Effect Monitoring',
+    name: 'David',
+    initial: 'D',
+    drug: 'Zepbound',
+    title: 'Insurance Friction Navigation',
     steps: [
       {
-        day: 'Day 2',
+        day: 'Day 25',
         channel: 'sms',
-        label: 'Education link',
-        technique: 'QR-code educational content',
-        message: 'Hi Robert! Here\'s a quick 2-min video about what to expect with Methotrexate in your first week. Most side effects are manageable. Tap to watch:',
-        reply: 'Watched it. Good to know about the nausea thing',
-        result: 'Educated',
-        resultColor: 'text-green-500',
+        label: 'Refill reminder',
+        technique: 'Proactive refill',
+        message: 'Hi David, your Zepbound refill is coming up next week. Want me to start processing it?',
+        reply: 'Actually my insurance denied the renewal. I don\'t know what to do.',
+        result: 'Insurance barrier',
+        resultColor: 'text-red-500',
       },
       {
-        day: 'Day 7',
-        channel: 'sms',
-        label: 'Weekly wellness check',
-        technique: 'Symptom monitoring',
-        message: 'Robert, quick weekly check: any nausea, fatigue, or mouth sores this week? Scale 1-5, 1 = none.',
-        reply: 'Nausea 3, fatigue 2, no sores',
-        result: 'Symptoms logged',
-        resultColor: 'text-amber-500',
-      },
-      {
-        day: 'Day 7',
+        day: 'Day 25',
         channel: 'voice',
-        label: 'Nausea management call',
-        technique: 'Proactive intervention',
-        message: '"I\'m flagging that nausea for Dr. Patel so they can review your options. In the meantime, can I schedule a follow-up check on Thursday to see how you\'re doing?"',
-        reply: '"Yes, Thursday works. Thanks for flagging it"',
-        result: 'Pharmacist notified',
+        label: 'Prior auth assistance',
+        technique: 'Affordability triage',
+        message: '"I understand how frustrating that is, David. Let me help. I can walk you through the prior authorization appeal process. I\'ll also check if you qualify for the manufacturer\'s copay assistance program. Can you tell me what the denial reason was?"',
+        reply: '"It says step therapy required. They want me to try something else first."',
+        result: 'Appeal initiated',
         resultColor: 'text-green-500',
-        resultNote: 'Follow-up scheduled',
+        resultNote: 'PA support started',
       },
       {
-        day: 'Day 10',
+        day: 'Day 27',
         channel: 'sms',
-        label: 'Follow-up check',
-        technique: 'Closed-loop tracking',
-        message: 'Hi Robert, how has the nausea been since Thursday? Better, same, or worse?',
-        reply: 'Way better! Down to a 1. Dr. Patel\'s suggestion worked',
-        result: 'Symptom improving',
+        label: 'Copay card enrollment',
+        technique: 'Financial support',
+        message: 'David, while we work on the prior auth appeal, I found a manufacturer savings card that can cover your next fill. I\'m texting you the enrollment link. Your out-of-pocket could drop to $25.',
+        reply: 'Just enrolled. This is a lifesaver.',
+        result: 'Copay card active',
         resultColor: 'text-green-500',
       },
       {
         day: 'Day 30',
+        channel: 'sms',
+        label: 'Refill confirmed',
+        technique: 'Gap prevention',
+        message: 'Good news, David. Your Zepbound is ready for pickup at $25 with the savings card. Prior auth appeal is also in progress.',
+        reply: 'Picking it up today. Thank you!',
+        result: 'No gap in therapy',
+        resultColor: 'text-green-500',
+      },
+      {
+        day: 'Day 45',
         channel: 'milestone',
-        label: 'Lab reminder + milestone',
-        technique: 'Care coordination',
-        message: 'Robert, your monthly bloodwork is due this week (liver function + CBC). Also: 100% adherence this month. Your rheumatologist will love that. Lab locations near you:',
-        reply: 'Booked for Friday. Thanks for the reminder',
-        result: '100% PDC + labs',
+        label: 'Prior auth approved',
+        technique: 'Barrier resolved',
+        message: 'David, your prior auth appeal was approved. Your insurance will cover Zepbound going forward. No more out-of-pocket surprises.',
+        reply: 'Amazing news. I was ready to give up.',
+        result: 'PA approved',
         resultColor: 'text-accent',
+        resultNote: 'Full coverage restored',
       },
     ],
   },
@@ -389,14 +539,6 @@ function ChannelIcon({ channel, active }: { channel: string; active: boolean }) 
     return (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
         <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
-      </svg>
-    );
-  }
-  if (channel === 'mail') {
-    return (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
-        <rect x="2" y="4" width="20" height="16" rx="2" />
-        <path d="M22 6L12 13 2 6" />
       </svg>
     );
   }
@@ -423,7 +565,6 @@ function AdherenceJourney() {
     setActiveStep(-1);
     setPhase('idle');
     setIsPlaying(false);
-    // Small delay then start playing
     setTimeout(() => {
       setIsPlaying(true);
     }, 300);
@@ -463,7 +604,6 @@ function AdherenceJourney() {
         if (step < total - 1) {
           timeout = setTimeout(() => tick(step + 1, 'sending'), 1000);
         } else {
-          // Auto-advance to next scenario
           timeout = setTimeout(() => {
             const next = (scenarioIdx + 1) % SCENARIOS.length;
             startScenario(next);
@@ -477,17 +617,17 @@ function AdherenceJourney() {
   }, [isPlaying, steps.length, scenarioIdx, startScenario]);
 
   return (
-    <section className="py-20 px-6 bg-white">
+    <section className="py-20 px-6 bg-white" id="use-cases">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-10">
           <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-4">
-            Navigator in Action
+            Voice Agent in Action
           </p>
           <h2 className="font-serif text-4xl md:text-5xl text-foreground">
-            Watch the AI navigator <em className="font-serif">run a patient program</em>
+            Watch the AI navigator <em className="font-serif">manage GLP-1 patients</em>
           </h2>
           <p className="text-text-secondary mt-4 max-w-2xl mx-auto">
-            The navigator picks the right channel for each patient. When it can't resolve something, it escalates to your pharmacist.
+            Four real scenarios: positive check-in, adverse event calming, re-engaging a dropped patient, and insurance friction navigation.
           </p>
         </div>
 
@@ -497,7 +637,7 @@ function AdherenceJourney() {
             <button
               key={i}
               onClick={() => startScenario(i)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm transition-all ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-sm text-sm transition-all ${
                 i === scenarioIdx
                   ? 'bg-accent text-white shadow-lg shadow-accent/20'
                   : 'bg-surface-warm text-text-secondary hover:text-foreground'
@@ -513,7 +653,7 @@ function AdherenceJourney() {
 
         {/* Technique label */}
         <div className="text-center mb-8">
-          <span className="inline-flex items-center gap-2 text-xs bg-accent/5 text-accent-dark border border-accent/15 px-4 py-1.5 rounded-full">
+          <span className="inline-flex items-center gap-2 text-xs bg-accent/5 text-accent-dark border border-accent/15 px-4 py-1.5 rounded-sm">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent">
               <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
             </svg>
@@ -524,10 +664,9 @@ function AdherenceJourney() {
         <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* Left: Flow steps */}
           <div id="adherence-journey" className="py-2">
-            {/* Header row */}
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-accent/10 border border-accent/30 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-sm bg-accent/10 border border-accent/30 flex items-center justify-center">
                   <img src="/logo.svg" alt="" className="w-4 h-4" />
                 </div>
                 <span className="text-xs font-medium tracking-[0.1em] uppercase text-text-muted">
@@ -539,13 +678,12 @@ function AdherenceJourney() {
                 <span className="text-xs font-medium tracking-[0.1em] uppercase text-text-muted">
                   {scenario.name}
                 </span>
-                <div className="w-8 h-8 rounded-full bg-accent/10 border border-accent/30 flex items-center justify-center text-accent font-semibold text-xs">
+                <div className="w-8 h-8 rounded-sm bg-accent/10 border border-accent/30 flex items-center justify-center text-accent font-semibold text-xs">
                   {scenario.initial}
                 </div>
               </div>
             </div>
 
-            {/* Steps */}
             <div className="space-y-0">
               {steps.map((step, i) => {
                 const isActive = activeStep === i;
@@ -560,7 +698,6 @@ function AdherenceJourney() {
                       opacity: isFuture && activeStep >= 0 ? 0.15 : isPast ? 0.3 : 1,
                     }}
                   >
-                    {/* Connector + icon */}
                     <div className="relative flex flex-col items-center" style={{ width: 36 }}>
                       {i > 0 && (
                         <div
@@ -571,7 +708,7 @@ function AdherenceJourney() {
                         />
                       )}
                       <div
-                        className="w-9 h-9 flex items-center justify-center rounded-full border transition-all duration-300"
+                        className="w-9 h-9 flex items-center justify-center rounded-sm border transition-all duration-300"
                         style={{
                           borderColor: isActive ? 'var(--accent)' : isPast ? 'var(--text-muted)' : 'var(--border-light)',
                           backgroundColor: isActive && phase === 'sending' ? 'var(--accent)' : 'transparent',
@@ -581,7 +718,6 @@ function AdherenceJourney() {
                       </div>
                     </div>
 
-                    {/* Label + day + technique */}
                     <div className="flex-1 min-w-0">
                       <span
                         className="text-sm font-medium transition-colors duration-300 block"
@@ -604,7 +740,6 @@ function AdherenceJourney() {
                       </span>
                     </div>
 
-                    {/* Result */}
                     <div className="flex-shrink-0 text-right">
                       {(isActive && phase === 'result') || isPast ? (
                         <span className={`text-xs font-medium ${step.resultColor}`}>
@@ -625,22 +760,21 @@ function AdherenceJourney() {
           </div>
 
           {/* Right: Live message preview */}
-          <div className="bg-[#1a1a2e] rounded-2xl p-6 shadow-2xl min-h-[380px] flex flex-col">
+          <div className="bg-[#1a1a2e] rounded-sm p-6 shadow-2xl min-h-[380px] flex flex-col">
             {activeStep >= 0 ? (
               <>
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] uppercase tracking-wider text-white/30 font-medium">
-                      {steps[activeStep].channel === 'voice' ? 'AI Voice Call' : steps[activeStep].channel === 'milestone' ? 'Milestone' : steps[activeStep].channel === 'mail' ? 'Physical Mail' : 'SMS Conversation'}
+                      {steps[activeStep].channel === 'voice' ? 'AI Voice Call' : steps[activeStep].channel === 'milestone' ? 'Milestone' : 'SMS Conversation'}
                     </span>
                     <span className="text-[10px] text-white/20">{steps[activeStep].day}</span>
                   </div>
-                  <span className="text-[9px] text-accent/50 font-medium px-2 py-0.5 border border-accent/20 rounded-full">
+                  <span className="text-[9px] text-accent/50 font-medium px-2 py-0.5 border border-accent/20 rounded-sm">
                     {steps[activeStep].technique}
                   </span>
                 </div>
                 <div className="flex-1 flex flex-col justify-center space-y-3">
-                  {/* Outgoing message */}
                   <div
                     className="transition-all duration-500"
                     style={{
@@ -651,12 +785,11 @@ function AdherenceJourney() {
                     <div className="flex items-start gap-2 mb-1">
                       <span className="text-[10px] font-medium text-accent mt-0.5">ADHERY</span>
                     </div>
-                    <div className="bg-accent/20 text-white/90 text-sm px-4 py-3 rounded-2xl rounded-bl-md max-w-[92%]">
+                    <div className="bg-accent/20 text-white/90 text-sm px-4 py-3 rounded-sm max-w-[92%]">
                       {steps[activeStep].message}
                     </div>
                   </div>
 
-                  {/* Reply */}
                   {steps[activeStep].reply && (
                     <div
                       className="transition-all duration-500"
@@ -668,20 +801,19 @@ function AdherenceJourney() {
                       <div className="flex items-start gap-2 mb-1 justify-end">
                         <span className="text-[10px] font-medium text-white/40 mt-0.5">{scenario.name.toUpperCase()}</span>
                       </div>
-                      <div className="bg-white/10 text-white/80 text-sm px-4 py-3 rounded-2xl rounded-br-md max-w-[85%] ml-auto">
+                      <div className="bg-white/10 text-white/80 text-sm px-4 py-3 rounded-sm max-w-[85%] ml-auto">
                         {steps[activeStep].reply}
                       </div>
                     </div>
                   )}
                 </div>
 
-                {/* Result badge */}
                 <div
                   className="mt-4 transition-all duration-500"
                   style={{ opacity: phase === 'result' ? 1 : 0 }}
                 >
                   <div className="flex items-center gap-2">
-                    <span className={`text-xs font-medium px-3 py-1 rounded-full ${
+                    <span className={`text-xs font-medium px-3 py-1 rounded-sm ${
                       steps[activeStep].channel === 'milestone'
                         ? 'bg-accent/20 text-accent'
                         : steps[activeStep].resultColor.includes('red')
@@ -704,7 +836,7 @@ function AdherenceJourney() {
             ) : (
               <div className="flex-1 flex flex-col items-center justify-center text-white/20">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-                  <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
                 </svg>
                 <p className="text-xs mt-3">Loading {scenario.name}&apos;s journey...</p>
               </div>
@@ -716,84 +848,113 @@ function AdherenceJourney() {
   );
 }
 
-/* ─── 2b. Multichannel vs Call Center Comparison ─── */
-function MultichannelComparison() {
+/* ─── 6. Case Study Cards (GLP-1) ─── */
+function CaseStudyCards() {
+  const [expanded, setExpanded] = useState<number | null>(null);
+  const studies = [
+    {
+      name: 'Sarah',
+      drug: 'Ozempic',
+      headline: '90-day cliff crossed with zero therapy gaps',
+      summary: 'Sarah experienced early nausea that almost caused her to quit. Adhery\'s voice agent detected the adverse event, routed her to a pharmacist for dosage review, and provided ongoing support through the first 90 days.',
+      metrics: { adherence: '100% PDC', retention: '90+ days', channel: 'Voice + SMS' },
+    },
+    {
+      name: 'Lisa',
+      drug: 'Mounjaro',
+      headline: 'Re-engaged after considering stopping therapy',
+      summary: 'Lisa lost 20 lbs and thought she no longer needed medication. Adhery\'s voice agent educated her about hormone rebound and weight regain risk, connecting her with her doctor to confirm continued therapy.',
+      metrics: { recovery: 'Re-engaged day 63', outcome: 'Continued therapy', channel: 'Voice' },
+    },
+    {
+      name: 'David',
+      drug: 'Zepbound',
+      headline: 'Insurance denial navigated, zero gap in therapy',
+      summary: 'David\'s insurance denied his refill renewal. Adhery helped him enroll in a manufacturer copay card within 48 hours while initiating a prior authorization appeal that was ultimately approved.',
+      metrics: { response: '48 hr resolution', savings: '$25 copay', channel: 'Voice + SMS' },
+    },
+  ];
+
   return (
-    <section id="multichannel-impact" className="py-20 bg-surface-warm border-y border-border-light">
-      <div className="max-w-5xl mx-auto px-6">
-        <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent text-center mb-3">
-          Autonomous vs. Manual
-        </p>
-        <h2 className="font-serif text-4xl text-foreground text-center mb-4">
-          Call centers reach 45% of patients. The navigator reaches 90%.
-        </h2>
-        <p className="text-text-secondary text-center mb-14 max-w-2xl mx-auto">
-          Same patients, different approach. An AI agent figures out what each one needs and acts on it.
-        </p>
+    <section className="py-20 px-6 bg-background">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-12">
+          <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-4">
+            GLP-1 Patient Outcomes
+          </p>
+          <h2 className="font-serif text-4xl md:text-5xl text-foreground">
+            Real scenarios, <em className="font-serif">real outcomes</em>
+          </h2>
+        </div>
 
-        <div className="max-w-3xl mx-auto space-y-10">
-          {/* Call Center bar - 45% reached, 55% unreached */}
-          <div>
-            <div className="flex items-baseline justify-between mb-3">
-              <span className="text-sm font-semibold text-foreground">Manual Call Center</span>
-              <span className="text-sm text-text-muted">13 calls/patient/year</span>
+        <div className="grid md:grid-cols-3 gap-6">
+          {studies.map((study, i) => (
+            <div
+              key={i}
+              onClick={() => setExpanded(expanded === i ? null : i)}
+              className={`bg-white border border-border-light p-6 cursor-pointer transition-all duration-300 ${
+                expanded === i ? 'ring-2 ring-accent/30 shadow-xl' : 'hover:shadow-md'
+              }`}
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-sm bg-accent/10 flex items-center justify-center text-accent font-semibold text-sm">
+                  {study.name[0]}
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground">{study.name}</p>
+                  <p className="text-xs text-text-muted">{study.drug}</p>
+                </div>
+              </div>
+              <p className="font-semibold text-foreground mb-2">{study.headline}</p>
+              {expanded === i && (
+                <div className="mt-4">
+                  <p className="text-sm text-text-secondary leading-relaxed mb-4">{study.summary}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {Object.entries(study.metrics).map(([key, val]) => (
+                      <span
+                        key={key}
+                        className="text-xs bg-accent/10 text-accent-dark px-3 py-1 rounded-sm"
+                      >
+                        {val}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {expanded !== i && (
+                <p className="text-xs text-text-muted mt-2">Click to expand &rarr;</p>
+              )}
             </div>
-            <div className="h-14 bg-gray-100 flex">
-              <div className="h-full bg-[#94a3b8] flex items-center justify-center" style={{ width: '45%' }}>
-                <span className="text-sm text-white font-medium">45% reached</span>
-              </div>
-              <div className="h-full bg-[#e2e8f0] flex items-center justify-center flex-1">
-                <span className="text-sm text-text-muted font-medium">55% unreached</span>
-              </div>
-            </div>
-            <p className="text-xs text-text-muted mt-3">55% go to voicemail. Of the 45% reached, most are routine check-ins a system could handle.</p>
-          </div>
-
-          {/* Adhery Navigator bar - 90% reached, 10% need pharmacist */}
-          <div>
-            <div className="flex items-baseline justify-between mb-3">
-              <span className="text-sm font-semibold text-accent">Adhery Navigator</span>
-              <span className="text-sm text-text-muted">autonomous, always-on</span>
-            </div>
-            <div className="h-14 bg-gray-100 flex">
-              <div className="h-full bg-[#0d7377] flex items-center justify-center" style={{ width: '40%' }}>
-                <span className="text-xs text-white font-medium">AI Voice</span>
-              </div>
-              <div className="h-full bg-[#22c55e] flex items-center justify-center" style={{ width: '35%' }}>
-                <span className="text-xs text-white font-medium">Async Triage</span>
-              </div>
-              <div className="h-full bg-[#f59e0b] flex items-center justify-center" style={{ width: '15%' }}>
-                <span className="text-[10px] text-white font-medium">Mail</span>
-              </div>
-              <div className="h-full bg-[#e2e8f0] flex items-center justify-center" style={{ width: '10%' }}>
-                <span className="text-[10px] text-text-muted font-medium">10%</span>
-              </div>
-            </div>
-            <p className="text-xs text-text-muted mt-3">90% resolved autonomously. 10% escalated to pharmacist for clinical judgment.</p>
-          </div>
-
-          {/* AI Voice advantages as compact row */}
-          <div className="bg-white border border-border-light p-6">
-            <p className="text-xs font-medium text-accent uppercase tracking-wider mb-4">What makes the AI voice navigator different</p>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-x-6 gap-y-2">
-              {[
-                'Calls when the patient is free',
-                'Every patient, every time',
-                'Catches hesitation and tone shifts',
-                'Pace and language adapt per patient',
-                'Learns from every conversation',
-              ].map((a) => (
-                <p key={a} className="text-xs text-text-secondary">{a}</p>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-/* ─── 2c. Retention Science Methods ─── */
+/* ─── 7. Impact Metrics ─── */
+function ImpactMetrics() {
+  return (
+    <section className="py-16 px-6 bg-gradient-to-r from-accent to-accent-light">
+      <div className="max-w-5xl mx-auto grid md:grid-cols-4 gap-8 text-center text-white">
+        {[
+          { value: '3.5x', label: 'Engagement Increase', sub: 'AI voice outreach vs. call center' },
+          { value: '80%+', label: 'PDC Achievement', sub: 'crossing the CMS quality threshold' },
+          { value: '90-day', label: 'Cliff Crossed', sub: 'where most GLP-1 patients drop off' },
+          { value: '3 wks', label: 'Time to Launch', sub: 'from contract to go-live' },
+        ].map((m, i) => (
+          <div key={i}>
+            <p className="text-5xl md:text-6xl font-bold mb-2">{m.value}</p>
+            <p className="text-lg font-semibold mb-1">{m.label}</p>
+            <p className="text-sm text-white/70">{m.sub}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ─── 8. Retention Science Methods ─── */
 function RetentionMethods() {
   const methods = [
     {
@@ -875,160 +1036,10 @@ function RetentionMethods() {
   );
 }
 
-/* ─── 3. Logo Carousel ─── */
-function LogoCarousel() {
-  const logos = [
-    'Novartis', 'Pfizer', 'AbbVie', 'Roche', 'Merck',
-    'Sanofi', 'AstraZeneca', 'GSK', 'BMS', 'Amgen',
-  ];
-
-  return (
-    <section className="py-12 bg-white border-y border-border-light overflow-hidden">
-      <p className="text-xs font-medium tracking-[0.15em] uppercase text-text-muted text-center mb-8">
-        Built for Healthcare
-      </p>
-      <div className="relative">
-        <div className="flex animate-scroll gap-16 items-center">
-          {[...logos, ...logos].map((name, i) => (
-            <div
-              key={i}
-              className="flex-shrink-0 text-lg font-semibold text-text-muted/40 select-none whitespace-nowrap"
-            >
-              {name}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── 4. Testimonial Carousel ─── */
-function TestimonialCarousel() {
-  const [current, setCurrent] = useState(0);
-  const testimonials = [
-    {
-      quote: 'We doubled our PDC scores in the first quarter. The two-way SMS check-ins catch barriers early, exactly like the meta-analyses predicted. Our pharmacists now focus only on patients who truly need human attention.',
-      name: 'Dr. Sarah Chen',
-      title: 'VP of Patient Services, Regional Specialty Pharmacy',
-      metric: 'PDC 0.29 to 0.58',
-    },
-    {
-      quote: 'We went from 67% to above the PDC 80% threshold across our Humira program. The multi-channel approach catches patients at every touchpoint, not just the ones who answer their phone.',
-      name: 'Michael Torres',
-      title: 'Director of Operations, Biologics Hub Pharmacy',
-      metric: '67% to 84% PDC',
-    },
-    {
-      quote: 'The voice analytics caught a serious drug interaction we would have missed. The AI flagged it from a patient conversation and escalated to our pharmacist within 4 minutes.',
-      name: 'Dr. Lisa Patel',
-      title: 'Chief Pharmacy Officer, HealthBridge Systems',
-      metric: '4 min escalation',
-    },
-  ];
-
-  const next = () => setCurrent((c) => (c + 1) % testimonials.length);
-  const prev = () => setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length);
-
-  return (
-    <section className="py-20 px-6 bg-surface-warm">
-      <div className="max-w-3xl mx-auto text-center">
-        <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-4">
-          What Our Partners Say
-        </p>
-        <div className="relative min-h-[220px]">
-          <blockquote className="text-xl md:text-2xl font-serif leading-relaxed text-foreground mb-8">
-            &ldquo;{testimonials[current].quote}&rdquo;
-          </blockquote>
-          <div className="inline-block bg-accent/10 text-accent text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
-            {testimonials[current].metric}
-          </div>
-          <div>
-            <p className="font-semibold text-foreground">{testimonials[current].name}</p>
-            <p className="text-sm text-text-secondary">{testimonials[current].title}</p>
-          </div>
-        </div>
-        <div className="flex items-center justify-center gap-3 mt-8">
-          <button
-            onClick={prev}
-            className="w-10 h-10 rounded-full border border-border-light hover:border-accent text-text-secondary hover:text-accent transition-all flex items-center justify-center"
-            aria-label="Previous"
-          >
-            &larr;
-          </button>
-          <div className="flex gap-2">
-            {testimonials.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrent(i)}
-                className={`w-2 h-2 rounded-full transition-all ${i === current ? 'bg-accent w-6' : 'bg-border-light'}`}
-                aria-label={`Slide ${i + 1}`}
-              />
-            ))}
-          </div>
-          <button
-            onClick={next}
-            className="w-10 h-10 rounded-full border border-border-light hover:border-accent text-text-secondary hover:text-accent transition-all flex items-center justify-center"
-            aria-label="Next"
-          >
-            &rarr;
-          </button>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── 5. Video Demo Tabs ─── */
+/* ─── 9. Video Demo Tabs ─── */
 function VideoDemoTabs() {
   const [active, setActive] = useState(0);
   const tabs = [
-    {
-      label: 'SMS Check-in',
-      icon: (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-        </svg>
-      ),
-      title: 'Intelligent SMS Conversations',
-      description:
-        'Two-way SMS improves adherence 2.11x over control (meta-analysis of RCTs). Our AI-powered check-ins identify barriers in real time, so patients get help before they drop off.',
-      mockup: (
-        <div className="bg-[#1a1a2e] rounded-2xl p-6 max-w-sm mx-auto shadow-2xl">
-          <div className="text-xs text-white/40 text-center mb-3">Today, 9:15 AM</div>
-          <div className="space-y-2.5">
-            <div className="bg-accent/90 text-white text-sm px-4 py-2 rounded-2xl rounded-br-md max-w-[80%] ml-auto">
-              Hi Maria! Quick check-in on your Humira. Did you take your dose this morning?
-            </div>
-            <div className="bg-white/10 text-white text-sm px-4 py-2 rounded-2xl rounded-bl-md max-w-[80%]">
-              Yes but I noticed redness at the injection site
-            </div>
-            <div className="bg-accent/90 text-white text-sm px-4 py-2 rounded-2xl rounded-br-md max-w-[80%] ml-auto">
-              I&apos;ll note that for your pharmacist. Is it bigger than a quarter, or is there swelling?
-            </div>
-            <div className="bg-white/10 text-white text-sm px-4 py-2 rounded-2xl rounded-bl-md max-w-[80%]">
-              No its pretty small
-            </div>
-            <div className="bg-accent/90 text-white text-sm px-4 py-2 rounded-2xl rounded-br-md max-w-[80%] ml-auto">
-              Got it, I&apos;ll send those details to your pharmacist. I&apos;ll check back in 2 days. How&apos;s your energy been?
-            </div>
-            <div className="bg-white/10 text-white text-sm px-4 py-2 rounded-2xl rounded-bl-md max-w-[80%]">
-              Actually pretty tired lately
-            </div>
-            <div className="bg-accent/90 text-white text-sm px-4 py-2 rounded-2xl rounded-br-md max-w-[80%] ml-auto">
-              I&apos;m noting the fatigue for your pharmacist so they can review it. Would a quick call from them help?
-            </div>
-            <div className="bg-white/10 text-white text-sm px-4 py-2 rounded-2xl rounded-bl-md max-w-[80%]">
-              Not yet, let me see how it goes
-            </div>
-          </div>
-          <div className="mt-3 flex gap-2">
-            <span className="text-[10px] bg-yellow-500/20 text-yellow-400 px-2 py-0.5 rounded-full">Fatigue flagged</span>
-            <span className="text-[10px] bg-accent/20 text-accent px-2 py-0.5 rounded-full">Follow-up in 2 days</span>
-          </div>
-        </div>
-      ),
-    },
     {
       label: 'Voice Call',
       icon: (
@@ -1036,13 +1047,13 @@ function VideoDemoTabs() {
           <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
         </svg>
       ),
-      title: 'AI Voice Calls',
+      title: 'AI Voice Agent for GLP-1 Patients',
       description:
-        'Interactive voice response improves adherence 1.53x (OR 1.527). Our AI agents handle onboarding, refill reminders, and side effect triage. Brief pharmacist calls shift PDC from 0.29 to 0.58.',
+        'Empathetic voice conversations that onboard patients, screen for adverse events, and provide ongoing adherence support. The agent detects vocal cues, collects clinical details, and routes to pharmacists when clinical judgment is needed.',
       mockup: (
-        <div className="bg-[#1a1a2e] rounded-2xl p-6 max-w-sm mx-auto shadow-2xl">
+        <div className="bg-[#1a1a2e] rounded-sm p-6 max-w-sm mx-auto shadow-2xl">
           <div className="text-center mb-4">
-            <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-2">
+            <div className="w-14 h-14 rounded-sm bg-accent/20 flex items-center justify-center mx-auto mb-2">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent">
                 <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
                 <path d="M19 10v2a7 7 0 01-14 0v-2" />
@@ -1051,86 +1062,63 @@ function VideoDemoTabs() {
               </svg>
             </div>
             <p className="text-white font-medium text-sm">AI Agent Speaking</p>
-            <p className="text-white/40 text-xs">Call duration: 4:12</p>
+            <p className="text-white/40 text-xs">GLP-1 Adherence Check-in</p>
           </div>
           <div className="space-y-2 text-sm">
             <div className="flex items-start gap-2">
               <span className="text-accent text-xs font-medium mt-0.5 w-4 flex-shrink-0">AI</span>
-              <p className="text-white/80">Hi James, this is your medication support team. How have you been feeling on Eliquis?</p>
+              <p className="text-white/80">Hi Sarah, how have you been feeling on your Ozempic this week? Any nausea or stomach discomfort?</p>
             </div>
             <div className="flex items-start gap-2">
               <span className="text-white/40 text-xs font-medium mt-0.5 w-4 flex-shrink-0">PT</span>
-              <p className="text-white/60">Okay I guess, but I&apos;ve been getting nosebleeds...</p>
+              <p className="text-white/60">The nausea has been better this week, but I&apos;m thinking about stopping since I already lost 15 lbs...</p>
             </div>
             <div className="flex items-start gap-2">
               <span className="text-accent text-xs font-medium mt-0.5 w-4 flex-shrink-0">AI</span>
-              <p className="text-white/80">I understand that can be concerning. How often are they happening, and how long do they last?</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-white/40 text-xs font-medium mt-0.5 w-4 flex-shrink-0">PT</span>
-              <p className="text-white/60">Maybe twice a week, they stop after a few minutes</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-accent text-xs font-medium mt-0.5 w-4 flex-shrink-0">AI</span>
-              <p className="text-white/80">I want to make sure your pharmacist knows about those. How often are they happening? Are you also noticing unusual bruising or bleeding gums?</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-white/40 text-xs font-medium mt-0.5 w-4 flex-shrink-0">PT</span>
-              <p className="text-white/60">No, nothing like that</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-accent text-xs font-medium mt-0.5 w-4 flex-shrink-0">AI</span>
-              <p className="text-white/80">Good. I&apos;m flagging this for your pharmacist so they can review at your next check-in. Have you been taking it with your evening meal? That can help with absorption.</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-white/40 text-xs font-medium mt-0.5 w-4 flex-shrink-0">PT</span>
-              <p className="text-white/60">I usually take it in the morning actually</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-accent text-xs font-medium mt-0.5 w-4 flex-shrink-0">AI</span>
-              <p className="text-white/80">Morning works too. The key is consistency. I&apos;ll send you a text reminder at 8 AM daily. Would that help?</p>
+              <p className="text-white/80">That&apos;s great progress, Sarah. I want to share something important: studies show 60-70% of patients who stop GLP-1 therapy regain the weight within a year. Would you like to discuss this with your doctor?</p>
             </div>
           </div>
           <div className="mt-3 flex flex-wrap gap-2">
-            <span className="text-[10px] bg-yellow-500/20 text-yellow-400 px-2 py-0.5 rounded-full">Side effect logged</span>
-            <span className="text-[10px] bg-accent/20 text-accent px-2 py-0.5 rounded-full">Timing optimized</span>
-            <span className="text-[10px] bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded-full">Pharmacist notified</span>
+            <span className="text-[10px] bg-green-500/20 text-green-400 px-2 py-0.5 rounded-sm">Nausea improving</span>
+            <span className="text-[10px] bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded-sm">Drop-off risk detected</span>
+            <span className="text-[10px] bg-accent/20 text-accent px-2 py-0.5 rounded-sm">Rebound education</span>
           </div>
         </div>
       ),
     },
     {
-      label: 'Mail Tracking',
+      label: 'SMS Triage',
       icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-          <polyline points="22,6 12,13 2,6" />
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
         </svg>
       ),
-      title: 'Physical Mail with Digital Tracking',
+      title: 'Async SMS for Routine Check-ins',
       description:
-        'Welcome kits and refill reminders sent via mail for digitally unresponsive patients. Full delivery tracking integrated into the patient timeline.',
+        'Two-way SMS handles refill reminders, dosage confirmations, and quick symptom checks. When the AI detects a barrier or adverse event, it escalates to a voice call or pharmacist.',
       mockup: (
-        <div className="bg-[#1a1a2e] rounded-2xl p-6 max-w-sm mx-auto shadow-2xl">
-          <p className="text-white/40 text-xs font-medium uppercase tracking-wider mb-4">Mail Campaign Status</p>
-          <div className="space-y-3">
-            {[
-              { name: 'Maria G.', status: 'Delivered', date: 'Feb 28', color: 'text-green-400' },
-              { name: 'James T.', status: 'In Transit', date: 'Mar 1', color: 'text-yellow-400' },
-              { name: 'Robert K.', status: 'Delivered', date: 'Feb 26', color: 'text-green-400' },
-              { name: 'Linda S.', status: 'Processing', date: 'Mar 3', color: 'text-blue-400' },
-            ].map((item, i) => (
-              <div key={i} className="flex items-center justify-between bg-white/5 rounded-lg px-4 py-3">
-                <div>
-                  <p className="text-white text-sm font-medium">{item.name}</p>
-                  <p className="text-white/40 text-xs">Welcome Kit</p>
-                </div>
-                <div className="text-right">
-                  <p className={`text-sm font-medium ${item.color}`}>{item.status}</p>
-                  <p className="text-white/40 text-xs">{item.date}</p>
-                </div>
-              </div>
-            ))}
+        <div className="bg-[#1a1a2e] rounded-sm p-6 max-w-sm mx-auto shadow-2xl">
+          <div className="text-xs text-white/40 text-center mb-3">Today, 9:15 AM</div>
+          <div className="space-y-2.5">
+            <div className="bg-accent/90 text-white text-sm px-4 py-2 rounded-sm max-w-[80%] ml-auto">
+              Hi Sarah! Your weekly Ozempic dose is today. How did last week&apos;s injection go?
+            </div>
+            <div className="bg-white/10 text-white text-sm px-4 py-2 rounded-sm max-w-[80%]">
+              Good! Nausea was way better this time
+            </div>
+            <div className="bg-accent/90 text-white text-sm px-4 py-2 rounded-sm max-w-[80%] ml-auto">
+              Great to hear! Your refill is due in 5 days. Want me to process it now?
+            </div>
+            <div className="bg-white/10 text-white text-sm px-4 py-2 rounded-sm max-w-[80%]">
+              Yes please
+            </div>
+            <div className="bg-accent/90 text-white text-sm px-4 py-2 rounded-sm max-w-[80%] ml-auto">
+              Done! Your Ozempic will be ready for pickup on Friday. You&apos;re at 100% adherence this month.
+            </div>
+          </div>
+          <div className="mt-3 flex gap-2">
+            <span className="text-[10px] bg-green-500/20 text-green-400 px-2 py-0.5 rounded-sm">Refill confirmed</span>
+            <span className="text-[10px] bg-accent/20 text-accent px-2 py-0.5 rounded-sm">100% PDC</span>
           </div>
         </div>
       ),
@@ -1138,24 +1126,23 @@ function VideoDemoTabs() {
   ];
 
   return (
-    <section className="py-20 px-6 bg-white" id="use-cases">
+    <section className="py-20 px-6 bg-white">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-4">
-            Multi-Channel in Action
+            Voice-First, Multi-Channel
           </p>
           <h2 className="font-serif text-4xl md:text-5xl text-foreground">
-            See every channel <em className="font-serif">working together</em>
+            Voice AI leads. <em className="font-serif">SMS supports.</em>
           </h2>
         </div>
 
-        {/* Tab buttons */}
         <div className="flex justify-center gap-2 mb-12">
           {tabs.map((tab, i) => (
             <button
               key={i}
               onClick={() => setActive(i)}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-sm text-sm font-medium transition-all ${
                 i === active
                   ? 'bg-accent text-white shadow-lg shadow-accent/20'
                   : 'bg-surface-warm text-text-secondary hover:text-foreground'
@@ -1167,7 +1154,6 @@ function VideoDemoTabs() {
           ))}
         </div>
 
-        {/* Tab content */}
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h3 className="text-2xl font-semibold text-foreground mb-4">{tabs[active].title}</h3>
@@ -1189,342 +1175,6 @@ function VideoDemoTabs() {
   );
 }
 
-/* ─── 6. Case Study Cards ─── */
-function CaseStudyCards() {
-  const [expanded, setExpanded] = useState<number | null>(null);
-  const studies = [
-    {
-      name: 'Maria',
-      drug: 'Humira',
-      headline: '94% adherence after 3 months',
-      summary: 'Maria was struggling to maintain her injection schedule. After enrolling in the Adhery program, she received personalized SMS reminders, a welcome kit by mail, and two AI voice check-ins that caught early injection-site concerns.',
-      metrics: { adherence: '94%', calls: '2 AI calls', channel: 'SMS + Mail + Voice' },
-    },
-    {
-      name: 'James',
-      drug: 'Eliquis',
-      headline: 'Caught dangerous side effect via voice triage',
-      summary: 'During a routine AI voice check-in, James mentioned frequent nosebleeds. The system flagged this as a potential bleeding event, escalated to his pharmacist within 4 minutes, and his dosage was adjusted the same day.',
-      metrics: { response: '4 min escalation', outcome: 'Dosage adjusted', channel: 'Voice + Escalation' },
-    },
-    {
-      name: 'Linda',
-      drug: 'Ozempic',
-      headline: '3 months retained after near drop-off',
-      summary: 'Linda missed two refills and was unreachable by phone. Adhery sent a personalized mail piece with her refill information, followed by a gentle SMS. She re-engaged within 48 hours and has been adherent since.',
-      metrics: { recovery: '48 hrs', channel: 'Mail + SMS', retention: '3+ months' },
-    },
-  ];
-
-  return (
-    <section className="py-20 px-6 bg-background">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-4">
-            Patient Stories
-          </p>
-          <h2 className="font-serif text-4xl md:text-5xl text-foreground">
-            Real results, <em className="font-serif">real patients</em>
-          </h2>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          {studies.map((study, i) => (
-            <div
-              key={i}
-              onClick={() => setExpanded(expanded === i ? null : i)}
-              className={`bg-white rounded-2xl border border-border-light p-6 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
-                expanded === i ? 'ring-2 ring-accent/30 shadow-xl' : ''
-              }`}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent font-semibold text-sm">
-                  {study.name[0]}
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">{study.name}</p>
-                  <p className="text-xs text-text-muted">{study.drug}</p>
-                </div>
-              </div>
-              <p className="font-semibold text-foreground mb-2">{study.headline}</p>
-              {expanded === i && (
-                <div className="mt-4">
-                  <p className="text-sm text-text-secondary leading-relaxed mb-4">{study.summary}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {Object.entries(study.metrics).map(([key, val]) => (
-                      <span
-                        key={key}
-                        className="text-xs bg-accent/10 text-accent-dark px-3 py-1 rounded-full"
-                      >
-                        {val}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-              {expanded !== i && (
-                <p className="text-xs text-text-muted mt-2">Click to expand &rarr;</p>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── 7. Impact Metrics ─── */
-function ImpactMetrics() {
-  return (
-    <section className="py-16 px-6 bg-gradient-to-r from-accent to-accent-light">
-      <div className="max-w-5xl mx-auto grid md:grid-cols-4 gap-8 text-center text-white">
-        {[
-          { value: '3.56x', label: 'Continuation Rate', sub: 'AI voice calls (autonomous, OR)' },
-          { value: '2.11x', label: 'Adherence Improvement', sub: 'async triage meta-analysis (95% CI 1.52-2.93)' },
-          { value: '80%+', label: 'PDC Threshold', sub: 'population-level adherence standard' },
-          { value: '3 wks', label: 'Time to Launch', sub: 'from contract to go-live' },
-        ].map((m, i) => (
-          <div key={i}>
-            <p className="text-5xl md:text-6xl font-bold mb-2">{m.value}</p>
-            <p className="text-lg font-semibold mb-1">{m.label}</p>
-            <p className="text-sm text-white/70">{m.sub}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-/* ─── 8. Quality & Compliance ─── */
-function QualityCompliance() {
-  const capabilities = [
-    {
-      title: 'Barrier detection',
-      desc: 'Identifies forgetfulness, side effects, cost, beliefs, and access issues from patient conversations. Routes each to the right intervention.',
-    },
-    {
-      title: 'Side effect monitoring',
-      desc: 'Automatic severity scoring from SMS and voice interactions. Escalates to pharmacist when clinical judgment is needed.',
-    },
-    {
-      title: 'PDC tracking',
-      desc: 'Real-time Proportion of Days Covered against the 80% CMS Star Rating threshold. Flags patients trending below before they drop.',
-    },
-    {
-      title: 'Audit trail',
-      desc: 'Every message, call, and mail piece logged with timestamps. Full compliance documentation for regulatory review.',
-    },
-  ];
-
-  return (
-    <section className="py-20 px-6 bg-white">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-4">
-            Quality & Compliance
-          </p>
-          <h2 className="font-serif text-4xl md:text-5xl text-foreground">
-            Every interaction analyzed, every outcome logged
-          </h2>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-6">
-          {capabilities.map((c) => (
-            <div key={c.title} className="bg-surface-warm border border-border-light p-6">
-              <h3 className="font-semibold text-foreground mb-2">{c.title}</h3>
-              <p className="text-sm text-text-secondary leading-relaxed">{c.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── 8b. Research Evidence ─── */
-function ResearchEvidence() {
-  const clinicalStudies = [
-    {
-      stat: '2.11x',
-      label: 'Async Triage Adherence',
-      detail: 'Two-way text-based triage doubles adherence odds (OR 2.11, 95% CI 1.52-2.93) across chronic diseases.',
-      citation: 'Thakkar et al., JAMA Intern Med, 2016',
-    },
-    {
-      stat: '3.56x',
-      label: 'AI Voice Call Continuation',
-      detail: 'Brief calls improved medication continuation by 3.56x and shifted PDC from 0.29 to 0.58. Now done autonomously.',
-      citation: 'Taitel et al., J Manag Care Spec Pharm, 2012',
-    },
-    {
-      stat: 'SMD 0.89',
-      label: 'Voice + Async Combined',
-      detail: 'Voice + async triage achieved effect size 0.89 vs. 0.28 for text alone. Combined approach outperforms 3.2x.',
-      citation: 'Palmer et al., Prev Med, 2018',
-    },
-    {
-      stat: '4.41x',
-      label: 'Pharmacist Counseling',
-      detail: 'Pharmacist counseling showed OR 4.41 (2.46-7.91) for adherence. Human escalation matters for complex cases.',
-      citation: 'Conn & Ruppar, Ann Behav Med, 2017',
-    },
-    {
-      stat: 'RR 1.23',
-      label: 'Two-Way vs. One-Way Messaging',
-      detail: 'Interactive triage (RR 1.23) significantly outperforms passive reminders (RR 1.04).',
-      citation: 'Wald et al., PLoS One, 2019',
-    },
-    {
-      stat: 'PDC 80%',
-      label: 'Population Standard',
-      detail: 'Proportion of Days Covered at 80%+ is the CMS Star Rating standard. Below this, pharmacies lose quality bonuses.',
-      citation: 'CMS Part D Quality Measures, 2024',
-    },
-  ];
-
-  const techniques = [
-    {
-      stat: 'd = 0.68',
-      label: 'Opt-Out Default Enrollment',
-      detail: 'Pre-enrolling patients with easy opt-out increases uptake ~27%. Patients stay engaged by default.',
-      citation: 'Jachimowicz et al., Behav Public Policy, 2019',
-    },
-    {
-      stat: '+7pp',
-      label: 'Milestone Recognition',
-      detail: 'Non-monetary recognition at 30/60/90 days increased retention from 35% to 42% at one month.',
-      citation: 'Gallus et al., Manage Sci, 2017',
-    },
-    {
-      stat: '-59%',
-      label: 'Contact-Frequency Governance',
-      detail: 'Adaptive message cadence with caps reduced opt-outs 59% while increasing customer lifetime value.',
-      citation: 'Sahni et al., J Marketing Res, 2023',
-    },
-    {
-      stat: 'RR 1.04',
-      label: 'Contextual Triggers',
-      detail: 'Time-optimized prompts via micro-randomized trials find the right moment for each patient.',
-      citation: 'Klasnja et al., Ann Behav Med, 2019',
-    },
-  ];
-
-  return (
-    <section className="py-20 px-6 bg-surface-warm" id="evidence">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-4">
-            Evidence-Based Approach
-          </p>
-          <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-4">
-            Built on published <em className="font-serif">clinical research</em>
-          </h2>
-          <p className="text-text-secondary max-w-2xl mx-auto">
-            Every channel and cadence in Adhery comes from peer-reviewed studies. Here are the findings behind the platform.
-          </p>
-        </div>
-
-        {/* Clinical Research */}
-        <p className="text-xs font-medium tracking-[0.15em] uppercase text-text-muted mb-4">
-          Channel Effectiveness
-        </p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
-          {clinicalStudies.map((study, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-2xl border border-border-light p-5 hover:-translate-y-1 hover:shadow-lg transition-all"
-            >
-              <p className="text-3xl font-bold text-accent mb-1">{study.stat}</p>
-              <p className="text-sm font-semibold text-foreground mb-2">{study.label}</p>
-              <p className="text-xs text-text-secondary leading-relaxed mb-3">{study.detail}</p>
-              <p className="text-[10px] text-text-muted italic">{study.citation}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Retention Techniques */}
-        <p className="text-xs font-medium tracking-[0.15em] uppercase text-text-muted mb-4">
-          Behavioral Science Techniques
-        </p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-          {techniques.map((t, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-2xl border border-border-light p-5 hover:-translate-y-1 hover:shadow-lg transition-all"
-            >
-              <p className="text-2xl font-bold text-accent mb-1">{t.stat}</p>
-              <p className="text-sm font-semibold text-foreground mb-2">{t.label}</p>
-              <p className="text-xs text-text-secondary leading-relaxed mb-3">{t.detail}</p>
-              <p className="text-[10px] text-text-muted italic">{t.citation}</p>
-            </div>
-          ))}
-        </div>
-
-      </div>
-    </section>
-  );
-}
-
-/* ─── 9. How It Works + Launch Timeline ─── */
-function HowItWorks() {
-  const steps = [
-    {
-      step: '01',
-      title: 'Configure your protocols',
-      description: 'Tell us your medication schedules, side effects to watch, escalation rules, and preferred outreach cadence. We set everything up.',
-      timeline: 'Week 1',
-      bg: 'bg-surface-warm',
-    },
-    {
-      step: '02',
-      title: 'Enroll patients',
-      description: 'Upload a CSV or connect your EHR. Patients get a welcome message within hours, each with a personalized outreach plan based on their risk profile.',
-      timeline: 'Week 2',
-      bg: 'bg-white',
-    },
-    {
-      step: '03',
-      title: 'Go live and monitor',
-      description: 'Outreach starts. Track adherence and patient sentiment in real time from the dashboard.',
-      timeline: 'Week 3-4',
-      bg: 'bg-surface-warm',
-    },
-  ];
-
-  return (
-    <section className="py-20 px-6" id="how-it-works">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-4">
-            How It Works
-          </p>
-          <h2 className="font-serif text-4xl md:text-5xl text-foreground">
-            Live in 4 weeks
-          </h2>
-          <p className="text-text-secondary mt-4 max-w-xl mx-auto">
-            Start with 100 churned or at-risk patients. Pre-built cadences by drug class. No custom development.
-          </p>
-        </div>
-
-        <div className="space-y-0">
-          {steps.map((s, i) => (
-            <div key={i} className={`${s.bg} rounded-2xl p-8 md:p-12 ${i > 0 ? '-mt-4' : ''}`}>
-              <div className="grid md:grid-cols-[80px_1fr_auto] gap-6 items-start">
-                <span className="text-4xl font-bold text-accent/30">{s.step}</span>
-                <div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3">{s.title}</h3>
-                  <p className="text-text-secondary leading-relaxed max-w-xl">{s.description}</p>
-                </div>
-                <span className="text-sm font-medium text-accent bg-accent/10 px-3 py-1 rounded-full self-start hidden md:block">{s.timeline}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ─── 10. Who We Serve ─── */
 function WhoWeServe() {
   const segments = [
@@ -1534,17 +1184,8 @@ function WhoWeServe() {
           <circle cx="12" cy="12" r="10" /><path d="M8 14s1.5 2 4 2 4-2 4-2" /><line x1="9" y1="9" x2="9.01" y2="9" /><line x1="15" y1="9" x2="15.01" y2="9" />
         </svg>
       ),
-      title: 'Supplement Companies',
-      description: 'Improve subscription adherence and reduce churn. Lower regulatory burden means faster launches.',
-    },
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent">
-          <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16" /><path d="M1 21h22" /><path d="M9 7h1" /><path d="M9 11h1" /><path d="M14 7h1" /><path d="M14 11h1" />
-        </svg>
-      ),
-      title: 'Specialty Pharmacies',
-      description: 'Replace expensive call centers with an autonomous AI navigator. Handle complex biologics and specialty medications.',
+      title: 'Consumer Health',
+      description: 'Hims & Hers, Ro, and telehealth platforms. Weeks to go live with pre-built GLP-1 cadences and lower regulatory burden.',
     },
     {
       icon: (
@@ -1553,7 +1194,16 @@ function WhoWeServe() {
         </svg>
       ),
       title: 'Pharma Manufacturers',
-      description: 'Disease-division patient support programs. Reduce drop-off after 3 unsuccessful refill attempts.',
+      description: 'Eli Lilly, Novo Nordisk, and other GLP-1 makers. Disease-division patient support programs with MLR-compliant scripts.',
+    },
+    {
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent">
+          <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16" /><path d="M1 21h22" /><path d="M9 7h1" /><path d="M9 11h1" /><path d="M14 7h1" /><path d="M14 11h1" />
+        </svg>
+      ),
+      title: 'Specialty Pharmacies',
+      description: 'Augment call center teams with autonomous voice agents. Handle the routine 80% so pharmacists focus on complex cases.',
     },
     {
       icon: (
@@ -1561,17 +1211,8 @@ function WhoWeServe() {
           <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
         </svg>
       ),
-      title: 'Value-Based Care',
-      description: 'Meet quality metrics and reduce hospital readmissions through proactive medication management.',
-    },
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent">
-          <rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /><path d="M9 21V9" />
-        </svg>
-      ),
-      title: 'Health Systems',
-      description: 'Enterprise-wide adherence programs across multiple facilities and patient populations.',
+      title: 'Telehealth Platforms',
+      description: 'Extend your GLP-1 prescribing with post-prescription adherence support. Reduce churn and improve long-term patient outcomes.',
     },
   ];
 
@@ -1583,27 +1224,21 @@ function WhoWeServe() {
             Who We Serve
           </p>
           <h2 className="font-serif text-4xl md:text-5xl text-foreground">
-            Who uses <em className="font-serif">Adhery</em>
+            Built for the GLP-1 <em className="font-serif">ecosystem</em>
           </h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 gap-6">
           {segments.map((seg, i) => (
             <div
               key={i}
-              className="bg-white rounded-2xl p-6 border border-border-light hover:border-accent/30 hover:-translate-y-1 hover:shadow-lg transition-all cursor-pointer group"
+              className="bg-white p-6 border border-border-light hover:border-accent/30 hover:shadow-md transition-all cursor-pointer group"
             >
-              <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
+              <div className="w-12 h-12 rounded-sm bg-accent/10 flex items-center justify-center mb-4">
                 {seg.icon}
               </div>
               <h3 className="font-semibold text-foreground mb-2">{seg.title}</h3>
-              <p className="text-sm text-text-secondary leading-relaxed mb-4">{seg.description}</p>
-              <span className="text-sm font-medium text-accent group-hover:gap-2 inline-flex items-center gap-1 transition-all">
-                Learn more
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </span>
+              <p className="text-sm text-text-secondary leading-relaxed">{seg.description}</p>
             </div>
           ))}
         </div>
@@ -1612,98 +1247,7 @@ function WhoWeServe() {
   );
 }
 
-/* ─── 11. Channel Deep Dive ─── */
-function ChannelDeepDive() {
-  return (
-    <section className="py-20 px-6 bg-white overflow-hidden">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-4">
-            How the Navigator Works
-          </p>
-          <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-4">
-            The AI decides what each patient needs
-          </h2>
-          <p className="text-text-secondary max-w-2xl mx-auto">
-            Voice handles the conversations. Text handles the quick check-ins. Mail catches patients who don&apos;t respond digitally.
-          </p>
-        </div>
-
-        <div className="relative flex flex-col md:flex-row items-center justify-center gap-8 md:gap-4">
-          {/* AI Voice Card - Primary */}
-          <div className="bg-white rounded-2xl border-2 border-accent/30 p-6 shadow-lg w-full md:w-72 md:rotate-[-3deg] hover:rotate-0 transition-transform duration-500">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0d7377" strokeWidth="2">
-                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
-                </svg>
-              </div>
-              <span className="text-sm font-semibold text-foreground">AI Voice Navigator</span>
-            </div>
-            <p className="text-xs text-text-secondary mb-3">Onboarding, education, triage, follow-up</p>
-            <div className="bg-accent/5 rounded-lg p-3 text-xs text-accent-dark">
-              The navigator calls patients, asks follow-up questions, and logs what it hears for your team.
-            </div>
-            <div className="mt-3 text-xs text-accent font-medium">Primary channel - 40% of interactions</div>
-          </div>
-
-          {/* Arrow */}
-          <div className="hidden md:flex items-center text-text-muted">
-            <svg width="40" height="24" viewBox="0 0 40 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M0 12h32M26 6l6 6-6 6" />
-            </svg>
-          </div>
-          <div className="md:hidden text-text-muted text-2xl">&darr;</div>
-
-          {/* Async Triage Card */}
-          <div className="bg-white rounded-2xl border border-border-light p-6 shadow-lg w-full md:w-72 md:rotate-[2deg] hover:rotate-0 transition-transform duration-500 md:translate-y-4">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-green-50 flex items-center justify-center">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2">
-                  <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-                </svg>
-              </div>
-              <span className="text-sm font-semibold text-foreground">Async Patient Triage</span>
-            </div>
-            <p className="text-xs text-text-secondary mb-3">Check-ins, symptom screening, refill coordination</p>
-            <div className="bg-green-50 rounded-lg p-3 text-xs text-green-800">
-              Two-way text conversations that screen symptoms, confirm doses, and resolve barriers without a phone call.
-            </div>
-            <div className="mt-3 text-xs text-text-muted">35% of interactions</div>
-          </div>
-
-          {/* Arrow */}
-          <div className="hidden md:flex items-center text-text-muted">
-            <svg width="40" height="24" viewBox="0 0 40 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M0 12h32M26 6l6 6-6 6" />
-            </svg>
-          </div>
-          <div className="md:hidden text-text-muted text-2xl">&darr;</div>
-
-          {/* Mail Card */}
-          <div className="bg-white rounded-2xl border border-border-light p-6 shadow-lg w-full md:w-72 md:rotate-[-2deg] hover:rotate-0 transition-transform duration-500">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                  <polyline points="22,6 12,13 2,6" />
-                </svg>
-              </div>
-              <span className="text-sm font-semibold text-foreground">Physical Mail</span>
-            </div>
-            <p className="text-xs text-text-secondary mb-3">Welcome kits, refill reminders</p>
-            <div className="bg-amber-50 rounded-lg p-3 text-xs text-amber-800">
-              Personalized mail for patients who don&apos;t engage digitally. Tracked delivery.
-            </div>
-            <div className="mt-3 text-xs text-text-muted">15% of interactions</div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── 12. Demo Request Form ─── */
+/* ─── 11. Demo Request Form ─── */
 function DemoRequestForm() {
   const [form, setForm] = useState({ name: '', email: '', company: '', role: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -1737,7 +1281,7 @@ function DemoRequestForm() {
     return (
       <section className="py-20 px-6 bg-[#0d1117]" id="demo">
         <div className="max-w-2xl mx-auto text-center">
-          <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-6">
+          <div className="w-16 h-16 rounded-sm bg-accent/20 flex items-center justify-center mx-auto mb-6">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent">
               <path d="M20 6L9 17l-5-5" />
             </svg>
@@ -1757,10 +1301,10 @@ function DemoRequestForm() {
     <section className="py-20 px-6 bg-[#0d1117]" id="demo">
       <div className="max-w-2xl mx-auto text-center">
         <h2 className="font-serif text-4xl md:text-5xl text-white mb-4">
-          Ready to improve <em className="font-serif">adherence</em>?
+          See Adhery <em className="font-serif">in action</em>
         </h2>
         <p className="text-white/60 mb-10">
-          See how Adhery can reduce outreach costs and keep your patients on track.
+          See how Adhery keeps GLP-1 patients on therapy past the 90-day cliff.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4 text-left max-w-md mx-auto">
@@ -1772,7 +1316,7 @@ function DemoRequestForm() {
               value={form.name}
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
               onFocus={() => posthog.capture('demo_input_focused', { form_location: 'footer' })}
-              className="bg-white/10 text-white px-4 py-3 rounded-xl border border-white/10 focus:border-accent outline-none text-sm placeholder:text-white/30"
+              className="bg-white/10 text-white px-4 py-3 rounded-sm border border-white/10 focus:border-accent outline-none text-sm placeholder:text-white/30"
             />
             <input
               type="email"
@@ -1780,7 +1324,7 @@ function DemoRequestForm() {
               required
               value={form.email}
               onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-              className="bg-white/10 text-white px-4 py-3 rounded-xl border border-white/10 focus:border-accent outline-none text-sm placeholder:text-white/30"
+              className="bg-white/10 text-white px-4 py-3 rounded-sm border border-white/10 focus:border-accent outline-none text-sm placeholder:text-white/30"
             />
           </div>
           <div className="grid grid-cols-2 gap-4">
@@ -1790,35 +1334,37 @@ function DemoRequestForm() {
               required
               value={form.company}
               onChange={(e) => setForm((f) => ({ ...f, company: e.target.value }))}
-              className="bg-white/10 text-white px-4 py-3 rounded-xl border border-white/10 focus:border-accent outline-none text-sm placeholder:text-white/30"
+              className="bg-white/10 text-white px-4 py-3 rounded-sm border border-white/10 focus:border-accent outline-none text-sm placeholder:text-white/30"
             />
             <select
               value={form.role}
               onChange={(e) => setForm((f) => ({ ...f, role: e.target.value }))}
               required
-              className="bg-white/10 text-white px-4 py-3 rounded-xl border border-white/10 focus:border-accent outline-none text-sm appearance-none"
+              className="bg-white/10 text-white px-4 py-3 rounded-sm border border-white/10 focus:border-accent outline-none text-sm appearance-none"
             >
               <option value="" className="text-black">Select role</option>
-              <option value="pharmacy" className="text-black">Pharmacy Operations</option>
+              <option value="consumer-health" className="text-black">Consumer Health</option>
               <option value="pharma" className="text-black">Pharma/Manufacturer</option>
+              <option value="pharmacy" className="text-black">Specialty Pharmacy</option>
+              <option value="telehealth" className="text-black">Telehealth</option>
               <option value="clinical" className="text-black">Clinical/Medical</option>
               <option value="executive" className="text-black">Executive/C-Suite</option>
               <option value="other" className="text-black">Other</option>
             </select>
           </div>
           <textarea
-            placeholder="Tell us about your adherence challenges (optional)"
+            placeholder="Tell us about your GLP-1 adherence challenges (optional)"
             value={form.message}
             onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
             rows={3}
-            className="w-full bg-white/10 text-white px-4 py-3 rounded-xl border border-white/10 focus:border-accent outline-none text-sm placeholder:text-white/30 resize-none"
+            className="w-full bg-white/10 text-white px-4 py-3 rounded-sm border border-white/10 focus:border-accent outline-none text-sm placeholder:text-white/30 resize-none"
           />
           <button
             type="submit"
             disabled={status === 'submitting'}
-            className="w-full bg-accent hover:bg-accent-dark text-white font-semibold py-3.5 rounded-full transition-all hover:-translate-y-0.5 shadow-lg shadow-accent/20 disabled:opacity-50"
+            className="w-full bg-accent hover:bg-accent-dark text-white font-semibold py-3.5 rounded-sm transition-all shadow-lg shadow-accent/20 disabled:opacity-50"
           >
-            {status === 'submitting' ? 'Submitting...' : 'Request Demo'}
+            {status === 'submitting' ? 'Submitting...' : 'See Adhery in Action'}
           </button>
           {status === 'error' && (
             <p className="text-red-400 text-sm text-center">Something went wrong. Please try again.</p>
@@ -1829,7 +1375,7 @@ function DemoRequestForm() {
   );
 }
 
-/* ─── 13. Footer ─── */
+/* ─── 12. Footer ─── */
 function Footer() {
   return (
     <footer className="py-12 px-6 bg-[#0a0e14] text-white/50">
@@ -1841,7 +1387,7 @@ function Footer() {
               adhery
             </p>
             <p className="text-sm leading-relaxed">
-              Autonomous patient navigator for specialty pharmacies and pharma manufacturers.
+              Autonomous voice agent for GLP-1 adherence. Built for consumer health, pharma manufacturers, and specialty pharmacies.
             </p>
           </div>
           <div>
@@ -1861,18 +1407,32 @@ function Footer() {
             </div>
           </div>
           <div>
-            <p className="text-white/70 font-medium text-sm mb-3">Legal</p>
+            <p className="text-white/70 font-medium text-sm mb-3">Compliance</p>
             <div className="space-y-2 text-sm">
+              <a href="#" className="block hover:text-white transition-colors">HIPAA Compliance</a>
+              <a href="#" className="block hover:text-white transition-colors">SOC-2</a>
+              <a href="#" className="block hover:text-white transition-colors">BAA</a>
               <a href="#" className="block hover:text-white transition-colors">Privacy Policy</a>
               <a href="#" className="block hover:text-white transition-colors">Terms of Service</a>
-              <a href="#" className="block hover:text-white transition-colors">HIPAA Compliance</a>
-              <a href="#" className="block hover:text-white transition-colors">BAA</a>
             </div>
           </div>
         </div>
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
           <p>&copy; 2026 Adhery. All rights reserved.</p>
-          <p>HIPAA Compliant</p>
+          <div className="flex items-center gap-4">
+            <span className="flex items-center gap-1">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              HIPAA Compliant
+            </span>
+            <span className="flex items-center gap-1">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              SOC-2 Ready
+            </span>
+          </div>
         </div>
       </div>
     </footer>
@@ -1885,16 +1445,13 @@ export default function Home() {
     <main>
       <Nav />
       <Hero />
+      <AdheryStandard />
+      <HowItWorks />
       <AdherenceJourney />
-      <MultichannelComparison />
-      <ChannelDeepDive />
-      <LogoCarousel />
-      <TestimonialCarousel />
       <CaseStudyCards />
       <ImpactMetrics />
-      <QualityCompliance />
-      <ResearchEvidence />
-      <HowItWorks />
+      <RetentionMethods />
+      <VideoDemoTabs />
       <WhoWeServe />
       <DemoRequestForm />
       <Footer />

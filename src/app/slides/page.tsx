@@ -3,8 +3,8 @@
 import { useState, useEffect, useCallback } from 'react';
 
 // ─── Constants ───
-const ACCENT = '#0d7377';
-const ACCENT_LIGHT = '#14919b';
+const ACCENT = '#1e3a5f';
+const ACCENT_LIGHT = '#2563eb';
 
 // ─── Slide Components ───
 
@@ -12,11 +12,11 @@ function TitleSlide() {
   return (
     <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h1 className="font-serif text-6xl text-foreground mb-8 leading-tight max-w-4xl">
-        What if every patient had{' '}
-        <span className="text-accent whitespace-nowrap">their own AI&nbsp;navigator</span>
+        An Autonomous Voice Agent for{' '}
+        <span className="text-accent whitespace-nowrap">Every GLP-1&nbsp;Patient</span>
       </h1>
       <p className="text-xl text-text-secondary max-w-2xl">
-        <span className="font-semibold text-foreground">Adhery</span> is an autonomous patient navigator for specialty pharmacy.
+        Bridge the gap between script and long-term therapy persistence with empathetic, clinically-aware Voice AI.
       </p>
       <div className="mt-20 flex items-center gap-3 text-text-muted text-sm">
         <span>Press</span>
@@ -26,7 +26,7 @@ function TitleSlide() {
         <span>to navigate</span>
       </div>
       <span className="absolute bottom-6 right-8 text-[10px] text-text-muted/50">
-        v5.4
+        v6.0
       </span>
     </div>
   );
@@ -36,10 +36,10 @@ function RealitySlide() {
   return (
     <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-4xl">
-        Half of specialty patients stop taking their medication
+        Half of GLP-1 patients stop within 12 months
       </h2>
       <p className="text-lg text-text-secondary mb-10 max-w-2xl">
-        Call centers make 12-15 calls per patient per year. Most go to voicemail. Adherence stays around 50%.
+        Side effects like nausea and fatigue, the belief that &ldquo;I&rsquo;ve lost enough weight already,&rdquo; and hormone rebound risk all drive early discontinuation. Call centers can&rsquo;t intervene fast enough.
       </p>
       <div className="max-w-4xl w-full">
         <div className="h-16 bg-surface border border-border-light flex mb-6">
@@ -51,7 +51,7 @@ function RealitySlide() {
           </div>
         </div>
         <p className="text-sm text-text-secondary">
-          Of those reached, most calls are routine check-ins. Real barriers go undetected until the patient stops refilling.
+          GLP-1 adherence. Most patients who discontinue do so within the first 90 days, before the medication reaches full efficacy.
         </p>
       </div>
     </div>
@@ -67,17 +67,17 @@ function GapSlide() {
       <div className="max-w-4xl space-y-6 text-left">
         <div className="border-l-4 border-accent/30 pl-8">
           <p className="text-xl text-foreground mb-2">
-            A patient with injection-site anxiety needs reassurance within hours, not a voicemail next Tuesday.
+            A patient with nausea needs reassurance and dosage guidance within hours, not a voicemail next Tuesday.
           </p>
         </div>
         <div className="border-l-4 border-accent/30 pl-8">
           <p className="text-xl text-foreground mb-2">
-            A patient whose copay doubled needs help navigating assistance programs, not a refill reminder.
+            A patient who &ldquo;feels better&rdquo; and stops needs education about rebound weight gain and metabolic risk.
           </p>
         </div>
         <div className="border-l-4 border-accent pl-8">
           <p className="text-xl text-foreground mb-2">
-            A patient who quietly stopped refilling needs someone to notice, not silence until the next scheduled call.
+            A patient hitting insurance renewal friction needs help navigating prior authorization, not another refill reminder.
           </p>
         </div>
       </div>
@@ -140,47 +140,116 @@ function IntroducingSlide() {
     <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <img src="/logo.svg" alt="Adhery" className="w-16 h-16 mb-8" />
       <h2 className="font-serif text-5xl text-foreground mb-6 leading-tight max-w-3xl">
-        <span className="text-accent">Adhery</span> runs your patient support program autonomously
+        <span className="text-accent">Adhery</span> is an autonomous voice agent for GLP-1 adherence
       </h2>
-      <div className="flex items-center gap-10 mt-10 mb-12">
-        {[
-          { label: 'AI Voice', desc: 'Autonomous conversations', primary: true },
-          { label: 'Async Triage', desc: 'Two-way text-based care', primary: false },
-          { label: 'Mail', desc: 'Physical follow-through', primary: false },
-        ].map((ch) => (
-          <div key={ch.label} className="flex flex-col items-center gap-2">
-            <div className={`w-16 h-16 flex items-center justify-center text-sm font-semibold ${
-              ch.primary ? 'bg-accent text-white' : 'bg-accent/10 text-accent'
-            }`}>
-              {ch.label}
-            </div>
-            <span className="text-xs text-text-secondary">{ch.desc}</span>
+      <div className="mt-8 mb-10 max-w-md w-full">
+        <div className="bg-accent/10 border-2 border-accent/30 p-8 flex flex-col items-center gap-3 mb-6">
+          <div className="w-20 h-20 flex items-center justify-center text-lg font-bold bg-accent text-white">
+            AI Voice
           </div>
-        ))}
+          <p className="text-lg font-semibold text-foreground">Autonomous Voice Conversations</p>
+          <p className="text-sm text-text-secondary">Empathetic, clinically-aware calls that handle the routine 80%</p>
+        </div>
+        <div className="flex gap-4 text-left">
+          <div className="flex items-start gap-2 flex-1">
+            <span className="text-accent font-bold mt-0.5">+</span>
+            <p className="text-sm text-text-secondary"><span className="text-foreground font-medium">SMS triage</span> for quick questions and refill confirmations</p>
+          </div>
+          <div className="flex items-start gap-2 flex-1">
+            <span className="text-accent font-bold mt-0.5">+</span>
+            <p className="text-sm text-text-secondary"><span className="text-foreground font-medium">Mail</span> for physical follow-through and documentation</p>
+          </div>
+        </div>
       </div>
-      <p className="text-lg text-text-secondary max-w-xl">
-        <span className="text-accent font-medium">Adhery</span> picks the right channel for each patient. 95% of needs resolve without a pharmacist.
+      <p className="text-lg text-text-secondary max-w-xl mb-3">
+        We automate the routine 80% so your clinical teams focus on the complex 20%.
       </p>
+      <p className="text-sm text-accent font-medium">
+        Grounded in your MLR-approved scripts. Zero hallucination.
+      </p>
+    </div>
+  );
+}
+
+function SafetyComplianceSlide() {
+  return (
+    <div className="flex flex-col items-center justify-center h-full text-center px-16">
+      <h2 className="font-serif text-5xl text-foreground mb-10 leading-tight max-w-4xl">
+        Zero-Hallucination Safety
+      </h2>
+      <div className="max-w-4xl space-y-6 text-left">
+        <div className="bg-surface border border-border-light p-8 flex items-start gap-6">
+          <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-accent/10 text-accent">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <div>
+            <p className="text-lg font-semibold text-foreground mb-1">MLR-Grounded Guardrails</p>
+            <p className="text-text-secondary">AI is restricted to pre-approved clinical scripts. Every response is grounded in your MLR-reviewed content library. No improvisation, no off-label claims.</p>
+          </div>
+        </div>
+        <div className="bg-surface border border-border-light p-8 flex items-start gap-6">
+          <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-accent/10 text-accent">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+              <line x1="12" y1="9" x2="12" y2="13" />
+              <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
+          </div>
+          <div>
+            <p className="text-lg font-semibold text-foreground mb-1">Autonomous Pharmacovigilance</p>
+            <p className="text-text-secondary">Real-time adverse event detection during every patient interaction. Automatic severity coding and regulatory-ready documentation.</p>
+          </div>
+        </div>
+        <div className="bg-surface border border-border-light p-8 flex items-start gap-6">
+          <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-accent/10 text-accent">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+            </svg>
+          </div>
+          <div>
+            <p className="text-lg font-semibold text-foreground mb-1">Clinical Safety Net</p>
+            <p className="text-text-secondary">Warm handoff to a live pharmacist on red-flag keywords. The AI knows what it doesn&rsquo;t know and escalates immediately.</p>
+          </div>
+        </div>
+      </div>
+      <div className="flex items-center gap-8 mt-10">
+        <div className="flex items-center gap-2 text-text-muted">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <path d="M9 12l2 2 4-4" />
+          </svg>
+          <span className="text-sm font-medium">HIPAA Compliant</span>
+        </div>
+        <div className="flex items-center gap-2 text-text-muted">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <path d="M9 12l2 2 4-4" />
+          </svg>
+          <span className="text-sm font-medium">SOC-2 Type II</span>
+        </div>
+      </div>
     </div>
   );
 }
 
 function PatientStorySlide() {
   const steps = [
-    { day: 'Day 1', channel: 'AI Voice', color: ACCENT, what: 'Onboards Maria, learns her schedule and concerns' },
-    { day: 'Day 3', channel: 'Async Triage', color: '#f59e0b', what: 'Maria texts about injection-site redness. Navigator collects details and routes to pharmacist for review.' },
-    { day: 'Day 5', channel: 'AI Voice', color: ACCENT, what: 'Follow-up call. Maria mentions fatigue. Navigator logs it and flags for pharmacist.' },
-    { day: 'Day 14', channel: 'Async Triage', color: '#f59e0b', what: 'Refill reminder sent. Maria confirms order.' },
-    { day: 'Day 30', channel: 'AI Voice', color: '#8b5cf6', what: 'Milestone: 100% adherent. No pharmacist calls needed all month.' },
+    { day: 'Day 1', channel: 'AI Voice', color: ACCENT, what: 'Onboards Sarah, learns her schedule, explains what to expect with nausea' },
+    { day: 'Day 5', channel: 'SMS Triage', color: '#f59e0b', what: 'Sarah texts about nausea. AI collects severity details, routes to pharmacist for dosage review.' },
+    { day: 'Day 14', channel: 'AI Voice', color: ACCENT, what: 'Check-in call. Sarah mentions she\'s lost 8 lbs, feeling motivated. AI reinforces continued use.' },
+    { day: 'Day 30', channel: 'AI Voice', color: '#22c55e', what: 'Refill reminder. Sarah confirms. First refill milestone achieved.' },
+    { day: 'Day 90', channel: 'AI Voice', color: '#8b5cf6', what: 'Sarah considers stopping ("I\'ve lost enough"). AI explains rebound risk, offers telehealth consult.' },
   ];
 
   return (
     <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-4xl">
-        One patient, 30 days, zero pharmacist calls
+        One patient, 90 days, crossing the drop-off cliff
       </h2>
       <p className="text-lg text-text-secondary mb-10 max-w-2xl">
-        Maria on Humira. The <span className="text-accent font-medium">Adhery</span> navigator handles everything autonomously.
+        Sarah on Ozempic. The <span className="text-accent font-medium">Adhery</span> voice agent keeps her on therapy through the critical window.
       </p>
       <div className="max-w-4xl space-y-4 text-left w-full">
         {steps.map((s) => (
@@ -208,10 +277,10 @@ function ResultsSlide() {
   return (
     <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-4xl">
-        Adherence jumps from ~50% to 80%+ PDC
+        GLP-1 adherence jumps from ~50% to 80%+ PDC
       </h2>
       <p className="text-lg text-text-secondary mb-10 max-w-3xl">
-        Above the CMS Star Rating threshold. Cost per patient drops from $130 to $18.
+        Above the CMS Star Rating threshold. Patients cross the 90-day drop-off cliff that loses most GLP-1 patients.
       </p>
       <div className="max-w-4xl space-y-8 w-full text-left">
         {/* Before bar */}
@@ -233,15 +302,15 @@ function ResultsSlide() {
         {/* After bar */}
         <div>
           <div className="flex items-baseline justify-between mb-3">
-            <span className="text-sm font-medium text-accent">Adhery Navigator</span>
+            <span className="text-sm font-medium text-accent">Adhery Voice Agent</span>
             <span className="text-2xl font-bold text-accent">80%+ <span className="text-sm font-normal text-text-muted">PDC</span></span>
           </div>
           <div className="h-12 bg-surface border border-border-light flex">
-            <div className="h-full bg-[#0d7377] flex items-center justify-center" style={{ width: '40%' }}>
+            <div className="h-full bg-[#1e3a5f] flex items-center justify-center" style={{ width: '40%' }}>
               <span className="text-xs text-white font-medium">AI Voice</span>
             </div>
             <div className="h-full bg-[#22c55e] flex items-center justify-center" style={{ width: '35%' }}>
-              <span className="text-xs text-white font-medium">Async</span>
+              <span className="text-xs text-white font-medium">SMS</span>
             </div>
             <div className="h-full bg-[#f59e0b] flex items-center justify-center" style={{ width: '15%' }}>
               <span className="text-[10px] text-white font-medium">Mail</span>
@@ -261,7 +330,7 @@ function ResultsSlide() {
           <div className="w-px h-12 bg-accent/20" />
           <div>
             <p className="text-foreground">
-              Patients go from missing every other dose to staying above the 80% threshold that CMS Star Ratings require.
+              Patients cross the 90-day cliff and stay above the 80% PDC threshold that CMS Star Ratings require. Cost per patient drops from $130 to $18.
             </p>
           </div>
         </div>
@@ -280,7 +349,7 @@ function ROISlide() {
   return (
     <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-4xl">
-        A 2,000-patient pharmacy saves $80K and gains 30 points of adherence
+        A 2,000-patient GLP-1 program saves $80K and crosses the 90-day cliff
       </h2>
       <p className="text-lg text-text-secondary mb-10 max-w-3xl">
         Cost drops from $130 to $90 per patient. PDC goes from ~50% to 80%+. The savings fund redeployment to clinical work.
@@ -329,7 +398,7 @@ function DashboardSlide() {
         Every morning, your lead pharmacist opens this
       </h2>
       <p className="text-lg text-text-secondary mb-10 max-w-2xl">
-        Adherence rates, open alerts, cost savings. One screen, real-time.
+        Adherence rates, open alerts, retention milestones. One screen, real-time.
       </p>
       <div className="bg-surface border border-border-light p-10 max-w-4xl w-full text-left">
         <div className="grid grid-cols-4 gap-6 mb-8">
@@ -337,7 +406,7 @@ function DashboardSlide() {
             { label: 'Avg Adherence', value: '82%', color: 'text-accent' },
             { label: 'Active Patients', value: '2,000', color: 'text-foreground' },
             { label: 'Open Alerts', value: '23', color: 'text-amber-500' },
-            { label: 'Monthly Savings', value: '$19.7K', color: 'text-green-600' },
+            { label: '90-Day Retention', value: '78%', color: 'text-green-600' },
           ].map((stat) => (
             <div key={stat.label}>
               <p className="text-xs text-text-muted uppercase tracking-wider mb-1">{stat.label}</p>
@@ -347,7 +416,7 @@ function DashboardSlide() {
         </div>
         <div className="border-t border-border-light pt-4">
           <p className="text-sm text-text-muted">
-            Patient timelines, escalation logs, and side-effect trends.
+            First fill, 30-day, 90-day, and PDC tracking. Patient timelines, escalation logs, and side-effect trends.
           </p>
         </div>
       </div>
@@ -365,10 +434,10 @@ function GettingStartedSlide() {
   return (
     <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-4xl">
-        Go live in 4 weeks, starting with your hardest-to-reach patients
+        Go live in 4 weeks, starting with your hardest-to-retain GLP-1 patients
       </h2>
       <p className="text-lg text-text-secondary mb-12 max-w-2xl">
-        Pick 100 patients who churned or are about to. If it works there, it works everywhere.
+        Pick 100 GLP-1 patients who churned or are about to. If it works there, it works everywhere.
       </p>
       <div className="flex items-start gap-6 max-w-4xl">
         {steps.map((step, i) => (
@@ -442,7 +511,7 @@ function CTASlide() {
     <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <img src="/logo.svg" alt="Adhery" className="w-16 h-16 mb-10" />
       <h2 className="font-serif text-5xl text-foreground mb-6 leading-tight max-w-3xl">
-        Which 100 patients should we bring back first?
+        Which 100 GLP-1 patients should we bring back first?
       </h2>
       <p className="text-xl text-text-secondary max-w-xl mb-16">
         Give us your hardest cohort. 30 days, measurable results.
@@ -518,11 +587,11 @@ function PharmaValueSlide() {
   return (
     <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h2 className="font-serif text-5xl text-foreground mb-10 leading-tight max-w-4xl">
-        For every $1 a pharma company spends on <span className="text-accent">Adhery</span>, they get $56 back
+        For every $1 a GLP-1 manufacturer spends on <span className="text-accent">Adhery</span>, they get $200+ back
       </h2>
       <div className="max-w-4xl space-y-6 text-left">
         <p className="text-lg text-text-secondary max-w-3xl">
-          Example: pharma manufacturer with 50,000 patients in support programs.
+          Example: GLP-1 manufacturer with 50,000 patients in support programs. GLP-1 drugs cost $1,000-$1,500/month ($12K-$18K/yr).
         </p>
         <div className="grid grid-cols-3 gap-6">
           <div className="bg-surface border border-border-light p-6">
@@ -537,16 +606,16 @@ function PharmaValueSlide() {
           </div>
           <div className="bg-accent/5 border-2 border-accent/30 p-6">
             <p className="text-sm text-text-muted mb-2">Retained drug revenue</p>
-            <p className="text-3xl font-bold text-accent">$250M/yr</p>
-            <p className="text-xs text-text-secondary mt-2">5,000 more patients stay on therapy x $50K avg drug cost</p>
+            <p className="text-3xl font-bold text-accent">$75M/yr</p>
+            <p className="text-xs text-text-secondary mt-2">5,000 more patients stay x $15K avg GLP-1 drug cost</p>
           </div>
         </div>
         <div className="bg-accent/10 border border-accent/30 p-5 flex items-center justify-between">
           <p className="text-foreground">
-            <span className="font-bold">$2M/yr saved</span> in operations. <span className="font-bold">$250M/yr retained</span> in drug revenue.
+            <span className="font-bold">$2M/yr saved</span> in operations. <span className="font-bold">$75M/yr retained</span> in drug revenue.
           </p>
           <div className="text-right pl-8 shrink-0">
-            <p className="text-5xl font-bold text-accent">56x</p>
+            <p className="text-5xl font-bold text-accent">~17x</p>
             <p className="text-xs text-text-muted">return</p>
           </div>
         </div>
@@ -559,32 +628,32 @@ function MarketSizeSlide() {
   return (
     <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h2 className="font-serif text-5xl text-foreground mb-10 leading-tight max-w-4xl">
-        50M specialty patients in the US, growing 8% per year
+        ~15M Americans on GLP-1s, growing rapidly
       </h2>
       <div className="max-w-4xl space-y-8 text-left">
         <div className="grid grid-cols-3 gap-6">
           <div className="bg-surface border border-border-light p-6">
             <p className="text-sm text-text-muted mb-2">TAM</p>
-            <p className="text-3xl font-bold text-foreground">$4.5B</p>
-            <p className="text-xs text-text-secondary mt-2">50M specialty patients x $90/yr</p>
+            <p className="text-3xl font-bold text-foreground">$1.35B</p>
+            <p className="text-xs text-text-secondary mt-2">~15M Americans on GLP-1s x $90/yr</p>
           </div>
           <div className="bg-surface border border-border-light p-6">
             <p className="text-sm text-text-muted mb-2">SAM</p>
-            <p className="text-3xl font-bold text-foreground">$900M</p>
-            <p className="text-xs text-text-secondary mt-2">Top 10 therapeutic areas, US only</p>
+            <p className="text-3xl font-bold text-foreground">$400M</p>
+            <p className="text-xs text-text-secondary mt-2">Top consumer health + pharma, US only</p>
           </div>
           <div className="bg-accent/5 border-2 border-accent/30 p-6">
             <p className="text-sm text-text-muted mb-2">SOM (Year 3)</p>
             <p className="text-3xl font-bold text-accent">$18M</p>
-            <p className="text-xs text-text-secondary mt-2">200K patients across 40 pharmacies</p>
+            <p className="text-xs text-text-secondary mt-2">200K patients across consumer health + pharma partners</p>
           </div>
         </div>
         <div className="border-l-4 border-accent/30 pl-6 space-y-3">
           <p className="text-lg text-foreground">
-            Specialty pharmacy is the fastest-growing segment in US healthcare. Drugs cost $50K-$500K/year per patient. Adherence directly determines whether the drug works and whether the pharmacy keeps the patient.
+            GLP-1 is the fastest-growing drug class in history. Semaglutide and tirzepatide prescriptions are expanding beyond diabetes into obesity, cardiovascular risk reduction, and MASH. Adherence directly determines whether patients achieve lasting outcomes.
           </p>
           <p className="text-text-secondary">
-            Non-adherence costs specialty pharmacies $30B+ in lost revenue per year. Every patient who drops off is $50K-$500K in lost drug spend.
+            Non-adherence costs GLP-1 manufacturers billions in lost revenue per year. Every patient who drops off at 90 days is $12K-$18K/yr in lost drug spend.
           </p>
         </div>
       </div>
@@ -645,24 +714,25 @@ function RevenueProjectionSlide() {
 
 // ─── Slides Array ───
 const slides = [
-  TitleSlide,       // 1: What if every patient had their own AI navigator
-  RealitySlide,     // 2: Call centers reach less than half
-  GapSlide,         // 3: Patients need support their way
-  EvidenceSlide,    // 4: AI-driven outreach 2-3x better
-  IntroducingSlide, // 5: Autonomous navigator - AI Voice forward
-  PatientStorySlide,// 6: Maria's navigator catches every concern
-  ResultsSlide,     // 7: Adherence 78% → 87%
-  ROISlide,         // 8: $236K saved, 6 FTEs redeployed
-  DashboardSlide,   // 9: One dashboard every morning
-  GettingStartedSlide, // 10: Live in 4 weeks
-  PricingSlide,     // 11: 30% less than call center, $6-9 PMPM
-  CTASlide,         // 12: Which 100 patients?
+  TitleSlide,             // 1: Autonomous Voice Agent for Every GLP-1 Patient
+  RealitySlide,           // 2: Half of GLP-1 patients stop within 12 months
+  GapSlide,               // 3: Patients need support their way
+  EvidenceSlide,          // 4: AI-driven outreach 2-3x better
+  IntroducingSlide,       // 5: Autonomous voice agent - AI Voice forward
+  SafetyComplianceSlide,  // 6: Zero-Hallucination Safety
+  PatientStorySlide,      // 7: Sarah on Ozempic, 90 days
+  ResultsSlide,           // 8: GLP-1 adherence ~50% → 80%+
+  ROISlide,               // 9: $80K saved, crosses 90-day cliff
+  DashboardSlide,         // 10: One dashboard every morning
+  GettingStartedSlide,    // 11: Live in 4 weeks
+  PricingSlide,           // 12: 30% less than call center, $6-9 PMPM
+  CTASlide,               // 13: Which 100 GLP-1 patients?
   // ─── Appendix ───
-  AppendixDividerSlide, // 13: Appendix divider
-  BusinessModelSlide,   // 14: Revenue model and unit economics
-  PharmaValueSlide,     // 15: Value to pharma companies
-  MarketSizeSlide,      // 16: TAM/SAM/SOM
-  RevenueProjectionSlide, // 17: Path to $120M ARR
+  AppendixDividerSlide,     // 14: Appendix divider
+  BusinessModelSlide,       // 15: Revenue model and unit economics
+  PharmaValueSlide,         // 16: Value to GLP-1 manufacturers
+  MarketSizeSlide,          // 17: TAM/SAM/SOM for GLP-1
+  RevenueProjectionSlide,   // 18: Path to $90M ARR
 ];
 
 // ─── Main Page ───

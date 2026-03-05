@@ -80,16 +80,16 @@ export const organization: Organization = {
 export const drugProgram: DrugProgram = {
   id: 'prog-1',
   orgId: 'org-1',
-  drugName: 'Humira (adalimumab)',
-  drugClass: 'TNF Inhibitor / Biologic',
-  scheduleConfig: 'Every 2 weeks, subcutaneous injection',
+  drugName: 'Ozempic (semaglutide)',
+  drugClass: 'GLP-1 Receptor Agonist',
+  scheduleConfig: 'Weekly, subcutaneous injection',
   sideEffectsMonitored: [
-    'Injection site reaction',
-    'Upper respiratory infection',
-    'Headache',
     'Nausea',
-    'Rash',
-    'Joint pain',
+    'Diarrhea',
+    'Vomiting',
+    'Stomach pain',
+    'Injection site reaction',
+    'Fatigue',
     'Fatigue',
     'Abdominal pain',
   ],
@@ -164,9 +164,9 @@ export const patients: Patient[] = firstNames.map((first, i) => {
 
 // ─── Interactions ───
 const smsTemplates = [
-  { out: 'Hi {name}, time for your Humira dose today. Reply YES when taken!', in: 'YES, took it this morning' },
+  { out: 'Hi {name}, time for your Ozempic dose today. Reply YES when taken!', in: 'YES, took it this morning' },
   { out: 'Hi {name}, quick check-in. How are you feeling after your last injection?', in: 'Good, slight redness at injection site' },
-  { out: 'Reminder: your Humira refill is due in 3 days. Need help ordering?', in: 'Already ordered, thanks!' },
+  { out: 'Reminder: your Ozempic refill is due in 3 days. Need help ordering?', in: 'Already ordered, thanks!' },
   { out: 'Hi {name}, we noticed you missed your dose yesterday. Everything okay?', in: 'Sorry, forgot. Taking it now' },
   { out: 'Great job staying on track, {name}! Your adherence is at {rate}% this month.', in: 'Thanks for the reminder!' },
 ];
@@ -411,20 +411,20 @@ function generateJourney(patient: Patient, patientIndex: number): JourneyEvent[]
   };
 
   // All patients start the same way
-  addEvent(0, 'enrolled', 'Patient enrolled', `${patient.firstName} enrolled in the Humira adherence program.`, 'system', true, 'success');
+  addEvent(0, 'enrolled', 'Patient enrolled', `${patient.firstName} enrolled in the Ozempic adherence program.`, 'system', true, 'success');
   addEvent(1, 'welcome_kit_sent', 'Welcome kit mailed', 'Personalized welcome kit with injection guide, pharmacy contact card, and side effect tracker sent via USPS Priority.', 'mail', true, 'neutral');
-  addEvent(1, 'first_sms_sent', 'Welcome SMS sent', `"Hi ${patient.firstName}, welcome to your Humira support program! We're here to help. Reply HELP anytime."`, 'sms', true, 'neutral');
+  addEvent(1, 'first_sms_sent', 'Welcome SMS sent', `"Hi ${patient.firstName}, welcome to your Ozempic support program! We're here to help. Reply HELP anytime."`, 'sms', true, 'neutral');
   addEvent(3, 'welcome_kit_delivered', 'Welcome kit delivered', 'USPS confirms delivery to patient address.', 'mail', true, 'success');
 
   // Archetype branching based on adherence rate
   if (patient.adherenceRate > 85) {
     // HIGH ADHERENCE - smooth journey
     addEvent(4, 'sms_response_received', 'Patient responded', `"Thank you! Got the welcome kit, very helpful."`, 'sms', false, 'success');
-    addEvent(14, 'sms_check_in', 'Dose day reminder', `"Hi ${patient.firstName}, your Humira dose is due today. Reply YES when taken!"`, 'sms', true, 'neutral');
+    addEvent(14, 'sms_check_in', 'Dose day reminder', `"Hi ${patient.firstName}, your Ozempic dose is due today. Reply YES when taken!"`, 'sms', true, 'neutral');
     addEvent(14, 'dose_confirmed', 'Dose confirmed via SMS', `Patient replied "YES, took it this morning." Adherence logged.`, 'sms', false, 'success', { pdc_current: 100 });
     addEvent(28, 'sms_check_in', 'Dose day reminder', `Automated check-in sent. Patient confirmed dose within 2 hours.`, 'sms', true, 'success');
     addEvent(28, 'dose_confirmed', 'Dose confirmed', 'On-time dose confirmed. PDC tracking at 100%.', 'system', true, 'success', { pdc_current: 100 });
-    addEvent(35, 'refill_reminder', 'Refill reminder sent', `"Your Humira refill is due in 3 days. Need help ordering? Reply ORDER."`, 'sms', true, 'neutral');
+    addEvent(35, 'refill_reminder', 'Refill reminder sent', `"Your Ozempic refill is due in 3 days. Need help ordering? Reply ORDER."`, 'sms', true, 'neutral');
     addEvent(36, 'refill_confirmed', 'Refill ordered', 'Patient replied "ORDER." Pharmacy notified and refill processing.', 'sms', false, 'success');
     addEvent(42, 'sms_check_in', 'Dose day reminder', 'Automated dose reminder. Confirmed same day.', 'sms', true, 'success');
     addEvent(42, 'dose_confirmed', 'Dose confirmed', 'Third consecutive on-time dose.', 'system', true, 'success', { pdc_current: 100 });

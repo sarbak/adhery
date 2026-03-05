@@ -109,7 +109,7 @@ export default function OverviewPage() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-lg font-semibold text-foreground">Program Impact</h1>
-          <p className="text-xs text-text-muted">Humira Adherence Program - BioVista Specialty Pharmacy - {PROGRAM_PATIENTS.toLocaleString()} enrolled patients</p>
+          <p className="text-xs text-text-muted">GLP-1 Adherence Program - Adhery Voice AI - {PROGRAM_PATIENTS.toLocaleString()} enrolled patients</p>
         </div>
         <div className="text-xs text-text-muted">
           Last updated: Mar 4, 2026
@@ -133,7 +133,7 @@ export default function OverviewPage() {
             </div>
             {/* Drug revenue preserved */}
             <div>
-              <p className="text-[10px] font-medium text-purple-600 uppercase tracking-widest mb-2">Drug Revenue Preserved</p>
+              <p className="text-[10px] font-medium text-purple-600 uppercase tracking-widest mb-2">Therapy Retention Value</p>
               <p className="text-6xl lg:text-7xl font-bold text-purple-600 tracking-tight">
                 {formatCurrency(revenuePreserved)}
               </p>
@@ -173,7 +173,7 @@ export default function OverviewPage() {
                 <div className="relative w-24 h-24">
                   <svg viewBox="0 0 36 36" className="w-full h-full -rotate-90">
                     <circle cx="18" cy="18" r="15.9" fill="none" stroke="#d1fae5" strokeWidth="2.5" />
-                    <circle cx="18" cy="18" r="15.9" fill="none" stroke="#0d7377" strokeWidth="2.5" strokeDasharray={`${currentPDC} ${100 - currentPDC}`} strokeLinecap="round" />
+                    <circle cx="18" cy="18" r="15.9" fill="none" stroke="#1e3a5f" strokeWidth="2.5" strokeDasharray={`${currentPDC} ${100 - currentPDC}`} strokeLinecap="round" />
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
                     <span className="text-2xl font-bold text-accent">{currentPDC}%</span>
