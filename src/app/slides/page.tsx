@@ -26,7 +26,7 @@ function TitleSlide() {
         <span>to navigate</span>
       </div>
       <span className="absolute bottom-6 right-8 text-[10px] text-text-muted/50">
-        v5.2
+        v5.3
       </span>
     </div>
   );
