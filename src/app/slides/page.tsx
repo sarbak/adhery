@@ -518,47 +518,53 @@ function PharmaValueSlide() {
   return (
     <div className="flex flex-col justify-center h-full px-20">
       <h2 className="font-serif text-5xl text-foreground mb-10 leading-tight max-w-4xl">
-        For every $1 spent on <span className="text-accent">Adhery</span>, pharma gets $50+ back
+        For every $1 a pharma company spends on <span className="text-accent">Adhery</span>, they get $42 back
       </h2>
-      <div className="max-w-4xl space-y-8">
-        {/* Side-by-side: They pay vs They get */}
-        <div className="grid grid-cols-2 gap-6">
-          <div className="bg-surface border border-border-light p-8">
-            <p className="text-xs text-text-muted uppercase tracking-wider mb-4">They pay</p>
-            <p className="text-4xl font-bold text-foreground mb-2">$10</p>
-            <p className="text-sm text-text-secondary">per patient per month</p>
-            <div className="border-t border-border-light mt-6 pt-4">
-              <p className="text-sm text-text-secondary">For 50K patients:</p>
-              <p className="text-xl font-bold text-foreground">$6M/yr</p>
+      <div className="max-w-4xl space-y-6">
+        {/* Step-by-step math */}
+        <div className="space-y-4">
+          {/* Step 1: What they pay */}
+          <div className="bg-surface border border-border-light p-5 flex items-center justify-between">
+            <div>
+              <p className="text-xs text-text-muted uppercase tracking-wider mb-1">What they pay Adhery</p>
+              <p className="text-text-secondary">50,000 patients x $10/mo x 12 months</p>
             </div>
+            <p className="text-2xl font-bold text-foreground shrink-0 pl-6">$6M/yr</p>
           </div>
-          <div className="bg-accent/5 border-2 border-accent/30 p-8">
-            <p className="text-xs text-text-muted uppercase tracking-wider mb-4">They get back</p>
-            <div className="space-y-4">
-              <div>
-                <p className="text-4xl font-bold text-accent mb-1">$5.6M/yr</p>
-                <p className="text-sm text-text-secondary">in call center savings ($130 → $18 per patient)</p>
-              </div>
-              <div className="border-t border-accent/20 pt-4">
-                <p className="text-3xl font-bold text-accent mb-1">$250M+</p>
-                <p className="text-sm text-text-secondary">in retained drug revenue from patients who stay on therapy</p>
-              </div>
+
+          {/* Step 2: Call center savings */}
+          <div className="bg-surface border border-border-light p-5 flex items-center justify-between">
+            <div>
+              <p className="text-xs text-text-muted uppercase tracking-wider mb-1">What they save on call centers</p>
+              <p className="text-text-secondary">50,000 patients x $112 saved per patient ($130 manual, $18 with Adhery)</p>
             </div>
+            <p className="text-2xl font-bold text-accent shrink-0 pl-6">$5.6M/yr</p>
+          </div>
+
+          {/* Step 3: Retained drug revenue */}
+          <div className="bg-accent/5 border-2 border-accent/30 p-5 flex items-center justify-between">
+            <div>
+              <p className="text-xs text-text-muted uppercase tracking-wider mb-1">Drug revenue they keep</p>
+              <p className="text-text-secondary">Today ~50% of patients drop off. Adhery retains 5,000 more patients on therapy.</p>
+              <p className="text-text-secondary">5,000 patients x $50K avg annual drug cost</p>
+            </div>
+            <p className="text-2xl font-bold text-accent shrink-0 pl-6">$250M/yr</p>
           </div>
         </div>
-        {/* ROI callout */}
-        <div className="bg-accent/10 border border-accent/30 p-6 flex items-center justify-between">
+
+        {/* Bottom line */}
+        <div className="bg-accent/10 border border-accent/30 p-5 flex items-center justify-between">
           <div>
-            <p className="text-lg text-foreground">
-              <span className="font-semibold text-accent">Adhery pays for itself</span> in call center savings alone. The retained drug revenue is pure upside.
+            <p className="text-foreground">
+              <span className="font-bold">They spend $6M.</span> They save $5.6M in operations. They retain $250M in drug revenue.
             </p>
             <p className="text-sm text-text-secondary mt-1">
-              At ~50% adherence, half of 50K patients eventually drop off. Each lost patient = $50K-$500K/yr in drug spend gone.
+              Call center savings alone cover 93% of the cost. The retained revenue is pure upside.
             </p>
           </div>
           <div className="text-right pl-8 shrink-0">
-            <p className="text-5xl font-bold text-accent">50x</p>
-            <p className="text-xs text-text-muted">ROI</p>
+            <p className="text-5xl font-bold text-accent">42x</p>
+            <p className="text-xs text-text-muted">return</p>
           </div>
         </div>
       </div>
