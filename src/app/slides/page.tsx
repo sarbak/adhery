@@ -518,43 +518,48 @@ function PharmaValueSlide() {
   return (
     <div className="flex flex-col justify-center h-full px-20">
       <h2 className="font-serif text-5xl text-foreground mb-10 leading-tight max-w-4xl">
-        Every dropped patient costs pharma $50K-$500K in lost drug revenue
+        For every $1 spent on <span className="text-accent">Adhery</span>, pharma gets $50+ back
       </h2>
       <div className="max-w-4xl space-y-8">
-        <div className="grid grid-cols-3 gap-6">
-          <div className="bg-surface border border-border-light p-6">
-            <p className="text-sm text-text-muted mb-2">Specialty call center spend</p>
-            <p className="text-3xl font-bold text-foreground">$9-11B/yr</p>
-            <p className="text-xs text-text-secondary mt-2">12-15 calls per patient across 8-12M patients</p>
+        {/* Side-by-side: They pay vs They get */}
+        <div className="grid grid-cols-2 gap-6">
+          <div className="bg-surface border border-border-light p-8">
+            <p className="text-xs text-text-muted uppercase tracking-wider mb-4">They pay</p>
+            <p className="text-4xl font-bold text-foreground mb-2">$10</p>
+            <p className="text-sm text-text-secondary">per patient per month</p>
+            <div className="border-t border-border-light mt-6 pt-4">
+              <p className="text-sm text-text-secondary">For 50K patients:</p>
+              <p className="text-xl font-bold text-foreground">$6M/yr</p>
+            </div>
           </div>
-          <div className="bg-surface border border-border-light p-6">
-            <p className="text-sm text-text-muted mb-2">Pharma patient support spend</p>
-            <p className="text-3xl font-bold text-foreground">$2-3B/yr</p>
-            <p className="text-xs text-text-secondary mt-2">Hub and patient support programs for 1-3M patients</p>
-          </div>
-          <div className="bg-accent/5 border-2 border-accent/30 p-6">
-            <p className="text-sm text-text-muted mb-2">Cost savings with <span className="font-semibold text-accent">Adhery</span></p>
-            <p className="text-3xl font-bold text-accent">$112/patient</p>
-            <p className="text-xs text-text-secondary mt-2">From $130 manual cost to $18 automated</p>
+          <div className="bg-accent/5 border-2 border-accent/30 p-8">
+            <p className="text-xs text-text-muted uppercase tracking-wider mb-4">They get back</p>
+            <div className="space-y-4">
+              <div>
+                <p className="text-4xl font-bold text-accent mb-1">$5.6M/yr</p>
+                <p className="text-sm text-text-secondary">in call center savings ($130 → $18 per patient)</p>
+              </div>
+              <div className="border-t border-accent/20 pt-4">
+                <p className="text-3xl font-bold text-accent mb-1">$250M+</p>
+                <p className="text-sm text-text-secondary">in retained drug revenue from patients who stay on therapy</p>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="border-l-4 border-accent/30 pl-6 space-y-4">
-          <p className="text-lg text-foreground font-medium">
-            What this means for a pharma manufacturer with 50K patients in support programs:
-          </p>
-          <div className="grid grid-cols-2 gap-6">
-            <div>
-              <p className="text-2xl font-bold text-accent">$5.6M/yr</p>
-              <p className="text-sm text-text-secondary">saved in call center costs alone</p>
-            </div>
-            <div>
-              <p className="text-2xl font-bold text-accent">$250M-$2.5B</p>
-              <p className="text-sm text-text-secondary">in retained drug revenue from patients who stay on therapy</p>
-            </div>
+        {/* ROI callout */}
+        <div className="bg-accent/10 border border-accent/30 p-6 flex items-center justify-between">
+          <div>
+            <p className="text-lg text-foreground">
+              <span className="font-semibold text-accent">Adhery pays for itself</span> in call center savings alone. The retained drug revenue is pure upside.
+            </p>
+            <p className="text-sm text-text-secondary mt-1">
+              At ~50% adherence, half of 50K patients eventually drop off. Each lost patient = $50K-$500K/yr in drug spend gone.
+            </p>
           </div>
-          <p className="text-text-secondary text-sm">
-            At ~50% adherence, half of those 50K patients eventually stop their medication. Even retaining 10% more patients generates hundreds of millions in drug spend that would otherwise be lost.
-          </p>
+          <div className="text-right pl-8 shrink-0">
+            <p className="text-5xl font-bold text-accent">50x</p>
+            <p className="text-xs text-text-muted">ROI</p>
+          </div>
         </div>
       </div>
     </div>
