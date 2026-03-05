@@ -86,7 +86,7 @@ function Hero() {
         </h1>
 
         <p className="text-lg text-text-secondary max-w-2xl mx-auto mb-8 leading-relaxed">
-          Bridge the gap between script and long-term therapy persistence with empathetic, clinically-aware Voice AI. We automate the routine 80% of specialty coordination, so your clinical teams can focus on the complex 20%.
+          Most GLP-1 patients stop therapy within a year. Adhery is a voice agent that calls them, catches early warning signs, and keeps them on track. It handles the routine 80% of patient support so your pharmacists focus on cases that need clinical judgment.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
@@ -139,9 +139,9 @@ function AdheryStandard() {
       title: 'Clinical Intelligence that Listens',
       items: [
         'Vocal Biomarker Analysis',
-        'Precision Messaging for "Patient of One"',
+        'Each patient gets messages matched to their situation',
         'Support on patient\'s terms, not intrusive robocalls',
-        'Outcome-Based Logic optimized by drop-off risk',
+        'Prioritizes patients most likely to drop off',
       ],
     },
     {
@@ -155,11 +155,11 @@ function AdheryStandard() {
     },
     {
       number: '03',
-      title: 'Enterprise-Ready Continuity',
+      title: 'Fits Into Your Stack',
       items: [
-        'Native Ecosystem Sync (Veeva Vault, Salesforce Health Cloud)',
-        'Context Persistence (same brain across channels)',
-        'Milestone Optimization (90-day drop-off cliff)',
+        'Syncs with Veeva Vault and Salesforce Health Cloud',
+        'Same patient context across voice, SMS, and escalation',
+        'Tracks the 90-day drop-off cliff where most patients quit',
       ],
     },
   ];
@@ -223,7 +223,7 @@ function HowItWorks() {
       step: '03',
       title: 'Measure & Optimize',
       description: 'Track first fill, 30-day, 90-day, and PDC scores in real time. Auto-coded pharmacovigilance events. Sentiment analysis across every interaction.',
-      result: 'Data-driven insights that prove ROI.',
+      result: 'You see exactly what is working and what is not.',
       timeline: 'Week 4+',
       bg: 'bg-surface-warm',
     },
@@ -1049,7 +1049,7 @@ function VideoDemoTabs() {
       ),
       title: 'AI Voice Agent for GLP-1 Patients',
       description:
-        'Empathetic voice conversations that onboard patients, screen for adverse events, and provide ongoing adherence support. The agent detects vocal cues, collects clinical details, and routes to pharmacists when clinical judgment is needed.',
+        'The voice agent calls patients, walks them through onboarding, screens for adverse events, and follows up on missed doses. When it detects a problem it can\'t resolve, it routes to your pharmacist with full context.',
       mockup: (
         <div className="bg-[#1a1a2e] rounded-sm p-6 max-w-sm mx-auto shadow-2xl">
           <div className="text-center mb-4">

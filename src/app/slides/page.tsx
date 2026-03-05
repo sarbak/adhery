@@ -16,7 +16,7 @@ function TitleSlide() {
         <span className="text-accent whitespace-nowrap">Every GLP-1&nbsp;Patient</span>
       </h1>
       <p className="text-xl text-text-secondary max-w-2xl">
-        Bridge the gap between script and long-term therapy persistence with empathetic, clinically-aware Voice AI.
+        Most GLP-1 patients stop within a year. Adhery keeps them on therapy with voice AI that listens, triages, and escalates.
       </p>
       <div className="mt-20 flex items-center gap-3 text-text-muted text-sm">
         <span>Press</span>
@@ -148,7 +148,7 @@ function IntroducingSlide() {
             AI Voice
           </div>
           <p className="text-lg font-semibold text-foreground">Autonomous Voice Conversations</p>
-          <p className="text-sm text-text-secondary">Empathetic, clinically-aware calls that handle the routine 80%</p>
+          <p className="text-sm text-text-secondary">Calls patients, screens for problems, handles the routine 80%</p>
         </div>
         <div className="flex gap-4 text-left">
           <div className="flex items-start gap-2 flex-1">
