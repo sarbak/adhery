@@ -34,14 +34,14 @@ function TitleSlide() {
 
 function RealitySlide() {
   return (
-    <div className="flex flex-col justify-center h-full px-20">
+    <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-4xl">
         Half of specialty patients stop taking their medication
       </h2>
       <p className="text-lg text-text-secondary mb-10 max-w-2xl">
         Call centers make 12-15 calls per patient per year. Most go to voicemail. Adherence stays around 50%.
       </p>
-      <div className="max-w-4xl">
+      <div className="max-w-4xl w-full">
         <div className="h-16 bg-surface border border-border-light flex mb-6">
           <div className="h-full bg-[#94a3b8] flex items-center justify-center" style={{ width: '50%' }}>
             <span className="text-white font-medium">~50% adherent</span>
@@ -60,11 +60,11 @@ function RealitySlide() {
 
 function GapSlide() {
   return (
-    <div className="flex flex-col justify-center h-full px-20">
+    <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h2 className="font-serif text-5xl text-foreground mb-10 leading-tight max-w-3xl">
         Patients need support on their terms, not yours
       </h2>
-      <div className="max-w-4xl space-y-6">
+      <div className="max-w-4xl space-y-6 text-left">
         <div className="border-l-4 border-accent/30 pl-8">
           <p className="text-xl text-foreground mb-2">
             A patient with injection-site anxiety needs reassurance within hours, not a voicemail next Tuesday.
@@ -81,7 +81,7 @@ function GapSlide() {
           </p>
         </div>
       </div>
-      <p className="text-lg text-text-secondary mt-10 max-w-3xl">
+      <p className="text-lg text-text-secondary mt-10 max-w-3xl text-center">
         The right support depends on the patient. An autonomous system handles that. A call list does not.
       </p>
     </div>
@@ -117,11 +117,11 @@ function EvidenceSlide() {
   ];
 
   return (
-    <div className="flex flex-col justify-center h-full px-20">
+    <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h2 className="font-serif text-5xl text-foreground mb-12 leading-tight max-w-4xl">
         Research shows AI-driven outreach can double adherence rates
       </h2>
-      <div className="grid grid-cols-2 gap-6 max-w-4xl mb-8">
+      <div className="grid grid-cols-2 gap-6 max-w-4xl mb-8 text-left">
         {stats.map((s) => (
           <div key={s.value} className="border-l-2 border-accent/30 pl-6">
             <p className="text-3xl font-bold text-accent mb-1">{s.value}</p>
@@ -175,14 +175,14 @@ function PatientStorySlide() {
   ];
 
   return (
-    <div className="flex flex-col justify-center h-full px-20">
+    <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-4xl">
         One patient, 30 days, zero pharmacist calls
       </h2>
       <p className="text-lg text-text-secondary mb-10 max-w-2xl">
         Maria on Humira. The <span className="text-accent font-medium">Adhery</span> navigator handles everything autonomously.
       </p>
-      <div className="max-w-4xl space-y-4">
+      <div className="max-w-4xl space-y-4 text-left w-full">
         {steps.map((s) => (
           <div key={s.day} className="flex items-start gap-5">
             <div className="w-14 flex-shrink-0 text-right pt-0.5">
@@ -206,14 +206,14 @@ function PatientStorySlide() {
 
 function ResultsSlide() {
   return (
-    <div className="flex flex-col justify-center h-full px-20">
+    <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-4xl">
         Adherence jumps from ~50% to 80%+ PDC
       </h2>
       <p className="text-lg text-text-secondary mb-10 max-w-3xl">
         Above the CMS Star Rating threshold. Cost per patient drops from $130 to $18.
       </p>
-      <div className="max-w-4xl space-y-8">
+      <div className="max-w-4xl space-y-8 w-full text-left">
         {/* Before bar */}
         <div>
           <div className="flex items-baseline justify-between mb-3">
@@ -278,14 +278,14 @@ function ROISlide() {
   ];
 
   return (
-    <div className="flex flex-col justify-center h-full px-20">
+    <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-4xl">
         A 2,000-patient pharmacy saves $80K and gains 30 points of adherence
       </h2>
       <p className="text-lg text-text-secondary mb-10 max-w-3xl">
         Cost drops from $130 to $90 per patient. PDC goes from ~50% to 80%+. The savings fund redeployment to clinical work.
       </p>
-      <div className="grid grid-cols-3 gap-6 max-w-5xl">
+      <div className="grid grid-cols-3 gap-6 max-w-5xl text-left">
         {tiers.map((t) => (
           <div
             key={t.patients}
@@ -324,14 +324,14 @@ function ROISlide() {
 
 function DashboardSlide() {
   return (
-    <div className="flex flex-col justify-center h-full px-20">
+    <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-4xl">
         Every morning, your lead pharmacist opens this
       </h2>
       <p className="text-lg text-text-secondary mb-10 max-w-2xl">
         Adherence rates, open alerts, cost savings. One screen, real-time.
       </p>
-      <div className="bg-surface border border-border-light p-10 max-w-4xl">
+      <div className="bg-surface border border-border-light p-10 max-w-4xl w-full text-left">
         <div className="grid grid-cols-4 gap-6 mb-8">
           {[
             { label: 'Avg Adherence', value: '82%', color: 'text-accent' },
@@ -363,7 +363,7 @@ function GettingStartedSlide() {
   ];
 
   return (
-    <div className="flex flex-col justify-center h-full px-20">
+    <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-4xl">
         Go live in 4 weeks, starting with your hardest-to-reach patients
       </h2>
@@ -399,11 +399,11 @@ function PricingSlide() {
   ];
 
   return (
-    <div className="flex flex-col justify-center h-full px-20">
+    <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h2 className="font-serif text-5xl text-foreground mb-12 leading-tight max-w-4xl">
         30% less than your call center, ROI from day one
       </h2>
-      <div className="flex gap-8 max-w-4xl items-start">
+      <div className="flex gap-8 max-w-4xl items-start text-left">
         <div className="bg-surface-warm border-2 border-accent/20 p-8 w-56 flex-shrink-0">
           <p className="text-sm text-text-secondary mb-2">One-time setup</p>
           <p className="text-4xl font-bold text-foreground mb-2">$15K</p>
@@ -430,7 +430,7 @@ function PricingSlide() {
           </div>
         </div>
       </div>
-      <p className="text-sm text-text-secondary mt-8 max-w-3xl">
+      <p className="text-sm text-text-secondary mt-8 max-w-3xl text-center">
         No long-term contracts. Cancel anytime after pilot.
       </p>
     </div>
@@ -470,11 +470,11 @@ function AppendixDividerSlide() {
 
 function BusinessModelSlide() {
   return (
-    <div className="flex flex-col justify-center h-full px-20">
+    <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h2 className="font-serif text-5xl text-foreground mb-10 leading-tight max-w-4xl">
         Recurring revenue per patient, compounding with retention
       </h2>
-      <div className="max-w-4xl space-y-8">
+      <div className="max-w-4xl space-y-8 text-left">
         <div className="grid grid-cols-3 gap-6">
           <div className="bg-surface border border-border-light p-6">
             <p className="text-sm text-text-muted mb-2">Revenue per patient</p>
@@ -516,11 +516,11 @@ function BusinessModelSlide() {
 
 function PharmaValueSlide() {
   return (
-    <div className="flex flex-col justify-center h-full px-20">
+    <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h2 className="font-serif text-5xl text-foreground mb-10 leading-tight max-w-4xl">
         For every $1 a pharma company spends on <span className="text-accent">Adhery</span>, they get $56 back
       </h2>
-      <div className="max-w-4xl space-y-6">
+      <div className="max-w-4xl space-y-6 text-left">
         <p className="text-lg text-text-secondary max-w-3xl">
           Example: pharma manufacturer with 50,000 patients in support programs.
         </p>
@@ -557,11 +557,11 @@ function PharmaValueSlide() {
 
 function MarketSizeSlide() {
   return (
-    <div className="flex flex-col justify-center h-full px-20">
+    <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h2 className="font-serif text-5xl text-foreground mb-10 leading-tight max-w-4xl">
         50M specialty patients in the US, growing 8% per year
       </h2>
-      <div className="max-w-4xl space-y-8">
+      <div className="max-w-4xl space-y-8 text-left">
         <div className="grid grid-cols-3 gap-6">
           <div className="bg-surface border border-border-light p-6">
             <p className="text-sm text-text-muted mb-2">TAM</p>
@@ -601,11 +601,11 @@ function RevenueProjectionSlide() {
   ];
 
   return (
-    <div className="flex flex-col justify-center h-full px-20">
+    <div className="flex flex-col items-center justify-center h-full text-center px-16">
       <h2 className="font-serif text-5xl text-foreground mb-10 leading-tight max-w-4xl">
         Path to $90M ARR with 80% margins
       </h2>
-      <div className="max-w-4xl">
+      <div className="max-w-4xl text-left">
         <div className="grid grid-cols-4 gap-4 mb-8">
           {years.map((y) => (
             <div
