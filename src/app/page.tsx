@@ -37,7 +37,7 @@ function Nav() {
           </a>
           <a
             href="#demo"
-            className="text-sm font-semibold text-white bg-accent hover:bg-accent-dark px-5 py-2.5 rounded-sm transition-all"
+            className="text-sm font-semibold text-white bg-accent hover:bg-accent-dark px-5 py-2.5 transition-colors"
           >
             See Adhery in Action
           </a>
@@ -61,7 +61,7 @@ function Nav() {
           <a href="#why-adhery" className="block text-sm font-medium text-text-secondary" onClick={() => setMobileOpen(false)}>Why Adhery</a>
           <a href="#how-it-works" className="block text-sm font-medium text-text-secondary" onClick={() => setMobileOpen(false)}>How It Works</a>
           <a href="#who-we-serve" className="block text-sm font-medium text-text-secondary" onClick={() => setMobileOpen(false)}>Who We Serve</a>
-          <a href="#demo" className="block text-sm font-semibold text-white bg-accent px-5 py-2.5 rounded-sm text-center" onClick={() => setMobileOpen(false)}>See Adhery in Action</a>
+          <a href="#demo" className="block text-sm font-semibold text-white bg-accent px-5 py-2.5  text-center" onClick={() => setMobileOpen(false)}>See Adhery in Action</a>
         </div>
       )}
     </nav>
@@ -71,56 +71,55 @@ function Nav() {
 /* ─── 2. Hero ─── */
 function Hero() {
   return (
-    <section className="pt-28 pb-20 px-6 bg-gradient-to-b from-[#e8eef5] to-background">
-      <div className="max-w-5xl mx-auto text-center">
-        <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-4">
+    <section className="pt-32 pb-24 px-6 bg-white border-b border-border-light">
+      <div className="max-w-4xl mx-auto">
+        <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-accent mb-6">
           Autonomous GLP-1 Adherence
         </p>
-        <h1 className="font-serif text-5xl md:text-7xl leading-[1.05] mb-6 text-foreground">
+        <h1 className="font-serif text-5xl md:text-6xl leading-[1.08] mb-6 text-foreground">
           An Autonomous Voice Agent<br />
-          <em className="font-serif">for Every Patient.</em>
+          for Every Patient
         </h1>
 
-        <p className="text-lg text-text-secondary max-w-2xl mx-auto mb-8 leading-relaxed">
-          Most GLP-1 patients stop therapy within a year. Adhery is a voice agent that calls them, catches early warning signs, and keeps them on track. It handles the routine 80% of patient support so your pharmacists focus on cases that need clinical judgment.
+        <p className="text-base text-text-secondary max-w-xl mb-10 leading-relaxed">
+          Most GLP-1 patients stop therapy within a year. Adhery is a voice agent that calls them, catches early warning signs, and keeps them on track. It handles the routine 80% so your pharmacists focus on cases that need clinical judgment.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+        <div className="flex items-center gap-4 mb-14">
           <a
             href="#demo"
-            className="text-sm font-semibold text-white bg-accent hover:bg-accent-dark px-8 py-3.5 rounded-sm transition-all shadow-lg shadow-accent/20"
+            className="text-sm font-semibold text-white bg-accent hover:bg-accent-dark px-7 py-3 transition-colors"
           >
             See Adhery in Action
           </a>
           <a
             href="#how-it-works"
-            className="text-sm font-medium text-text-secondary hover:text-foreground px-6 py-3.5 rounded-sm border border-border-light hover:border-foreground/20 transition-all"
+            className="text-sm font-medium text-text-secondary hover:text-foreground px-6 py-3 border border-border-light hover:border-foreground/20 transition-colors"
           >
             How It Works
           </a>
         </div>
 
-        {/* HIPAA + SOC-2 badges */}
-        <div className="flex items-center justify-center gap-6 text-text-muted">
-          <div className="flex items-center gap-2 text-xs">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent">
+        <div className="flex items-center gap-6 text-text-muted text-[11px] tracking-wide uppercase">
+          <span className="flex items-center gap-1.5">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
             </svg>
             HIPAA Compliant
-          </div>
-          <div className="flex items-center gap-2 text-xs">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent">
+          </span>
+          <span className="flex items-center gap-1.5">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
             </svg>
             SOC-2 Ready
-          </div>
-          <div className="flex items-center gap-2 text-xs">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent">
+          </span>
+          <span className="flex items-center gap-1.5">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent">
               <path d="M9 12l2 2 4-4" />
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
             </svg>
             MLR-Approved Scripts
-          </div>
+          </span>
         </div>
       </div>
     </section>
@@ -161,29 +160,24 @@ function AdheryStandard() {
   ];
 
   return (
-    <section id="why-adhery" className="py-20 px-6 bg-white border-y border-border-light">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-14">
-          <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-3">
-            The Adhery Standard
-          </p>
-          <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-4">
-            The clinical intelligence of a specialist.<br />
-            <em className="font-serif">The scale of an autonomous platform.</em>
-          </h2>
-        </div>
+    <section id="why-adhery" className="py-20 px-6 bg-surface-warm border-b border-border-light">
+      <div className="max-w-4xl mx-auto">
+        <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-accent mb-4">
+          The Adhery Standard
+        </p>
+        <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-14">
+          The clinical intelligence of a specialist.<br />
+          The scale of an autonomous platform.
+        </h2>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-px bg-border-light">
           {pillars.map((p) => (
-            <div key={p.number} className="bg-surface-warm border border-border-light p-6">
-              <span className="text-3xl font-bold text-accent/20 mb-4 block">{p.number}</span>
-              <h3 className="font-semibold text-foreground text-lg mb-4">{p.title}</h3>
-              <ul className="space-y-3">
+            <div key={p.number} className="bg-white p-6">
+              <span className="text-[11px] font-medium tracking-[0.2em] uppercase text-text-muted mb-4 block">{p.number}</span>
+              <h3 className="font-semibold text-foreground mb-4">{p.title}</h3>
+              <ul className="space-y-2.5">
                 {p.items.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-text-secondary leading-relaxed">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent flex-shrink-0 mt-0.5">
-                      <path d="M20 6L9 17l-5-5" />
-                    </svg>
+                  <li key={item} className="text-sm text-text-secondary leading-relaxed pl-4 border-l-2 border-border-light">
                     {item}
                   </li>
                 ))}
@@ -226,31 +220,31 @@ function HowItWorks() {
   ];
 
   return (
-    <section className="py-20 px-6" id="how-it-works">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-4">
-            How It Works
-          </p>
-          <h2 className="font-serif text-4xl md:text-5xl text-foreground">
-            Live in 3 weeks
-          </h2>
-          <p className="text-text-secondary mt-4 max-w-xl mx-auto">
-            Start with your hardest-to-retain GLP-1 patients. Pre-built cadences by drug class. No custom development.
-          </p>
-        </div>
+    <section className="py-20 px-6 bg-white border-b border-border-light" id="how-it-works">
+      <div className="max-w-4xl mx-auto">
+        <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-accent mb-4">
+          How It Works
+        </p>
+        <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-3">
+          Live in 3 weeks
+        </h2>
+        <p className="text-sm text-text-secondary mb-14 max-w-lg">
+          Start with your hardest-to-retain GLP-1 patients. Pre-built cadences by drug class. No custom development.
+        </p>
 
         <div className="space-y-0">
           {steps.map((s, i) => (
-            <div key={i} className={`${s.bg} border border-border-light p-8 md:p-12 ${i > 0 ? '-mt-px' : ''}`}>
-              <div className="grid md:grid-cols-[80px_1fr_auto] gap-6 items-start">
-                <span className="text-4xl font-bold text-accent/30">{s.step}</span>
+            <div key={i} className={`border border-border-light p-8 ${i > 0 ? '-mt-px' : ''} ${i % 2 === 0 ? 'bg-surface-warm' : 'bg-white'}`}>
+              <div className="grid md:grid-cols-[1fr_auto] gap-6 items-start">
                 <div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3">{s.title}</h3>
-                  <p className="text-text-secondary leading-relaxed max-w-xl mb-2">{s.description}</p>
-                  <p className="text-sm text-accent font-medium italic">{s.result}</p>
+                  <div className="flex items-baseline gap-3 mb-3">
+                    <span className="text-[11px] font-medium tracking-[0.2em] uppercase text-text-muted">{s.step}</span>
+                    <h3 className="text-lg font-semibold text-foreground">{s.title}</h3>
+                  </div>
+                  <p className="text-sm text-text-secondary leading-relaxed max-w-xl mb-2">{s.description}</p>
+                  <p className="text-sm text-accent font-medium">{s.result}</p>
                 </div>
-                <span className="text-sm font-medium text-accent bg-accent/10 px-3 py-1 rounded-sm self-start hidden md:block">{s.timeline}</span>
+                <span className="text-[11px] font-medium tracking-[0.2em] uppercase text-text-muted self-start hidden md:block">{s.timeline}</span>
               </div>
             </div>
           ))}
@@ -262,7 +256,6 @@ function HowItWorks() {
 
 /* ─── 5. Case Study Cards (GLP-1) ─── */
 function CaseStudyCards() {
-  const [expanded, setExpanded] = useState<number | null>(null);
   const studies = [
     {
       name: 'Sarah',
@@ -288,54 +281,36 @@ function CaseStudyCards() {
   ];
 
   return (
-    <section className="py-20 px-6 bg-background">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-4">
-            GLP-1 Patient Outcomes
-          </p>
-          <h2 className="font-serif text-4xl md:text-5xl text-foreground">
-            Real scenarios, <em className="font-serif">real outcomes</em>
-          </h2>
-        </div>
+    <section className="py-20 px-6 bg-surface-warm border-b border-border-light">
+      <div className="max-w-4xl mx-auto">
+        <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-accent mb-4">
+          GLP-1 Patient Outcomes
+        </p>
+        <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-14">
+          Real scenarios, real outcomes
+        </h2>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-px bg-border-light">
           {studies.map((study, i) => (
-            <div
-              key={i}
-              onClick={() => setExpanded(expanded === i ? null : i)}
-              className={`bg-white border border-border-light p-6 cursor-pointer transition-all duration-300 ${
-                expanded === i ? 'ring-2 ring-accent/30 shadow-xl' : 'hover:shadow-md'
-              }`}
-            >
+            <div key={i} className="bg-white p-6">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-sm bg-accent/10 flex items-center justify-center text-accent font-semibold text-sm">
+                <div className="w-8 h-8 bg-accent/10 flex items-center justify-center text-accent font-semibold text-xs">
                   {study.name[0]}
                 </div>
                 <div>
-                  <p className="font-semibold text-foreground">{study.name}</p>
-                  <p className="text-xs text-text-muted">{study.drug}</p>
+                  <p className="text-sm font-semibold text-foreground">{study.name}</p>
+                  <p className="text-[11px] text-text-muted">{study.drug}</p>
                 </div>
               </div>
-              <p className="font-semibold text-foreground mb-2">{study.headline}</p>
-              {expanded === i && (
-                <div className="mt-4">
-                  <p className="text-sm text-text-secondary leading-relaxed mb-4">{study.summary}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {Object.entries(study.metrics).map(([key, val]) => (
-                      <span
-                        key={key}
-                        className="text-xs bg-accent/10 text-accent-dark px-3 py-1 rounded-sm"
-                      >
-                        {val}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-              {expanded !== i && (
-                <p className="text-xs text-text-muted mt-2">Click to expand &rarr;</p>
-              )}
+              <p className="text-sm font-semibold text-foreground mb-3">{study.headline}</p>
+              <p className="text-sm text-text-secondary leading-relaxed mb-4">{study.summary}</p>
+              <div className="flex flex-wrap gap-2">
+                {Object.entries(study.metrics).map(([key, val]) => (
+                  <span key={key} className="text-[11px] text-text-muted">
+                    {val}
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
         </div>
@@ -347,18 +322,18 @@ function CaseStudyCards() {
 /* ─── 6. Impact Metrics ─── */
 function ImpactMetrics() {
   return (
-    <section className="py-16 px-6 bg-gradient-to-r from-accent to-accent-light">
-      <div className="max-w-5xl mx-auto grid md:grid-cols-4 gap-8 text-center text-white">
+    <section className="py-16 px-6 bg-[#0d1117]">
+      <div className="max-w-4xl mx-auto grid md:grid-cols-4 gap-px">
         {[
-          { value: '3.5x', label: 'Engagement Increase', sub: 'AI voice outreach vs. call center' },
-          { value: '80%+', label: 'PDC Achievement', sub: 'crossing the CMS quality threshold' },
-          { value: '90-day', label: 'Cliff Crossed', sub: 'where most GLP-1 patients drop off' },
-          { value: '3 wks', label: 'Time to Launch', sub: 'from contract to go-live' },
+          { value: '3.5x', label: 'Engagement increase', sub: 'AI voice outreach vs. call center' },
+          { value: '80%+', label: 'PDC achievement', sub: 'Crossing the CMS quality threshold' },
+          { value: '90-day', label: 'Cliff crossed', sub: 'Where most GLP-1 patients drop off' },
+          { value: '3 wks', label: 'Time to launch', sub: 'From contract to go-live' },
         ].map((m, i) => (
-          <div key={i}>
-            <p className="text-5xl md:text-6xl font-bold mb-2">{m.value}</p>
-            <p className="text-lg font-semibold mb-1">{m.label}</p>
-            <p className="text-sm text-white/70">{m.sub}</p>
+          <div key={i} className="text-center py-8 px-4">
+            <p className="text-4xl font-bold text-white mb-2">{m.value}</p>
+            <p className="text-sm font-medium text-white/80 mb-1">{m.label}</p>
+            <p className="text-xs text-white/40">{m.sub}</p>
           </div>
         ))}
       </div>
@@ -366,89 +341,7 @@ function ImpactMetrics() {
   );
 }
 
-/* ─── 7. Retention Science Methods ─── */
-function RetentionMethods() {
-  const methods = [
-    {
-      title: 'Opt-out defaults',
-      stat: 'd = 0.68',
-      desc: 'Patients are pre-enrolled in refill reminders and check-ins. Easy opt-out, but the default keeps them on track.',
-      source: 'Meta-analysis, ~27% uptake increase',
-    },
-    {
-      title: 'Milestone recognition',
-      stat: '+7pp retention',
-      desc: 'Non-monetary recognition at 30, 60, 90-day marks. Progress visualization and encouragement, never shame.',
-      source: 'Field experiment, 35% to 42% at 1 month',
-    },
-    {
-      title: 'Contact-frequency governance',
-      stat: '-59% opt-outs',
-      desc: 'Adaptive message cadence with hard caps per channel. Back off after non-response. Fewer touches, higher impact.',
-      source: 'Email frequency study, increased CLV',
-    },
-    {
-      title: 'Habit-formation loops',
-      stat: 'Cue-routine-reward',
-      desc: 'Consistent timing, confirmation tap, immediate progress feedback. Builds the medication-taking habit, not just compliance.',
-      source: 'Behavioral science framework',
-    },
-    {
-      title: 'Fast activation',
-      stat: '< 7 days',
-      desc: 'First value moment within a week: refill confirmed, barrier resolved, savings applied. Early engagement predicts retention.',
-      source: 'Commercial mHealth evidence',
-    },
-    {
-      title: 'Win-back playbooks',
-      stat: '14-day trigger',
-      desc: 'Non-judgmental re-engagement after gaps. Offers options: refill help, side-effect support, frequency reduction, or pause.',
-      source: 'Churn prevention best practice',
-    },
-    {
-      title: 'Uplift modeling',
-      stat: 'Causal targeting',
-      desc: 'Identifies which patients will actually respond to intervention. Allocates pharmacist time to persuadable patients only.',
-      source: 'Qini curves & AUUC metrics',
-    },
-    {
-      title: 'Contextual triggers',
-      stat: 'RR 1.04',
-      desc: 'Time-of-day optimized prompts. Micro-randomized trials find the right moment for each patient.',
-      source: 'MRT, n=1,255 users',
-    },
-  ];
-
-  return (
-    <section className="py-20 bg-white">
-      <div className="max-w-5xl mx-auto px-6">
-        <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent text-center mb-3">
-          Evidence-Based Retention Science
-        </p>
-        <h2 className="font-serif text-4xl text-foreground text-center mb-4">
-          Every technique backed by research
-        </h2>
-        <p className="text-text-secondary text-center mb-14 max-w-2xl mx-auto">
-          Adhery applies retention methods from behavioral science and clinical research to every patient interaction.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {methods.map((m) => (
-            <div key={m.title} className="border border-border-light p-5 bg-surface-warm">
-              <div className="flex items-baseline justify-between mb-2">
-                <p className="text-sm font-semibold text-foreground">{m.title}</p>
-                <span className="text-xs font-medium text-accent ml-2 whitespace-nowrap">{m.stat}</span>
-              </div>
-              <p className="text-xs text-text-secondary leading-relaxed mb-3">{m.desc}</p>
-              <p className="text-[10px] text-text-muted">{m.source}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── 8. Who We Serve ─── */
+/* ─── 7. Who We Serve ─── */
 function WhoWeServe() {
   const segments = [
     {
@@ -490,27 +383,22 @@ function WhoWeServe() {
   ];
 
   return (
-    <section className="py-20 px-6 bg-surface-warm" id="who-we-serve">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="text-xs font-medium tracking-[0.15em] uppercase text-accent mb-4">
-            Who We Serve
-          </p>
-          <h2 className="font-serif text-4xl md:text-5xl text-foreground">
-            Built for the GLP-1 <em className="font-serif">ecosystem</em>
-          </h2>
-        </div>
+    <section className="py-20 px-6 bg-white border-b border-border-light" id="who-we-serve">
+      <div className="max-w-4xl mx-auto">
+        <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-accent mb-4">
+          Who We Serve
+        </p>
+        <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-14">
+          Built for the GLP-1 ecosystem
+        </h2>
 
-        <div className="grid sm:grid-cols-2 gap-6">
+        <div className="grid sm:grid-cols-2 gap-px bg-border-light">
           {segments.map((seg, i) => (
-            <div
-              key={i}
-              className="bg-white p-6 border border-border-light hover:border-accent/30 hover:shadow-md transition-all cursor-pointer group"
-            >
-              <div className="w-12 h-12 rounded-sm bg-accent/10 flex items-center justify-center mb-4">
+            <div key={i} className="bg-surface-warm p-6">
+              <div className="w-10 h-10 bg-accent/10 flex items-center justify-center mb-4">
                 {seg.icon}
               </div>
-              <h3 className="font-semibold text-foreground mb-2">{seg.title}</h3>
+              <h3 className="text-sm font-semibold text-foreground mb-2">{seg.title}</h3>
               <p className="text-sm text-text-secondary leading-relaxed">{seg.description}</p>
             </div>
           ))}
@@ -554,7 +442,7 @@ function DemoRequestForm() {
     return (
       <section className="py-20 px-6 bg-[#0d1117]" id="demo">
         <div className="max-w-2xl mx-auto text-center">
-          <div className="w-16 h-16 rounded-sm bg-accent/20 flex items-center justify-center mx-auto mb-6">
+          <div className="w-16 h-16  bg-accent/20 flex items-center justify-center mx-auto mb-6">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent">
               <path d="M20 6L9 17l-5-5" />
             </svg>
@@ -589,7 +477,7 @@ function DemoRequestForm() {
               value={form.name}
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
               onFocus={() => posthog.capture('demo_input_focused', { form_location: 'footer' })}
-              className="bg-white/10 text-white px-4 py-3 rounded-sm border border-white/10 focus:border-accent outline-none text-sm placeholder:text-white/30"
+              className="bg-white/10 text-white px-4 py-3  border border-white/10 focus:border-accent outline-none text-sm placeholder:text-white/30"
             />
             <input
               type="email"
@@ -597,7 +485,7 @@ function DemoRequestForm() {
               required
               value={form.email}
               onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-              className="bg-white/10 text-white px-4 py-3 rounded-sm border border-white/10 focus:border-accent outline-none text-sm placeholder:text-white/30"
+              className="bg-white/10 text-white px-4 py-3  border border-white/10 focus:border-accent outline-none text-sm placeholder:text-white/30"
             />
           </div>
           <div className="grid grid-cols-2 gap-4">
@@ -607,13 +495,13 @@ function DemoRequestForm() {
               required
               value={form.company}
               onChange={(e) => setForm((f) => ({ ...f, company: e.target.value }))}
-              className="bg-white/10 text-white px-4 py-3 rounded-sm border border-white/10 focus:border-accent outline-none text-sm placeholder:text-white/30"
+              className="bg-white/10 text-white px-4 py-3  border border-white/10 focus:border-accent outline-none text-sm placeholder:text-white/30"
             />
             <select
               value={form.role}
               onChange={(e) => setForm((f) => ({ ...f, role: e.target.value }))}
               required
-              className="bg-white/10 text-white px-4 py-3 rounded-sm border border-white/10 focus:border-accent outline-none text-sm appearance-none"
+              className="bg-white/10 text-white px-4 py-3  border border-white/10 focus:border-accent outline-none text-sm appearance-none"
             >
               <option value="" className="text-black">Select role</option>
               <option value="consumer-health" className="text-black">Consumer Health</option>
@@ -630,12 +518,12 @@ function DemoRequestForm() {
             value={form.message}
             onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
             rows={3}
-            className="w-full bg-white/10 text-white px-4 py-3 rounded-sm border border-white/10 focus:border-accent outline-none text-sm placeholder:text-white/30 resize-none"
+            className="w-full bg-white/10 text-white px-4 py-3  border border-white/10 focus:border-accent outline-none text-sm placeholder:text-white/30 resize-none"
           />
           <button
             type="submit"
             disabled={status === 'submitting'}
-            className="w-full bg-accent hover:bg-accent-dark text-white font-semibold py-3.5 rounded-sm transition-all shadow-lg shadow-accent/20 disabled:opacity-50"
+            className="w-full bg-accent hover:bg-accent-dark text-white font-semibold py-3.5  transition-all  disabled:opacity-50"
           >
             {status === 'submitting' ? 'Submitting...' : 'See Adhery in Action'}
           </button>
@@ -721,7 +609,6 @@ export default function Home() {
       <HowItWorks />
       <CaseStudyCards />
       <ImpactMetrics />
-      <RetentionMethods />
       <WhoWeServe />
       <DemoRequestForm />
       <Footer />
