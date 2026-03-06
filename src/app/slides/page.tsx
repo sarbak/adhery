@@ -901,33 +901,39 @@ function AdheryBehavioralSlide() {
 }
 
 function ConfidenceSummarySlide() {
+  // Each layer: base = where previous layer ended, delta = what this layer adds
   const layers = [
     {
-      layer: 'Enrollment form only',
-      dataPoints: 'Name, address, insurance, diagnosis',
-      adherenceConfidence: 25,
-      note: 'Baseline. Knows what drug, not what patient.',
+      label: 'Enrollment form only',
+      desc: 'Name, address, insurance, diagnosis',
+      base: 0,
+      delta: 25,
+      color: '#d1d5db',
+      total: 25,
     },
     {
-      layer: '+ ZIP code enrichment',
-      dataPoints: '+ Income, ADI, food desert, SVI, pharmacy density',
-      adherenceConfidence: 55,
-      note: 'Area-level risk. Free. Covers population-level SDoH.',
-      delta: '+30pp',
+      label: '+ Geographic intelligence',
+      desc: '+ Area deprivation, food access, pharmacy density, SVI',
+      base: 25,
+      delta: 30,
+      color: '#94a3b8',
+      total: 55,
     },
     {
-      layer: '+ Consumer enrichment',
-      dataPoints: '+ Individual income, education, household, SDoH score',
-      adherenceConfidence: 70,
-      note: 'Individual-level. $0.20/record. Fills the demographic gap.',
-      delta: '+15pp',
+      label: '+ Demographic enrichment',
+      desc: '+ Individual income, education, household, SDoH score',
+      base: 55,
+      delta: 15,
+      color: ACCENT,
+      total: 70,
     },
     {
-      layer: '+ Adhery behavioral data',
-      dataPoints: '+ Sentiment, response time, cost Qs, refill patterns',
-      adherenceConfidence: 90,
-      note: 'Real-time. Built-in. Best single predictor layer.',
-      delta: '+20pp',
+      label: '+ Adhery behavioral data',
+      desc: '+ Sentiment, response time, cost signals, refill patterns',
+      base: 70,
+      delta: 20,
+      color: '#22c55e',
+      total: 90,
     },
   ];
 
@@ -936,43 +942,55 @@ function ConfidenceSummarySlide() {
       <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-4xl">
         Each layer compounds prediction accuracy
       </h2>
-      <p className="text-lg text-text-secondary mb-10 max-w-3xl">
+      <p className="text-lg text-text-secondary mb-12 max-w-3xl">
         Confidence in predicting 90-day adherence outcome, by data layer
       </p>
-      <div className="max-w-4xl w-full space-y-4 text-left">
-        {layers.map((l, i) => (
-          <div key={l.layer} className={`p-5 flex items-center gap-6 ${i === layers.length - 1 ? 'bg-accent/5 border-2 border-accent/30' : 'border border-border-light'}`}>
-            <div className="flex-1">
-              <div className="flex items-center gap-3 mb-1">
-                <p className="text-base font-semibold text-foreground">{l.layer}</p>
-                {l.delta && (
-                  <span className="text-xs font-bold text-accent bg-accent/10 px-2 py-0.5">{l.delta}</span>
-                )}
-              </div>
-              <p className="text-sm text-text-secondary">{l.dataPoints}</p>
-              <p className="text-xs text-text-muted mt-1">{l.note}</p>
+      <div className="max-w-4xl w-full space-y-6 text-left">
+        {layers.map((l) => (
+          <div key={l.label} className="flex items-center gap-6">
+            {/* Label column */}
+            <div className="w-56 flex-shrink-0 text-right">
+              <p className="text-sm font-semibold text-foreground leading-tight">{l.label}</p>
+              <p className="text-xs text-text-muted mt-0.5">{l.desc}</p>
             </div>
-            <div className="w-48 flex-shrink-0">
-              <div className="flex items-center gap-3">
-                <div className="flex-1 h-3 bg-surface border border-border-light">
+            {/* Stacked bar */}
+            <div className="flex-1 flex items-center gap-4">
+              <div className="flex-1 h-10 bg-surface border border-border-light relative flex">
+                {/* Previous layers (grayed out) */}
+                {l.base > 0 && (
                   <div
-                    className="h-full transition-all duration-500"
-                    style={{
-                      width: `${l.adherenceConfidence}%`,
-                      backgroundColor: l.adherenceConfidence >= 85 ? '#22c55e' : l.adherenceConfidence >= 60 ? ACCENT : l.adherenceConfidence >= 40 ? '#f59e0b' : '#94a3b8',
-                    }}
+                    className="h-full bg-[#e5e7eb]"
+                    style={{ width: `${(l.base / 100) * 100}%` }}
                   />
+                )}
+                {/* This layer's contribution (colored) */}
+                <div
+                  className="h-full flex items-center justify-center"
+                  style={{ width: `${(l.delta / 100) * 100}%`, backgroundColor: l.color }}
+                >
+                  <span className="text-xs font-bold text-white">+{l.delta}pp</span>
                 </div>
-                <span className={`text-lg font-bold ${l.adherenceConfidence >= 85 ? 'text-green-600' : l.adherenceConfidence >= 60 ? 'text-accent' : l.adherenceConfidence >= 40 ? 'text-amber-500' : 'text-text-muted'}`}>
-                  {l.adherenceConfidence}%
-                </span>
               </div>
+              <span className="text-2xl font-bold w-14 text-right" style={{ color: l.color }}>
+                {l.total}%
+              </span>
             </div>
           </div>
         ))}
       </div>
-      <p className="text-xs text-text-muted mt-8 italic max-w-3xl">
-        Confidence estimates based on published ML adherence prediction models (Nature Scientific Reports, 2021; JMCP, 2018) achieving AUC 0.83-0.87 with behavioral + demographic features.
+      {/* Legend */}
+      <div className="mt-10 flex items-center gap-6">
+        <div className="flex items-center gap-2">
+          <div className="w-4 h-3 bg-[#e5e7eb]" />
+          <span className="text-xs text-text-muted">Previous layers</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="w-4 h-3" style={{ backgroundColor: '#22c55e' }} />
+          <span className="text-xs text-text-muted">New contribution</span>
+        </div>
+      </div>
+      <p className="text-xs text-text-muted mt-6 italic max-w-3xl">
+        Based on published ML adherence prediction models achieving AUC 0.83-0.87 with behavioral + demographic features.
       </p>
     </div>
   );
@@ -1050,6 +1068,12 @@ const slides = [
   PharmaValueSlide,         // 16: Value to GLP-1 manufacturers
   MarketSizeSlide,          // 17: TAM/SAM/SOM for GLP-1
   RevenueProjectionSlide,   // 18: Path to $90M ARR
+  // --- Appendix: Data Enrichment ---
+  DataEnrichmentDividerSlide, // 19: Patient Intelligence Infrastructure
+  DataGapSlide,               // 20: Enrollment forms miss what predicts drop-off
+  EnrichmentLayersSlide,      // 21: Three layers of patient intelligence
+  AdheryBehavioralSlide,      // 22: Adhery behavioral data = the moat
+  ConfidenceSummarySlide,     // 23: Each layer compounds prediction accuracy
 ];
 
 // ─── Main Page ───
