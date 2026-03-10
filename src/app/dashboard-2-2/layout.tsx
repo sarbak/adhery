@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 
 const navItems = [
   { label: 'Overview', href: '/dashboard-2-2' },
-  { label: 'Risk Patients', href: '/dashboard-2-2/risk' },
+  { label: 'Patients', href: '/dashboard-2-2/patients' },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {

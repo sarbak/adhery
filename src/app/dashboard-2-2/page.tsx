@@ -1,17 +1,14 @@
 import Link from 'next/link';
 import { kpiData } from '@/lib/seed-data-v2';
 
-function TrendArrow({ trend, delta }: { trend: 'up' | 'down'; delta: number }) {
-  const isPositive = trend === 'up';
+function TrendArrow({ delta }: { delta: number }) {
+  const up = delta >= 0;
   return (
-    <span className={`inline-flex items-center gap-0.5 text-xs font-medium ${isPositive ? 'text-green-600' : 'text-red-500'}`}>
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-        <path
-          d={isPositive ? 'M6 2L10 7H2L6 2Z' : 'M6 10L2 5H10L6 10Z'}
-          fill="currentColor"
-        />
+    <span className={`inline-flex items-center gap-0.5 text-xs font-medium ${up ? 'text-green-600' : 'text-red-500'}`}>
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+        <path d={up ? 'M5 1L9 6H1L5 1Z' : 'M5 9L1 4H9L5 9Z'} fill="currentColor" />
       </svg>
-      {delta > 0 ? '+' : ''}{typeof delta === 'number' && delta % 1 !== 0 ? delta.toFixed(1) : delta}
+      {up ? '+' : ''}{typeof delta === 'number' && delta % 1 !== 0 ? delta.toFixed(1) : delta}
     </span>
   );
 }
@@ -20,77 +17,83 @@ interface KpiCardProps {
   label: string;
   value: string;
   delta: number;
-  trend: 'up' | 'down';
   href?: string;
-  subtitle?: string;
+  unit?: string;
 }
 
-function KpiCard({ label, value, delta, trend, href, subtitle }: KpiCardProps) {
+function KpiCard({ label, value, delta, href, unit }: KpiCardProps) {
   const content = (
-    <div className={`bg-white border border-border-light p-6 transition-colors ${href ? 'hover:border-accent cursor-pointer' : ''}`}>
-      <p className="text-xs font-medium text-text-secondary uppercase tracking-wide">{label}</p>
-      <div className="flex items-end gap-3 mt-2">
-        <span className="text-3xl font-bold text-foreground leading-none">{value}</span>
-        <TrendArrow trend={trend} delta={delta} />
+    <div className={`bg-white border border-border-light p-5 transition-colors ${href ? 'hover:border-accent cursor-pointer' : ''}`}>
+      <p className="text-[11px] font-medium text-text-secondary uppercase tracking-wide">{label}</p>
+      <div className="flex items-end gap-2 mt-1.5">
+        <span className="text-2xl font-bold text-foreground leading-none">{value}{unit}</span>
+        <TrendArrow delta={delta} />
       </div>
-      {subtitle && <p className="text-[11px] text-text-muted mt-2">{subtitle}</p>}
     </div>
   );
 
-  if (href) {
-    return <Link href={href}>{content}</Link>;
-  }
+  if (href) return <Link href={href}>{content}</Link>;
   return content;
 }
 
 export default function MacroView() {
-  const { adherenceRate, conversationsHandled, patientsFlagged, casesEscalated, retainedPatients } = kpiData;
+  const d = kpiData;
 
   return (
     <div>
       <h1 className="text-lg font-semibold text-foreground">Program Overview</h1>
-      <p className="text-sm text-text-secondary mt-1">30-day performance snapshot</p>
 
-      {/* Hero KPI */}
-      <div className="mt-8 bg-white border border-border-light p-8">
-        <p className="text-xs font-medium text-text-secondary uppercase tracking-wide">30-Day Adherence Rate</p>
-        <div className="flex items-end gap-4 mt-3">
-          <span className="text-6xl font-bold text-foreground leading-none">{adherenceRate.value}%</span>
-          <TrendArrow trend={adherenceRate.trend} delta={adherenceRate.delta} />
+      {/* Hero: 3 big numbers */}
+      <div className="grid grid-cols-3 gap-4 mt-6">
+        <div className="bg-white border border-border-light p-8">
+          <p className="text-[11px] font-medium text-text-secondary uppercase tracking-wide">Total Patients</p>
+          <span className="text-5xl font-bold text-foreground leading-none mt-2 block">{d.totalPatients.toLocaleString()}</span>
         </div>
-        <p className="text-sm text-text-muted mt-3">vs prior 30-day period</p>
+        <div className="bg-white border border-border-light p-8">
+          <p className="text-[11px] font-medium text-text-secondary uppercase tracking-wide">30-Day Adherence</p>
+          <div className="flex items-end gap-3 mt-2">
+            <span className="text-5xl font-bold text-foreground leading-none">{d.adherence30d.value}%</span>
+            <TrendArrow delta={d.adherence30d.delta} />
+          </div>
+        </div>
+        <div className="bg-white border border-border-light p-8">
+          <p className="text-[11px] font-medium text-text-secondary uppercase tracking-wide">90-Day Adherence</p>
+          <div className="flex items-end gap-3 mt-2">
+            <span className="text-5xl font-bold text-foreground leading-none">{d.adherence90d.value}%</span>
+            <TrendArrow delta={d.adherence90d.delta} />
+          </div>
+        </div>
       </div>
 
-      {/* Secondary KPIs */}
-      <div className="grid grid-cols-4 gap-4 mt-4">
+      {/* Secondary: left 3 + right 2 */}
+      <div className="grid grid-cols-5 gap-4 mt-4">
         <KpiCard
-          label="Conversations Handled"
-          value={conversationsHandled.value.toLocaleString()}
-          delta={conversationsHandled.delta}
-          trend={conversationsHandled.trend}
-          subtitle="Automated outreach"
+          label="Patients Retained"
+          value={d.retained.value.toLocaleString()}
+          delta={d.retained.delta}
+          href="/dashboard-2-2/patients?status=retained"
         />
         <KpiCard
-          label="Patients Flagged for Risk"
-          value={String(patientsFlagged.value)}
-          delta={patientsFlagged.delta}
-          trend={patientsFlagged.trend}
-          href="/dashboard-2-2/risk"
-          subtitle="Click to review"
+          label="Flagged for Risk"
+          value={String(d.flagged.value)}
+          delta={d.flagged.delta}
+          href="/dashboard-2-2/patients?status=risk"
         />
         <KpiCard
-          label="Cases Escalated"
-          value={String(casesEscalated.value)}
-          delta={casesEscalated.delta}
-          trend={casesEscalated.trend}
-          subtitle="Referred to clinicians"
+          label="Dropped Off"
+          value={String(d.droppedOff.value)}
+          delta={d.droppedOff.delta}
+          href="/dashboard-2-2/patients?status=dropped"
         />
         <KpiCard
-          label="Retained Patients"
-          value={retainedPatients.value.toLocaleString()}
-          delta={retainedPatients.delta}
-          trend={retainedPatients.trend}
-          subtitle="Active in program"
+          label="Escalations"
+          value={String(d.escalations.value)}
+          delta={d.escalations.delta}
+        />
+        <KpiCard
+          label="Conversations"
+          value={d.conversations.value.toLocaleString()}
+          delta={d.conversations.delta}
         />
       </div>
     </div>
