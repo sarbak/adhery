@@ -1,5 +1,8 @@
-import Link from 'next/link';
-import { kpiData } from '@/lib/seed-data-v2';
+'use client';
+
+import { useRouter } from 'next/navigation';
+import { kpiData, patientsV2, type PatientV2 } from '@/lib/seed-data-v2';
+import { useState, useCallback } from 'react';
 
 function TrendArrow({ delta }: { delta: number }) {
   const up = delta >= 0;
@@ -13,31 +16,176 @@ function TrendArrow({ delta }: { delta: number }) {
   );
 }
 
+// --- Icons ---
+function PeopleIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-text-muted">
+      <path d="M8 8a3 3 0 100-6 3 3 0 000 6zM2 14a6 6 0 0112 0" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+    </svg>
+  );
+}
+function ChartIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-text-muted">
+      <path d="M2 14V8l4-3 4 5 4-8" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+function CheckIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-text-muted">
+      <path d="M3 8.5l3 3 7-7" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+function AlertIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-text-muted">
+      <path d="M8 1L1 14h14L8 1z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
+      <path d="M8 6v3M8 11.5v.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+    </svg>
+  );
+}
+function ExitIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-text-muted">
+      <path d="M6 2H3v12h3M10 5l3 3-3 3M6 8h7" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+function EscalateIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-text-muted">
+      <path d="M8 12V4M5 7l3-3 3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+function ChatIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-text-muted">
+      <path d="M2 3h12v8H6l-4 3V3z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 interface KpiCardProps {
   label: string;
   value: string;
   delta: number;
-  href?: string;
+  icon: React.ReactNode;
+  active?: boolean;
+  onClick?: () => void;
   unit?: string;
 }
 
-function KpiCard({ label, value, delta, href, unit }: KpiCardProps) {
-  const content = (
-    <div className={`bg-white border border-border-light p-5 transition-colors ${href ? 'hover:border-accent cursor-pointer' : ''}`}>
-      <p className="text-[11px] font-medium text-text-secondary uppercase tracking-wide">{label}</p>
-      <div className="flex items-end gap-2 mt-1.5">
-        <span className="text-2xl font-bold text-foreground leading-none">{value}{unit}</span>
+function KpiCard({ label, value, delta, icon, active, onClick, unit }: KpiCardProps) {
+  return (
+    <button
+      onClick={onClick}
+      className={`text-left bg-white border p-4 transition-colors w-full ${
+        active ? 'border-accent' : 'border-border-light hover:border-accent/40'
+      }`}
+    >
+      <div className="flex items-center gap-2 mb-1.5">
+        {icon}
+        <p className="text-[10px] font-medium text-text-secondary uppercase tracking-wide">{label}</p>
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="text-xl font-bold text-foreground leading-none">{value}{unit}</span>
         <TrendArrow delta={delta} />
       </div>
-    </div>
+    </button>
   );
-
-  if (href) return <Link href={href}>{content}</Link>;
-  return content;
 }
 
-export default function MacroView() {
+// --- Table ---
+function StatusBadge({ status }: { status: string }) {
+  const styles: Record<string, string> = {
+    adherent: 'bg-green-50 text-green-700',
+    risk: 'bg-red-50 text-red-700',
+    dropped: 'bg-slate-100 text-slate-500',
+  };
+  return (
+    <span className={`text-[10px] font-medium px-2 py-0.5 uppercase tracking-wide ${styles[status] || ''}`}>
+      {status}
+    </span>
+  );
+}
+
+function riskColor(score: number): string {
+  if (score >= 60) return 'text-red-600';
+  if (score >= 30) return 'text-amber-600';
+  return 'text-green-600';
+}
+
+function formatDuration(days: number): string {
+  if (days < 30) return `${days}d`;
+  const months = Math.floor(days / 30);
+  const remainder = days % 30;
+  if (remainder === 0) return `${months}mo`;
+  return `${months}mo ${remainder}d`;
+}
+
+type SortKey = 'name' | 'status' | 'time' | 'risk' | 'lastInteraction';
+
+function SortArrow({ active, desc }: { active: boolean; desc: boolean }) {
+  if (!active) return null;
+  return (
+    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="inline ml-1">
+      <path d={desc ? 'M4 7L1 3H7L4 7Z' : 'M4 1L7 5H1L4 1Z'} fill="currentColor" />
+    </svg>
+  );
+}
+
+function sortPatients(patients: PatientV2[], sortKey: SortKey, desc: boolean): PatientV2[] {
+  return [...patients].sort((a, b) => {
+    let cmp = 0;
+    switch (sortKey) {
+      case 'name':
+        cmp = `${a.lastName} ${a.firstName}`.localeCompare(`${b.lastName} ${b.firstName}`);
+        break;
+      case 'status':
+        cmp = a.status.localeCompare(b.status);
+        break;
+      case 'time':
+        cmp = a.daysEnrolled - b.daysEnrolled;
+        break;
+      case 'risk':
+        cmp = (a.riskScore ?? -1) - (b.riskScore ?? -1);
+        break;
+      case 'lastInteraction':
+        cmp = a.lastInteraction.localeCompare(b.lastInteraction);
+        break;
+    }
+    return desc ? -cmp : cmp;
+  });
+}
+
+type StatusFilter = 'all' | 'adherent' | 'risk' | 'dropped';
+
+export default function DashboardPage() {
+  const router = useRouter();
   const d = kpiData;
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
+  const [sortKey, setSortKey] = useState<SortKey>('risk');
+  const [sortDesc, setSortDesc] = useState(true);
+
+  const handleSort = useCallback((key: SortKey) => {
+    if (sortKey === key) {
+      setSortDesc(!sortDesc);
+    } else {
+      setSortKey(key);
+      setSortDesc(true);
+    }
+  }, [sortKey, sortDesc]);
+
+  const filtered = statusFilter === 'all'
+    ? patientsV2
+    : patientsV2.filter((p) => p.status === statusFilter);
+
+  const sorted = sortPatients(filtered, sortKey, sortDesc);
+
+  const thClass = 'text-left text-[11px] font-medium text-text-secondary uppercase tracking-wide px-5 py-3 cursor-pointer hover:text-foreground transition-colors select-none';
 
   return (
     <div>
@@ -45,56 +193,139 @@ export default function MacroView() {
 
       {/* Hero: 3 big numbers */}
       <div className="grid grid-cols-3 gap-4 mt-6">
-        <div className="bg-white border border-border-light p-8">
-          <p className="text-[11px] font-medium text-text-secondary uppercase tracking-wide">Total Patients</p>
-          <span className="text-5xl font-bold text-foreground leading-none mt-2 block">{d.totalPatients.toLocaleString()}</span>
+        <div className="bg-white border border-border-light p-7 flex flex-col items-center text-center">
+          <PeopleIcon />
+          <p className="text-[10px] font-medium text-text-secondary uppercase tracking-wide mt-2">Total Patients</p>
+          <span className="text-4xl font-bold text-foreground leading-none mt-1">{d.totalPatients.toLocaleString()}</span>
         </div>
-        <div className="bg-white border border-border-light p-8">
-          <p className="text-[11px] font-medium text-text-secondary uppercase tracking-wide">30-Day Adherence</p>
-          <div className="flex items-end gap-3 mt-2">
-            <span className="text-5xl font-bold text-foreground leading-none">{d.adherence30d.value}%</span>
+        <div className="bg-white border border-border-light p-7 flex flex-col items-center text-center">
+          <ChartIcon />
+          <p className="text-[10px] font-medium text-text-secondary uppercase tracking-wide mt-2">30-Day Adherence</p>
+          <div className="flex items-center gap-2 mt-1">
+            <span className="text-4xl font-bold text-foreground leading-none">{d.adherence30d.value}%</span>
             <TrendArrow delta={d.adherence30d.delta} />
           </div>
         </div>
-        <div className="bg-white border border-border-light p-8">
-          <p className="text-[11px] font-medium text-text-secondary uppercase tracking-wide">90-Day Adherence</p>
-          <div className="flex items-end gap-3 mt-2">
-            <span className="text-5xl font-bold text-foreground leading-none">{d.adherence90d.value}%</span>
+        <div className="bg-white border border-border-light p-7 flex flex-col items-center text-center">
+          <ChartIcon />
+          <p className="text-[10px] font-medium text-text-secondary uppercase tracking-wide mt-2">90-Day Adherence</p>
+          <div className="flex items-center gap-2 mt-1">
+            <span className="text-4xl font-bold text-foreground leading-none">{d.adherence90d.value}%</span>
             <TrendArrow delta={d.adherence90d.delta} />
           </div>
         </div>
       </div>
 
-      {/* Secondary: left 3 + right 2 */}
-      <div className="grid grid-cols-5 gap-4 mt-4">
+      {/* Secondary KPIs - also act as filters */}
+      <div className="grid grid-cols-5 gap-3 mt-4">
         <KpiCard
-          label="Patients Adherent"
+          label="Adherent"
           value={d.adherent.value.toLocaleString()}
           delta={d.adherent.delta}
-          href="/dashboard-2-2/patients?status=adherent"
+          icon={<CheckIcon />}
+          active={statusFilter === 'adherent'}
+          onClick={() => setStatusFilter(statusFilter === 'adherent' ? 'all' : 'adherent')}
         />
         <KpiCard
           label="Flagged for Risk"
           value={String(d.flagged.value)}
           delta={d.flagged.delta}
-          href="/dashboard-2-2/patients?status=risk"
+          icon={<AlertIcon />}
+          active={statusFilter === 'risk'}
+          onClick={() => setStatusFilter(statusFilter === 'risk' ? 'all' : 'risk')}
         />
         <KpiCard
           label="Dropped Off"
           value={String(d.droppedOff.value)}
           delta={d.droppedOff.delta}
-          href="/dashboard-2-2/patients?status=dropped"
+          icon={<ExitIcon />}
+          active={statusFilter === 'dropped'}
+          onClick={() => setStatusFilter(statusFilter === 'dropped' ? 'all' : 'dropped')}
         />
         <KpiCard
           label="Escalations"
           value={String(d.escalations.value)}
           delta={d.escalations.delta}
+          icon={<EscalateIcon />}
         />
         <KpiCard
           label="Conversations"
           value={d.conversations.value.toLocaleString()}
           delta={d.conversations.delta}
+          icon={<ChatIcon />}
         />
+      </div>
+
+      {/* Patient table */}
+      <div className="mt-6 bg-white border border-border-light">
+        <div className="px-5 py-3 border-b border-border-light flex items-center justify-between">
+          <p className="text-xs font-medium text-text-secondary">
+            {statusFilter === 'all' ? 'All Patients' : statusFilter === 'adherent' ? 'Adherent' : statusFilter === 'risk' ? 'Flagged for Risk' : 'Dropped Off'}
+            <span className="text-text-muted ml-1.5">({sorted.length})</span>
+          </p>
+          {statusFilter !== 'all' && (
+            <button
+              onClick={() => setStatusFilter('all')}
+              className="text-[10px] font-medium text-accent hover:text-accent-dark transition-colors"
+            >
+              Show all
+            </button>
+          )}
+        </div>
+        <table className="w-full">
+          <thead>
+            <tr className="border-b border-border-light">
+              <th className={thClass} onClick={() => handleSort('name')}>
+                Patient<SortArrow active={sortKey === 'name'} desc={sortDesc} />
+              </th>
+              <th className={thClass} onClick={() => handleSort('status')}>
+                Status<SortArrow active={sortKey === 'status'} desc={sortDesc} />
+              </th>
+              <th className={thClass} onClick={() => handleSort('time')}>
+                Time in Program<SortArrow active={sortKey === 'time'} desc={sortDesc} />
+              </th>
+              <th className={thClass} onClick={() => handleSort('risk')}>
+                Risk Score<SortArrow active={sortKey === 'risk'} desc={sortDesc} />
+              </th>
+              <th className={thClass} onClick={() => handleSort('lastInteraction')}>
+                Last Interaction<SortArrow active={sortKey === 'lastInteraction'} desc={sortDesc} />
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {sorted.map((patient) => (
+              <tr
+                key={patient.id}
+                className="border-b border-border-light last:border-b-0 hover:bg-surface-warm transition-colors cursor-pointer"
+                onClick={() => router.push(`/dashboard-2-2/patients/${patient.id}`)}
+              >
+                <td className="px-5 py-3">
+                  <span className="text-sm font-medium text-foreground">
+                    {patient.firstName} {patient.lastName}
+                  </span>
+                </td>
+                <td className="px-5 py-3">
+                  <StatusBadge status={patient.status} />
+                </td>
+                <td className="px-5 py-3 text-sm text-text-secondary">
+                  {formatDuration(patient.daysEnrolled)}
+                </td>
+                <td className="px-5 py-3">
+                  {patient.riskScore !== null ? (
+                    <span className={`text-sm font-medium ${riskColor(patient.riskScore)}`}>
+                      {patient.riskScore}
+                    </span>
+                  ) : (
+                    <span className="text-sm text-text-muted">--</span>
+                  )}
+                </td>
+                <td className="px-5 py-3 text-sm text-text-secondary">
+                  {patient.lastInteraction}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

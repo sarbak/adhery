@@ -3,67 +3,129 @@
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { getPatientById, getInteraction, type TranscriptMessage } from '@/lib/seed-data-v2';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
-function AudioPlayer({ audioUrl }: { audioUrl: string }) {
+function AudioPlayer({ duration }: { duration?: string }) {
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // Mock playback: advances progress when "playing"
+  useEffect(() => {
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, []);
+
+  const totalSeconds = duration
+    ? parseInt(duration.split(':')[0]) * 60 + parseInt(duration.split(':')[1])
+    : 90;
+
   const togglePlay = () => {
     if (playing) {
+      if (intervalRef.current) clearInterval(intervalRef.current);
       setPlaying(false);
       return;
     }
     setPlaying(true);
-    // Simulate progress
-    let p = progress;
-    const interval = setInterval(() => {
-      p += 1;
-      if (p >= 100) {
-        clearInterval(interval);
-        setPlaying(false);
-        setProgress(0);
-        return;
-      }
-      setProgress(p);
-    }, 150);
+    intervalRef.current = setInterval(() => {
+      setProgress((p) => {
+        if (p >= 100) {
+          if (intervalRef.current) clearInterval(intervalRef.current);
+          setPlaying(false);
+          return 0;
+        }
+        return p + 0.5;
+      });
+    }, totalSeconds * 5);
   };
 
-  const minutes = Math.floor((progress / 100) * 90);
-  const seconds = Math.floor(((progress / 100) * 90) % 60);
-  const timeStr = `${Math.floor(minutes / 60)}:${String(minutes % 60).padStart(2, '0')}`;
-  const totalStr = '1:30';
+  const currentSec = Math.floor((progress / 100) * totalSeconds);
+  const timeStr = `${Math.floor(currentSec / 60)}:${String(currentSec % 60).padStart(2, '0')}`;
+  const totalStr = duration || `${Math.floor(totalSeconds / 60)}:${String(totalSeconds % 60).padStart(2, '0')}`;
 
   return (
-    <div className="flex items-center gap-3 bg-surface-warm border border-border-light px-4 py-3">
-      <button
-        onClick={togglePlay}
-        className="w-8 h-8 bg-accent flex items-center justify-center flex-shrink-0 hover:bg-accent-dark transition-colors"
-        title={playing ? 'Pause' : 'Play'}
-      >
-        {playing ? (
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <rect x="3" y="2" width="3" height="10" fill="white" />
-            <rect x="8" y="2" width="3" height="10" fill="white" />
-          </svg>
-        ) : (
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M3 1L12 7L3 13V1Z" fill="white" />
-          </svg>
-        )}
-      </button>
-      <div className="flex-1">
-        <div className="h-1.5 bg-border-light w-full cursor-pointer" onClick={(e) => {
-          const rect = e.currentTarget.getBoundingClientRect();
-          setProgress(Math.floor(((e.clientX - rect.left) / rect.width) * 100));
-        }}>
-          <div className="h-full bg-accent transition-all" style={{ width: `${progress}%` }} />
-        </div>
+    <div className="bg-white border border-border-light p-5">
+      <div className="flex items-center gap-2 mb-3">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="text-accent">
+          <circle cx="7" cy="7" r="6" stroke="currentColor" strokeWidth="1.5" />
+          <circle cx="7" cy="7" r="2" fill="currentColor" />
+        </svg>
+        <p className="text-[11px] font-medium text-text-secondary uppercase tracking-wide">Call Recording</p>
       </div>
-      <span className="text-[10px] text-text-muted font-medium tabular-nums w-16 text-right">{timeStr} / {totalStr}</span>
-      <span className="text-[10px] text-text-muted truncate max-w-32">{audioUrl}</span>
+      <div className="flex items-center gap-4">
+        <button
+          onClick={togglePlay}
+          className="w-10 h-10 bg-accent flex items-center justify-center flex-shrink-0 hover:bg-accent-dark transition-colors"
+          title={playing ? 'Pause' : 'Play'}
+        >
+          {playing ? (
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <rect x="3" y="2" width="3.5" height="12" fill="white" />
+              <rect x="9.5" y="2" width="3.5" height="12" fill="white" />
+            </svg>
+          ) : (
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 2L13 8L4 14V2Z" fill="white" />
+            </svg>
+          )}
+        </button>
+        <div className="flex-1">
+          <div
+            className="h-2 bg-border-light w-full cursor-pointer"
+            onClick={(e) => {
+              const rect = e.currentTarget.getBoundingClientRect();
+              setProgress(Math.floor(((e.clientX - rect.left) / rect.width) * 100));
+            }}
+          >
+            <div className="h-full bg-accent transition-all" style={{ width: `${progress}%` }} />
+          </div>
+        </div>
+        <span className="text-xs text-foreground font-medium tabular-nums min-w-20 text-right">{timeStr} / {totalStr}</span>
+      </div>
     </div>
+  );
+}
+
+function HighlightedText({ text, highlights, baseClass }: { text: string; highlights?: string[]; baseClass: string }) {
+  if (!highlights || highlights.length === 0) {
+    return <p className={baseClass}>{text}</p>;
+  }
+
+  const parts: { text: string; highlighted: boolean }[] = [];
+  let remaining = text;
+
+  while (remaining.length > 0) {
+    let earliest = -1;
+    let earliestPhrase = '';
+
+    for (const phrase of highlights) {
+      const idx = remaining.toLowerCase().indexOf(phrase.toLowerCase());
+      if (idx !== -1 && (earliest === -1 || idx < earliest)) {
+        earliest = idx;
+        earliestPhrase = phrase;
+      }
+    }
+
+    if (earliest === -1) {
+      parts.push({ text: remaining, highlighted: false });
+      break;
+    }
+
+    if (earliest > 0) {
+      parts.push({ text: remaining.slice(0, earliest), highlighted: false });
+    }
+    parts.push({ text: remaining.slice(earliest, earliest + earliestPhrase.length), highlighted: true });
+    remaining = remaining.slice(earliest + earliestPhrase.length);
+  }
+
+  return (
+    <p className={baseClass}>
+      {parts.map((part, i) =>
+        part.highlighted ? (
+          <mark key={i} className="bg-amber-100 text-inherit px-0.5 decoration-0">{part.text}</mark>
+        ) : (
+          <span key={i}>{part.text}</span>
+        )
+      )}
+    </p>
   );
 }
 
@@ -78,7 +140,7 @@ function MiaBubble({ msg }: { msg: TranscriptMessage }) {
           <span className="text-xs font-medium text-accent">Mia</span>
           <span className="text-[10px] text-text-muted">{msg.timestamp}</span>
         </div>
-        <p className={`text-sm text-foreground leading-relaxed ${msg.crucial ? 'underline decoration-accent decoration-2 underline-offset-2' : ''}`}>{msg.text}</p>
+        <HighlightedText text={msg.text} highlights={msg.highlights} baseClass="text-sm text-foreground leading-relaxed" />
       </div>
     </div>
   );
@@ -95,7 +157,7 @@ function PatientBubble({ msg, name }: { msg: TranscriptMessage; name: string }) 
           <span className="text-xs font-medium text-foreground">{name}</span>
           <span className="text-[10px] text-text-muted">{msg.timestamp}</span>
         </div>
-        <p className={`text-sm text-text-secondary leading-relaxed ${msg.crucial ? 'underline decoration-red-400 decoration-2 underline-offset-2' : ''}`}>{msg.text}</p>
+        <HighlightedText text={msg.text} highlights={msg.highlights} baseClass="text-sm text-text-secondary leading-relaxed" />
       </div>
     </div>
   );
@@ -108,9 +170,7 @@ function SystemAnnotation({ msg }: { msg: TranscriptMessage }) {
         <span className="text-[10px] font-bold text-amber-700 uppercase tracking-wide">System</span>
         <span className="text-[10px] text-amber-600/70">{msg.timestamp}</span>
       </div>
-      <p className={`text-xs text-amber-800 leading-relaxed ${msg.crucial ? 'underline decoration-amber-600 decoration-2 underline-offset-2' : ''}`}>
-        {msg.text.replace('[SYSTEM] ', '')}
-      </p>
+      <p className="text-xs text-amber-800 leading-relaxed">{msg.text.replace('[SYSTEM] ', '')}</p>
     </div>
   );
 }
@@ -175,25 +235,17 @@ export default function TranscriptPage() {
       </div>
 
       {/* Audio Player */}
-      {interaction.audioUrl && (
-        <div className="mt-4">
-          <AudioPlayer audioUrl={interaction.audioUrl} />
-        </div>
-      )}
+      <div className="mt-4">
+        <AudioPlayer duration={interaction.duration} />
+      </div>
 
       {/* Transcript */}
       <div className="mt-4 bg-white border border-border-light p-6">
         <div className="flex items-center justify-between mb-6">
           <p className="text-[11px] font-medium text-text-secondary uppercase tracking-wide">Conversation Transcript</p>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1.5">
-              <div className="w-4 h-0 border-b-2 border-accent" />
-              <span className="text-[10px] text-text-muted">Crucial (Mia)</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <div className="w-4 h-0 border-b-2 border-red-400" />
-              <span className="text-[10px] text-text-muted">Crucial (Patient)</span>
-            </div>
+          <div className="flex items-center gap-1.5">
+            <mark className="bg-amber-100 text-[10px] text-text-muted px-1.5 py-0.5">highlighted</mark>
+            <span className="text-[10px] text-text-muted">= key phrase</span>
           </div>
         </div>
         <div className="space-y-5">

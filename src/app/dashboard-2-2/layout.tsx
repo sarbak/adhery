@@ -18,10 +18,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         {/* Header */}
         <div className="p-5 border-b border-border-light">
           <Link href="/dashboard-2-2" className="flex items-center gap-2">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-accent">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" fill="currentColor" opacity="0.2" />
-              <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" strokeWidth="2" strokeLinecap="square" />
-            </svg>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo.svg" alt="Adhery" width={22} height={22} />
             <span className="text-sm font-semibold text-foreground tracking-tight">adhery</span>
           </Link>
           <p className="text-[10px] font-medium text-accent uppercase tracking-widest mt-1">Dashboard</p>
