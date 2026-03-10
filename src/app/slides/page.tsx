@@ -1047,6 +1047,193 @@ function RevenueProjectionSlide() {
   );
 }
 
+// ─── Enterprise Integration Slides ───
+
+function IntegrationDividerSlide() {
+  return (
+    <div className="flex flex-col items-center justify-center h-full text-center px-16">
+      <p className="text-sm text-text-muted uppercase tracking-widest mb-4">Appendix</p>
+      <h2 className="font-serif text-5xl text-foreground leading-tight max-w-3xl">
+        Enterprise Integration
+      </h2>
+      <p className="text-lg text-text-secondary mt-6 max-w-2xl">
+        How Adhery fits into Salesforce Health Cloud and Veeva Vault, the systems your teams already use
+      </p>
+    </div>
+  );
+}
+
+function IntegrationArchitectureSlide() {
+  const inbound = [
+    { system: 'Salesforce Health Cloud', data: 'Patient roster, demographics, care plans, care team contacts' },
+    { system: 'Veeva Vault PromoMats', data: 'MLR-approved scripts, response library, compliance guardrails' },
+    { system: 'Veeva Vault Safety', data: 'Adverse event definitions, severity coding rules, escalation protocols' },
+  ];
+  const outbound = [
+    { system: 'Salesforce Health Cloud', data: 'Call outcomes, adherence metrics (PDC), risk flags, escalation cases with clinician summaries' },
+    { system: 'Veeva Vault Safety', data: 'Auto-populated adverse event reports, MedWatch-ready fields, 15-day FDA timeline tracking' },
+    { system: 'Your Dashboard', data: 'Real-time retention metrics, sentiment trends, alert queue' },
+  ];
+
+  return (
+    <div className="flex flex-col items-center justify-center h-full text-center px-16">
+      <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-4xl">
+        Adhery reads from and writes back to your existing stack
+      </h2>
+      <p className="text-lg text-text-secondary mb-10 max-w-3xl">
+        No new system for your team to learn. Adhery data shows up where they already work.
+      </p>
+      <div className="max-w-5xl grid grid-cols-2 gap-8 text-left w-full">
+        {/* Inbound */}
+        <div>
+          <div className="flex items-center gap-2 mb-4">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 19V5M5 12l7-7 7 7" />
+            </svg>
+            <p className="text-sm text-accent font-semibold uppercase tracking-wider">Adhery pulls in</p>
+          </div>
+          <div className="space-y-3">
+            {inbound.map((item) => (
+              <div key={item.system} className="bg-surface border border-border-light p-4">
+                <p className="text-sm font-semibold text-foreground mb-1">{item.system}</p>
+                <p className="text-sm text-text-secondary">{item.data}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* Outbound */}
+        <div>
+          <div className="flex items-center gap-2 mb-4">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+            <p className="text-sm text-green-600 font-semibold uppercase tracking-wider">Adhery pushes back</p>
+          </div>
+          <div className="space-y-3">
+            {outbound.map((item) => (
+              <div key={item.system} className="bg-surface border border-border-light p-4">
+                <p className="text-sm font-semibold text-foreground mb-1">{item.system}</p>
+                <p className="text-sm text-text-secondary">{item.data}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function IntegrationDataFlowSlide() {
+  const steps = [
+    {
+      num: '01',
+      title: 'Patient enrolled',
+      desc: 'New patient record created in Salesforce Health Cloud. Adhery ingests demographics, Rx, care team, and outreach schedule.',
+      system: 'Salesforce HC',
+      color: '#0176d3',
+    },
+    {
+      num: '02',
+      title: 'Scripts loaded',
+      desc: 'Adhery pulls MLR-approved response library from Veeva Vault PromoMats. Every word the agent says is pre-reviewed.',
+      system: 'Veeva Vault',
+      color: '#f68b1e',
+    },
+    {
+      num: '03',
+      title: 'Voice call happens',
+      desc: 'Autonomous outreach at the right cadence. Screens for side effects, detects drop-off risk, educates on rebound.',
+      system: 'Adhery',
+      color: ACCENT,
+    },
+    {
+      num: '04',
+      title: 'Data flows back',
+      desc: 'Call outcome, sentiment, PDC score, and risk flags sync to Salesforce HC as Activities. Adverse events auto-populate in Veeva Vault Safety.',
+      system: 'Both',
+      color: '#22c55e',
+    },
+    {
+      num: '05',
+      title: 'Escalation routed',
+      desc: 'If flagged, a Case is created in Salesforce with a pre-populated clinician summary. Care team sees it in their existing queue.',
+      system: 'Salesforce HC',
+      color: '#dc2626',
+    },
+  ];
+
+  return (
+    <div className="flex flex-col items-center justify-center h-full text-center px-16">
+      <h2 className="font-serif text-5xl text-foreground mb-4 leading-tight max-w-4xl">
+        From enrollment to escalation, one connected loop
+      </h2>
+      <p className="text-lg text-text-secondary mb-10 max-w-3xl">
+        Your team never leaves Salesforce. Your compliance team never leaves Veeva.
+      </p>
+      <div className="max-w-4xl w-full space-y-4 text-left">
+        {steps.map((s, i) => (
+          <div key={s.num} className="flex items-start gap-5">
+            <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center text-white text-sm font-bold" style={{ backgroundColor: s.color }}>
+              {s.num}
+            </div>
+            <div className="flex-1 border-b border-border-light pb-4">
+              <div className="flex items-baseline gap-3 mb-1">
+                <p className="text-lg font-semibold text-foreground">{s.title}</p>
+                <span className="text-xs font-medium px-2 py-0.5 border border-border-light text-text-muted">{s.system}</span>
+              </div>
+              <p className="text-sm text-text-secondary">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function IntegrationWhyItMattersSlide() {
+  const benefits = [
+    {
+      who: 'For your pharmacists',
+      point: 'Escalations show up as Cases in Salesforce with full context. No new tool, no extra login.',
+    },
+    {
+      who: 'For your MLR team',
+      point: 'Every agent response traces back to a Veeva Vault document ID. Audit trail is built in.',
+    },
+    {
+      who: 'For your compliance team',
+      point: 'Adverse events auto-populate in Veeva Vault Safety with severity codes, patient timeline, and FDA reporting deadlines.',
+    },
+    {
+      who: 'For your IT team',
+      point: 'Standard OAuth 2.0 + REST APIs. No custom middleware. We handle the integration during Week 1 setup.',
+    },
+  ];
+
+  return (
+    <div className="flex flex-col items-center justify-center h-full text-center px-16">
+      <h2 className="font-serif text-5xl text-foreground mb-10 leading-tight max-w-4xl">
+        Every team keeps working in the tools they know
+      </h2>
+      <div className="max-w-4xl space-y-5 text-left w-full">
+        {benefits.map((b) => (
+          <div key={b.who} className="bg-surface border border-border-light p-6 flex items-start gap-6">
+            <div className="w-48 flex-shrink-0">
+              <p className="text-sm font-semibold text-accent">{b.who}</p>
+            </div>
+            <p className="text-foreground">{b.point}</p>
+          </div>
+        ))}
+      </div>
+      <div className="mt-10 border-l-4 border-accent/30 pl-6 text-left max-w-3xl">
+        <p className="text-text-secondary">
+          We also support legacy Veeva CRM (Salesforce-based) and the new Veeva Vault CRM for customers in the migration window.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 // ─── Slides Array ───
 const slides = [
   TitleSlide,             // 1: Autonomous Voice Agent for Every GLP-1 Patient
@@ -1074,6 +1261,11 @@ const slides = [
   EnrichmentLayersSlide,      // 21: Three layers of patient intelligence
   AdheryBehavioralSlide,      // 22: Adhery behavioral data = the moat
   ConfidenceSummarySlide,     // 23: Each layer compounds prediction accuracy
+  // --- Appendix: Enterprise Integration ---
+  IntegrationDividerSlide,      // 24: Enterprise Integration divider
+  IntegrationArchitectureSlide, // 25: Adhery reads from and writes back
+  IntegrationDataFlowSlide,     // 26: From enrollment to escalation
+  IntegrationWhyItMattersSlide, // 27: Every team keeps their tools
 ];
 
 // ─── Main Page ───
