@@ -5,7 +5,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     <div className="min-h-screen bg-surface-warm">
       {/* Top bar */}
       <header className="bg-white border-b border-border-light px-8 py-4 flex items-center gap-3">
-        <Link href="/dashboard-2-2" className="flex items-center gap-2">
+        <Link href="/dashboard-new" className="flex items-center gap-2">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.svg" alt="Adhery" width={24} height={24} />
           <span className="text-sm font-semibold text-foreground tracking-tight">adhery</span>

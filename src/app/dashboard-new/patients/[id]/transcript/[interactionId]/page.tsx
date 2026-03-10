@@ -193,11 +193,11 @@ export default function TranscriptPage() {
     <div>
       {/* Breadcrumbs */}
       <nav className="flex items-center gap-1.5 text-xs text-text-muted mb-6">
-        <Link href="/dashboard-2-2" className="hover:text-accent transition-colors">Overview</Link>
+        <Link href="/dashboard-new" className="hover:text-accent transition-colors">Overview</Link>
         <span>/</span>
-        <Link href="/dashboard-2-2/patients" className="hover:text-accent transition-colors">Patients</Link>
+        <Link href="/dashboard-new/patients" className="hover:text-accent transition-colors">Patients</Link>
         <span>/</span>
-        <Link href={`/dashboard-2-2/patients/${patient.id}`} className="hover:text-accent transition-colors">
+        <Link href={`/dashboard-new/patients/${patient.id}`} className="hover:text-accent transition-colors">
           {patient.firstName} {patient.lastName}
         </Link>
         <span>/</span>
@@ -264,7 +264,7 @@ export default function TranscriptPage() {
       {/* Back link */}
       <div className="mt-4">
         <Link
-          href={`/dashboard-2-2/patients/${patient.id}`}
+          href={`/dashboard-new/patients/${patient.id}`}
           className="text-sm font-medium text-accent hover:text-accent-dark transition-colors"
         >
           ← Back to patient overview

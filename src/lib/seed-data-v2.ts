@@ -1,4 +1,4 @@
-// Mock data for dashboard-2-2: drill-down dashboard
+// Mock data for dashboard-new: drill-down dashboard
 
 export interface PatientV2 {
   id: string;

@@ -331,7 +331,7 @@ export default function DashboardPage() {
               <tr
                 key={patient.id}
                 className="border-b border-border-light last:border-b-0 hover:bg-surface-warm transition-colors cursor-pointer"
-                onClick={() => router.push(`/dashboard-2-2/patients/${patient.id}`)}
+                onClick={() => router.push(`/dashboard-new/patients/${patient.id}`)}
               >
                 <td className="px-5 py-3">
                   <span className="text-sm font-medium text-foreground">

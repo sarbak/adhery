@@ -77,7 +77,7 @@ export default async function PatientProfile({ params }: { params: Promise<{ id:
     <div>
       {/* Breadcrumbs */}
       <nav className="flex items-center gap-1.5 text-xs text-text-muted mb-6">
-        <Link href="/dashboard-2-2" className="hover:text-accent transition-colors">Overview</Link>
+        <Link href="/dashboard-new" className="hover:text-accent transition-colors">Overview</Link>
         <span>/</span>
         <span className="text-foreground font-medium">{patient.firstName} {patient.lastName}</span>
       </nav>
@@ -195,7 +195,7 @@ export default async function PatientProfile({ params }: { params: Promise<{ id:
                       )}
                       {interaction.hasTranscript && (
                         <Link
-                          href={`/dashboard-2-2/patients/${patient.id}/transcript/${interaction.id}`}
+                          href={`/dashboard-new/patients/${patient.id}/transcript/${interaction.id}`}
                           className="text-xs font-medium text-accent hover:text-accent-dark transition-colors"
                         >
                           Transcript →
