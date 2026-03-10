@@ -79,16 +79,28 @@ interface KpiCardProps {
 }
 
 function KpiCard({ label, value, delta, icon, active, onClick, unit }: KpiCardProps) {
+  const isClickable = !!onClick;
   return (
     <button
       onClick={onClick}
       className={`text-left bg-white border p-4 transition-colors w-full ${
-        active ? 'border-accent' : 'border-border-light hover:border-accent/40'
+        active
+          ? 'border-accent ring-1 ring-accent/20'
+          : isClickable
+            ? 'border-border-light hover:border-accent/40 cursor-pointer'
+            : 'border-border-light cursor-default'
       }`}
     >
-      <div className="flex items-center gap-2 mb-1.5">
-        {icon}
-        <p className="text-[10px] font-medium text-text-secondary uppercase tracking-wide">{label}</p>
+      <div className="flex items-center justify-between mb-1.5">
+        <div className="flex items-center gap-2">
+          {icon}
+          <p className="text-[10px] font-medium text-text-secondary uppercase tracking-wide">{label}</p>
+        </div>
+        {isClickable && (
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className={`transition-colors ${active ? 'text-accent' : 'text-text-muted'}`}>
+            <path d="M3 1l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        )}
       </div>
       <div className="flex items-center gap-2">
         <span className="text-xl font-bold text-foreground leading-none">{value}{unit}</span>
@@ -167,6 +179,7 @@ export default function DashboardPage() {
   const router = useRouter();
   const d = kpiData;
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
+  const [searchQuery, setSearchQuery] = useState('');
   const [sortKey, setSortKey] = useState<SortKey>('risk');
   const [sortDesc, setSortDesc] = useState(true);
 
@@ -179,9 +192,15 @@ export default function DashboardPage() {
     }
   }, [sortKey, sortDesc]);
 
-  const filtered = statusFilter === 'all'
-    ? patientsV2
-    : patientsV2.filter((p) => p.status === statusFilter);
+  const filtered = patientsV2.filter((p) => {
+    if (statusFilter !== 'all' && p.status !== statusFilter) return false;
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      const fullName = `${p.firstName} ${p.lastName}`.toLowerCase();
+      return fullName.includes(q);
+    }
+    return true;
+  });
 
   const sorted = sortPatients(filtered, sortKey, sortDesc);
 
@@ -263,14 +282,29 @@ export default function DashboardPage() {
             {statusFilter === 'all' ? 'All Patients' : statusFilter === 'adherent' ? 'Adherent' : statusFilter === 'risk' ? 'Flagged for Risk' : 'Dropped Off'}
             <span className="text-text-muted ml-1.5">({sorted.length})</span>
           </p>
-          {statusFilter !== 'all' && (
-            <button
-              onClick={() => setStatusFilter('all')}
-              className="text-[10px] font-medium text-accent hover:text-accent-dark transition-colors"
-            >
-              Show all
-            </button>
-          )}
+          <div className="flex items-center gap-3">
+            {statusFilter !== 'all' && (
+              <button
+                onClick={() => setStatusFilter('all')}
+                className="text-[10px] font-medium text-accent hover:text-accent-dark transition-colors"
+              >
+                Show all
+              </button>
+            )}
+            <div className="relative">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="absolute left-2.5 top-1/2 -translate-y-1/2 text-text-muted">
+                <circle cx="6" cy="6" r="4.5" stroke="currentColor" strokeWidth="1.2" />
+                <path d="M9.5 9.5L13 13" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+              </svg>
+              <input
+                type="text"
+                placeholder="Search patients..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="text-xs pl-8 pr-3 py-1.5 w-48 border border-border-light bg-surface-warm focus:border-accent focus:outline-none transition-colors placeholder:text-text-muted"
+              />
+            </div>
+          </div>
         </div>
         <table className="w-full">
           <thead>
