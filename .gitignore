@@ -10,3 +10,4 @@ next-env.d.ts
 .env.production.local
 .env.development.local
 .vercel
+.DS_Store
