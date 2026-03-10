@@ -1,13 +1,13 @@
 'use client';
 
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
-import { patientsV2 } from '@/lib/seed-data-v2';
-import { Suspense } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { patientsV2, type PatientV2 } from '@/lib/seed-data-v2';
+import { Suspense, useState, useCallback } from 'react';
 
 function StatusBadge({ status }: { status: string }) {
   const styles: Record<string, string> = {
-    retained: 'bg-green-50 text-green-700',
+    adherent: 'bg-green-50 text-green-700',
     risk: 'bg-red-50 text-red-700',
     dropped: 'bg-slate-100 text-slate-500',
   };
@@ -32,21 +32,72 @@ function formatDuration(days: number): string {
   return `${months}mo ${remainder}d`;
 }
 
+type SortKey = 'name' | 'status' | 'time' | 'risk' | 'lastInteraction';
+
+function SortArrow({ active, desc }: { active: boolean; desc: boolean }) {
+  if (!active) return null;
+  return (
+    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="inline ml-1">
+      <path d={desc ? 'M4 7L1 3H7L4 7Z' : 'M4 1L7 5H1L4 1Z'} fill="currentColor" />
+    </svg>
+  );
+}
+
+function sortPatients(patients: PatientV2[], sortKey: SortKey, desc: boolean): PatientV2[] {
+  return [...patients].sort((a, b) => {
+    let cmp = 0;
+    switch (sortKey) {
+      case 'name':
+        cmp = `${a.lastName} ${a.firstName}`.localeCompare(`${b.lastName} ${b.firstName}`);
+        break;
+      case 'status':
+        cmp = a.status.localeCompare(b.status);
+        break;
+      case 'time':
+        cmp = a.daysEnrolled - b.daysEnrolled;
+        break;
+      case 'risk':
+        cmp = (a.riskScore ?? -1) - (b.riskScore ?? -1);
+        break;
+      case 'lastInteraction':
+        cmp = a.lastInteraction.localeCompare(b.lastInteraction);
+        break;
+    }
+    return desc ? -cmp : cmp;
+  });
+}
+
 function PatientListInner() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const statusFilter = searchParams.get('status');
+  const [sortKey, setSortKey] = useState<SortKey>('risk');
+  const [sortDesc, setSortDesc] = useState(true);
+
+  const handleSort = useCallback((key: SortKey) => {
+    if (sortKey === key) {
+      setSortDesc(!sortDesc);
+    } else {
+      setSortKey(key);
+      setSortDesc(true);
+    }
+  }, [sortKey, sortDesc]);
 
   const filtered = statusFilter
     ? patientsV2.filter((p) => p.status === statusFilter)
     : patientsV2;
 
-  const title = statusFilter === 'retained'
-    ? 'Retained Patients'
+  const sorted = sortPatients(filtered, sortKey, sortDesc);
+
+  const title = statusFilter === 'adherent'
+    ? 'Adherent Patients'
     : statusFilter === 'risk'
       ? 'Patients Flagged for Risk'
       : statusFilter === 'dropped'
         ? 'Dropped Off Patients'
         : 'All Patients';
+
+  const thClass = 'text-left text-[11px] font-medium text-text-secondary uppercase tracking-wide px-5 py-3 cursor-pointer hover:text-foreground transition-colors select-none';
 
   return (
     <div>
@@ -60,13 +111,13 @@ function PatientListInner() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-lg font-semibold text-foreground">{title}</h1>
-          <p className="text-sm text-text-secondary mt-1">{filtered.length} patients</p>
+          <p className="text-sm text-text-secondary mt-1">{sorted.length} patients</p>
         </div>
         {/* Status filter tabs */}
         <div className="flex items-center gap-1">
           {[
             { label: 'All', value: null },
-            { label: 'Retained', value: 'retained' },
+            { label: 'Adherent', value: 'adherent' },
             { label: 'Risk', value: 'risk' },
             { label: 'Dropped', value: 'dropped' },
           ].map((tab) => {
@@ -93,21 +144,34 @@ function PatientListInner() {
         <table className="w-full">
           <thead>
             <tr className="border-b border-border-light">
-              <th className="text-left text-[11px] font-medium text-text-secondary uppercase tracking-wide px-5 py-3">Patient</th>
-              <th className="text-left text-[11px] font-medium text-text-secondary uppercase tracking-wide px-5 py-3">Status</th>
-              <th className="text-left text-[11px] font-medium text-text-secondary uppercase tracking-wide px-5 py-3">Time in Program</th>
-              <th className="text-left text-[11px] font-medium text-text-secondary uppercase tracking-wide px-5 py-3">Risk Score</th>
-              <th className="text-left text-[11px] font-medium text-text-secondary uppercase tracking-wide px-5 py-3">Last Interaction</th>
-              <th className="text-right text-[11px] font-medium text-text-secondary uppercase tracking-wide px-5 py-3"></th>
+              <th className={thClass} onClick={() => handleSort('name')}>
+                Patient<SortArrow active={sortKey === 'name'} desc={sortDesc} />
+              </th>
+              <th className={thClass} onClick={() => handleSort('status')}>
+                Status<SortArrow active={sortKey === 'status'} desc={sortDesc} />
+              </th>
+              <th className={thClass} onClick={() => handleSort('time')}>
+                Time in Program<SortArrow active={sortKey === 'time'} desc={sortDesc} />
+              </th>
+              <th className={thClass} onClick={() => handleSort('risk')}>
+                Risk Score<SortArrow active={sortKey === 'risk'} desc={sortDesc} />
+              </th>
+              <th className={thClass} onClick={() => handleSort('lastInteraction')}>
+                Last Interaction<SortArrow active={sortKey === 'lastInteraction'} desc={sortDesc} />
+              </th>
             </tr>
           </thead>
           <tbody>
-            {filtered.map((patient) => (
-              <tr key={patient.id} className="border-b border-border-light last:border-b-0 hover:bg-surface-warm transition-colors">
+            {sorted.map((patient) => (
+              <tr
+                key={patient.id}
+                className="border-b border-border-light last:border-b-0 hover:bg-surface-warm transition-colors cursor-pointer"
+                onClick={() => router.push(`/dashboard-2-2/patients/${patient.id}`)}
+              >
                 <td className="px-5 py-3.5">
-                  <Link href={`/dashboard-2-2/patients/${patient.id}`} className="text-sm font-medium text-foreground hover:text-accent transition-colors">
+                  <span className="text-sm font-medium text-foreground">
                     {patient.firstName} {patient.lastName}
-                  </Link>
+                  </span>
                 </td>
                 <td className="px-5 py-3.5">
                   <StatusBadge status={patient.status} />
@@ -126,14 +190,6 @@ function PatientListInner() {
                 </td>
                 <td className="px-5 py-3.5 text-sm text-text-secondary">
                   {patient.lastInteraction}
-                </td>
-                <td className="px-5 py-3.5 text-right">
-                  <Link
-                    href={`/dashboard-2-2/patients/${patient.id}`}
-                    className="text-xs font-medium text-accent hover:text-accent-dark transition-colors"
-                  >
-                    View →
-                  </Link>
                 </td>
               </tr>
             ))}

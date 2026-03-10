@@ -68,10 +68,10 @@ export default function MacroView() {
       {/* Secondary: left 3 + right 2 */}
       <div className="grid grid-cols-5 gap-4 mt-4">
         <KpiCard
-          label="Patients Retained"
-          value={d.retained.value.toLocaleString()}
-          delta={d.retained.delta}
-          href="/dashboard-2-2/patients?status=retained"
+          label="Patients Adherent"
+          value={d.adherent.value.toLocaleString()}
+          delta={d.adherent.delta}
+          href="/dashboard-2-2/patients?status=adherent"
         />
         <KpiCard
           label="Flagged for Risk"

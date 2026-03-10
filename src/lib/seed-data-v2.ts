@@ -12,7 +12,7 @@ export interface PatientV2 {
   doseStartDate: string;
   enrollmentDate: string;
   daysEnrolled: number;
-  status: 'retained' | 'risk' | 'dropped';
+  status: 'adherent' | 'risk' | 'dropped';
   adherenceRate: number;
   riskScore: number | null; // null if dropped
   riskBreakdown: {
@@ -58,7 +58,7 @@ export const kpiData = {
   totalPatients: 2047,
   adherence30d: { value: 87.3, delta: +4.2 },
   adherence90d: { value: 82.1, delta: +2.8 },
-  retained: { value: 1891, delta: +89 },
+  adherent: { value: 1891, delta: +89 },
   flagged: { value: 128, delta: -12 },
   droppedOff: { value: 28, delta: +3 },
   escalations: { value: 34, delta: -8 },
@@ -236,9 +236,9 @@ function buildPatients(): PatientV2[] {
     const { first, last, gender } = patientPool[i];
     const r = rand();
 
-    // Status distribution: ~63% retained, ~27% risk, ~10% dropped
+    // Status distribution: ~63% adherent, ~27% risk, ~10% dropped
     let status: PatientV2['status'];
-    if (r < 0.63) status = 'retained';
+    if (r < 0.63) status = 'adherent';
     else if (r < 0.90) status = 'risk';
     else status = 'dropped';
 
@@ -251,14 +251,14 @@ function buildPatients(): PatientV2[] {
     const doseStartDays = Math.min(daysEnrolled, Math.floor(rand() * 60) + 7);
 
     let adherenceRate: number;
-    if (status === 'retained') adherenceRate = 80 + Math.floor(rand() * 20);
+    if (status === 'adherent') adherenceRate = 80 + Math.floor(rand() * 20);
     else if (status === 'risk') adherenceRate = 45 + Math.floor(rand() * 35);
     else adherenceRate = 20 + Math.floor(rand() * 30);
 
     // Risk score + breakdown
     let riskScore: number | null = null;
     let riskBreakdown: PatientV2['riskBreakdown'] = null;
-    if (status === 'retained') {
+    if (status === 'adherent') {
       riskScore = Math.floor(rand() * 25); // 0-24, low
       riskBreakdown = {
         sideEffectScore: Math.floor(rand() * 20),
@@ -299,12 +299,12 @@ function buildPatients(): PatientV2[] {
       const d = new Date('2026-03-11');
       d.setDate(d.getDate() - daysAgo);
       const channel: InteractionV2['channel'] = j === 0 ? 'voice' : (['voice', 'sms', 'sms', 'sms', 'mail'] as const)[Math.floor(rand() * 5)];
-      const sentimentBase = status === 'retained' ? 70 : status === 'risk' ? 40 : 25;
+      const sentimentBase = status === 'adherent' ? 70 : status === 'risk' ? 40 : 25;
       const sentiment = Math.min(100, sentimentBase + Math.floor(rand() * 25));
 
       // Flags on some interactions
       let flag: string | undefined;
-      if (status !== 'retained' && j < 3 && rand() > 0.5) {
+      if (status !== 'adherent' && j < 3 && rand() > 0.5) {
         flag = INTERACTION_FLAGS[Math.floor(rand() * INTERACTION_FLAGS.length)];
       }
 
@@ -363,7 +363,7 @@ function buildPatients(): PatientV2[] {
 
 export const patientsV2 = buildPatients();
 
-export const retainedPatients = patientsV2.filter((p) => p.status === 'retained');
+export const adherentPatients = patientsV2.filter((p) => p.status === 'adherent');
 export const riskPatients = patientsV2.filter((p) => p.status === 'risk');
 export const droppedPatients = patientsV2.filter((p) => p.status === 'dropped');
 
