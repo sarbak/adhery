@@ -30,9 +30,12 @@ export default function Home() {
             </p>
             <a
               href="mailto:emre@adhery.com"
-              className="text-slate-400 hover:text-white transition-colors text-lg"
+              className="inline-flex items-center gap-2 text-sm font-medium text-white border border-white/20 hover:border-white/40 hover:bg-white/5 px-6 py-3 transition-all"
             >
-              Get in touch &rarr;
+              Get in touch
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="opacity-60">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
             </a>
           </div>
 
@@ -58,31 +61,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Thesis strip */}
-      <section className="border-t border-white/10 py-16 px-6">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">
-          {[
-            {
-              stat: '50%',
-              context: 'of GLP-1 patients discontinue within 12 months.',
-            },
-            {
-              stat: '3.5x',
-              context: 'engagement increase with autonomous voice outreach vs. call centers.',
-            },
-            {
-              stat: '90 days',
-              context: 'the critical adherence cliff. Cross it, and long-term retention follows.',
-            },
-          ].map((item) => (
-            <div key={item.stat}>
-              <p className="text-white text-3xl md:text-4xl font-serif mb-3">{item.stat}</p>
-              <p className="text-slate-500 text-sm leading-relaxed">{item.context}</p>
-            </div>
-          ))}
         </div>
       </section>
 
